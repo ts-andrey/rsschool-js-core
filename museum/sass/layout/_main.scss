@@ -1,0 +1,167 @@
+main {
+  width: 1920px;
+  section {
+    .wrapper {
+      height: inherit;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .section-dark {
+    background-color: #000;
+  }
+  .section-light {
+    background-color: #fff;
+    padding: 75px 0;
+  }
+
+  .welcome {
+    height: 810px;
+    color: #fff;
+    .wrapper {
+      position: relative;
+    }
+    .text {
+      position: relative;
+      margin-top: 150px;
+      width: 598px;
+      height: 388px;
+      z-index: 10;
+
+      h2 {
+        text-transform: uppercase;
+        font-family: Forum;
+        font-size: 80px;
+        letter-spacing: 5px;
+      }
+      p {
+        margin-top: 25px;
+        font-family: Roboto;
+        font-weight: 300;
+        font-size: 28px;
+        letter-spacing: 2px;
+        margin-bottom: 75px;
+      }
+      a {
+        padding: 20px 64px;
+        border-radius: 10px;
+        font-family: Roboto;
+        font-weight: 300;
+        font-size: 22px;
+        letter-spacing: 2px;
+        color: inherit;
+        background-color: #710707;
+        text-decoration: none;
+      }
+    }
+    .img {
+      position: absolute;
+      right: 0;
+      top: 0;
+      box-shadow: inset 100px 0 black;
+    }
+    .pagination {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      ul {
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 22px;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 74px;
+        background-color: #000;
+        li {
+          ul {
+            li {
+              padding-right: 25px;
+              &:last-of-type {
+                padding-right: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .visiting {
+    height: fit-content;
+    .wrapper {
+      height: inherit;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+    }
+    h2 {
+      text-transform: uppercase;
+      font-family: Forum;
+      font-size: 80px;
+      letter-spacing: 5px;
+      position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -25px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: #710707;
+      }
+    }
+    h3 {
+      margin-top: 25px;
+      font-family: Forum;
+      font-size: 32px;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      position: relative;
+      &::after {
+        width: 70%;
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: #710707;
+      }
+    }
+    p {
+      margin-top: 22px;
+      font-family: Roboto;
+      font-weight: 100;
+      font-size: 22px;
+      &:last-of-type {
+        margin-top: 10px;
+        font-size: 18px;
+      }
+    }
+    ul {
+      margin-top: 10px;
+      margin-top: 103px;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      grid-template-rows: repeat(2, auto);
+      grid-gap: 75px 60px;
+      li {
+        width: min-content;
+        height: min-content;
+      }
+    }
+  }
+
+  .parallax {
+    width: 1920px;
+    height: 400px;
+    overflow: hidden;
+
+    img {
+      width: inherit;
+    }
+  }
+}

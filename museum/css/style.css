@@ -32,7 +32,56 @@ body {
   font-weight: 400; }
 
 footer {
-  background-color: #000; }
+  background-color: #000;
+  color: #fff; }
+  footer .string.last {
+    border-top: 3px solid #666666;
+    padding: 50px 0;
+    font-family: Roboto;
+    font-weight: 100;
+    font-size: 22px;
+    letter-spacing: 2px; }
+  footer .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: end; }
+  footer .logo {
+    display: flex;
+    align-items: center;
+    width: min-content;
+    height: 50px;
+    font-family: Forum;
+    font-size: 28px;
+    display: flex;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 75px;
+    margin-bottom: 140px; }
+    footer .logo svg {
+      margin-right: 25px; }
+  footer ul {
+    list-style: none;
+    width: min-content;
+    height: min-content; }
+  footer nav {
+    display: flex;
+    justify-content: space-between;
+    font-family: Roboto;
+    font-weight: 100;
+    font-size: 22px;
+    letter-spacing: 2px;
+    margin-right: 252px;
+    width: 363px;
+    margin-bottom: 50px; }
+    footer nav ul li {
+      margin-bottom: 25px; }
+      footer nav ul li:last-of-type {
+        margin-bottom: 0; }
+  footer .social {
+    width: 340px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 55px; }
 
 header {
   width: 1920px;
@@ -52,7 +101,7 @@ header {
     header .logo svg {
       margin-right: 25px; }
   header nav {
-    max-width: 720px; }
+    max-width: 770px; }
     header nav ul {
       display: flex;
       justify-content: space-between;
@@ -116,8 +165,7 @@ main {
     main .welcome .img {
       position: absolute;
       right: 0;
-      top: 0;
-      box-shadow: inset 100px 0 black; }
+      top: 0; }
     main .welcome .pagination {
       position: absolute;
       bottom: 0;
@@ -144,11 +192,13 @@ main {
       justify-content: flex-start;
       flex-direction: column; }
     main .visiting h2 {
+      color: #9d8665;
       text-transform: uppercase;
       font-family: Forum;
       font-size: 80px;
       letter-spacing: 5px;
-      position: relative; }
+      position: relative;
+      margin-bottom: 103px; }
       main .visiting h2::after {
         content: '';
         position: absolute;
@@ -182,8 +232,6 @@ main {
         margin-top: 10px;
         font-size: 18px; }
     main .visiting ul {
-      margin-top: 10px;
-      margin-top: 103px;
       list-style: none;
       display: grid;
       grid-template-columns: repeat(3, auto);
@@ -192,12 +240,257 @@ main {
       main .visiting ul li {
         width: min-content;
         height: min-content; }
+  main .explore {
+    color: #fff;
+    padding: 75px 0; }
+    main .explore .wrapper {
+      height: 715px;
+      display: flex;
+      justify-content: space-between; }
+    main .explore .text {
+      max-width: 660px; }
+      main .explore .text h2 {
+        text-transform: uppercase;
+        font-family: Forum;
+        font-size: 80px;
+        letter-spacing: 5px;
+        position: relative;
+        margin-bottom: 103px; }
+        main .explore .text h2::after {
+          content: '';
+          position: absolute;
+          bottom: -25px;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background-color: #710707; }
+      main .explore .text p {
+        margin-top: 25px;
+        font-family: Roboto;
+        font-weight: 300;
+        font-size: 22px; }
+      main .explore .text span {
+        color: #caaa7d; }
+    main .explore .img {
+      width: 720px;
+      position: relative; }
+      main .explore .img img {
+        height: 700px;
+        position: absolute; }
+      main .explore .img svg {
+        position: absolute; }
+  main .video .wrapper {
+    display: flex;
+    flex-direction: column; }
+  main .video .text {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 75px; }
+  main .video h2 {
+    text-transform: uppercase;
+    color: #9d8665;
+    font-family: Forum;
+    font-size: 80px;
+    letter-spacing: 5px; }
+  main .video p {
+    align-self: center;
+    max-width: 720px;
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 22px; }
+  main .video .video {
+    position: relative; }
+  main .video .play-group {
+    position: absolute;
+    height: min-content;
+    width: min-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+  main .video img {
+    width: 1440px; }
+  main .video .player-panel {
+    margin-top: -50px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    align-items: center; }
+  main .video .progress-bar {
+    height: 15px;
+    width: 930px; }
+  main .video .volume-bar {
+    height: 15px;
+    width: 155px; }
+  main .video .slider {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; }
+    main .video .slider ul {
+      list-style: none; }
+    main .video .slider-position {
+      width: 200px;
+      display: flex;
+      justify-content: space-between; }
+  main .gallery {
+    padding: 75px 0;
+    height: 2200px;
+    overflow: clip;
+    color: #fff; }
+    main .gallery .wrapper {
+      display: flex;
+      flex-direction: column; }
+    main .gallery h2 {
+      text-transform: uppercase;
+      font-family: Forum;
+      font-size: 80px;
+      letter-spacing: 5px;
+      margin-bottom: 75px; }
+    main .gallery .pictures {
+      display: flex;
+      justify-content: space-between; }
+    main .gallery ul {
+      height: min-content;
+      list-style: none;
+      display: grid;
+      justify-content: center;
+      justify-items: center;
+      align-items: center;
+      grid-template-columns: 1;
+      grid-row-gap: 24px; }
+      main .gallery ul:nth-of-type(odd) {
+        margin-top: 50px; }
+  main .tickets .wrapper {
+    display: flex;
+    flex-direction: column; }
+  main .tickets .data {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: min-content auto auto; }
+  main .tickets h2 {
+    color: #9d8665;
+    text-transform: uppercase;
+    font-family: Forum;
+    font-size: 80px;
+    letter-spacing: 5px;
+    position: relative;
+    margin-bottom: 103px; }
+    main .tickets h2::after {
+      content: '';
+      position: absolute;
+      bottom: -25px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background-color: #710707; }
+  main .tickets img {
+    grid-column: 1;
+    grid-row: 1 / span 3; }
+  main .tickets .ticket {
+    display: flex;
+    flex-direction: column;
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 22px; }
+    main .tickets .ticket.type {
+      grid-column: 2;
+      grid-row: 1;
+      margin-left: 60px; }
+      main .tickets .ticket.type h3 {
+        margin-bottom: 50px; }
+      main .tickets .ticket.type label {
+        margin-bottom: 25px; }
+        main .tickets .ticket.type label:last-of-type {
+          margin-bottom: 0; }
+      main .tickets .ticket.type input {
+        margin-right: 23px; }
+    main .tickets .ticket.amount {
+      justify-self: end;
+      width: 150px;
+      grid-column: 3;
+      grid-row: 1; }
+      main .tickets .ticket.amount h3 {
+        text-align: right;
+        margin-bottom: 25px; }
+      main .tickets .ticket.amount input {
+        width: 150px;
+        height: 50px;
+        font-family: Roboto;
+        font-weight: 300;
+        font-size: 22px;
+        text-align: center; }
+      main .tickets .ticket.amount .age p {
+        margin-bottom: 15px; }
+      main .tickets .ticket.amount .senior {
+        margin-top: 10px; }
+  main .tickets h3 {
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 50px; }
+  main .tickets .total {
+    margin-top: 50px;
+    font-weight: 700;
+    font-size: 28px; }
+  main .tickets button {
+    margin-top: 52px;
+    width: 175px;
+    height: 50px;
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: end;
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 22px;
+    background-color: #000;
+    color: #fff; }
   main .parallax {
     width: 1920px;
     height: 400px;
     overflow: hidden; }
     main .parallax img {
       width: inherit; }
+
+.contacts .wrapper {
+  display: flex;
+  flex-direction: column; }
+
+.contacts .data {
+  display: flex;
+  justify-content: space-between; }
+
+.contacts h2 {
+  color: #9d8665;
+  text-transform: uppercase;
+  font-family: Forum;
+  font-size: 80px;
+  letter-spacing: 5px;
+  position: relative;
+  margin-bottom: 103px; }
+  .contacts h2::after {
+    content: '';
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #710707; }
+
+.contacts h3 {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 28px;
+  margin-bottom: 50px; }
+
+.contacts p {
+  margin-top: 25px;
+  font-family: Roboto;
+  font-weight: 300;
+  font-size: 22px; }
+
+.contacts ul {
+  list-style: none; }
 
 .wrapper {
   width: 1440px;

@@ -1,5 +1,8 @@
+@import '../util/variables';
+
 header {
-  width: 1920px;
+  min-width: $screen-size-big;
+  margin: 0 auto;
   background-color: #000;
   color: #fff;
   padding: 59px 0;
@@ -9,11 +12,13 @@ header {
     align-items: center;
   }
   .logo {
-    font-family: Forum;
-    font-size: 28px;
     display: flex;
-    letter-spacing: 5px;
-    text-transform: uppercase;
+    h1 {
+      font-family: Forum;
+      font-size: 28px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+    }
     svg {
       margin-right: 25px;
     }
@@ -33,6 +38,10 @@ header {
         a {
           color: inherit;
           text-decoration: none;
+          transition: 0.4s;
+          &:hover {
+            color: $color-hover;
+          }
         }
         &:last-of-type {
           padding-right: 0;

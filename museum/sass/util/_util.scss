@@ -1,0 +1,32 @@
+@import './variables';
+.wrapper {
+  width: 1440px;
+  margin: 0 auto;
+}
+
+.header-main {
+  font-family: Forum;
+  font-size: 80px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+.header-underline {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: $color-attract;
+  }
+  margin-bottom: $margin-underline;
+}
+
+@mixin setFont($fontFamily, $fontSize, $fontWeight: 400, $fontSpacing: 0) {
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  letter-spacing: $fontSpacing;
+}

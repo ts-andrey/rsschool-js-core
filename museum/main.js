@@ -71,3 +71,9 @@ form.addEventListener(
   },
   false
 );
+
+const selfEvaluation = [
+  
+];
+
+console.log(selfEvaluation);

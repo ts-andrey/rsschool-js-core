@@ -446,6 +446,7 @@ main {
   }
 
   .tickets {
+    position: relative;
     .wrapper {
       display: flex;
       flex-direction: column;
@@ -513,6 +514,11 @@ main {
           @include setFont(Roboto, 22px, 300);
           text-align: center;
           border: 3px solid $color-bg-dark;
+          &[type='number']::-webkit-inner-spin-button,
+          &[type='number']::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
         }
         .age {
           p {
@@ -573,7 +579,7 @@ main {
     height: 400px;
     overflow: hidden;
     margin: 0 auto;
-    background-image: url('../../assets/img/parallax.jpg');
+    background-image: url('../assets/img/parallax.jpg');
     background-size: cover;
     background-attachment: fixed;
   }
@@ -616,72 +622,266 @@ main {
   }
 }
 
-.booking {
-  margin: 0 auto;
-  width: 1440px;
-  height: 845px;
+.form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
-  justify-content: center;
   align-items: center;
-  
-  .forum-header{
-    width: inherit;
-    border-bottom: 3px solid $color-attract;
-    margin-bottom: 60px;
-    h3 {
-      @include setFont(Forum, 50px, null);
-      text-transform: uppercase;
-      color: $color-hover;
-    }
-    p {
-      margin-top: 15px;
-      padding-bottom: 10px;
-      color: $color-attract;
-      @include setFont(Roboto, 18px, 400);
-    }
-  }
-  
-  .details {
-    height: 663px;
-    width: 400px;
+  transition: all 1s;
+  z-index: 100;
+  margin-left: -200vw;
+
+  .booking {
+    background-color: #fff;
+    margin: 0 auto;
+    width: 1440px;
+    height: 845px;
     display: flex;
-    flex-direction: column;
-    input {
-      height: 45px;
-      width: 100%;
-      margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
     }
-    .date-time{
+    .forum-header {
+      width: inherit;
+      border-bottom: 3px solid $color-attract;
+      margin-bottom: 60px;
+      h3 {
+        @include setFont(Forum, 50px, null);
+        text-transform: uppercase;
+        color: $color-hover;
+      }
+      p {
+        margin-top: 15px;
+        padding-bottom: 10px;
+        color: $color-attract;
+        @include setFont(Roboto, 18px, 400);
+      }
+    }
+
+    .details {
+      height: min-content;
+      width: 400px;
       display: flex;
-      justify-content: space-between;
-      input{
-        width: 47.5%;
+      flex-direction: column;
+      .input-group {
+        height: 45px;
+        width: 100%;
+        position: relative;
+        margin-bottom: 20px;
+        .data-type {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 15px;
+          @include setFont(Roboto, 18px, 400);
+          svg {
+            margin-right: 10px;
+          }
+        }
       }
-    }
-    .btn-amount {
-      width: 150px;
-      height: 48px;
-      position: relative;
-      .btn {
-        @include setFont(Roboto, 32px, 400);
-        margin: 0;
-        width: 25px;
+      input {
         height: inherit;
-        position: absolute;
-        border: none;
-        background: transparent;
-        top: 0;
-        &:nth-of-type(1) {
-          left: 10px;
+        width: inherit;
+        padding-left: 95px;
+        border: 1px solid $color-bg-dark;
+        @include setFont(Roboto, 18px, 400);
+        color: $color-bg-dark;
+      }
+      select {
+        height: inherit;
+        width: inherit;
+      }
+      .date-time {
+        display: flex;
+        justify-content: space-between;
+        .input-group {
+          width: 190px;
+          input {
+            padding-left: 87px;
+          }
         }
+      }
+      .ticket-amount {
+        padding: 10px 15px 15px 15px;
+        border: 1px solid $color-bg-dark;
+        h4 {
+          @include setFont(Forum, 18px, null);
+          color: $color-hover;
+          position: relative;
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: $color-attract;
+          }
+        }
+      }
+      .type {
+        margin-top: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include setFont(Roboto, 18px, 400);
         &:nth-of-type(2) {
-          right: 10px;
+          margin-top: 22px;
+        }
+        .btn-amount {
+          width: 105px;
+          height: 25px;
+          display: flex;
+          align-content: center;
+          .btn {
+            @include setFont(Roboto, 18px, 400);
+            height: inherit;
+            width: 35px;
+            background-color: $color-bg-dark;
+            color: #fff;
+          }
+          input {
+            padding: 0;
+            width: 35px;
+            height: inherit;
+            text-align: center;
+            &[type='number']::-webkit-inner-spin-button,
+            &[type='number']::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+          }
         }
       }
     }
-  }
-  .payment {
-    height: 663px;
-    width: 530px;
+    .payment {
+      padding-bottom: 20px;
+      box-sizing: content-box;
+      height: min-content;
+      width: 530px;
+      margin-left: 40px;
+      border: 1px solid $color-bg-dark;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      .data-type {
+        width: 470px;
+        margin: 25px 30px 22px 30px;
+        position: relative;
+        @include setFont(Roboto, 18px, 300);
+        h3 {
+          @include setFont(Roboto, 32px, 400);
+          margin-bottom: 2px;
+        }
+        p {
+          @include setFont(Roboto, 22px, 400);
+          margin-bottom: 10px;
+          color: $color-attract;
+        }
+
+        div {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+          svg {
+            margin-right: 15px;
+          }
+        }
+        img {
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+      .summary {
+        width: 470px;
+        margin: 0 30px 10px 30px;
+        display: flex;
+        flex-direction: column;
+        @include setFont(Roboto, 22px, 400);
+        .amount {
+          display: flex;
+          justify-content: space-between;
+          .amount-type {
+            display: flex;
+            align-items: center;
+            .amount-total {
+              width: 32px;
+              height: 20px;
+              font-size: 18px;
+              text-align: center;
+              background-color: $color-bg-dark;
+              color: #a4a4a3;
+              border-radius: 5px;
+              margin-right: 10px;
+            }
+          }
+        }
+        .underline {
+          position: relative;
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -9px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: $color-attract;
+          }
+        }
+        .whole-sum {
+          margin-top: 24px;
+          display: flex;
+          justify-content: space-between;
+          h4 {
+            @include setFont(Roboto, 32px, 400);
+          }
+          margin-bottom: 10px;
+        }
+      }
+      .summary-card {
+        width: 470px;
+        height: 241px;
+        margin: 0 30px 26px 30px;
+        position: relative;
+        img {
+          position: absolute;
+          &:nth-of-type(1) {
+            top: 0;
+            left: 0;
+            z-index: 1;
+          }
+          &:nth-of-type(2) {
+            right: 0;
+            bottom: 0;
+          }
+        }
+      }
+
+      .submit {
+        width: 220px;
+        height: 45px;
+        margin: 10px 30px 20px 30px;
+        background: $color-attract;
+        color: #fff;
+        text-align: center;
+        @include setFont(Roboto, 22px, 400);
+      }
+    }
   }
 }

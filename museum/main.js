@@ -4,7 +4,6 @@ const buttonSubmit = document.querySelector('.submit');
 const formClose = document.querySelector('.close');
 const formOpen = document.querySelector('.btn-buy');
 const form = document.querySelector('.form');
-console.log(form);
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {

@@ -1,5 +1,9 @@
 const videoProgressBar = document.querySelectorAll('.bar');
 const imgInsertPlace = document.querySelector('.insert-gallery');
+const buttonSubmit = document.querySelector('.submit');
+const formClose = document.querySelector('.close');
+const formOpen = document.querySelector('.btn-buy');
+const form = document.querySelector('.form');
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -37,6 +41,16 @@ function progressBarHandler() {
   this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${this.value}%, #fff ${this.value}%, #fff 100%)`;
 }
 
+function submitHandler(ev) {
+  ev.preventDefault();
+}
+
+function openFormHandler() {
+  form.style.marginLeft = '0';
+}
+function closeFormHandler() {
+  form.style.marginLeft = '-200vw';
+}
 
 videoProgressBar.forEach(el => {
   el.addEventListener('input', progressBarHandler);
@@ -44,3 +58,28 @@ videoProgressBar.forEach(el => {
 
 window.addEventListener('load', insertGallery);
 
+buttonSubmit.addEventListener('click', submitHandler);
+
+formOpen.addEventListener('click', openFormHandler);
+formClose.addEventListener('click', closeFormHandler);
+
+form.addEventListener(
+  'click',
+  function (event) {
+    if (event.target.matches('.close') || !event.target.closest('form')) closeFormHandler(event);
+  },
+  false
+);
+
+const selfEvaluation = [
+  ['Вёрстка валидная (проверено)', '+10'],
+  ['Вёрстка семантическая (все выполнено)', '+24'],
+  ['Вёрстка соответствует макету (все выполнено)', '+45'],
+  ['Форма покупки билетов (не идеальная стилизация)', '+17'],
+  ['Требования к css (все выполнено)', '+18'],
+  ['Интерактивность, реализуемая через css (все выполнено)', '+25'],
+  ['Интерактивность, реализуемая через js (все выполнено)', '+16'],
+  ['Общее количество баллов самооценки', 155],
+];
+
+console.table(selfEvaluation);

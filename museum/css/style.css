@@ -530,118 +530,123 @@ main {
         width: inherit;
         height: 400px;
         background: linear-gradient(to top, #030303 20%, transparent); }
-  main .tickets .wrapper {
-    display: flex;
-    flex-direction: column; }
-  main .tickets .data {
-    display: grid;
-    grid-template-rows: repeat(3, auto);
-    grid-template-columns: min-content auto auto; }
-  main .tickets h2 {
-    color: #9d8665; }
-  main .tickets img {
-    grid-column: 1;
-    grid-row: 1 / span 3; }
-  main .tickets .ticket {
-    display: flex;
-    flex-direction: column;
-    font-family: Roboto;
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: 0; }
-    main .tickets .ticket.type {
-      grid-column: 2;
-      grid-row: 1;
-      margin-left: 60px; }
-      main .tickets .ticket.type h3 {
-        margin-bottom: 49px; }
-      main .tickets .ticket.type label {
-        margin-bottom: 24px; }
-        main .tickets .ticket.type label:last-of-type {
-          margin-bottom: 0; }
-      main .tickets .ticket.type input {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border-radius: 50%;
-        width: 16px;
-        height: 16px;
-        border: 2px solid #030303;
-        transition: 0.2s all linear;
-        margin-right: 24px; }
-      main .tickets .ticket.type input:checked {
-        background: radial-gradient(#030303 35%, transparent 36%); }
-    main .tickets .ticket.amount {
-      justify-self: end;
-      width: 150px;
+  main .tickets {
+    position: relative; }
+    main .tickets .wrapper {
+      display: flex;
+      flex-direction: column; }
+    main .tickets .data {
+      display: grid;
+      grid-template-rows: repeat(3, auto);
+      grid-template-columns: min-content auto auto; }
+    main .tickets h2 {
+      color: #9d8665; }
+    main .tickets img {
+      grid-column: 1;
+      grid-row: 1 / span 3; }
+    main .tickets .ticket {
+      display: flex;
+      flex-direction: column;
+      font-family: Roboto;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 0; }
+      main .tickets .ticket.type {
+        grid-column: 2;
+        grid-row: 1;
+        margin-left: 60px; }
+        main .tickets .ticket.type h3 {
+          margin-bottom: 49px; }
+        main .tickets .ticket.type label {
+          margin-bottom: 24px; }
+          main .tickets .ticket.type label:last-of-type {
+            margin-bottom: 0; }
+        main .tickets .ticket.type input {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          border-radius: 50%;
+          width: 16px;
+          height: 16px;
+          border: 2px solid #030303;
+          transition: 0.2s all linear;
+          margin-right: 24px; }
+        main .tickets .ticket.type input:checked {
+          background: radial-gradient(#030303 35%, transparent 36%); }
+      main .tickets .ticket.amount {
+        justify-self: end;
+        width: 150px;
+        grid-column: 3;
+        grid-row: 1; }
+        main .tickets .ticket.amount h3 {
+          text-align: right;
+          margin-bottom: 25px; }
+        main .tickets .ticket.amount input {
+          width: inherit;
+          height: inherit;
+          font-family: Roboto;
+          font-size: 22px;
+          font-weight: 300;
+          letter-spacing: 0;
+          text-align: center;
+          border: 3px solid #030303; }
+          main .tickets .ticket.amount input[type='number']::-webkit-inner-spin-button, main .tickets .ticket.amount input[type='number']::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0; }
+        main .tickets .ticket.amount .age p {
+          margin-bottom: 13px; }
+        main .tickets .ticket.amount .senior {
+          margin-top: 12px; }
+      main .tickets .ticket .btn-amount {
+        width: 150px;
+        height: 48px;
+        position: relative; }
+        main .tickets .ticket .btn-amount .btn {
+          font-family: Roboto;
+          font-size: 32px;
+          font-weight: 400;
+          letter-spacing: 0;
+          margin: 0;
+          width: 25px;
+          height: inherit;
+          position: absolute;
+          border: none;
+          background: transparent;
+          top: 0; }
+          main .tickets .ticket .btn-amount .btn:nth-of-type(1) {
+            left: 10px; }
+          main .tickets .ticket .btn-amount .btn:nth-of-type(2) {
+            right: 10px; }
+    main .tickets h3 {
+      font-family: Roboto;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin-bottom: 50px; }
+    main .tickets .total {
+      margin-top: 51px;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 1.65px; }
+    main .tickets .btn-buy {
+      margin-top: 60px;
+      width: 175px;
+      height: 50px;
       grid-column: 3;
-      grid-row: 1; }
-      main .tickets .ticket.amount h3 {
-        text-align: right;
-        margin-bottom: 25px; }
-      main .tickets .ticket.amount input {
-        width: inherit;
-        height: inherit;
-        font-family: Roboto;
-        font-size: 22px;
-        font-weight: 300;
-        letter-spacing: 0;
-        text-align: center;
-        border: 3px solid #030303; }
-      main .tickets .ticket.amount .age p {
-        margin-bottom: 13px; }
-      main .tickets .ticket.amount .senior {
-        margin-top: 12px; }
-    main .tickets .ticket .btn-amount {
-      width: 150px;
-      height: 48px;
-      position: relative; }
-      main .tickets .ticket .btn-amount .btn {
-        font-family: Roboto;
-        font-size: 32px;
-        font-weight: 400;
-        letter-spacing: 0;
-        margin: 0;
-        width: 25px;
-        height: inherit;
-        position: absolute;
-        border: none;
-        background: transparent;
-        top: 0; }
-        main .tickets .ticket .btn-amount .btn:nth-of-type(1) {
-          left: 10px; }
-        main .tickets .ticket .btn-amount .btn:nth-of-type(2) {
-          right: 10px; }
-  main .tickets h3 {
-    font-family: Roboto;
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: 0;
-    margin-bottom: 50px; }
-  main .tickets .total {
-    margin-top: 51px;
-    font-weight: 700;
-    font-size: 28px;
-    letter-spacing: 1.65px; }
-  main .tickets .btn-buy {
-    margin-top: 60px;
-    width: 175px;
-    height: 50px;
-    grid-column: 3;
-    grid-row: 2;
-    justify-self: end;
-    font-family: Roboto;
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: 2px;
-    background-color: #000;
-    color: #fff; }
+      grid-row: 2;
+      justify-self: end;
+      font-family: Roboto;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      background-color: #000;
+      color: #fff; }
   main .parallax {
     width: 100%;
     height: 400px;
     overflow: hidden;
     margin: 0 auto;
-    background-image: url("../../assets/img/parallax.jpg");
+    background-image: url("../assets/img/parallax.jpg");
     background-size: cover;
     background-attachment: fixed; }
 
@@ -682,68 +687,256 @@ main {
 .contacts ul {
   list-style: none; }
 
-.booking {
-  margin: 0 auto;
-  width: 1440px;
-  height: 845px;
+.form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
-  justify-content: center;
-  align-items: center; }
-  .booking .forum-header {
-    width: inherit;
-    border-bottom: 3px solid #710707;
-    margin-bottom: 60px; }
-    .booking .forum-header h3 {
-      font-family: Forum;
-      font-size: 50px;
-      letter-spacing: 0;
-      text-transform: uppercase;
-      color: #9d8665; }
-    .booking .forum-header p {
-      margin-top: 15px;
-      padding-bottom: 10px;
-      color: #710707;
-      font-family: Roboto;
-      font-size: 18px;
-      font-weight: 400;
-      letter-spacing: 0; }
-  .booking .details {
-    height: 663px;
-    width: 400px;
+  align-items: center;
+  transition: all 1s;
+  z-index: 100;
+  margin-left: -200vw; }
+  .form .booking {
+    background-color: #fff;
+    margin: 0 auto;
+    width: 1440px;
+    height: 845px;
     display: flex;
-    flex-direction: column; }
-    .booking .details input {
-      height: 45px;
-      width: 100%;
-      margin-bottom: 20px; }
-    .booking .details .date-time {
-      display: flex;
-      justify-content: space-between; }
-      .booking .details .date-time input {
-        width: 47.5%; }
-    .booking .details .btn-amount {
-      width: 150px;
-      height: 48px;
-      position: relative; }
-      .booking .details .btn-amount .btn {
+    justify-content: center;
+    align-items: center;
+    position: relative; }
+    .form .booking .close {
+      position: absolute;
+      top: 30px;
+      right: 30px; }
+    .form .booking .forum-header {
+      width: inherit;
+      border-bottom: 3px solid #710707;
+      margin-bottom: 60px; }
+      .form .booking .forum-header h3 {
+        font-family: Forum;
+        font-size: 50px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        color: #9d8665; }
+      .form .booking .forum-header p {
+        margin-top: 15px;
+        padding-bottom: 10px;
+        color: #710707;
         font-family: Roboto;
-        font-size: 32px;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0; }
+    .form .booking .details {
+      height: min-content;
+      width: 400px;
+      display: flex;
+      flex-direction: column; }
+      .form .booking .details .input-group {
+        height: 45px;
+        width: 100%;
+        position: relative;
+        margin-bottom: 20px; }
+        .form .booking .details .input-group .data-type {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 15px;
+          font-family: Roboto;
+          font-size: 18px;
+          font-weight: 400;
+          letter-spacing: 0; }
+          .form .booking .details .input-group .data-type svg {
+            margin-right: 10px; }
+      .form .booking .details input {
+        height: inherit;
+        width: inherit;
+        padding-left: 95px;
+        border: 1px solid #030303;
+        font-family: Roboto;
+        font-size: 18px;
         font-weight: 400;
         letter-spacing: 0;
-        margin: 0;
-        width: 25px;
+        color: #030303; }
+      .form .booking .details select {
         height: inherit;
-        position: absolute;
-        border: none;
-        background: transparent;
-        top: 0; }
-        .booking .details .btn-amount .btn:nth-of-type(1) {
-          left: 10px; }
-        .booking .details .btn-amount .btn:nth-of-type(2) {
-          right: 10px; }
-  .booking .payment {
-    height: 663px;
-    width: 530px; }
+        width: inherit; }
+      .form .booking .details .date-time {
+        display: flex;
+        justify-content: space-between; }
+        .form .booking .details .date-time .input-group {
+          width: 190px; }
+          .form .booking .details .date-time .input-group input {
+            padding-left: 87px; }
+      .form .booking .details .ticket-amount {
+        padding: 10px 15px 15px 15px;
+        border: 1px solid #030303; }
+        .form .booking .details .ticket-amount h4 {
+          font-family: Forum;
+          font-size: 18px;
+          letter-spacing: 0;
+          color: #9d8665;
+          position: relative; }
+          .form .booking .details .ticket-amount h4::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #710707; }
+      .form .booking .details .type {
+        margin-top: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: Roboto;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0; }
+        .form .booking .details .type:nth-of-type(2) {
+          margin-top: 22px; }
+        .form .booking .details .type .btn-amount {
+          width: 105px;
+          height: 25px;
+          display: flex;
+          align-content: center; }
+          .form .booking .details .type .btn-amount .btn {
+            font-family: Roboto;
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 0;
+            height: inherit;
+            width: 35px;
+            background-color: #030303;
+            color: #fff; }
+          .form .booking .details .type .btn-amount input {
+            padding: 0;
+            width: 35px;
+            height: inherit;
+            text-align: center; }
+            .form .booking .details .type .btn-amount input[type='number']::-webkit-inner-spin-button, .form .booking .details .type .btn-amount input[type='number']::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0; }
+    .form .booking .payment {
+      padding-bottom: 20px;
+      box-sizing: content-box;
+      height: min-content;
+      width: 530px;
+      margin-left: 40px;
+      border: 1px solid #030303;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end; }
+      .form .booking .payment .data-type {
+        width: 470px;
+        margin: 25px 30px 22px 30px;
+        position: relative;
+        font-family: Roboto;
+        font-size: 18px;
+        font-weight: 300;
+        letter-spacing: 0; }
+        .form .booking .payment .data-type h3 {
+          font-family: Roboto;
+          font-size: 32px;
+          font-weight: 400;
+          letter-spacing: 0;
+          margin-bottom: 2px; }
+        .form .booking .payment .data-type p {
+          font-family: Roboto;
+          font-size: 22px;
+          font-weight: 400;
+          letter-spacing: 0;
+          margin-bottom: 10px;
+          color: #710707; }
+        .form .booking .payment .data-type div {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px; }
+          .form .booking .payment .data-type div:last-of-type {
+            margin-bottom: 0; }
+          .form .booking .payment .data-type div svg {
+            margin-right: 15px; }
+        .form .booking .payment .data-type img {
+          position: absolute;
+          top: 0;
+          right: 0; }
+      .form .booking .payment .summary {
+        width: 470px;
+        margin: 0 30px 10px 30px;
+        display: flex;
+        flex-direction: column;
+        font-family: Roboto;
+        font-size: 22px;
+        font-weight: 400;
+        letter-spacing: 0; }
+        .form .booking .payment .summary .amount {
+          display: flex;
+          justify-content: space-between; }
+          .form .booking .payment .summary .amount .amount-type {
+            display: flex;
+            align-items: center; }
+            .form .booking .payment .summary .amount .amount-type .amount-total {
+              width: 32px;
+              height: 20px;
+              font-size: 18px;
+              text-align: center;
+              background-color: #030303;
+              color: #a4a4a3;
+              border-radius: 5px;
+              margin-right: 10px; }
+        .form .booking .payment .summary .underline {
+          position: relative; }
+          .form .booking .payment .summary .underline::after {
+            content: '';
+            position: absolute;
+            bottom: -9px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #710707; }
+        .form .booking .payment .summary .whole-sum {
+          margin-top: 24px;
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px; }
+          .form .booking .payment .summary .whole-sum h4 {
+            font-family: Roboto;
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: 0; }
+      .form .booking .payment .summary-card {
+        width: 470px;
+        height: 241px;
+        margin: 0 30px 26px 30px;
+        position: relative; }
+        .form .booking .payment .summary-card img {
+          position: absolute; }
+          .form .booking .payment .summary-card img:nth-of-type(1) {
+            top: 0;
+            left: 0;
+            z-index: 1; }
+          .form .booking .payment .summary-card img:nth-of-type(2) {
+            right: 0;
+            bottom: 0; }
+      .form .booking .payment .submit {
+        width: 220px;
+        height: 45px;
+        margin: 10px 30px 20px 30px;
+        background: #710707;
+        color: #fff;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 22px;
+        font-weight: 400;
+        letter-spacing: 0; }
 
 .wrapper {
   width: 1440px;

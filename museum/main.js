@@ -4,6 +4,7 @@ const buttonSubmit = document.querySelector('.submit');
 const formClose = document.querySelector('.close');
 const formOpen = document.querySelector('.btn-buy');
 const form = document.querySelector('.form');
+const galleryPictures = document.querySelectorAll('.insert-gallery > li>img');
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -14,10 +15,8 @@ function shuffle(array) {
 }
 
 function getRandomArray() {
-  let imgsSmall = [1, 4, 10, 11, 12, 13, 15];
-  let imgsBig = [2, 3, 5, 6, 7, 8, 9, 14];
-  imgsSmall = shuffle(imgsSmall);
-  imgsBig = shuffle(imgsBig);
+  const imgsSmall = shuffle([1, 4, 10, 11, 12, 13, 15]);
+  const imgsBig = shuffle([2, 3, 5, 6, 7, 8, 9, 14]);
   const imgs = [];
   for (let i = 0; i < imgsBig.length; i++) {
     if (i - 1 < 0) {
@@ -30,11 +29,11 @@ function getRandomArray() {
 }
 
 function insertGallery() {
-  let gallery = ``;
-  getRandomArray().forEach(el => {
-    gallery += `<li><img src="assets/img/galery/gallery${el}.jpg" alt="gallery picture #${el}"/></li>`;
+  const randomArray = getRandomArray();
+  randomArray.forEach((el, index) => {
+    galleryPictures[index].setAttribute('src', `assets/img/galery/gallery${el}.jpg`);
+    galleryPictures[index].setAttribute('alt', `gallery picture #${el}`);
   });
-  imgInsertPlace.innerHTML = gallery;
 }
 
 function progressBarHandler() {
@@ -82,4 +81,4 @@ const selfEvaluation = [
   ['Общее количество баллов самооценки', 155],
 ];
 
-console.table(selfEvaluation);
+// console.table(selfEvaluation);

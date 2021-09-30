@@ -84,13 +84,13 @@ footer {
   }
   .social {
     width: 340px;
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     margin-bottom: 55px;
     li {
       width: 48px;
       height: 48px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       border: 1px solid #fff;

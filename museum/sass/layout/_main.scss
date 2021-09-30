@@ -4,6 +4,10 @@
 main {
   min-width: $screen-size-big;
   margin: 0 auto;
+
+  button {
+    border: none;
+  }
   section {
     .wrapper {
       height: inherit;
@@ -35,7 +39,6 @@ main {
       width: 598px;
       height: 388px;
       z-index: 10;
-
       p {
         margin-top: 26px;
         @include setFont(Roboto, 28px, 300, 2px);
@@ -53,6 +56,7 @@ main {
         &:hover {
           background: $color-hover;
           transform: scale(1.05);
+          box-shadow: 0px 0px 10px 5px lighten($color-bg-dark, 20%);
         }
       }
     }
@@ -79,56 +83,59 @@ main {
       position: absolute;
       bottom: 0;
       right: 0;
-      display: flex;
-      align-items: center;
+      display: inline-flex;
       justify-content: space-evenly;
       background-color: #000;
+      z-index: 10;
       @include setFont(Roboto, 22px, 400);
       div {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: space-between;
         &:nth-of-type(1) {
-          height: inherit;
           width: 76px;
+        }
+        span {
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+        }
+      }
+      ul {
+        width: inherit;
+        height: 40px;
+        padding: 0;
+        list-style: none;
+        display: inline-flex;
+        justify-content: space-between;
+        li {
+          display: inline-flex;
+          align-items: center;
         }
       }
       .pages {
-        height: inherit;
+        align-self: center;
         width: 180px;
         ul {
-          width: inherit;
-          height: inherit;
-          list-style: none;
-          padding: 0;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
           li {
-            height: inherit;
             padding: 0;
             margin: 0;
-            display: flex;
-            align-items: center;
-            svg {
-              rect {
-                transition: all 0.4s;
-              }
-            }
-            &:first-of-type {
-              svg {
-                rect {
-                  fill: $color-hover;
-                }
-              }
+            .page {
+              align-self: center;
+              width: 16px;
+              height: 16px;
+              transition: 0.3s;
             }
             &:hover {
               cursor: pointer;
-              svg {
-                rect {
-                  fill: $color-hover;
-                }
+              .page {
+                cursor: inherit;
+                background-color: $color-hover;
+                transform: scale(0.95);
               }
+            }
+            .active {
+              background-color: $color-hover;
             }
           }
         }
@@ -137,20 +144,19 @@ main {
         height: inherit;
         width: 80px;
         ul {
-          height: inherit;
-          width: inherit;
-          list-style: none;
-          display: flex;
-          justify-content: space-between;
           li {
-            display: flex;
-            align-items: center;
-            height: inherit;
+            svg {
+              path {
+                transition: all 0.3s;
+              }
+            }
+
             &:hover {
               cursor: pointer;
               svg {
                 path {
                   fill: $color-hover;
+                  transform: scale(0.95);
                 }
               }
             }
@@ -217,6 +223,7 @@ main {
         &:hover {
           color: $color-hover;
           transform: scale(1.05);
+          box-shadow: 0px 0px 7.5px 5px darken(#fff, 20%);
           h3 {
             &::after {
               width: 100%;
@@ -315,6 +322,13 @@ main {
       top: 44.5%;
       left: 50%;
       transform: translate(-50%, -50%);
+      svg {
+        &:hover {
+          path {
+            transform: scale(0.9) translate(10px, 10px);
+          }
+        }
+      }
     }
     img {
       width: 1440px;
@@ -356,7 +370,7 @@ main {
       border-radius: 1px;
       height: 8px;
       outline: none;
-      transition: background 450ms ease-in;
+      transition: all 0.3s;
       -webkit-appearance: none;
 
       &::-webkit-slider-thumb {
@@ -390,9 +404,43 @@ main {
         }
       }
       &-position {
+        height: 30px;
         width: 200px;
         display: flex;
+        align-items: center;
         justify-content: space-between;
+        li {
+          .page {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            align-self: center;
+            background-color: #999999;
+            transition: 0.3s;
+          }
+          svg {
+            path {
+              transition: 0.3s;
+            }
+          }
+          &:hover {
+            cursor: pointer;
+            .page {
+              cursor: inherit;
+              background-color: $color-bg-dark;
+              transform: scale(0.9);
+            }
+            svg {
+              path {
+                fill: $color-hover;
+                transform: scale(0.9);
+              }
+            }
+          }
+          .active {
+            background-color: $color-bg-dark;
+          }
+        }
       }
     }
   }
@@ -569,8 +617,15 @@ main {
       grid-row: 2;
       justify-self: end;
       @include setFont(Roboto, 22px, 300, 2px);
-      background-color: #000;
+      background-color: $color-bg-dark;
       color: #fff;
+      transition: all 0.35s;
+      &:hover {
+        background: $color-hover;
+        transform: scale(1.15);
+        color: $color-bg-dark;
+        box-shadow: 0px 0px 7.5px 5px darken(#fff, 20%);
+      }
     }
   }
 
@@ -641,15 +696,16 @@ main {
     background-color: #fff;
     margin: 0 auto;
     width: 1440px;
-    height: 845px;
+    height: 855px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    box-sizing: border-box;
     .close {
       position: absolute;
-      top: 30px;
-      right: 30px;
+      top: 34px;
+      right: 29px;
     }
     .forum-header {
       width: inherit;
@@ -659,17 +715,17 @@ main {
         @include setFont(Forum, 50px, null);
         text-transform: uppercase;
         color: $color-hover;
+        margin-bottom: 10px;
       }
       p {
-        margin-top: 15px;
-        padding-bottom: 10px;
+        margin-bottom: 10px;
         color: $color-attract;
         @include setFont(Roboto, 18px, 400);
       }
     }
 
     .details {
-      height: min-content;
+      height: 663px;
       width: 400px;
       display: flex;
       flex-direction: column;
@@ -687,7 +743,7 @@ main {
           left: 15px;
           @include setFont(Roboto, 18px, 400);
           svg {
-            margin-right: 10px;
+            margin-right: 14px;
           }
         }
       }
@@ -702,6 +758,10 @@ main {
       select {
         height: inherit;
         width: inherit;
+        -webkit-appearance: none;
+        background: url(../assets/svg/form/arrow.svg);
+        background-repeat: no-repeat;
+        background-position: right 14px top 14px;
       }
       .date-time {
         display: flex;
@@ -712,8 +772,20 @@ main {
             padding-left: 87px;
           }
         }
+        input {
+          &::-webkit-calendar-picker-indicator {
+            padding: 0;
+            width: 40px;
+            height: 45px;
+            margin: 0;
+            background: url(../assets/svg/form/arrow.svg);
+            background-repeat: no-repeat;
+            background-position: right 14px top 14px;
+          }
+        }
       }
       .ticket-amount {
+        height: 135px;
         padding: 10px 15px 15px 15px;
         border: 1px solid $color-bg-dark;
         h4 {
@@ -723,7 +795,7 @@ main {
           &::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -7px;
             left: 0;
             right: 0;
             height: 2px;
@@ -732,13 +804,13 @@ main {
         }
       }
       .type {
-        margin-top: 25px;
+        margin-top: 23px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         @include setFont(Roboto, 18px, 400);
         &:nth-of-type(2) {
-          margin-top: 22px;
+          margin-top: 17px;
         }
         .btn-amount {
           width: 105px;
@@ -750,6 +822,7 @@ main {
             height: inherit;
             width: 35px;
             background-color: $color-bg-dark;
+            border: none;
             color: #fff;
           }
           input {
@@ -766,11 +839,11 @@ main {
         }
       }
     }
+
     .payment {
-      padding-bottom: 20px;
-      box-sizing: content-box;
       height: min-content;
       width: 530px;
+      height: 663px;
       margin-left: 40px;
       border: 1px solid $color-bg-dark;
       display: flex;
@@ -787,7 +860,7 @@ main {
         }
         p {
           @include setFont(Roboto, 22px, 400);
-          margin-bottom: 10px;
+          margin-bottom: 7px;
           color: $color-attract;
         }
 
@@ -810,13 +883,13 @@ main {
       }
       .summary {
         width: 470px;
-        margin: 0 30px 10px 30px;
+        margin: 0 30px 0 30px;
         display: flex;
         flex-direction: column;
         @include setFont(Roboto, 22px, 400);
         .amount {
           display: flex;
-          justify-content: space-between;
+          justify-content: space-between;      
           .amount-type {
             display: flex;
             align-items: center;
@@ -833,11 +906,12 @@ main {
           }
         }
         .underline {
+          margin-top: 5px;
           position: relative;
           &::after {
             content: '';
             position: absolute;
-            bottom: -9px;
+            bottom: -10px;
             left: 0;
             right: 0;
             height: 2px;
@@ -845,10 +919,13 @@ main {
           }
         }
         .whole-sum {
-          margin-top: 24px;
+          margin-top: 20px;
           display: flex;
           justify-content: space-between;
           h4 {
+            @include setFont(Roboto, 32px, 400);
+          }
+          p{
             @include setFont(Roboto, 32px, 400);
           }
           margin-bottom: 10px;
@@ -859,16 +936,83 @@ main {
         height: 241px;
         margin: 0 30px 26px 30px;
         position: relative;
-        img {
-          position: absolute;
-          &:nth-of-type(1) {
+        .card {
+          width: 360px;
+          height: 211px;
+          @include setFont(Roboto, 12px, 400);
+          display: inline-flex;
+          flex-direction: column;
+          position: relative;
+          &.front {
+            position: absolute;
             top: 0;
             left: 0;
-            z-index: 1;
+            z-index: 10;
+            background: #bcbcbc;
+            padding: 15px 20px;
+            input {
+              height: 35px;
+              margin: 5px 0 10px 0;
+              padding-left: 10px;
+              @include setFont(Roboto, 12px, 400);
+              &.number {
+                width: 215px;
+              }
+              &.name {
+                width: 320px;
+                margin-bottom: 0;
+              }
+            }
+            div {
+              input {
+                width: 100px;
+                &:first-of-type {
+                  margin-right: 15px;
+                }
+              }
+            }
+            .visa {
+              position: absolute;
+              top: 34px;
+              right: 20px;
+            }
+            .mastercard {
+              position: absolute;
+              top: 65px;
+              right: 20px;
+            }
           }
-          &:nth-of-type(2) {
-            right: 0;
+          &.back {
+            position: absolute;
             bottom: 0;
+            right: 0;
+            background: #939393;
+            align-items: end;
+            .line{
+              width: 100%;
+              height: 45px;
+              margin: 25px 0 15px 0;
+              background-color: #161615;
+            }
+            .container{
+              width: 75px;
+              margin-right: 20px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              p{
+                width: 55px;
+                &:last-of-type{
+                  font-size: 10px;
+                }
+              }
+            }
+            input{
+              height: 35px;
+              width: 75px;
+              margin: 5px 0 6px 0;
+              padding-left: 10px;
+            }
           }
         }
       }
@@ -876,11 +1020,19 @@ main {
       .submit {
         width: 220px;
         height: 45px;
-        margin: 10px 30px 20px 30px;
+        margin: 0 30px 20px 30px;
         background: $color-attract;
+        border: none;
         color: #fff;
         text-align: center;
         @include setFont(Roboto, 22px, 400);
+        transition: all 0.35s;
+        &:hover {
+          background: $color-hover;
+          transform: scale(1.1);
+          color: $color-bg-dark;
+          box-shadow: 0px 0px 7.5px 5px darken(#fff, 20%);
+        }
       }
     }
   }

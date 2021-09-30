@@ -96,13 +96,13 @@ footer {
       color: inherit; }
   footer .social {
     width: 340px;
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     margin-bottom: 55px; }
     footer .social li {
       width: 48px;
       height: 48px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       border: 1px solid #fff;
@@ -145,7 +145,7 @@ header {
   header nav {
     max-width: 770px; }
     header nav ul {
-      display: flex;
+      display: inline-flex;
       justify-content: space-between;
       font-family: Roboto;
       font-weight: 100;
@@ -153,12 +153,15 @@ header {
       letter-spacing: 2px; }
       header nav ul li {
         list-style: none;
-        padding-right: 55px; }
+        padding-right: 55px;
+        transition: 0.4s; }
         header nav ul li a {
           color: inherit;
           text-decoration: none;
           transition: 0.4s; }
-          header nav ul li a:hover {
+        header nav ul li:hover {
+          transform: scale(0.95) translateX(-2px); }
+          header nav ul li:hover a {
             color: #9d8665; }
         header nav ul li:last-of-type {
           padding-right: 0; }
@@ -188,6 +191,8 @@ header {
 main {
   min-width: 1920px;
   margin: 0 auto; }
+  main button {
+    border: none; }
   main section .wrapper {
     height: inherit;
     display: flex;
@@ -233,7 +238,8 @@ main {
         transition: all 0.4s; }
         main .welcome .text a:hover {
           background: #9d8665;
-          transform: scale(1.05); }
+          transform: scale(1.05);
+          box-shadow: 0px 0px 10px 5px #363636; }
     main .welcome .img {
       width: 1000px;
       height: 750px;
@@ -254,63 +260,63 @@ main {
       position: absolute;
       bottom: 0;
       right: 0;
-      display: flex;
-      align-items: center;
+      display: inline-flex;
       justify-content: space-evenly;
       background-color: #000;
+      z-index: 10;
       font-family: Roboto;
       font-size: 22px;
       font-weight: 400;
       letter-spacing: 0; }
       main .welcome .pagination div {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: space-between; }
         main .welcome .pagination div:nth-of-type(1) {
-          height: inherit;
           width: 76px; }
+        main .welcome .pagination div span {
+          height: 40px;
+          line-height: 40px;
+          text-align: center; }
+      main .welcome .pagination ul {
+        width: inherit;
+        height: 40px;
+        padding: 0;
+        list-style: none;
+        display: inline-flex;
+        justify-content: space-between; }
+        main .welcome .pagination ul li {
+          display: inline-flex;
+          align-items: center; }
       main .welcome .pagination .pages {
-        height: inherit;
+        align-self: center;
         width: 180px; }
-        main .welcome .pagination .pages ul {
-          width: inherit;
-          height: inherit;
-          list-style: none;
+        main .welcome .pagination .pages ul li {
           padding: 0;
-          display: flex;
-          align-items: center;
-          justify-content: space-between; }
-          main .welcome .pagination .pages ul li {
-            height: inherit;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            align-items: center; }
-            main .welcome .pagination .pages ul li svg rect {
-              transition: all 0.4s; }
-            main .welcome .pagination .pages ul li:first-of-type svg rect {
-              fill: #9d8665; }
-            main .welcome .pagination .pages ul li:hover {
-              cursor: pointer; }
-              main .welcome .pagination .pages ul li:hover svg rect {
-                fill: #9d8665; }
+          margin: 0; }
+          main .welcome .pagination .pages ul li .page {
+            align-self: center;
+            width: 16px;
+            height: 16px;
+            transition: 0.3s; }
+          main .welcome .pagination .pages ul li:hover {
+            cursor: pointer; }
+            main .welcome .pagination .pages ul li:hover .page {
+              cursor: inherit;
+              background-color: #9d8665;
+              transform: scale(0.95); }
+          main .welcome .pagination .pages ul li .active {
+            background-color: #9d8665; }
       main .welcome .pagination .arrows {
         height: inherit;
         width: 80px; }
-        main .welcome .pagination .arrows ul {
-          height: inherit;
-          width: inherit;
-          list-style: none;
-          display: flex;
-          justify-content: space-between; }
-          main .welcome .pagination .arrows ul li {
-            display: flex;
-            align-items: center;
-            height: inherit; }
-            main .welcome .pagination .arrows ul li:hover {
-              cursor: pointer; }
-              main .welcome .pagination .arrows ul li:hover svg path {
-                fill: #9d8665; }
+        main .welcome .pagination .arrows ul li svg path {
+          transition: all 0.3s; }
+        main .welcome .pagination .arrows ul li:hover {
+          cursor: pointer; }
+          main .welcome .pagination .arrows ul li:hover svg path {
+            fill: #9d8665;
+            transform: scale(0.95); }
   main .visiting {
     height: fit-content; }
     main .visiting .wrapper {
@@ -364,7 +370,8 @@ main {
           color: inherit; }
         main .visiting ul li:hover {
           color: #9d8665;
-          transform: scale(1.05); }
+          transform: scale(1.05);
+          box-shadow: 0px 0px 7.5px 5px #cccccc; }
           main .visiting ul li:hover h3::after {
             width: 100%; }
   main .explore {
@@ -436,6 +443,8 @@ main {
     top: 44.5%;
     left: 50%;
     transform: translate(-50%, -50%); }
+    main .video .play-group svg:hover path {
+      transform: scale(0.9) translate(10px, 10px); }
   main .video img {
     width: 1440px;
     height: 650px; }
@@ -465,7 +474,7 @@ main {
     border-radius: 1px;
     height: 8px;
     outline: none;
-    transition: background 450ms ease-in;
+    transition: all 0.3s;
     -webkit-appearance: none; }
     main .video .bar::-webkit-slider-thumb {
       width: 15px;
@@ -491,9 +500,31 @@ main {
         width: 452px;
         height: 254px; }
     main .video .slider-position {
+      height: 30px;
       width: 200px;
       display: flex;
+      align-items: center;
       justify-content: space-between; }
+      main .video .slider-position li .page {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        align-self: center;
+        background-color: #999999;
+        transition: 0.3s; }
+      main .video .slider-position li svg path {
+        transition: 0.3s; }
+      main .video .slider-position li:hover {
+        cursor: pointer; }
+        main .video .slider-position li:hover .page {
+          cursor: inherit;
+          background-color: #030303;
+          transform: scale(0.9); }
+        main .video .slider-position li:hover svg path {
+          fill: #9d8665;
+          transform: scale(0.9); }
+      main .video .slider-position li .active {
+        background-color: #030303; }
   main .gallery {
     padding: 75px 0;
     height: 2200px;
@@ -639,8 +670,14 @@ main {
       font-size: 22px;
       font-weight: 300;
       letter-spacing: 2px;
-      background-color: #000;
-      color: #fff; }
+      background-color: #030303;
+      color: #fff;
+      transition: all 0.35s; }
+      main .tickets .btn-buy:hover {
+        background: #9d8665;
+        transform: scale(1.15);
+        color: #030303;
+        box-shadow: 0px 0px 7.5px 5px #cccccc; }
   main .parallax {
     width: 100%;
     height: 400px;
@@ -705,15 +742,16 @@ main {
     background-color: #fff;
     margin: 0 auto;
     width: 1440px;
-    height: 845px;
+    height: 855px;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; }
+    position: relative;
+    box-sizing: border-box; }
     .form .booking .close {
       position: absolute;
-      top: 30px;
-      right: 30px; }
+      top: 34px;
+      right: 29px; }
     .form .booking .forum-header {
       width: inherit;
       border-bottom: 3px solid #710707;
@@ -723,17 +761,17 @@ main {
         font-size: 50px;
         letter-spacing: 0;
         text-transform: uppercase;
-        color: #9d8665; }
+        color: #9d8665;
+        margin-bottom: 10px; }
       .form .booking .forum-header p {
-        margin-top: 15px;
-        padding-bottom: 10px;
+        margin-bottom: 10px;
         color: #710707;
         font-family: Roboto;
         font-size: 18px;
         font-weight: 400;
         letter-spacing: 0; }
     .form .booking .details {
-      height: min-content;
+      height: 663px;
       width: 400px;
       display: flex;
       flex-direction: column; }
@@ -754,7 +792,7 @@ main {
           font-weight: 400;
           letter-spacing: 0; }
           .form .booking .details .input-group .data-type svg {
-            margin-right: 10px; }
+            margin-right: 14px; }
       .form .booking .details input {
         height: inherit;
         width: inherit;
@@ -767,7 +805,11 @@ main {
         color: #030303; }
       .form .booking .details select {
         height: inherit;
-        width: inherit; }
+        width: inherit;
+        -webkit-appearance: none;
+        background: url(../assets/svg/form/arrow.svg);
+        background-repeat: no-repeat;
+        background-position: right 14px top 14px; }
       .form .booking .details .date-time {
         display: flex;
         justify-content: space-between; }
@@ -775,7 +817,16 @@ main {
           width: 190px; }
           .form .booking .details .date-time .input-group input {
             padding-left: 87px; }
+        .form .booking .details .date-time input::-webkit-calendar-picker-indicator {
+          padding: 0;
+          width: 40px;
+          height: 45px;
+          margin: 0;
+          background: url(../assets/svg/form/arrow.svg);
+          background-repeat: no-repeat;
+          background-position: right 14px top 14px; }
       .form .booking .details .ticket-amount {
+        height: 135px;
         padding: 10px 15px 15px 15px;
         border: 1px solid #030303; }
         .form .booking .details .ticket-amount h4 {
@@ -787,13 +838,13 @@ main {
           .form .booking .details .ticket-amount h4::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -7px;
             left: 0;
             right: 0;
             height: 2px;
             background-color: #710707; }
       .form .booking .details .type {
-        margin-top: 25px;
+        margin-top: 23px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -802,7 +853,7 @@ main {
         font-weight: 400;
         letter-spacing: 0; }
         .form .booking .details .type:nth-of-type(2) {
-          margin-top: 22px; }
+          margin-top: 17px; }
         .form .booking .details .type .btn-amount {
           width: 105px;
           height: 25px;
@@ -816,6 +867,7 @@ main {
             height: inherit;
             width: 35px;
             background-color: #030303;
+            border: none;
             color: #fff; }
           .form .booking .details .type .btn-amount input {
             padding: 0;
@@ -826,10 +878,9 @@ main {
               -webkit-appearance: none;
               margin: 0; }
     .form .booking .payment {
-      padding-bottom: 20px;
-      box-sizing: content-box;
       height: min-content;
       width: 530px;
+      height: 663px;
       margin-left: 40px;
       border: 1px solid #030303;
       display: flex;
@@ -854,7 +905,7 @@ main {
           font-size: 22px;
           font-weight: 400;
           letter-spacing: 0;
-          margin-bottom: 10px;
+          margin-bottom: 7px;
           color: #710707; }
         .form .booking .payment .data-type div {
           display: flex;
@@ -870,7 +921,7 @@ main {
           right: 0; }
       .form .booking .payment .summary {
         width: 470px;
-        margin: 0 30px 10px 30px;
+        margin: 0 30px 0 30px;
         display: flex;
         flex-direction: column;
         font-family: Roboto;
@@ -893,21 +944,27 @@ main {
               border-radius: 5px;
               margin-right: 10px; }
         .form .booking .payment .summary .underline {
+          margin-top: 5px;
           position: relative; }
           .form .booking .payment .summary .underline::after {
             content: '';
             position: absolute;
-            bottom: -9px;
+            bottom: -10px;
             left: 0;
             right: 0;
             height: 2px;
             background-color: #710707; }
         .form .booking .payment .summary .whole-sum {
-          margin-top: 24px;
+          margin-top: 20px;
           display: flex;
           justify-content: space-between;
           margin-bottom: 10px; }
           .form .booking .payment .summary .whole-sum h4 {
+            font-family: Roboto;
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: 0; }
+          .form .booking .payment .summary .whole-sum p {
             font-family: Roboto;
             font-size: 32px;
             font-weight: 400;
@@ -917,26 +974,92 @@ main {
         height: 241px;
         margin: 0 30px 26px 30px;
         position: relative; }
-        .form .booking .payment .summary-card img {
-          position: absolute; }
-          .form .booking .payment .summary-card img:nth-of-type(1) {
+        .form .booking .payment .summary-card .card {
+          width: 360px;
+          height: 211px;
+          font-family: Roboto;
+          font-size: 12px;
+          font-weight: 400;
+          letter-spacing: 0;
+          display: inline-flex;
+          flex-direction: column;
+          position: relative; }
+          .form .booking .payment .summary-card .card.front {
+            position: absolute;
             top: 0;
             left: 0;
-            z-index: 1; }
-          .form .booking .payment .summary-card img:nth-of-type(2) {
+            z-index: 10;
+            background: #bcbcbc;
+            padding: 15px 20px; }
+            .form .booking .payment .summary-card .card.front input {
+              height: 35px;
+              margin: 5px 0 10px 0;
+              padding-left: 10px;
+              font-family: Roboto;
+              font-size: 12px;
+              font-weight: 400;
+              letter-spacing: 0; }
+              .form .booking .payment .summary-card .card.front input.number {
+                width: 215px; }
+              .form .booking .payment .summary-card .card.front input.name {
+                width: 320px;
+                margin-bottom: 0; }
+            .form .booking .payment .summary-card .card.front div input {
+              width: 100px; }
+              .form .booking .payment .summary-card .card.front div input:first-of-type {
+                margin-right: 15px; }
+            .form .booking .payment .summary-card .card.front .visa {
+              position: absolute;
+              top: 34px;
+              right: 20px; }
+            .form .booking .payment .summary-card .card.front .mastercard {
+              position: absolute;
+              top: 65px;
+              right: 20px; }
+          .form .booking .payment .summary-card .card.back {
+            position: absolute;
+            bottom: 0;
             right: 0;
-            bottom: 0; }
+            background: #939393;
+            align-items: end; }
+            .form .booking .payment .summary-card .card.back .line {
+              width: 100%;
+              height: 45px;
+              margin: 25px 0 15px 0;
+              background-color: #161615; }
+            .form .booking .payment .summary-card .card.back .container {
+              width: 75px;
+              margin-right: 20px;
+              display: flex;
+              flex-direction: column;
+              align-items: center; }
+              .form .booking .payment .summary-card .card.back .container p {
+                width: 55px; }
+                .form .booking .payment .summary-card .card.back .container p:last-of-type {
+                  font-size: 10px; }
+            .form .booking .payment .summary-card .card.back input {
+              height: 35px;
+              width: 75px;
+              margin: 5px 0 6px 0;
+              padding-left: 10px; }
       .form .booking .payment .submit {
         width: 220px;
         height: 45px;
-        margin: 10px 30px 20px 30px;
+        margin: 0 30px 20px 30px;
         background: #710707;
+        border: none;
         color: #fff;
         text-align: center;
         font-family: Roboto;
         font-size: 22px;
         font-weight: 400;
-        letter-spacing: 0; }
+        letter-spacing: 0;
+        transition: all 0.35s; }
+        .form .booking .payment .submit:hover {
+          background: #9d8665;
+          transform: scale(1.1);
+          color: #030303;
+          box-shadow: 0px 0px 7.5px 5px #cccccc; }
 
 .wrapper {
   width: 1440px;

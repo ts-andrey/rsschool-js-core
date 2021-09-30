@@ -88,7 +88,7 @@ footer {
       transition: all 0.4s; }
       footer nav ul li:hover {
         color: #9d8665;
-        transform: scale(1.15); }
+        transform: scale(0.95); }
       footer nav ul li:last-of-type {
         margin-bottom: 0; }
     footer nav ul a {
@@ -112,7 +112,7 @@ footer {
         transition: all 0.4s; }
       footer .social li:hover {
         border: 1px solid #9d8665;
-        transform: scale(1.1); }
+        transform: scale(0.95); }
         footer .social li:hover svg path {
           fill: #9d8665; }
       footer .social li a {

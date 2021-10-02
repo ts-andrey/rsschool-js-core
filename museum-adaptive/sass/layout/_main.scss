@@ -4,650 +4,587 @@
 main {
   min-width: $screen-size-big;
   margin: 0 auto;
+}
+h2,
+h3 {
+  font-weight: 400;
+}
 
-  button {
-    border: none;
+button {
+  border: none;
+}
+section {
+  .wrapper {
+    height: inherit;
+    @include setFlex($justify: space-between);
   }
-  section {
-    .wrapper {
-      height: inherit;
-      display: flex;
-      justify-content: space-between;
-    }
-  }
-  .section-dark {
-    background-color: $color-bg-dark;
-  }
-  .section-light {
-    background-color: #fff;
-    padding: 75px 0;
+}
+.section-dark {
+  background-color: $color-bg-dark;
+}
+.section-light {
+  background-color: #fff;
+  padding: 75px 0;
+}
+
+.welcome {
+  @include setSize($h: 810px);
+  color: #fff;
+  overflow: hidden;
+
+  .wrapper {
+    @include setFlex($justify: flex-end);
+    position: relative;
   }
 
-  .welcome {
-    height: 810px;
-    color: #fff;
-    .wrapper {
-      position: relative;
-      display: flex;
-      justify-content: flex-end;
-    }
-    .text {
-      position: absolute;
-      left: 0;
-      top: 0;
-      margin-top: 153px;
-      width: 598px;
-      height: 388px;
-      z-index: 10;
-      p {
-        margin-top: 26px;
-        @include setFont(Roboto, 28px, 300, 2px);
-      }
-      a {
-        display: inline-block;
-        margin-top: 76px;
-        padding: 23px 66px;
-        border-radius: 10px;
-        @include setFont(Roboto, 22px, 300, 2px);
-        color: inherit;
-        background-color: $color-attract;
-        text-decoration: none;
-        transition: all 0.4s;
-        &:hover {
-          background: $color-hover;
-          transform: scale(1.05);
-          box-shadow: 0px 0px 10px 5px lighten($color-bg-dark, 20%);
-        }
-      }
-    }
-    .img {
-      width: 1000px;
-      height: 750px;
-      position: relative;
-
-      .shadow {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: inherit;
-        height: inherit;
-        z-index: 1;
-        background: linear-gradient(to right, $color-bg-dark 0%, transparent 30%);
-      }
-    }
-    .pagination {
-      padding: 0 17px;
-      list-style: none;
-      height: 120px;
-      width: 600px;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      display: inline-flex;
-      justify-content: space-evenly;
-      background-color: #000;
-      z-index: 10;
-      @include setFont(Roboto, 22px, 400);
-      div {
-        display: inline-flex;
-        align-items: center;
-        justify-content: space-between;
-        &:nth-of-type(1) {
-          width: 76px;
-        }
-        span {
-          height: 40px;
-          line-height: 40px;
-          text-align: center;
-        }
-      }
-      ul {
-        width: inherit;
-        height: 40px;
-        padding: 0;
-        list-style: none;
-        display: inline-flex;
-        justify-content: space-between;
-        li {
-          display: inline-flex;
-          align-items: center;
-        }
-      }
-      .pages {
-        align-self: center;
-        width: 180px;
-        ul {
-          li {
-            padding: 0;
-            margin: 0;
-            .page {
-              align-self: center;
-              width: 16px;
-              height: 16px;
-              transition: 0.3s;
-            }
-            &:hover {
-              cursor: pointer;
-              .page {
-                cursor: inherit;
-                background-color: $color-hover;
-                transform: scale(0.95);
-              }
-            }
-            .active {
-              background-color: $color-hover;
-            }
-          }
-        }
-      }
-      .arrows {
-        height: inherit;
-        width: 80px;
-        ul {
-          li {
-            svg {
-              path {
-                transition: all 0.3s;
-              }
-            }
-
-            &:hover {
-              cursor: pointer;
-              svg {
-                path {
-                  fill: $color-hover;
-                  transform: scale(0.95);
-                }
-              }
-            }
-          }
-        }
-      }
+  .text {
+    @include setPosition($top: 0, $left: 0);
+    @include setSize($w: 598px, $h: 388px);
+    margin-top: 153px;
+    z-index: 10;
+  }
+  p {
+    @include setFont(Roboto, 28px, 300, 2px);
+    margin-top: 26px;
+  }
+  a {
+    @include setFont(Roboto, 22px, 300, 2px);
+    display: inline-block;
+    margin-top: 76px;
+    padding: 23px 66px;
+    border-radius: 10px;
+    background-color: $color-attract;
+    transition: all 0.4s;
+    &:hover {
+      background: $color-hover;
+      transform: scale(1.05);
+      box-shadow: 0px 0px 10px 5px lighten($color-bg-dark, 20%);
     }
   }
 
-  .visiting {
-    height: fit-content;
-    .wrapper {
-      height: inherit;
-      display: flex;
-      justify-content: flex-start;
-      flex-direction: column;
-    }
-    h2 {
-      margin-top: 3px;
-      color: #9d8665;
-      &::after {
-        bottom: -27px;
-      }
-    }
-    h3 {
-      margin-top: 23.4px;
-      @include setFont(Forum, 32px, null, 5px);
-      text-transform: uppercase;
-      position: relative;
-      &::after {
-        width: 68%;
-        content: '';
-        position: absolute;
-        bottom: -12px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background-color: #710707;
-        transition: all 0.6s;
-      }
-    }
-    p {
-      margin-top: 22px;
-      @include setFont(Roboto, 22px, 100);
-      &:last-of-type {
-        margin-top: 10px;
-        font-size: 18px;
-      }
-    }
-    ul {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      grid-template-rows: repeat(2, auto);
-      grid-gap: 71px 60px;
-      li {
-        width: min-content;
-        height: min-content;
-        transition: all 0.3s;
-        a {
-          text-decoration: none;
-          color: inherit;
-        }
-        &:hover {
-          color: $color-hover;
-          transform: scale(1.05);
-          box-shadow: 0px 0px 7.5px 5px darken(#fff, 20%);
-          h3 {
-            &::after {
-              width: 100%;
-            }
-          }
-        }
-      }
-    }
+  .img {
+    @include setSize($w: 1000px, $h: 750px);
+    position: relative;
+  }
+  .shadow {
+    @include setPosition($top: 0, $right: 0);
+    @include setSize($w: inherit, $h: inherit);
+    z-index: 1;
+    background: linear-gradient(to right, $color-bg-dark 0%, transparent 30%);
   }
 
-  .explore {
-    color: #fff;
-    padding: 75px 0;
-    .wrapper {
-      height: 715px;
-      display: flex;
-      justify-content: space-between;
-    }
-    .text {
-      max-width: 659px;
+  .container {
+    @include setSize($w: 600px, $h: 120px);
+    @include setPosition($bottom: 1px, $right: 0);
+    @include setFlex($display: flex, $align: center, $justify: center);
+    background-color: #000;
+  }
+  .pagination {
+    @include setSize($w: inherit, $h: inherit);
+    @include setFlex($display: inline-flex, $justify: space-evenly);
+    @include setFont(Roboto, 22px, 400);
+    padding: 0 17px;
+    z-index: 10;
+    div {
+      @include setFlex($display: inline-flex, $justify: space-between, $align: center);
 
-      h2 {
-        &::after {
-          bottom: -29px;
-        }
-        margin-bottom: 105px;
-      }
-
-      p {
-        margin-top: 26px;
-        line-height: 1.75;
-        @include setFont(Roboto, 22px, 300);
+      &:nth-of-type(1) {
+        width: 76px;
       }
       span {
-        color: #caaa7d;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
       }
     }
-    .img {
-      width: 720px;
-      position: relative;
-      img {
-        margin-top: 14px;
-        height: 700px;
-        position: absolute;
+  }
+  ul {
+    @include setSize($w: inherit, $h: 40px);
+    @include setFlex($display: inline-flex, $justify: space-between);
+    padding: 0;
+    li {
+      @include setFlex($display: inline-flex, $align: center);
+    }
+  }
+  .pages {
+    align-self: center;
+    width: 180px;
+    li {
+      padding: 0;
+      margin: 0;
+      &:hover {
+        cursor: pointer;
+        .page {
+          cursor: inherit;
+          background-color: $color-hover;
+          transform: scale(0.95);
+        }
       }
+    }
+    .page {
+      @include setSize($w: 16px, $h: 16px);
+      align-self: center;
+      transition: 0.3s;
+    }
+    .active {
+      background-color: $color-hover;
+    }
+  }
+  .arrows {
+    @include setSize($w: 80px, $h: inherit);
+    li {
       svg {
-        margin-top: 14px;
-        z-index: 1;
-        right: 36%;
-        position: absolute;
+        path {
+          transition: all 0.3s;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        svg {
+          path {
+            fill: $color-hover;
+            transform: scale(0.95);
+          }
+        }
+      }
+    }
+  }
+}
+
+.visiting {
+  height: fit-content;
+
+  .wrapper {
+    @include setFlex($display: flex, $justify: flex-start, $direction: column);
+    height: inherit;
+  }
+  h2 {
+    margin-top: 3px;
+    color: #9d8665;
+    &::after {
+      bottom: -27px;
+    }
+  }
+
+  h3 {
+    @include setFont(Forum, 32px, null, 5px);
+    margin-top: 23.4px;
+    text-transform: uppercase;
+    position: relative;
+    &::after {
+      @include setSize($w: 68%, $h: 2px);
+      @include setPosition($bottom: -12px, $left: 0, $right: 0);
+      content: '';
+      background-color: #710707;
+      transition: all 0.6s;
+    }
+  }
+  p {
+    @include setFont(Roboto, 22px, 100);
+    margin-top: 22px;
+    &:last-of-type {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+  }
+  ul {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 71px 60px;
+    li {
+      @include setSize($w: min-content, $h: min-content);
+      transition: all 0.3s;
+      &:hover {
+        color: $color-hover;
+        transform: scale(1.05);
+        box-shadow: 0px 0px 7.5px 5px darken(#fff, 20%);
+        h3 {
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.explore {
+  color: #fff;
+  padding: 75px 0;
+
+  .wrapper {
+    height: 715px;
+    @include setFlex($display: flex, $justify: space-between);
+  }
+
+  .text {
+    max-width: 659px;
+  }
+  h2 {
+    margin-bottom: 105px;
+  }
+  p {
+    margin-top: 26px;
+    line-height: 1.75;
+    @include setFont(Roboto, 22px, 300);
+  }
+  span {
+    color: #caaa7d;
+  }
+
+  .img {
+    width: 720px;
+    position: relative;
+  }
+  img {
+    @include setPosition($top: 14px);
+    height: 700px;
+  }
+  svg {
+    @include setPosition($top: 14px, $right: 36%);
+    z-index: 1;
+  }
+}
+
+.video {
+  .wrapper {
+    @include setFlex($display: flex, $direction: column);
+    height: 1246px;
+  }
+  .text {
+    @include setFlex($display: flex, $justify: space-between);
+    margin-bottom: 75px;
+  }
+  h2 {
+    color: #9d8665;
+  }
+  p {
+    @include setFont(Roboto, 22px, 300);
+    line-height: 1.8;
+    align-self: center;
+    max-width: 720px;
+  }
+
+  & &-player {
+    position: relative;
+    @include setFlex($display: flex, $justify: space-between, $direction: column);
+    @include setSize($w: 1440px, $h: 735px);
+    svg {
+      path {
+        transition: all 0.4s;
+      }
+      &:hover {
+        path {
+          fill: $color-hover;
+        }
       }
     }
   }
 
-  .video {
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-    }
-    .text {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 75px;
-    }
-    h2 {
-      color: #9d8665;
-    }
-    p {
-      line-height: 1.8;
-      align-self: center;
-      max-width: 720px;
-      @include setFont(Roboto, 22px, 300);
-    }
-    .video {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 1440px;
-      height: 735px;
-      svg {
+  .play-group {
+    @include setSize($w: min-content, $h: min-content);
+    @include setPosition($top: 44.5%, $left: 50%);
+    transform: translate(-50%, -50%);
+    svg {
+      &:hover {
         path {
-          transition: all 0.4s;
-        }
-        &:hover {
-          path {
-            fill: $color-hover;
-          }
+          transform: scale(0.9) translate(10px, 10px);
         }
       }
     }
-    .play-group {
-      position: absolute;
-      height: min-content;
-      width: min-content;
-      top: 44.5%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      svg {
-        &:hover {
-          path {
-            transform: scale(0.9) translate(10px, 10px);
-          }
-        }
-      }
-    }
-    img {
-      width: 1440px;
-      height: 650px;
-    }
-    .player-panel {
-      background: $color-bg-dark;
-      width: inherit;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      display: flex;
-      justify-content: space-between;
-      padding: 25px 30px 25px 30px;
-      align-items: center;
+  }
+  img {
+    @include setSize($w: 1440px, $h: 650px);
+  }
+  .player-panel {
+    @include setSize($w: inherit, $h: 85px);
+    @include setFlex($display: flex, $justify: space-between, $align: center);
+    padding: 0 30px;
+    background: $color-bg-dark;
 
-      svg {
+    svg {
+      path {
+        transition: all 0.4s;
+      }
+      &:hover {
         path {
-          transition: all 0.4s;
-        }
-        &:hover {
-          path {
-            fill: $color-hover;
-          }
+          fill: $color-hover;
         }
       }
     }
-    .progress {
-      height: 15px;
-      width: 930px;
-      background: linear-gradient(to right, $color-attract 0%, $color-attract 53.5%, #c4c4c4 53.6%, #c4c4c4 100%);
-    }
-    .volume {
-      height: 15px;
-      width: 155px;
-      background: linear-gradient(to right, $color-attract 0%, $color-attract 42%, #c4c4c4 42.1%, #c4c4c4 100%);
-    }
-    .bar {
-      border-radius: 1px;
-      height: 8px;
-      outline: none;
-      transition: all 0.3s;
+  }
+  .progress {
+    @include setSize($w: 930px, $h: 15px);
+    background: linear-gradient(to right, $color-attract 0%, $color-attract 53.5%, #c4c4c4 53.6%, #c4c4c4 100%);
+  }
+  .volume {
+    @include setSize($w: 155px, $h: 15px);
+    background: linear-gradient(to right, $color-attract 0%, $color-attract 42%, #c4c4c4 42.1%, #c4c4c4 100%);
+  }
+  .bar {
+    border-radius: 1px;
+    height: 8px;
+    outline: none;
+    transition: all 0.3s;
+    -webkit-appearance: none;
+
+    &::-webkit-slider-thumb {
+      @include setSize($w: 15px, $h: 15px);
+      border-radius: 50%;
       -webkit-appearance: none;
-
-      &::-webkit-slider-thumb {
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        -webkit-appearance: none;
-        cursor: pointer;
-        background: #fff;
-      }
+      cursor: pointer;
+      background: #fff;
     }
-    .slider {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      ul {
-        list-style: none;
+  }
+
+  .slider {
+    @include setFlex($display: flex, $justify: space-between, $align: center, $direction: column);
+    margin-top: 40px;
+
+    .videos {
+      @include setFlex($display: flex, $justify: space-between);
+      width: 1440px;
+      margin-bottom: 31px;
+    }
+    iframe {
+      @include setSize($w: 452px, $h: 254px);
+    }
+
+    &-position {
+      @include setSize($w: 200px, $h: 30px);
+      @include setFlex($display: flex, $justify: space-between, $align: center);
+
+      .page {
+        @include setSize($w: 12px, $h: 12px);
+        border-radius: 50%;
+        align-self: center;
+        background-color: #999999;
+        transition: 0.3s;
       }
-      .videos {
-        width: 1440px;
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 40px;
-        li {
-          iframe {
-            width: 452px;
-            height: 254px;
+
+      .active {
+        background-color: $color-bg-dark;
+      }
+
+      li {
+        svg {
+          path {
+            transition: 0.3s;
           }
         }
-      }
-      &-position {
-        height: 30px;
-        width: 200px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        li {
+        &:hover {
+          cursor: pointer;
           .page {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            align-self: center;
-            background-color: #999999;
-            transition: 0.3s;
+            cursor: inherit;
+            background-color: $color-bg-dark;
+            transform: scale(0.9);
           }
           svg {
             path {
-              transition: 0.3s;
-            }
-          }
-          &:hover {
-            cursor: pointer;
-            .page {
-              cursor: inherit;
-              background-color: $color-bg-dark;
+              fill: $color-hover;
               transform: scale(0.9);
             }
-            svg {
-              path {
-                fill: $color-hover;
-                transform: scale(0.9);
-              }
-            }
-          }
-          .active {
-            background-color: $color-bg-dark;
           }
         }
       }
     }
   }
+}
 
-  .gallery {
-    padding: 75px 0;
-    height: 2200px;
-    overflow: clip;
-    color: #fff;
-    .wrapper {
-      height: inherit;
-      display: flex;
-      flex-direction: column;
-    }
-    h2 {
-      margin-bottom: 75px;
-    }
-
-    .pictures {
-      height: inherit;
-      width: inherit;
-      position: relative;
-      overflow-y: hidden;
-      ul {
-        list-style: none;
-        height: 3000px;
-        columns: 3 456px;
-        column-gap: 36px;
-        li {
-          width: inherit;
-          height: min-content;
-          margin-bottom: 24px;
-          &:nth-of-type(1),
-          &:nth-of-type(11) {
-            padding-top: 50px;
-          }
-          img {
-            width: 456px;
-          }
-        }
-      }
-      .shadow {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: inherit;
-        height: 400px;
-        background: linear-gradient(to top, $color-bg-dark 20%, transparent);
-      }
-    }
+.gallery {
+  padding: 75px 0;
+  height: 2200px;
+  overflow: clip;
+  color: #fff;
+  position: relative;
+  .wrapper {
+    height: inherit;
+    @include setFlex($display: flex, $direction: column);
+  }
+  h2 {
+    margin-bottom: 75px;
   }
 
-  .tickets {
-    position: relative;
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-    }
-    .data {
-      display: grid;
-      grid-template-rows: repeat(3, auto);
-      grid-template-columns: min-content auto auto;
-    }
-    h2 {
-      color: #9d8665;
-    }
-    img {
-      grid-column: 1;
-      grid-row: 1 / span 3;
-    }
-    .ticket {
-      display: flex;
-      flex-direction: column;
-      @include setFont(Roboto, 22px, 300);
-      &.type {
-        grid-column: 2;
-        grid-row: 1;
-        margin-left: 60px;
-        h3 {
-          margin-bottom: 49px;
-        }
-        label {
-          margin-bottom: 24px;
-          &:last-of-type {
-            margin-bottom: 0;
-          }
-        }
-
-        input {
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-
-          border-radius: 50%;
-          width: 16px;
-          height: 16px;
-
-          border: 2px solid $color-bg-dark;
-          transition: 0.2s all linear;
-          margin-right: 24px;
-        }
-
-        input:checked {
-          background: radial-gradient($color-bg-dark 35%, transparent 36%);
-        }
-      }
-      &.amount {
-        justify-self: end;
-        width: 150px;
-        grid-column: 3;
-        grid-row: 1;
-        h3 {
-          text-align: right;
-          margin-bottom: 25px;
-        }
-        input {
-          width: inherit;
-          height: inherit;
-          @include setFont(Roboto, 22px, 300);
-          text-align: center;
-          border: 3px solid $color-bg-dark;
-          &[type='number']::-webkit-inner-spin-button,
-          &[type='number']::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-          }
-        }
-        .age {
-          p {
-            margin-bottom: 13px;
-          }
-        }
-        .senior {
-          margin-top: 12px;
-        }
-      }
-      .btn-amount {
-        width: 150px;
-        height: 48px;
-        position: relative;
-        .btn {
-          @include setFont(Roboto, 32px, 400);
-          margin: 0;
-          width: 25px;
-          height: inherit;
-          position: absolute;
-          border: none;
-          background: transparent;
-          top: 0;
-          &:nth-of-type(1) {
-            left: 10px;
-          }
-          &:nth-of-type(2) {
-            right: 10px;
-          }
-        }
-      }
-    }
-    h3 {
-      @include setFont(Roboto, 28px, 700);
-      margin-bottom: 50px;
-    }
-    .total {
-      margin-top: 51px;
-      font-weight: 700;
-      font-size: 28px;
-      letter-spacing: 1.65px;
-    }
-    .btn-buy {
-      margin-top: 60px;
-      width: 175px;
-      height: 50px;
-      grid-column: 3;
-      grid-row: 2;
-      justify-self: end;
-      @include setFont(Roboto, 22px, 300, 2px);
-      background-color: $color-bg-dark;
-      color: #fff;
-      transition: all 0.35s;
-      &:hover {
-        background: $color-hover;
-        transform: scale(1.15);
-        color: $color-bg-dark;
-        box-shadow: 0px 0px 7.5px 5px darken(#fff, 20%);
-      }
-    }
+  .pictures {
+    @include setSize($w: inherit, $h: inherit);
+    overflow-y: hidden;
   }
-
-  .parallax {
+  ul {
+    height: 3000px;
+    columns: 3 auto;
+    column-gap: 36px;
     width: 100%;
-    height: 400px;
-    overflow: hidden;
-    margin: 0 auto;
-    background-image: url('../assets/img/parallax.jpg');
-    background-size: cover;
-    background-attachment: fixed;
   }
+  li {
+    width: 100%;
+    height: min-content;
+    margin-bottom: 24px;
+    &:nth-of-type(1),
+    &:nth-of-type(11) {
+      padding-top: 50px;
+    }
+  }
+  img {
+    width: 100%;
+  }
+  .shadow {
+    @include setPosition($bottom: 0);
+    @include setSize($w: inherit, $h: 400px);
+    background: linear-gradient(to top, $color-bg-dark 20%, transparent);
+  }
+}
+
+.tickets {
+  position: relative;
+  .wrapper {
+    @include setFlex($display: flex, $direction: column);
+  }
+  .data {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: max-content auto auto;
+  }
+  h2 {
+    color: #9d8665;
+    &::after {
+      bottom: -29px;
+    }
+  }
+  .img {
+    width: 100%;
+    @include setFlex($display: flex, $align: center);
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    overflow: hidden;
+  }
+  img {
+    width: 100%;
+  }
+  .ticket {
+    @include setFlex($display: flex, $direction: column);
+    @include setFont(Roboto, 22px, 300);
+    &.type {
+      grid-column: 2;
+      grid-row: 1;
+      margin-left: 60px;
+      h3 {
+        margin-bottom: 49px;
+      }
+      label {
+        margin-bottom: 24px;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+
+      input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        @include setSize($w: 16px, $h: 16px);
+        border-radius: 50%;
+        border: 2px solid $color-bg-dark;
+        transition: 0.2s all linear;
+        margin-right: 24px;
+      }
+
+      input:checked {
+        background: radial-gradient($color-bg-dark 35%, transparent 36%);
+      }
+    }
+    &.amount {
+      justify-self: end;
+      width: 150px;
+      grid-column: 3;
+      grid-row: 1;
+      h3 {
+        @include setFont(Roboto, 28px, 700);
+        margin-bottom: 50px;
+        text-align: right;
+      }
+      input {
+        @include setSize($w: inherit, $h: inherit);
+        @include setFont(Roboto, 22px, 300);
+        text-align: center;
+        border: 3px solid $color-bg-dark;
+        &[type='number']::-webkit-inner-spin-button,
+        &[type='number']::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+      .age {
+        p {
+          margin-bottom: 13px;
+        }
+      }
+      .senior {
+        margin-top: 12px;
+      }
+    }
+    .btn-amount {
+      @include setSize($w: 150px, $h: 50px);
+      position: relative;
+    }
+    .btn {
+      @include setFont(Roboto, 32px, 400);
+      @include setSize($w: 25px, $h: inherit);
+      @include setPosition($top: 0);
+      margin: 0;
+      border: none;
+      background: transparent;
+      &:nth-of-type(1) {
+        left: 10px;
+      }
+      &:nth-of-type(2) {
+        right: 10px;
+      }
+    }
+  }
+  .total {
+    margin-top: 49px;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 1.65px;
+  }
+  .btn-buy {
+    @include setSize($w: 175px, $h: 50px);
+    @include setFont(Roboto, 22px, 300, 2px);
+    margin-top: 61px;
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: end;
+    background-color: $color-bg-dark;
+    color: #fff;
+    transition: all 0.35s;
+    &:hover {
+      background: $color-hover;
+      transform: scale(1.15);
+      color: $color-bg-dark;
+      box-shadow: 0px 0px 7.5px 5px darken(#fff, 20%);
+    }
+  }
+}
+
+.parallax {
+  @include setSize($w: 100%, $h: 400px);
+  overflow: hidden;
+  margin: 0 auto;
+  background-image: url('../assets/img/parallax.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 .contacts {
   .wrapper {
-    display: flex;
-    flex-direction: column;
+    @include setFlex($display: flex, $direction: column);
   }
   .data {
-    display: flex;
-    justify-content: space-between;
+    @include setFlex($display: flex, $justify: space-between);
   }
   h2 {
     color: #9d8665;
@@ -660,387 +597,628 @@ main {
     margin-bottom: 50px;
   }
   li {
-    margin-top: 24px;
     @include setFont(Roboto, 22px, 300);
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.4s;
-      &:hover {
-        cursor: pointer;
-        color: $color-hover;
-      }
-    }
+    margin-top: 24px;
   }
-  ul {
-    list-style: none;
+  a {
+    color: inherit;
+    transition: all 0.4s;
+    &:hover {
+      cursor: pointer;
+      color: $color-hover;
+    }
   }
 }
 
 .form {
-  position: fixed;
-  top: 0;
-  left: 0;
+  @include setPosition($top: 0, $left: 0, $position: fixed);
+  @include setSize($w: 100vw, $h: 100vh);
+  @include setFlex($display: flex, $align: center);
+
   padding: 0;
   margin: 0;
-  width: 100vw;
-  height: 100vh;
   background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
   transition: all 1s;
   z-index: 100;
-  margin-left: -200vw;
+  margin-left: -100vw;
 
   .booking {
+    @include setSize($w: 1440px, $h: 855px);
+    @include setFlex($display: flex, $justify: center, $align: center);
+
     background-color: #fff;
     margin: 0 auto;
-    width: 1440px;
-    height: 855px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
     box-sizing: border-box;
-    .close {
-      position: absolute;
-      top: 34px;
-      right: 29px;
+  }
+  .close {
+    @include setPosition($top: 34px, $right: 29px);
+  }
+  .forum-header {
+    width: inherit;
+    border-bottom: 3px solid $color-attract;
+    margin-bottom: 60px;
+    h3 {
+      @include setFont(Forum, 50px, null);
+      text-transform: uppercase;
+      color: $color-hover;
+      margin-bottom: 10px;
     }
-    .forum-header {
-      width: inherit;
-      border-bottom: 3px solid $color-attract;
-      margin-bottom: 60px;
-      h3 {
-        @include setFont(Forum, 50px, null);
-        text-transform: uppercase;
-        color: $color-hover;
-        margin-bottom: 10px;
+    p {
+      @include setFont(Roboto, 18px, 400);
+      margin-bottom: 10px;
+      color: $color-attract;
+    }
+  }
+
+  .details {
+    @include setSize($w: 400px, $h: 663px);
+    @include setFlex($display: flex, $direction: column);
+
+    .input-group {
+      height: 45px;
+      width: 100%;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .data-type {
+      @include setFlex($display: flex, $align: center);
+      @include setFont(Roboto, 18px, 400);
+      @include setPosition($top: 50%, $left: 15px);
+      transform: translateY(-50%);
+      svg {
+        margin-right: 14px;
       }
-      p {
-        margin-bottom: 10px;
-        color: $color-attract;
-        @include setFont(Roboto, 18px, 400);
-      }
+    }
+    input {
+      @include setFont(Roboto, 18px, 400);
+      @include setSize($w: inherit, $h: inherit);
+      padding-left: 95px;
+      border: 1px solid $color-bg-dark;
+      color: $color-bg-dark;
+    }
+    select {
+      @include setSize($w: inherit, $h: inherit);
+      -webkit-appearance: none;
+      background: url(../assets/svg/form/arrow.svg);
+      background-repeat: no-repeat;
+      background-position: right 14px top 14px;
     }
 
-    .details {
-      height: 663px;
-      width: 400px;
+    .date-time {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       .input-group {
-        height: 45px;
-        width: 100%;
-        position: relative;
-        margin-bottom: 20px;
-        .data-type {
-          position: absolute;
-          display: flex;
-          align-items: center;
-          top: 50%;
-          transform: translateY(-50%);
-          left: 15px;
-          @include setFont(Roboto, 18px, 400);
-          svg {
-            margin-right: 14px;
-          }
+        width: 190px;
+        input {
+          padding-left: 87px;
         }
       }
       input {
-        height: inherit;
-        width: inherit;
-        padding-left: 95px;
-        border: 1px solid $color-bg-dark;
-        @include setFont(Roboto, 18px, 400);
-        color: $color-bg-dark;
-      }
-      select {
-        height: inherit;
-        width: inherit;
-        -webkit-appearance: none;
-        background: url(../assets/svg/form/arrow.svg);
-        background-repeat: no-repeat;
-        background-position: right 14px top 14px;
-      }
-      .date-time {
-        display: flex;
-        justify-content: space-between;
-        .input-group {
-          width: 190px;
-          input {
-            padding-left: 87px;
-          }
-        }
-        input {
-          &::-webkit-calendar-picker-indicator {
-            padding: 0;
-            width: 40px;
-            height: 45px;
-            margin: 0;
-            background: url(../assets/svg/form/arrow.svg);
-            background-repeat: no-repeat;
-            background-position: right 14px top 14px;
-          }
-        }
-      }
-      .ticket-amount {
-        height: 135px;
-        padding: 10px 15px 15px 15px;
-        border: 1px solid $color-bg-dark;
-        h4 {
-          @include setFont(Forum, 18px, null);
-          color: $color-hover;
-          position: relative;
-          &::after {
-            content: '';
-            position: absolute;
-            bottom: -7px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: $color-attract;
-          }
-        }
-      }
-      .type {
-        margin-top: 23px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        @include setFont(Roboto, 18px, 400);
-        &:nth-of-type(2) {
-          margin-top: 17px;
-        }
-        .btn-amount {
-          width: 105px;
-          height: 25px;
-          display: flex;
-          align-content: center;
-          .btn {
-            @include setFont(Roboto, 18px, 400);
-            height: inherit;
-            width: 35px;
-            background-color: $color-bg-dark;
-            border: none;
-            color: #fff;
-          }
-          input {
-            padding: 0;
-            width: 35px;
-            height: inherit;
-            text-align: center;
-            &[type='number']::-webkit-inner-spin-button,
-            &[type='number']::-webkit-outer-spin-button {
-              -webkit-appearance: none;
-              margin: 0;
-            }
-          }
+        &::-webkit-calendar-picker-indicator {
+          padding: 0;
+          width: 40px;
+          height: 45px;
+          margin: 0;
+          background: url(../assets/svg/form/arrow.svg);
+          background-repeat: no-repeat;
+          background-position: right 14px top 14px;
         }
       }
     }
 
-    .payment {
-      height: min-content;
-      width: 530px;
-      height: 663px;
-      margin-left: 40px;
+    .ticket-amount {
+      height: 135px;
+      padding: 10px 15px 15px 15px;
       border: 1px solid $color-bg-dark;
+    }
+    h4 {
+      @include setFont(Forum, 18px, null);
+      color: $color-hover;
+      position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -7px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: $color-attract;
+      }
+    }
+    .type {
+      margin-top: 23px;
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      .data-type {
-        width: 470px;
-        margin: 25px 30px 22px 30px;
-        position: relative;
-        @include setFont(Roboto, 18px, 300);
-        h3 {
-          @include setFont(Roboto, 32px, 400);
-          margin-bottom: 2px;
-        }
-        p {
-          @include setFont(Roboto, 22px, 400);
-          margin-bottom: 7px;
-          color: $color-attract;
-        }
-
-        div {
-          display: flex;
-          align-items: center;
-          margin-bottom: 5px;
-          &:last-of-type {
-            margin-bottom: 0;
-          }
-          svg {
-            margin-right: 15px;
-          }
-        }
-        img {
-          position: absolute;
-          top: 0;
-          right: 0;
-        }
+      align-items: center;
+      justify-content: space-between;
+      @include setFont(Roboto, 18px, 400);
+      &:nth-of-type(2) {
+        margin-top: 17px;
       }
-      .summary {
-        width: 470px;
-        margin: 0 30px 0 30px;
+      .btn-amount {
+        width: 105px;
+        height: 25px;
         display: flex;
-        flex-direction: column;
-        @include setFont(Roboto, 22px, 400);
-        .amount {
-          display: flex;
-          justify-content: space-between;
-          .amount-type {
-            display: flex;
-            align-items: center;
-            .amount-total {
-              width: 32px;
-              height: 20px;
-              font-size: 18px;
-              text-align: center;
-              background-color: $color-bg-dark;
-              color: #a4a4a3;
-              border-radius: 5px;
-              margin-right: 10px;
-            }
-          }
-        }
-        .underline {
-          margin-top: 5px;
-          position: relative;
-          &::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: $color-attract;
-          }
-        }
-        .whole-sum {
-          margin-top: 20px;
-          display: flex;
-          justify-content: space-between;
-          h4 {
-            @include setFont(Roboto, 32px, 400);
-          }
-          p {
-            @include setFont(Roboto, 32px, 400);
-          }
-          margin-bottom: 10px;
-        }
+        align-content: center;
       }
-      .summary-card {
-        width: 470px;
-        height: 241px;
-        margin: 0 30px 26px 30px;
+      .btn {
         position: relative;
-        .card {
-          width: 360px;
-          height: 211px;
-          @include setFont(Roboto, 12px, 400);
-          display: inline-flex;
-          flex-direction: column;
-          position: relative;
-          &.front {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-            background: #bcbcbc;
-            padding: 15px 20px;
-            input {
-              height: 35px;
-              margin: 5px 0 10px 0;
-              padding-left: 10px;
-              @include setFont(Roboto, 12px, 400);
-              &.number {
-                width: 215px;
-              }
-              &.name {
-                width: 320px;
-                margin-bottom: 0;
-              }
-            }
-            div {
-              input {
-                width: 100px;
-                &:first-of-type {
-                  margin-right: 15px;
-                }
-              }
-            }
-            .visa {
-              position: absolute;
-              top: 34px;
-              right: 20px;
-            }
-            .mastercard {
-              position: absolute;
-              top: 65px;
-              right: 20px;
-            }
-          }
-          &.back {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background: #939393;
-            align-items: end;
-            .line {
-              width: 100%;
-              height: 45px;
-              margin: 25px 0 15px 0;
-              background-color: #161615;
-            }
-            .container {
-              width: 75px;
-              margin-right: 20px;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              p {
-                width: 55px;
-                &:last-of-type {
-                  font-size: 10px;
-                }
-              }
-            }
-            input {
-              height: 35px;
-              width: 75px;
-              margin: 5px 0 6px 0;
-              padding-left: 10px;
-            }
-          }
-        }
-      }
-
-      .submit {
-        width: 220px;
-        height: 45px;
-        margin: 0 30px 20px 30px;
-        background: $color-attract;
+        @include setFont(Roboto, 18px, 400);
+        height: inherit;
+        width: 35px;
+        background-color: $color-bg-dark;
         border: none;
         color: #fff;
+      }
+      input {
+        padding: 0;
+        width: 35px;
+        height: inherit;
         text-align: center;
-        @include setFont(Roboto, 22px, 400);
-        transition: all 0.35s;
-        &:hover {
-          background: $color-hover;
-          transform: scale(1.1);
-          color: $color-bg-dark;
-          box-shadow: 0px 0px 7.5px 5px darken(#fff, 20%);
+        &[type='number']::-webkit-inner-spin-button,
+        &[type='number']::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
         }
+      }
+    }
+  }
+
+  .payment {
+    @include setSize($w: 530px, $h: 663px);
+    @include setFlex($display: flex, $align: flex-end, $direction: column);
+    margin-left: 40px;
+    border: 1px solid $color-bg-dark;
+    .data-type {
+      @include setFont(Roboto, 18px, 300);
+      width: 470px;
+      margin: 25px 30px 22px 30px;
+      position: relative;
+      h3 {
+        @include setFont(Roboto, 32px, 400);
+        margin-bottom: 2px;
+      }
+      p {
+        @include setFont(Roboto, 22px, 400);
+        margin-bottom: 7px;
+        color: $color-attract;
+      }
+
+      div {
+        @include setFlex($display: flex, $align: center);
+        margin-bottom: 5px;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+        svg {
+          margin-right: 15px;
+        }
+      }
+      img {
+        @include setSize($w: 150px, $h: 120px);
+        @include setPosition($top: 0, $right: 0);
+      }
+    }
+
+    .summary {
+      @include setFlex($display: flex, $direction: column);
+      @include setFont(Roboto, 22px, 400);
+      width: 470px;
+      margin: 0 30px 0 30px;
+      .amount {
+        @include setFlex($display: flex, $justify: space-between);
+
+        &-type {
+          @include setFlex($display: flex, $align: center);
+        }
+
+        &-total {
+          @include setSize($w: 32px, $h: 20px);
+          font-size: 18px;
+          text-align: center;
+          background-color: $color-bg-dark;
+          color: #a4a4a3;
+          border-radius: 5px;
+          margin-right: 10px;
+        }
+      }
+      .underline {
+        margin-top: 5px;
+        position: relative;
+        &::after {
+          @include setPosition($left: 0, $right: 0, $bottom: -10px);
+          content: '';
+          height: 2px;
+          background-color: $color-attract;
+        }
+      }
+      .whole-sum {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        h4 {
+          @include setFont(Roboto, 32px, 400);
+        }
+        p {
+          @include setFont(Roboto, 32px, 400);
+        }
+        margin-bottom: 10px;
+      }
+    }
+    .summary-card {
+      @include setSize($w: 470px, $h: 241px);
+      margin: 0 30px 26px 30px;
+      position: relative;
+    }
+    .card {
+      @include setSize($w: 360px, $h: 211px);
+      @include setFont(Roboto, 12px, 400);
+      @include setFlex($display: inline-flex, $direction: column);
+      position: relative;
+      &.front {
+        @include setPosition($top: 0, $left: 0);
+        z-index: 10;
+        background: #bcbcbc;
+        padding: 15px 20px;
+        input {
+          height: 35px;
+          margin: 5px 0 10px 0;
+          padding-left: 10px;
+          @include setFont(Roboto, 12px, 400);
+          &.number {
+            width: 215px;
+          }
+          &.name {
+            width: 320px;
+            margin-bottom: 0;
+          }
+        }
+        div {
+          input {
+            width: 100px;
+            &:first-of-type {
+              margin-right: 15px;
+            }
+          }
+        }
+      }
+      .visa {
+        @include setPosition($top: 34px, $right: 20px);
+      }
+      .mastercard {
+        @include setPosition($top: 65px, $right: 20px);
+      }
+      &.back {
+        @include setPosition($bottom: 0, $right: 0);
+        background: #939393;
+        align-items: end;
+        .line {
+          @include setSize($w: 100%, $h: 45px);
+          margin: 25px 0 15px 0;
+          background-color: #161615;
+        }
+        .container {
+          width: 75px;
+          margin-right: 20px;
+          @include setFlex($display: flex, $align: center, $direction: column);
+        }
+        p {
+          width: 55px;
+          &:last-of-type {
+            font-size: 10px;
+          }
+        }
+        input {
+          @include setSize($w: 75px, $h: 35px);
+          margin: 5px 0 6px 0;
+          padding-left: 10px;
+        }
+      }
+    }
+
+    .submit {
+      @include setSize($w: 220px, $h: 45px);
+      margin: 0 30px 20px 30px;
+      background: $color-attract;
+      border: none;
+      color: #fff;
+      text-align: center;
+      @include setFont(Roboto, 22px, 400);
+      transition: all 0.35s;
+      &:hover {
+        background: $color-hover;
+        transform: scale(1.1);
+        color: $color-bg-dark;
+        box-shadow: 0px 0px 7.5px 5px darken(#fff, 20%);
       }
     }
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $screen-size-normal) {
+  main {
+    min-width: 0;
+    max-width: $screen-size-normal;
+  }
+
+  .welcome {
+    height: 585px;
+    .text {
+      margin-top: 50px;
+    }
+    h2 {
+      font-size: 50px;
+      line-height: 163%;
+    }
+    p {
+      font-size: 24px;
+    }
+    a {
+      @include setSize($w: 300px, $h: 60px);
+      padding: 0;
+      text-align: center;
+      line-height: 60px;
+    }
+    .img {
+      @include setSize($w: 700px, $h: 525px);
+      overflow: hidden;
+    }
+    img {
+      height: inherit;
+    }
+    .shadow {
+      background: linear-gradient(to right, #030303 16.19%, transparent 30.73%);
+    }
+    .pagination {
+      padding: 0;
+      margin-left: 50px;
+      justify-content: space-between;
+      @include setSize($w: 400px, $h: 40px);
+      font-size: 20px;
+      div {
+        &:nth-of-type(1) {
+          width: 71px;
+        }
+      }
+    }
+    .pages {
+      width: 160px;
+      .page {
+        @include setSize($w: 12px, $h: 12px);
+      }
+    }
+    .arrows {
+      li {
+        @include setSize($w: 30px, $h: inherit);
+      }
+    }
+  }
+
+  .visiting {
+    padding: 60px 0;
+    ul {
+      width: 100%;
+      grid-template-columns: repeat(2, 33.6%);
+      grid-template-rows: repeat(3, auto);
+      grid-gap: 60px 0;
+      justify-content: space-evenly;
+      li {
+        width: 100%;
+      }
+      img {
+        width: 100%;
+      }
+      h3 {
+        font-size: 28px;
+        letter-spacing: 3px;
+        &::after {
+          width: 45%;
+        }
+      }
+      p {
+        font-size: 20px;
+        &:last-of-type {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .explore {
+    padding: 60px 0;
+    .wrapper {
+      height: 1029px;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .text {
+      max-width: 100%;
+    }
+    h2 {
+      font-size: 50px;
+      margin-bottom: 83px;
+    }
+    p {
+      font-size: 20px;
+      &:last-of-type {
+        display: none;
+      }
+    }
+    .img {
+      margin-top: 62px;
+      align-self: center;
+      width: 720px;
+    }
+  }
+
+  .video {
+    padding: 60px 0;
+    height: 881px;
+    .text {
+      margin-bottom: 40px;
+    }
+    p {
+      display: none;
+    }
+
+    & &-player {
+      @include setSize($w: 984px, $h: 504px);
+    }
+
+    .play-group {
+      svg {
+        @include setSize($w: 152px, $h: 152px);
+      }
+    }
+    img {
+      @include setSize($w: 984px, $h: 444px);
+    }
+
+    .progress {
+      @include setSize($w: 564px, $h: 5px);
+    }
+    .volume {
+      @include setSize($w: 143px, $h: 5px);
+    }
+    .bar {
+      &::-webkit-slider-thumb {
+        @include setSize($w: 13px, $h: 13px);
+      }
+    }
+    .volume-btn {
+      @include setSize($w: 26px, $h: 20px);
+    }
+    .size-btn {
+      @include setSize($w: 26px, $h: 26px);
+    }
+
+    .player-panel {
+      @include setSize($w: inherit, $h: 60px);
+      padding: 0 40px;
+    }
+
+    .slider {
+      .videos {
+        width: 984px;
+      }
+      iframe {
+        @include setSize($w: 300px, $h: 170px);
+      }
+    }
+  }
+
+  .gallery {
+    height: 1460px;
+    padding: 60px 0;
+
+    ul {
+      columns: 3 auto;
+      column-gap: 36px;
+      width: 100%;
+    }
+    li {
+      width: 100%;
+    }
+    img {
+      width: 100%;
+    }
+  }
+
+  .tickets {
+    padding: 60px 0;
+    .data {
+      grid-template-columns: min-content auto;
+    }
+    .type {
+      display: none;
+    }
+    .img {
+      @include setSize($w: 700px, $h: 440px);
+      grid-column: 1;
+      grid-row: 1 / span 3;
+      @include setFlex($display: flex, $align: center);
+      overflow: hidden;
+    }
+    img {
+      width: 100%;
+    }
+    .ticket {
+      &.amount {
+        width: 175px;
+        grid-column: 2;
+        h3 {
+          margin-bottom: 25px;
+          text-align: left;
+        }
+        input {
+          @include setSize($w: inherit, $h: inherit);
+          @include setFont(Roboto, 22px, 300);
+        }
+      }
+      .btn-amount {
+        @include setSize($w: 175px, $h: 50px);
+      }
+    }
+    .age {
+      p {
+        margin-bottom: 13px;
+      }
+    }
+    .senior {
+      margin-top: 12px;
+    }
+
+    .btn {
+      @include setPosition($top: 0);
+    }
+
+    .total {
+      margin-top: 25px;
+    }
+    .btn-buy {
+      margin-top: 0;
+      grid-column: 2;
+      grid-row: 3;
+    }
+  }
+
+  .parallax {
+    @include setSize($w: 1024px, $h: 400px);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .contacts {
+    padding: 60px 0;
+    h2 {
+      margin-bottom: 83px;
+    }
+    h3 {
+      font-size: 24px;
+      margin-bottom: 35px;
+    }
+    li {
+      font-size: 20px;
+      margin-top: 15px;
+    }
+    img {
+      @include setSize($w: 694px, $h: 454px);
+    }
+  }
+
+  .form {
+    .booking {
+      @include setSize($w: 1024px, $h: 768px);
+    }
+  }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $screen-size-small) {
+  main {
+    max-width: $screen-size-small;
+  }
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: $screen-size-tiny) {
+  main {
+    max-width: $screen-size-tiny;
+  }
 }

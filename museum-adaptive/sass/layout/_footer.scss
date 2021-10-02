@@ -1,4 +1,5 @@
 @import '../util/variables';
+@import '../util/util';
 
 footer {
   min-width: $screen-size-big;
@@ -7,35 +8,26 @@ footer {
   color: #fff;
   .string {
     &.last {
+      @include setFont($fontFamily: Roboto, $fontSize: 22px, $fontWeight: 100, $fontSpacing: 2px);
       border-top: 3px solid #666;
       padding: 50px 0;
-      font-family: Roboto;
-      font-weight: 100;
-      font-size: 22px;
-      letter-spacing: 2px;
       .wrapper {
         line-height: 1;
-        p {
-          &:nth-of-type(2) {
-            margin-left: 106px;
-          }
+      }
+      p {
+        &:nth-of-type(2) {
+          margin-left: 106px;
         }
       }
     }
   }
   .wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
+    @include setFlex($display: flex, $justify: space-between, $align: end);
   }
   .logo {
-    display: flex;
-    align-items: center;
-    width: min-content;
-    height: 50px;
-    font-family: Forum;
-    font-size: 28px;
-    letter-spacing: 5px;
+    @include setFlex($display: flex, $align: center);
+    @include setSize($w: min-content, $h: 50px);
+    @include setFont($fontFamily: Forum, $fontSize: 28px, $fontSpacing: 5px);
     text-transform: uppercase;
     margin-top: 75px;
     margin-bottom: 140px;
@@ -46,54 +38,39 @@ footer {
     }
   }
   ul {
-    list-style: none;
-    width: min-content;
-    height: min-content;
+    @include setSize($w: min-content, $h: min-content);
     &:nth-of-type(2) {
       margin-right: 4px;
     }
   }
   nav {
+    @include setFont($fontFamily: Roboto, $fontSize: 22px, $fontWeight: 100, $fontSpacing: 2px);
+    @include setFlex($display: flex, $justify: space-between);
     margin-left: -4px;
-    display: flex;
-    justify-content: space-between;
-    font-family: Roboto;
-    font-weight: 100;
-    font-size: 22px;
-    letter-spacing: 2px;
     margin-right: 252px;
     width: 363px;
     margin-bottom: 50px;
-    ul {
-      li {
-        margin-bottom: 25px;
-        transition: all 0.4s;
-        &:hover {
-          color: $color-hover;
-          transform: scale(0.95);
-        }
-        &:last-of-type {
-          margin-bottom: 0;
-        }
+
+    li {
+      margin-bottom: 25px;
+      transition: all 0.4s;
+      &:hover {
+        color: $color-hover;
+        transform: scale(0.95);
       }
-      a {
-        text-decoration: none;
-        color: inherit;
+      &:last-of-type {
+        margin-bottom: 0;
       }
     }
   }
   .social {
+    @include setFlex($display: inline-flex, $justify: space-between);
     width: 340px;
-    display: inline-flex;
-    justify-content: space-between;
     margin-bottom: 55px;
     li {
-      width: 48px;
-      height: 48px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #fff;
+      @include setSize($w: 48px, $h: 48px);
+      @include setFlex($display: inline-flex, $justify: center, $align: center);
+      border: 1px solid #666666;
       border-radius: 50%;
       transition: all 0.4s;
       svg {
@@ -111,13 +88,45 @@ footer {
         }
       }
       a {
-        text-decoration: none;
-        width: inherit;
-        height: inherit;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include setSize($w: inherit, $h: inherit);
+        @include setFlex($display: inline-flex, $justify: center, $align: center);
       }
     }
+  }
+}
+
+@media screen and (max-width: $screen-size-normal) {
+  footer {
+    min-width: 0;
+    max-width: $screen-size-normal;
+
+    .string {
+      &.last {
+        p {
+          &:nth-of-type(2) {
+            margin-left: 90px;
+          }
+        }
+      }
+    }
+
+    nav {
+      width: 313px;
+      margin-right: 92px;
+      margin-left: 45px;
+    }
+    .social {
+      width: 340px;
+    }
+  }
+}
+@media screen and (max-width: $screen-size-small) {
+  footer {
+    max-width: $screen-size-small;
+  }
+}
+@media screen and (max-width: $screen-size-tiny) {
+  footer {
+    max-width: $screen-size-tiny;
   }
 }

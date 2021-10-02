@@ -30,6 +30,11 @@
             <li><a href="#contacts">Contacts</a></li>
           </ul>
         </nav>
+        <ul class="burger-menu">
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
     </header>
     <main>
@@ -44,41 +49,43 @@
             <img src="./assets/img/welcome-slider/1.jpg" alt="welcome first image" />
             <div class="shadow"></div>
           </div>
-          <div class="pagination">
-            <div class="position">
-              <span>01</span>
-              <span>|</span>
-              <span>05</span>
-            </div>
-            <div class="pages">
-              <ul>
-                <li><button class="page active"></button></li>
-                <li><button class="page"></button></li>
-                <li><button class="page"></button></li>
-                <li><button class="page"></button></li>
-                <li><button class="page"></button></li>
-              </ul>
-            </div>
-            <div class="arrows">
-              <ul>
-                <li>
-                  <svg width="30" height="8" viewBox="0 0 30 8" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M5.72254 8C3.90173 6.31339 1.99422 5.08262 0 4.30769V3.69231C1.99422 2.89459 3.90173 1.66382 5.72254 0H7.23988C6.37283 1.4359 5.53468 2.52991 4.72543 3.28205H30V4.71795H4.72543C5.53468 5.47009 6.37283 6.5641 7.23988 8H5.72254Z"
-                      fill="white"
-                    />
-                  </svg>
-                </li>
-                <li>
-                  <svg width="30" height="8" viewBox="0 0 30 8" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M24.2775 1.97284e-06C26.0983 1.68661 28.0058 2.91738 30 3.69231L30 4.30769C28.0058 5.10541 26.0983 6.33618 24.2775 8L22.7601 8C23.6272 6.5641 24.4653 5.47009 25.2746 4.71795L3.48964e-07 4.71795L5.01636e-07 3.28205L25.2746 3.28205C24.4653 2.52992 23.6272 1.4359 22.7601 1.86378e-06L24.2775 1.97284e-06Z"
-                      fill="white"
-                    />
-                  </svg>
-                </li>
-              </ul>
-            </div>
+          <div class="container">
+            <ul class="pagination">
+              <div class="position">
+                <span>01</span>
+                <span>|</span>
+                <span>05</span>
+              </div>
+              <div class="pages">
+                <ul>
+                  <li><button class="page active"></button></li>
+                  <li><button class="page"></button></li>
+                  <li><button class="page"></button></li>
+                  <li><button class="page"></button></li>
+                  <li><button class="page"></button></li>
+                </ul>
+              </div>
+              <div class="arrows">
+                <ul>
+                  <li>
+                    <svg width="30" height="8" viewBox="0 0 30 8" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M5.72254 8C3.90173 6.31339 1.99422 5.08262 0 4.30769V3.69231C1.99422 2.89459 3.90173 1.66382 5.72254 0H7.23988C6.37283 1.4359 5.53468 2.52991 4.72543 3.28205H30V4.71795H4.72543C5.53468 5.47009 6.37283 6.5641 7.23988 8H5.72254Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </li>
+                  <li>
+                    <svg width="30" height="8" viewBox="0 0 30 8" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M24.2775 1.97284e-06C26.0983 1.68661 28.0058 2.91738 30 3.69231L30 4.30769C28.0058 5.10541 26.0983 6.33618 24.2775 8L22.7601 8C23.6272 6.5641 24.4653 5.47009 25.2746 4.71795L3.48964e-07 4.71795L5.01636e-07 3.28205L25.2746 3.28205C24.4653 2.52992 23.6272 1.4359 22.7601 1.86378e-06L24.2775 1.97284e-06Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </li>
+                </ul>
+              </div>
+            </ul>
           </div>
         </div>
       </section>
@@ -176,7 +183,7 @@
               Hammurabi's Code
             </p>
           </div>
-          <div class="video">
+          <div class="video-player">
             <div class="play-group">
               <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -192,11 +199,11 @@
             <!-- <video src=""></video> -->
             <img src="./assets/video/video.jpg" alt="video player image" />
             <div class="player-panel">
-              <svg width="23" height="31" viewBox="0 0 23 31" xmlns="http://www.w3.org/2000/svg">
+              <svg class="play-btn" width="23" height="31" viewBox="0 0 23 31" xmlns="http://www.w3.org/2000/svg">
                 <path d="M23 15.5053L0 0C0 23.3683 0 11.8996 0 31L23 15.5053Z" fill="#B3B3B3" />
               </svg>
               <input type="range" class="progress bar" name="progress-bar" value="53.5" min="0" max="100" step="0.1" />
-              <svg width="38" height="31" viewBox="0 0 38 31" xmlns="http://www.w3.org/2000/svg">
+              <svg class="volume-btn" width="38" height="31" viewBox="0 0 38 31" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M19.3511 0C18.875 0 18.4622 0.161587 18.1138 0.484761L8.9609 8.97374H1.76C1.28282 8.97374 0.871122 9.13533 0.522673 9.4585C0.174224 9.78167 0 10.1645 0 10.6061V20.3939C0 20.8355 0.174224 21.2183 0.522673 21.5415C0.871122 21.8647 1.28393 22.0263 1.76 22.0263H8.9609L18.1138 30.5152C18.4622 30.8384 18.8739 31 19.3511 31C19.8283 31 20.24 30.8384 20.5884 30.5152C20.9369 30.1921 21.1111 29.8102 21.1111 29.3677V1.63234C21.1111 1.1908 20.9369 0.807935 20.5895 0.484761C20.2422 0.161587 19.8294 0 19.3522 0H19.3511Z"
                   fill="#B3B3B3"
@@ -211,7 +218,7 @@
                 />
               </svg>
               <input type="range" class="volume bar" name="volume-bar" value="42" min="0" max="100" step="1" />
-              <svg width="35" height="35" viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg">
+              <svg class="size-btn" width="35" height="35" viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg">
                 <path d="M30.6055 30.7513H22.4097V34.8638H34.7083V22.5069H30.6055V30.7513Z" fill="#B3B3B3" />
                 <path d="M4.10278 22.5069H0V34.8638H12.2986V30.7513H4.10278V22.5069Z" fill="#B3B3B3" />
                 <path d="M0 12.3569H4.10278V4.12222H12.2986V0H0V12.3569Z" fill="#B3B3B3" />
@@ -290,21 +297,21 @@
           <h2 class="header-main">Art Gallery</h2>
           <div class="pictures">
             <ul class="insert-gallery">
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
+              <li><img src="" alt="" /></li>
             </ul>
             <div class="shadow"></div>
           </div>
@@ -314,7 +321,9 @@
         <div class="wrapper">
           <h2 class="header-main header-underline">Buy Tickets</h2>
           <div class="data">
-            <img src="./assets/img/tickets/tickets.jpg" alt="" />
+            <div class="img">
+              <img src="./assets/img/tickets/tickets.jpg" alt="booking picture" />
+            </div>
             <div class="ticket type">
               <h3>Ticket Type</h3>
               <label><input type="radio" name="ticket-type" value="permanent" />Permanent exhibition</label>
@@ -327,7 +336,7 @@
                 <p>Basic 18+</p>
                 <div class="btn-amount">
                   <button class="btn" type="button" onclick="this.nextElementSibling.stepDown()">&#8211;</button>
-                  <input type="number" name="basic-amount" value="0" min="0" max="20" readonly />
+                  <input type="number" name="basic-amount" value="1" min="0" max="20" readonly />
                   <button class="btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                 </div>
               </div>
@@ -335,7 +344,7 @@
                 <p>Senior 65+</p>
                 <div class="btn-amount">
                   <button class="btn" type="button" onclick="this.nextElementSibling.stepDown()">&#8211;</button>
-                  <input type="number" name="senior-amount" value="0" min="0" max="20" readonly />
+                  <input type="number" name="senior-amount" value="1" min="0" max="20" readonly />
                   <button class="btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                 </div>
               </div>
@@ -344,6 +353,7 @@
             <button class="btn-buy">Buy Now</button>
           </div>
         </div>
+        
         <div class="form">
           <form class="booking">
             <div class="details">

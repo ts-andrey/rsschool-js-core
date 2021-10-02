@@ -6,6 +6,16 @@
   box-sizing: inherit;
 }
 
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 html {
   font-size: 10px;
   scroll-behavior: smooth;

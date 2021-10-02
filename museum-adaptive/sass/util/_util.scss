@@ -1,4 +1,32 @@
 @import './variables';
+
+@mixin setFont($fontFamily, $fontSize, $fontWeight: 400, $fontSpacing: 0) {
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  letter-spacing: $fontSpacing;
+}
+
+@mixin setPosition($top: auto, $bottom: auto, $left: auto, $right: auto, $position: absolute) {
+  position: $position;
+  top: $top;
+  bottom: $bottom;
+  left: $left;
+  right: $right;
+}
+
+@mixin setFlex($display: flex, $justify: normal, $align: normal, $direction: row) {
+  display: $display;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin setSize($w: auto, $h: auto) {
+  width: $w;
+  height: $h;
+}
+
 .wrapper {
   width: 1440px;
   margin: 0 auto;
@@ -14,19 +42,28 @@
   position: relative;
   &::after {
     content: '';
-    position: absolute;
-    bottom: -25px;
-    left: 0;
-    right: 0;
+    @include setPosition($bottom: -29px, $left: 0, $right: 0);
     height: 3px;
     background-color: $color-attract;
   }
   margin-bottom: $margin-underline;
 }
 
-@mixin setFont($fontFamily, $fontSize, $fontWeight: 400, $fontSpacing: 0) {
-  font-family: $fontFamily;
-  font-size: $fontSize;
-  font-weight: $fontWeight;
-  letter-spacing: $fontSpacing;
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    width: 984px;
+  }
+  .header-main{
+    font-size: 50px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 728px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .wrapper {
+    width: 380px;
+  }
 }

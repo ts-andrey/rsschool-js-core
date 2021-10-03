@@ -124,6 +124,19 @@ footer {
   footer {
     max-width: $screen-size-small;
   }
+  .first {
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      grid-template-rows: repeat(2, auto);
+    }
+    .social{
+      grid-column: 2;
+      grid-row: 2;
+      align-self: flex-end;
+    }
+
+  }
 }
 @media screen and (max-width: $screen-size-tiny) {
   footer {

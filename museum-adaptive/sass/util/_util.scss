@@ -46,7 +46,7 @@
     height: 3px;
     background-color: $color-attract;
   }
-  margin-bottom: $margin-underline;
+  margin-bottom: $margin-underline-big;
 }
 
 @media screen and (max-width: 1024px) {
@@ -56,10 +56,26 @@
   .header-main{
     font-size: 50px;
   }
+  .notch{
+    padding: $section-padding-medium;
+  }
+
+  .header-underline {
+    margin-bottom: $margin-underline-medium;
+  }
 }
 @media screen and (max-width: 768px) {
   .wrapper {
     width: 728px;
+  }
+  .header-main{
+    font-size: 40px;
+  }
+  .notch{
+    padding: $section-padding-small;
+  }
+  .header-underline {
+    margin-bottom: $margin-underline-small;
   }
 }
 @media screen and (max-width: 420px) {

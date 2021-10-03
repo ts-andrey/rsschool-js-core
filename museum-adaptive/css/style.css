@@ -13,6 +13,11 @@ a {
   text-decoration: none;
   color: inherit; }
 
+form,
+input {
+  padding: 0;
+  margin: 0; }
+
 html {
   font-size: 10px;
   scroll-behavior: smooth; }
@@ -70,11 +75,21 @@ body {
   .wrapper {
     width: 984px; }
   .header-main {
-    font-size: 50px; } }
+    font-size: 50px; }
+  .notch {
+    padding: 60px 0; }
+  .header-underline {
+    margin-bottom: 83px; } }
 
 @media screen and (max-width: 768px) {
   .wrapper {
-    width: 728px; } }
+    width: 728px; }
+  .header-main {
+    font-size: 40px; }
+  .notch {
+    padding: 40px 0; }
+  .header-underline {
+    margin-bottom: 63px; } }
 
 @media screen and (max-width: 420px) {
   .wrapper {
@@ -192,7 +207,15 @@ footer {
 
 @media screen and (max-width: 768px) {
   footer {
-    max-width: 768px; } }
+    max-width: 768px; }
+  .first .wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto); }
+  .first .social {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: flex-end; } }
 
 @media screen and (max-width: 420px) {
   footer {
@@ -300,11 +323,21 @@ header {
   .wrapper {
     width: 984px; }
   .header-main {
-    font-size: 50px; } }
+    font-size: 50px; }
+  .notch {
+    padding: 60px 0; }
+  .header-underline {
+    margin-bottom: 83px; } }
 
 @media screen and (max-width: 768px) {
   .wrapper {
-    width: 728px; } }
+    width: 728px; }
+  .header-main {
+    font-size: 40px; }
+  .notch {
+    padding: 40px 0; }
+  .header-underline {
+    margin-bottom: 63px; } }
 
 @media screen and (max-width: 420px) {
   .wrapper {
@@ -332,8 +365,7 @@ section .wrapper {
   background-color: #030303; }
 
 .section-light {
-  background-color: #fff;
-  padding: 75px 0; }
+  background-color: #fff; }
 
 .welcome {
   width: auto;
@@ -528,8 +560,7 @@ section .wrapper {
           width: 100%; }
 
 .explore {
-  color: #fff;
-  padding: 75px 0; }
+  color: #fff; }
   .explore .wrapper {
     height: 715px;
     display: flex;
@@ -538,8 +569,6 @@ section .wrapper {
     align-items: normal; }
   .explore .text {
     max-width: 659px; }
-  .explore h2 {
-    margin-bottom: 105px; }
   .explore p {
     margin-top: 26px;
     line-height: 1.75;
@@ -705,7 +734,6 @@ section .wrapper {
         transform: scale(0.9); }
 
 .gallery {
-  padding: 75px 0;
   height: 2200px;
   overflow: clip;
   color: #fff;
@@ -785,6 +813,10 @@ section .wrapper {
       grid-row: 1;
       margin-left: 60px; }
       .tickets .ticket.type h3 {
+        font-family: Roboto;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0;
         margin-bottom: 49px; }
       .tickets .ticket.type label {
         margin-bottom: 24px; }
@@ -812,7 +844,7 @@ section .wrapper {
         font-size: 28px;
         font-weight: 700;
         letter-spacing: 0;
-        margin-bottom: 50px;
+        margin-bottom: 25px;
         text-align: right; }
       .tickets .ticket.amount input {
         width: inherit;
@@ -932,18 +964,16 @@ section .wrapper {
   bottom: auto;
   left: 0;
   right: auto;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: normal;
   align-items: center;
-  padding: 0;
-  margin: 0;
   background: rgba(0, 0, 0, 0.6);
   transition: all 1s;
   z-index: 100;
-  margin-left: -100vw; }
+  margin-left: -100%; }
   .form .booking {
     width: 1440px;
     height: 855px;
@@ -1310,7 +1340,6 @@ section .wrapper {
     .welcome .text {
       margin-top: 50px; }
     .welcome h2 {
-      font-size: 50px;
       line-height: 163%; }
     .welcome p {
       font-size: 24px; }
@@ -1345,89 +1374,82 @@ section .wrapper {
     .welcome .arrows li {
       width: 30px;
       height: inherit; }
-  .visiting {
-    padding: 60px 0; }
-    .visiting ul {
-      width: 100%;
-      grid-template-columns: repeat(2, 33.6%);
-      grid-template-rows: repeat(3, auto);
-      grid-gap: 60px 0;
-      justify-content: space-evenly; }
-      .visiting ul li {
-        width: 100%; }
-      .visiting ul img {
-        width: 100%; }
-      .visiting ul h3 {
-        font-size: 28px;
-        letter-spacing: 3px; }
-        .visiting ul h3::after {
-          width: 45%; }
-      .visiting ul p {
-        font-size: 20px; }
-        .visiting ul p:last-of-type {
-          font-size: 16px; }
-  .explore {
-    padding: 60px 0; }
-    .explore .wrapper {
-      height: 1029px;
-      flex-direction: column;
-      justify-content: flex-start; }
-    .explore .text {
-      max-width: 100%; }
-    .explore h2 {
-      font-size: 50px;
-      margin-bottom: 83px; }
-    .explore p {
+  .visiting ul {
+    width: 100%;
+    grid-template-columns: repeat(2, 33.6%);
+    grid-template-rows: repeat(3, auto);
+    grid-gap: 60px 0;
+    justify-content: space-evenly; }
+    .visiting ul li {
+      width: 100%; }
+    .visiting ul img {
+      width: 100%; }
+    .visiting ul h3 {
+      font-size: 28px;
+      letter-spacing: 3px; }
+      .visiting ul h3::after {
+        width: 45%; }
+    .visiting ul p {
       font-size: 20px; }
-      .explore p:last-of-type {
-        display: none; }
-    .explore .img {
-      margin-top: 62px;
-      align-self: center;
-      width: 720px; }
-  .video {
-    padding: 60px 0;
-    height: 881px; }
-    .video .text {
-      margin-bottom: 40px; }
-    .video p {
+      .visiting ul p:last-of-type {
+        font-size: 16px; }
+  .explore .wrapper {
+    height: 1029px;
+    flex-direction: column;
+    justify-content: flex-start; }
+  .explore .text {
+    max-width: 100%; }
+  .explore p {
+    font-size: 20px; }
+    .explore p:last-of-type {
       display: none; }
-    .video .video-player {
-      width: 984px;
-      height: 504px; }
-    .video .play-group svg {
-      width: 152px;
-      height: 152px; }
-    .video img {
-      width: 984px;
-      height: 444px; }
-    .video .progress {
-      width: 564px;
-      height: 5px; }
-    .video .volume {
-      width: 143px;
-      height: 5px; }
-    .video .bar::-webkit-slider-thumb {
-      width: 13px;
-      height: 13px; }
-    .video .volume-btn {
-      width: 26px;
-      height: 20px; }
-    .video .size-btn {
-      width: 26px;
-      height: 26px; }
-    .video .player-panel {
-      width: inherit;
-      height: 60px;
-      padding: 0 40px; }
-    .video .slider .videos {
-      width: 984px; }
-    .video .slider iframe {
-      width: 300px;
-      height: 170px; }
+  .explore .img {
+    margin-top: 62px;
+    align-self: center;
+    width: 720px; }
+  .video .wrapper {
+    height: fit-content; }
+  .video .text {
+    margin-bottom: 40px; }
+  .video p {
+    display: none; }
+  .video .video-player {
+    width: 100%;
+    height: 504px; }
+  .video .play-group svg {
+    width: 152px;
+    height: 152px; }
+  .video img {
+    width: 100%;
+    height: 444px; }
+  .video .progress {
+    width: 564px;
+    height: 5px; }
+  .video .volume {
+    width: 143px;
+    height: 5px; }
+  .video .bar::-webkit-slider-thumb {
+    width: 13px;
+    height: 13px; }
+  .video .volume-btn {
+    width: 26px;
+    height: 20px; }
+  .video .size-btn {
+    width: 26px;
+    height: 26px; }
+  .video .player-panel {
+    width: inherit;
+    height: 60px;
+    padding: 0 40px; }
+  .video .slider .videos {
+    width: 100%; }
+    .video .slider .videos li {
+      width: 30.5%; }
+  .video .slider iframe {
+    width: 100%;
+    max-height: 170px; }
   .gallery {
-    height: 1460px;
-    padding: 60px 0; }
+    height: 1460px; }
     .gallery ul {
       columns: 3 auto;
       column-gap: 36px;
@@ -1436,81 +1458,235 @@ section .wrapper {
       width: 100%; }
     .gallery img {
       width: 100%; }
-  .tickets {
-    padding: 60px 0; }
-    .tickets .data {
-      grid-template-columns: min-content auto; }
-    .tickets .type {
-      display: none; }
-    .tickets .img {
-      width: 700px;
-      height: 440px;
-      grid-column: 1;
-      grid-row: 1 / span 3;
+    .gallery .shadow {
+      background: linear-gradient(to top, #030303, transparent);
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; }
+  .tickets .data {
+    grid-template-columns: 71.5% auto; }
+  .tickets .type {
+    display: none; }
+  .tickets .img {
+    width: inherit;
+    max-height: 440px;
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: normal;
+    align-items: center;
+    overflow: hidden; }
+  .tickets img {
+    width: 100%; }
+  .tickets .ticket.amount {
+    width: 175px;
+    grid-column: 2; }
+    .tickets .ticket.amount h3 {
+      margin-bottom: 25px;
+      text-align: left; }
+    .tickets .ticket.amount input {
+      width: inherit;
+      height: inherit;
+      font-family: Roboto;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 0; }
+  .tickets .ticket .btn-amount {
+    width: 175px;
+    height: 50px; }
+  .tickets .age p {
+    margin-bottom: 13px; }
+  .tickets .senior {
+    margin-top: 12px; }
+  .tickets .btn {
+    position: absolute;
+    top: 0;
+    bottom: auto;
+    left: auto;
+    right: auto; }
+  .tickets .total {
+    margin-top: 25px; }
+  .tickets .btn-buy {
+    margin-top: 0;
+    grid-column: 2;
+    grid-row: 3; }
+  .parallax {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center; }
+  .contacts h3 {
+    font-size: 24px;
+    margin-bottom: 35px; }
+  .contacts li {
+    font-size: 20px;
+    margin-top: 15px; }
+  .contacts img {
+    width: 694px;
+    height: 454px; }
+  .form .booking {
+    width: 1024px;
+    height: 768px;
+    align-items: flex-end;
+    padding-bottom: 30px; }
+  .form .close {
+    position: absolute;
+    top: 30px;
+    bottom: auto;
+    left: auto;
+    right: 27px; } }
+
+@media screen and (max-width: 768px) {
+  main {
+    max-width: 768px; }
+  .welcome {
+    height: 861px; }
+    .welcome .wrapper {
       display: flex;
-      flex-direction: row;
-      justify-content: normal;
-      align-items: center;
-      overflow: hidden; }
-    .tickets img {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center; }
+    .welcome .text {
+      height: min-content;
+      margin-top: 0;
+      position: relative;
+      text-align: center; }
+    .welcome h2 {
+      font-size: 40px;
+      line-height: 136%; }
+    .welcome p {
+      font-size: 20px;
+      margin: 25px 0 50px 0; }
+    .welcome a {
+      display: none; }
+    .welcome .img {
       width: 100%; }
-    .tickets .ticket.amount {
-      width: 175px;
-      grid-column: 2; }
-      .tickets .ticket.amount h3 {
-        margin-bottom: 25px;
-        text-align: left; }
-      .tickets .ticket.amount input {
-        width: inherit;
-        height: inherit;
-        font-family: Roboto;
-        font-size: 22px;
-        font-weight: 300;
-        letter-spacing: 0; }
-    .tickets .ticket .btn-amount {
-      width: 175px;
-      height: 50px; }
-    .tickets .age p {
-      margin-bottom: 13px; }
-    .tickets .senior {
-      margin-top: 12px; }
-    .tickets .btn {
+    .welcome img {
+      width: 100%; }
+    .welcome .shadow {
+      display: none; }
+  .visiting {
+    padding: 40px 0; }
+    .visiting ul {
+      grid-template-columns: repeat(2, 38.5%);
+      grid-gap: 40px 0; }
+      .visiting ul h3 {
+        font-size: 20px;
+        letter-spacing: 3px; }
+        .visiting ul h3::after {
+          width: 50%; }
+      .visiting ul p {
+        font-size: 18px; }
+        .visiting ul p:last-of-type {
+          font-size: 16px; }
+  .explore {
+    height: 908px; }
+    .explore .wrapper {
+      height: min-content;
+      justify-content: flex-start;
+      align-items: flex-start; }
+    .explore .text {
+      width: 100%; }
+    .explore h2 {
+      margin-bottom: 63px; }
+    .explore p {
+      display: none; }
+    .explore .img {
+      width: 100%;
+      margin-top: 0; }
+    .explore img {
       position: absolute;
       top: 0;
       bottom: auto;
       left: auto;
-      right: auto; }
-    .tickets .total {
-      margin-top: 25px; }
-    .tickets .btn-buy {
-      margin-top: 0;
-      grid-column: 2;
-      grid-row: 3; }
-  .parallax {
-    width: 1024px;
-    height: 400px;
-    background-size: cover;
-    background-position: center; }
-  .contacts {
-    padding: 60px 0; }
-    .contacts h2 {
-      margin-bottom: 83px; }
-    .contacts h3 {
-      font-size: 24px;
-      margin-bottom: 35px; }
-    .contacts li {
-      font-size: 20px;
-      margin-top: 15px; }
-    .contacts img {
-      width: 694px;
-      height: 454px; }
+      right: auto;
+      width: 100%; }
+    .explore svg {
+      position: absolute;
+      top: 0;
+      bottom: auto;
+      left: auto;
+      right: 36%; }
+  .video .video-player {
+    width: 100%;
+    height: 386px; }
+  .video .player-panel {
+    width: inherit;
+    height: 63px;
+    padding: 0;
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: repeat(4, auto);
+    column-gap: 35px;
+    width: 100%; }
+  .video .progress {
+    width: 100%;
+    grid-row: 1;
+    grid-column: 1 / span 4; }
+  .video .volume {
+    width: 486px; }
+  .video .play-btn {
+    margin-left: 30px; }
+  .video .size-btn {
+    margin-right: 30px; }
+  .video .slider .videos {
+    margin-bottom: 10px; }
+    .video .slider .videos li {
+      width: 48.63%; }
+      .video .slider .videos li:last-of-type {
+        display: none; }
+  .video .slider iframe {
+    max-height: 199px; }
+  .video .slider .slider-position {
+    width: 190px; }
+  .video .slider .page {
+    width: 10px;
+    height: 10px; }
+  .gallery h2 {
+    margin-bottom: 50px; }
+  .gallery ul {
+    columns: 2 auto;
+    column-gap: 24px; }
+  .gallery li:nth-of-type(11) {
+    padding-top: 0; }
+  .tickets h2 {
+    margin-bottom: 63px; }
+  .tickets .data {
+    grid-template-columns: 61% auto; }
+  .tickets .amount {
+    margin-right: 49px; }
+  .tickets .btn-buy {
+    margin-right: 49px; }
   .form .booking {
-    width: 1024px;
-    height: 768px; } }
-
-@media screen and (max-width: 768px) {
-  main {
-    max-width: 768px; } }
+    height: 100%;
+    max-width: 590px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+    overflow-y: scroll;
+    padding-top: 80px; }
+  .form .details {
+    width: 530px; }
+    .form .details .date-time {
+      width: 100%; }
+      .form .details .date-time .input-group {
+        width: 47.4%; }
+        .form .details .date-time .input-group input {
+          width: 100%; }
+  .form .payment {
+    margin-left: 0; }
+    .form .payment .amount {
+      margin-right: 0; }
+  .parallax {
+    max-height: 300px; }
+  .contacts .data {
+    flex-direction: column; }
+  .contacts h3 {
+    margin-bottom: 40px; }
+  .contacts .img {
+    margin-top: 40px; } }
 
 @media screen and (max-width: 420px) {
   main {
@@ -1543,11 +1719,21 @@ section .wrapper {
   .wrapper {
     width: 984px; }
   .header-main {
-    font-size: 50px; } }
+    font-size: 50px; }
+  .notch {
+    padding: 60px 0; }
+  .header-underline {
+    margin-bottom: 83px; } }
 
 @media screen and (max-width: 768px) {
   .wrapper {
-    width: 728px; } }
+    width: 728px; }
+  .header-main {
+    font-size: 40px; }
+  .notch {
+    padding: 40px 0; }
+  .header-underline {
+    margin-bottom: 63px; } }
 
 @media screen and (max-width: 420px) {
   .wrapper {

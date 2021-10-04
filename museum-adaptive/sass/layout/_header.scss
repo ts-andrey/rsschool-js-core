@@ -6,6 +6,7 @@ header {
   background-color: #000;
   color: #fff;
   padding: 59px 0;
+}
   .wrapper {
     display: flex;
     justify-content: space-between;
@@ -16,13 +17,14 @@ header {
   }
   .logo {
     display: flex;
-    h1 {
-      @include setFont($fontFamily: Forum, $fontSize: 28px, $fontWeight: 400, $fontSpacing: 5px);
-      text-transform: uppercase;
-    }
     svg {
       margin-right: 25px;
     }
+  }
+  h1 {
+    @include setFont($fontFamily: Forum, $fontSize: 28px, $fontWeight: 400, $fontSpacing: 5px);
+    text-transform: uppercase;
+    
   }
   nav {
     max-width: 770px;
@@ -48,12 +50,12 @@ header {
       }
     }
   }
-}
 
-@media screen and (max-width: 1024px) {
+
+@media screen and (max-width: $screen-size-normal) {
   header {
     min-width: 0;
-    max-width: $screen-size-normal;
+    width: 100%;
     height: 130px;
     .wrapper {
       position: relative;
@@ -63,22 +65,33 @@ header {
     }
     .burger-menu {
       @include setFlex($display: flex, $direction: column);
-      @include setPosition($top: 1px, $right: 10px);
-
       li {
-        @include setSize($w: 32px, $h: 8px);
+        @include setSize($w: 32px, $h: 2px);
+        padding-top: 6px;
         border-bottom: 2px solid #fff;
+        &:first-of-type{
+          padding-top: 0;
+        }
       }
     }
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $screen-size-small) {
   header {
-    max-width: $screen-size-small;
   }
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: $screen-size-tiny) {
   header {
-    max-width: $screen-size-tiny;
+    height: 90px;
+  }
+  h1 {
+    font-size: 16px;
+  }
+  .logo{
+    width: 131px;
+    svg{
+      @include setSize($w: 29px, $h: 16px);
+
+    }
   }
 }

@@ -49,9 +49,15 @@
   margin-bottom: $margin-underline-big;
 }
 
-@media screen and (max-width: 1024px) {
+.notch{
+  padding: $section-padding-big;
+}
+
+@media screen and (max-width: $screen-size-normal) {
   .wrapper {
-    width: 984px;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0;
   }
   .header-main{
     font-size: 50px;
@@ -64,10 +70,7 @@
     margin-bottom: $margin-underline-medium;
   }
 }
-@media screen and (max-width: 768px) {
-  .wrapper {
-    width: 728px;
-  }
+@media screen and (max-width: $screen-size-small) {
   .header-main{
     font-size: 40px;
   }
@@ -78,8 +81,8 @@
     margin-bottom: $margin-underline-small;
   }
 }
-@media screen and (max-width: 420px) {
-  .wrapper {
-    width: 380px;
+@media screen and (max-width: $screen-size-tiny) {
+  .header-main{
+    font-size: 28px;
   }
 }

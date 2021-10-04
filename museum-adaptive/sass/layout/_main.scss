@@ -27,6 +27,9 @@ section {
 }
 
 .welcome {
+  aside {
+    display: none;
+  }
   @include setSize($h: 810px);
   color: #fff;
   overflow: hidden;
@@ -232,13 +235,17 @@ section {
   .img {
     width: 720px;
     position: relative;
+    height: inherit;
   }
   img {
-    @include setPosition($top: 14px);
-    height: 700px;
+    height: 100%;
+    &:nth-of-type(2) {
+      @include setPosition($top: 0, $left: 0);
+    }
   }
   svg {
-    @include setPosition($top: 14px, $right: 36%);
+    @include setPosition($top: 0, $right: 36%);
+    height: 100%;
     z-index: 1;
   }
 }
@@ -264,7 +271,7 @@ section {
 
   & &-player {
     position: relative;
-    @include setFlex($display: flex, $justify: space-between, $direction: column);
+    @include setFlex($display: flex, $direction: column);
     @include setSize($w: 1440px, $h: 735px);
     svg {
       path {
@@ -613,7 +620,7 @@ section {
   background: rgba(0, 0, 0, 0.6);
   transition: all 1s;
   z-index: 100;
-  margin-left: -100%;
+  margin-left: -150%;
 
   .booking {
     @include setSize($w: 1440px, $h: 855px);
@@ -936,8 +943,51 @@ section {
 
   .welcome {
     height: 585px;
+    position: relative;
+    aside {
+      @include setPosition($top: 0, $left: 0);
+      @include setSize($w: 300px, $h: 100%);
+      background-color: $color-bg-dark;
+      z-index: 200;
+      display: block;
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        height: 100%;
+        margin: 35px 0 0 55px;
+      }
+      li {
+        padding: 0;
+        height: fit-content;
+        width: fit-content;
+        padding-top: 25px;
+      }
+      a {
+        @include setSize($w: 122px, $h: 23px);
+        @include setFont(Roboto, 20px, 300, 2px);
+        margin: 0;
+        padding: 5px;
+        background-color: transparent;
+        line-height: 100%;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all .5s ease-out;
+        &:hover {
+          background: none;
+          transform: translateX(10px);
+          box-shadow: 0px 0px 10px 5px lighten($color-bg-dark, 20%);
+        }
+      }
+    }
+
     .text {
+      display: none;
       margin-top: 50px;
+      margin-left: 20px;
     }
     h2 {
       line-height: 163%;
@@ -1049,7 +1099,7 @@ section {
     }
 
     & &-player {
-      @include setSize($w: 100%, $h: 504px);
+      @include setSize($w: 100%, $h: fit-content);
     }
 
     .play-group {
@@ -1058,7 +1108,7 @@ section {
       }
     }
     img {
-      @include setSize($w: 100%, $h: 444px);
+      @include setSize($w: 100%, $h: auto);
     }
 
     .progress {
@@ -1194,8 +1244,11 @@ section {
       font-size: 20px;
       margin-top: 15px;
     }
+    .text {
+      min-width: 252px;
+    }
     img {
-      @include setSize($w: 694px, $h: 454px);
+      @include setSize($w: 100%, $h: auto);
     }
   }
 
@@ -1226,7 +1279,6 @@ section {
       text-align: center;
     }
     h2 {
-      font-size: 40px;
       line-height: 136%;
     }
     p {
@@ -1238,9 +1290,10 @@ section {
     }
     .img {
       width: 100%;
+      height: min-content;
     }
     img {
-      width: 100%;
+      max-width: 100%;
     }
     .shadow {
       display: none;
@@ -1276,18 +1329,16 @@ section {
     .text {
       width: 100%;
     }
-    h2 {
-      margin-bottom: 63px;
-    }
     p {
       display: none;
     }
     .img {
+      height: fit-content;
       width: 100%;
       margin-top: 0;
     }
     img {
-      @include setPosition($top: 0);
+      height: auto;
       width: 100%;
     }
     svg {
@@ -1296,31 +1347,34 @@ section {
   }
   .video {
     & &-player {
-      @include setSize($w: 100%, $h: 386px);
+      @include setSize($w: 100%, $h: fit-content);
     }
     .player-panel {
       @include setSize($w: inherit, $h: 63px);
       padding: 0;
-      display: grid;
-      grid-template-rows: repeat(2, auto);
-      grid-template-columns: repeat(4, auto);
-      column-gap: 35px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
       width: 100%;
     }
     .progress {
+      order: -1;
       width: 100%;
       grid-row: 1;
       grid-column: 1 / span 4;
     }
     .volume {
-      width: 486px;
+      flex-grow: 2;
+      margin-left: 35px;
     }
     .play-btn {
-      margin-left: 30px;
+      height: 29px;
+      margin: 8px 35px 12px 30px;
     }
     .size-btn {
-      margin-right: 30px;
+      margin: 0 30px 0 35px;
     }
+
     .slider {
       .videos {
         margin-bottom: 10px;
@@ -1332,7 +1386,7 @@ section {
         }
       }
       iframe {
-        max-height: 199px;
+        max-height: 101px;
       }
       .slider-position {
         width: 190px;
@@ -1343,10 +1397,6 @@ section {
     }
   }
   .gallery {
-    h2 {
-      margin-bottom: 50px;
-    }
-
     ul {
       columns: 2 auto;
       column-gap: 24px;
@@ -1358,9 +1408,6 @@ section {
     }
   }
   .tickets {
-    h2 {
-      margin-bottom: 63px;
-    }
     .data {
       grid-template-columns: 61% auto;
     }
@@ -1369,6 +1416,25 @@ section {
     }
     .btn-buy {
       margin-right: 49px;
+    }
+  }
+  .parallax {
+    max-height: 300px;
+  }
+  .contacts {
+    .data {
+      flex-direction: column;
+    }
+    h3 {
+      margin-bottom: 40px;
+    }
+    .img {
+      margin-top: 40px;
+      width: 100%;
+    }
+    img {
+      height: auto;
+      width: 100%;
     }
   }
   .form {
@@ -1400,23 +1466,194 @@ section {
       }
     }
   }
-  .parallax {
-    max-height: 300px;
-  }
-  .contacts {
-    .data{
-      flex-direction: column;
-    }
-    h3{
-      margin-bottom: 40px;
-    }
-    .img{
-      margin-top: 40px;
-    }
-  }
 }
 @media screen and (max-width: $screen-size-tiny) {
   main {
     max-width: $screen-size-tiny;
+  }
+  .welcome {
+    height: fit-content;
+    .container {
+      @include setSize($w: 100%, $h: 40px);
+      margin: 20px 0;
+      font-size: 16px;
+      position: relative;
+    }
+    h2 {
+      margin-top: 10px;
+    }
+    p {
+      font-size: 16px;
+    }
+    .pagination {
+      margin-left: 0;
+      width: 230px;
+    }
+    .pages {
+      @include setSize($w: 75px, $h: 40px);
+      .page {
+        @include setSize($w: 7px, $h: 7px);
+      }
+    }
+    .arrows {
+      @include setSize($w: 50px, $h: 40px);
+      svg {
+        @include setSize($w: 20px, $h: 8px);
+      }
+    }
+  }
+  .visiting {
+    ul {
+      grid-template-columns: 100%;
+      h3 {
+        margin-top: 25px;
+        font-size: 18px;
+        &::after {
+          width: 35%;
+        }
+      }
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+  .explore {
+    height: fit-content;
+    img {
+      width: 100%;
+    }
+  }
+  .video {
+    .play-group {
+      svg {
+        @include setSize($w: 50px, $h: 50px);
+      }
+    }
+    .player-panel {
+      height: 55px;
+    }
+    .play-btn {
+      margin: 0 7% 0 6%;
+      @include setSize($w: 14px, $h: 18px);
+    }
+    .volume-btn {
+      @include setSize($w: 18px, $h: 14px);
+    }
+    .size-btn {
+      margin: 0 6% 0 7%;
+      @include setSize($w: 18px, $h: 18px);
+    }
+    .progress {
+      height: 4px;
+    }
+    .volume {
+      width: auto;
+      margin-left: 7%;
+      height: 4px;
+    }
+    .slider {
+      .videos {
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .tickets {
+    .data {
+      grid-template-columns: 100%;
+      grid-template-rows: repeat(3, auto);
+    }
+    .img {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
+    .ticket.amount {
+      justify-self: center;
+      margin-top: 40px;
+      margin-right: 0;
+      grid-row: 2;
+      grid-column: 1;
+      h3 {
+        text-align: center;
+      }
+      .total {
+        margin-top: 40px;
+      }
+    }
+    .btn-buy {
+      justify-self: center;
+      margin-top: 40px;
+      margin-right: 0;
+      grid-row: 3;
+      grid-column: 1;
+    }
+  }
+  .form {
+    overflow-y: scroll;
+    height: 100%;
+    .booking {
+      height: 100%;
+      width: 100%;
+      padding-bottom: 50px;
+    }
+    .details {
+      width: calc(100% - 60px);
+      height: 100%;
+      justify-content: stretch;
+      .forum-header {
+        margin-bottom: 40px;
+      }
+      margin-bottom: 50px;
+    }
+    .payment {
+      justify-content: stretch;
+      width: calc(100% - 60px);
+      height: 100%;
+      .overview {
+        width: 100%;
+      }
+      .data-type {
+        width: calc(100% - 30px);
+        margin: 15px;
+        img {
+          width: 120px;
+          height: auto;
+        }
+      }
+      .summary {
+        width: calc(100% - 30px);
+        margin: 0 15px;
+      }
+      .summary-card {
+        width: calc(100% - 30px);
+        height: 100%;
+        margin: 0 15px;
+      }
+      .card {
+        width: 100%;
+        &.front {
+          position: relative;
+          input {
+            &.name {
+              width: 100%;
+            }
+          }
+        }
+        &.back {
+          position: relative;
+        }
+      }
+      .btn-submit {
+        height: 100%;
+        margin: 40px 0 25px 0;
+      }
+      .submit {
+        margin: 0 15px;
+      }
+      h3,
+      p {
+        width: fit-content;
+      }
+    }
   }
 }

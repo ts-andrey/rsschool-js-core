@@ -48,7 +48,7 @@ function openFormHandler() {
   form.style.marginLeft = '0';
 }
 function closeFormHandler() {
-  form.style.marginLeft = '-100%';
+  form.style.marginLeft = '-150%';
 }
 
 videoProgressBar.forEach(el => {

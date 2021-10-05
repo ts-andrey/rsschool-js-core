@@ -274,28 +274,32 @@ footer {
       width: 340px; } }
 
 @media screen and (max-width: 790px) {
-  footer .string.first {
-    height: 308px; }
-    footer .string.first .wrapper {
-      display: grid;
-      grid-template-columns: 27.3% 72.7%;
-      grid-template-rows: repeat(2, auto); }
-  footer .logo {
-    margin-top: 50px; }
-  footer nav {
-    margin-top: 57px;
-    margin-left: 95px; }
-    footer nav ul {
-      font-size: 18px;
-      column-gap: 184px; }
-  footer .social {
-    grid-column: 2;
-    grid-row: 2;
-    align-self: center;
-    justify-self: center;
-    margin: 1px 0 1px 0; }
-  footer .last {
-    height: 102px; } }
+  footer {
+    margin-top: 28px; }
+    footer .string.first {
+      height: 308px; }
+      footer .string.first .wrapper {
+        display: grid;
+        grid-template-columns: 27.3% 72.7%;
+        grid-template-rows: repeat(2, auto); }
+    footer .logo {
+      margin-top: 50px; }
+    footer nav {
+      margin-top: 57px;
+      margin-left: 95px; }
+      footer nav ul {
+        font-size: 18px;
+        column-gap: 184px; }
+    footer .social {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: center;
+      justify-self: center;
+      margin: -2px -9px 1px 0; }
+    footer .last {
+      height: 102px; }
+      footer .last p {
+        margin-bottom: 20px; } }
 
 @media screen and (max-width: 450px) {
   footer .string {
@@ -416,12 +420,12 @@ nav {
       height: 25px; }
       header .adaptive-menu .close {
         position: absolute;
-        top: 1px;
-        right: 4px;
+        top: 0;
+        right: 0;
         display: none; }
     header .burger-menu {
       position: absolute;
-      top: 4px;
+      top: 0;
       right: 0;
       display: flex;
       flex-direction: column;
@@ -434,6 +438,10 @@ nav {
         border-bottom: 2px solid #fff; }
         header .burger-menu li:first-of-type {
           padding-top: 0; } }
+
+@media screen and (max-width: 790px) {
+  header {
+    margin-top: -15px; } }
 
 @media screen and (max-width: 450px) {
   header {
@@ -1899,37 +1907,52 @@ section .wrapper {
       height: min-content;
       margin-top: 0;
       position: relative;
-      text-align: center; }
+      text-align: center;
+      margin-left: 5px;
+      margin-top: -1px; }
     .welcome h2 {
-      line-height: 136%; }
+      line-height: 145%; }
     .welcome p {
       font-size: 20px;
       margin: 25px 0 50px 0; }
     .welcome a {
       display: none; }
+    .welcome .container {
+      height: 104px;
+      justify-content: flex-start; }
+    .welcome .pagination {
+      margin-left: 15px;
+      margin-top: -5px; }
     .welcome .img {
       width: 100%;
-      height: min-content; }
+      height: min-content;
+      margin-top: -3px; }
     .welcome img {
       max-width: 100%; }
     .welcome .shadow {
       display: none; }
   .visiting {
     padding: 40px 0; }
+    .visiting h2 {
+      margin-top: 2px;
+      margin-bottom: 71px; }
     .visiting ul {
       grid-template-columns: repeat(2, 38.5%);
       grid-gap: 40px 0; }
       .visiting ul h3 {
         font-size: 20px;
-        letter-spacing: 3px; }
+        letter-spacing: 4px; }
         .visiting ul h3::after {
-          width: 50%; }
+          width: 54%; }
       .visiting ul p {
         font-size: 18px; }
         .visiting ul p:last-of-type {
           font-size: 16px; }
   .explore {
+    margin-top: 37px;
     height: 908px; }
+    .explore h2 {
+      margin-bottom: 68px; }
     .explore .wrapper {
       height: min-content;
       justify-content: flex-start;
@@ -1954,6 +1977,12 @@ section .wrapper {
   .video .video-player {
     width: 100%;
     height: fit-content; }
+  .video .play-group {
+    width: 80px;
+    height: 80px; }
+    .video .play-group svg {
+      width: 80px;
+      height: 80px; }
   .video .player-panel {
     width: inherit;
     height: 63px;
@@ -1962,6 +1991,8 @@ section .wrapper {
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%; }
+  .video .text {
+    margin-bottom: 23px; }
   .video .progress {
     order: -1;
     width: 100%;
@@ -1975,36 +2006,65 @@ section .wrapper {
     margin: 8px 35px 12px 30px; }
   .video .size-btn {
     margin: 0 30px 0 35px; }
-  .video .slider .videos {
-    margin-bottom: 10px; }
-    .video .slider .videos li {
-      width: 48.63%; }
-      .video .slider .videos li:last-of-type {
-        display: none; }
-  .video .slider iframe {
-    max-height: 101px; }
-  .video .slider .slider-position {
-    width: 190px; }
-  .video .slider .page {
-    width: 10px;
-    height: 10px; }
-  .gallery ul {
-    columns: 2 auto;
-    column-gap: 24px; }
-  .gallery li:nth-of-type(11) {
-    padding-top: 0; }
+  .video .slider {
+    margin-top: 16px; }
+    .video .slider .videos {
+      margin-bottom: 10px; }
+      .video .slider .videos li {
+        width: 48.63%; }
+        .video .slider .videos li:last-of-type {
+          display: none; }
+    .video .slider iframe {
+      max-height: 200px; }
+    .video .slider .slider-position {
+      width: 190px; }
+    .video .slider .page {
+      width: 10px;
+      height: 10px; }
+  .gallery {
+    height: 1220px;
+    margin-top: 30px; }
+    .gallery h2 {
+      margin-top: 8px;
+      margin-bottom: 48px; }
+    .gallery ul {
+      columns: 2 auto;
+      column-gap: 24px; }
+    .gallery li:nth-of-type(11) {
+      padding-top: 0; }
+  .tickets h2 {
+    margin-top: 8px;
+    margin-bottom: 54px; }
+    .tickets h2::after {
+      bottom: -31px; }
   .tickets .data {
     grid-template-columns: 61% auto; }
-  .tickets .amount {
-    margin-right: 49px; }
+  .tickets .ticket.amount {
+    margin-right: 50px;
+    margin-top: 15px; }
+    .tickets .ticket.amount h3 {
+      margin-bottom: 38px; }
+    .tickets .ticket.amount .senior {
+      margin-top: 25px; }
+    .tickets .ticket.amount .total {
+      margin-top: 37px; }
+  .tickets .img {
+    margin-top: -34px; }
   .tickets .btn-buy {
+    margin-top: 40px;
     margin-right: 49px; }
   .parallax {
     max-height: 300px; }
+  .contacts h2 {
+    margin-top: 7px;
+    margin-bottom: 70px; }
   .contacts .data {
     flex-direction: column; }
   .contacts h3 {
+    font-size: 20px;
     margin-bottom: 40px; }
+  .contacts li {
+    font-size: 18px; }
   .contacts .img {
     margin-top: 40px;
     width: 100%; }

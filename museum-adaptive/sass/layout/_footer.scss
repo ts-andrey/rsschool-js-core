@@ -133,6 +133,7 @@ footer {
 }
 @media screen and (max-width: $screen-size-small) {
   footer {
+    margin-top: 28px;
     .string.first {
       height: 308px;
       .wrapper {
@@ -157,10 +158,13 @@ footer {
       grid-row: 2;
       align-self: center;
       justify-self: center;
-      margin: 1px 0 1px 0;
+      margin: -2px -9px 1px 0;
     }
     .last {
       height: 102px;
+      p{
+        margin-bottom: 20px;
+      }
     }
   }
 }

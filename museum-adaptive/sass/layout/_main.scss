@@ -942,7 +942,7 @@ section {
   }
 
   .welcome {
-    height: 585px;
+    height: 595px;
     position: relative;
     aside {
       margin-left: -100%;
@@ -991,11 +991,11 @@ section {
       }
     }
     .text {
-      margin-top: 50px;
+      margin-top: 60px;
       margin-left: 20px;
     }
     h2 {
-      line-height: 163%;
+      line-height: 177%;
     }
     p {
       font-size: 24px;
@@ -1005,8 +1005,11 @@ section {
       padding: 0;
       text-align: center;
       line-height: 60px;
+      margin-top: 51px;
+      letter-spacing: 1px;
     }
     .img {
+      margin-top: 10px;
       @include setSize($w: 700px, $h: 525px);
       overflow: hidden;
     }
@@ -1018,7 +1021,7 @@ section {
     }
     .pagination {
       padding: 0;
-      margin-left: 50px;
+      margin-left: 9px;
       justify-content: space-between;
       @include setSize($w: 400px, $h: 40px);
       font-size: 20px;
@@ -1042,6 +1045,13 @@ section {
   }
 
   .visiting {
+    h2 {
+      margin-top: 10px;
+      margin-bottom: 92px;
+      &::after {
+        bottom: -32px;
+      }
+    }
     ul {
       width: 100%;
       grid-template-columns: repeat(2, 33.6%);
@@ -1071,6 +1081,13 @@ section {
   }
 
   .explore {
+    h2 {
+      margin-top: 9px;
+      margin-bottom: 95px;
+      &::after {
+        bottom: -32px;
+      }
+    }
     .wrapper {
       height: 1029px;
       flex-direction: column;
@@ -1080,6 +1097,7 @@ section {
       max-width: 100%;
     }
     p {
+      margin-top: 0;
       font-size: 20px;
       &:last-of-type {
         display: none;
@@ -1093,11 +1111,14 @@ section {
   }
 
   .video {
+    h2 {
+      margin-top: 12px;
+    }
     .wrapper {
       height: fit-content;
     }
     .text {
-      margin-bottom: 40px;
+      margin-bottom: 45px;
     }
     p {
       display: none;
@@ -1177,6 +1198,12 @@ section {
   }
 
   .tickets {
+    h2 {
+      &::after {
+        bottom: -33px;
+      }
+      margin-bottom: 93px;
+    }
     .data {
       grid-template-columns: 71.5% auto;
     }
@@ -1198,30 +1225,33 @@ section {
       &.amount {
         width: 175px;
         grid-column: 2;
+        margin-right: 29px;
         h3 {
-          margin-bottom: 25px;
+          margin-bottom: 28px;
           text-align: left;
         }
         input {
           @include setSize($w: inherit, $h: inherit);
           @include setFont(Roboto, 22px, 300);
         }
+        .age {
+          p {
+            margin-bottom: 10px;
+          }
+        }
+        .senior {
+          margin-top: 27px;
+        }
       }
       .btn-amount {
         @include setSize($w: 175px, $h: 50px);
       }
-    }
-    .age {
-      p {
-        margin-bottom: 13px;
+      .btn {
+        @include setPosition($top: 0);
+        &:nth-of-type(2) {
+          right: 14px;
+        }
       }
-    }
-    .senior {
-      margin-top: 12px;
-    }
-
-    .btn {
-      @include setPosition($top: 0);
     }
 
     .total {
@@ -1231,6 +1261,7 @@ section {
       margin-top: 0;
       grid-column: 2;
       grid-row: 3;
+      margin-right: 28px;
     }
   }
 
@@ -1241,16 +1272,23 @@ section {
   }
 
   .contacts {
+    h2{
+      margin-top: 10px;
+      margin-bottom: 92px;
+      &::after{
+        bottom: -33px;
+      }
+    }
     h3 {
       font-size: 24px;
-      margin-bottom: 35px;
+      margin-bottom: 32px;
     }
     li {
       font-size: 20px;
       margin-top: 15px;
     }
     .text {
-      min-width: 252px;
+      min-width: 290px;
     }
     img {
       @include setSize($w: 100%, $h: auto);

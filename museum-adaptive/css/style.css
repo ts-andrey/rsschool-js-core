@@ -258,14 +258,15 @@ footer {
     footer .string.last {
       height: 122px; }
       footer .string.last p:nth-of-type(2) {
-        margin-left: 90px; }
+        margin-left: 25px; }
     footer .logo {
       width: 194px;
       height: 30px;
-      margin-top: 60px; }
+      margin-top: 70px;
+      margin-left: 3px; }
     footer nav {
-      width: 313px;
-      margin: 6.8% 1% 50px -1%; }
+      width: 309px;
+      margin: 7.3% 1% 50px -4.5%; }
       footer nav ul {
         justify-content: space-between; }
     footer .social {
@@ -402,7 +403,8 @@ nav {
   header {
     min-width: 0;
     width: 100%;
-    height: 130px; }
+    height: 130px;
+    margin-top: -9px; }
     header .wrapper {
       position: relative; }
     header nav {
@@ -1529,7 +1531,7 @@ section .wrapper {
     min-width: 0;
     max-width: 1045px; }
   .welcome {
-    height: 585px;
+    height: 595px;
     position: relative; }
     .welcome aside {
       margin-left: -100%;
@@ -1580,10 +1582,10 @@ section .wrapper {
           transform: translateX(10px);
           box-shadow: 0px 0px 10px 5px #363636; }
     .welcome .text {
-      margin-top: 50px;
+      margin-top: 60px;
       margin-left: 20px; }
     .welcome h2 {
-      line-height: 163%; }
+      line-height: 177%; }
     .welcome p {
       font-size: 24px; }
     .welcome a {
@@ -1591,8 +1593,11 @@ section .wrapper {
       height: 60px;
       padding: 0;
       text-align: center;
-      line-height: 60px; }
+      line-height: 60px;
+      margin-top: 51px;
+      letter-spacing: 1px; }
     .welcome .img {
+      margin-top: 10px;
       width: 700px;
       height: 525px;
       overflow: hidden; }
@@ -1602,7 +1607,7 @@ section .wrapper {
       background: linear-gradient(to right, #030303 16.19%, transparent 30.73%); }
     .welcome .pagination {
       padding: 0;
-      margin-left: 50px;
+      margin-left: 9px;
       justify-content: space-between;
       width: 400px;
       height: 40px;
@@ -1617,6 +1622,11 @@ section .wrapper {
     .welcome .arrows li {
       width: 30px;
       height: inherit; }
+  .visiting h2 {
+    margin-top: 10px;
+    margin-bottom: 92px; }
+    .visiting h2::after {
+      bottom: -32px; }
   .visiting ul {
     width: 100%;
     grid-template-columns: repeat(2, 33.6%);
@@ -1636,6 +1646,11 @@ section .wrapper {
       font-size: 20px; }
       .visiting ul p:last-of-type {
         font-size: 16px; }
+  .explore h2 {
+    margin-top: 9px;
+    margin-bottom: 95px; }
+    .explore h2::after {
+      bottom: -32px; }
   .explore .wrapper {
     height: 1029px;
     flex-direction: column;
@@ -1643,6 +1658,7 @@ section .wrapper {
   .explore .text {
     max-width: 100%; }
   .explore p {
+    margin-top: 0;
     font-size: 20px; }
     .explore p:last-of-type {
       display: none; }
@@ -1650,10 +1666,12 @@ section .wrapper {
     margin-top: 62px;
     align-self: center;
     width: 720px; }
+  .video h2 {
+    margin-top: 12px; }
   .video .wrapper {
     height: fit-content; }
   .video .text {
-    margin-bottom: 40px; }
+    margin-bottom: 45px; }
   .video p {
     display: none; }
   .video .video-player {
@@ -1707,6 +1725,10 @@ section .wrapper {
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none; }
+  .tickets h2 {
+    margin-bottom: 93px; }
+    .tickets h2::after {
+      bottom: -33px; }
   .tickets .data {
     grid-template-columns: 71.5% auto; }
   .tickets .type {
@@ -1725,9 +1747,10 @@ section .wrapper {
     width: 100%; }
   .tickets .ticket.amount {
     width: 175px;
-    grid-column: 2; }
+    grid-column: 2;
+    margin-right: 29px; }
     .tickets .ticket.amount h3 {
-      margin-bottom: 25px;
+      margin-bottom: 28px;
       text-align: left; }
     .tickets .ticket.amount input {
       width: inherit;
@@ -1736,38 +1759,46 @@ section .wrapper {
       font-size: 22px;
       font-weight: 300;
       letter-spacing: 0; }
+    .tickets .ticket.amount .age p {
+      margin-bottom: 10px; }
+    .tickets .ticket.amount .senior {
+      margin-top: 27px; }
   .tickets .ticket .btn-amount {
     width: 175px;
     height: 50px; }
-  .tickets .age p {
-    margin-bottom: 13px; }
-  .tickets .senior {
-    margin-top: 12px; }
-  .tickets .btn {
+  .tickets .ticket .btn {
     position: absolute;
     top: 0;
     bottom: auto;
     left: auto;
     right: auto; }
+    .tickets .ticket .btn:nth-of-type(2) {
+      right: 14px; }
   .tickets .total {
     margin-top: 25px; }
   .tickets .btn-buy {
     margin-top: 0;
     grid-column: 2;
-    grid-row: 3; }
+    grid-row: 3;
+    margin-right: 28px; }
   .parallax {
     width: 100%;
     height: 400px;
     background-size: cover;
     background-position: center; }
+  .contacts h2 {
+    margin-top: 10px;
+    margin-bottom: 92px; }
+    .contacts h2::after {
+      bottom: -33px; }
   .contacts h3 {
     font-size: 24px;
-    margin-bottom: 35px; }
+    margin-bottom: 32px; }
   .contacts li {
     font-size: 20px;
     margin-top: 15px; }
   .contacts .text {
-    min-width: 252px; }
+    min-width: 290px; }
   .contacts img {
     width: 100%;
     height: auto; }

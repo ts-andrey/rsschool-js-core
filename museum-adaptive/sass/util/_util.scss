@@ -27,6 +27,40 @@
   height: $h;
 }
 
+@mixin setSocial() {
+  justify-self: end;
+  align-self: end;
+  @include setFlex($display: inline-flex, $justify: space-between);
+  width: 340px;
+  margin-bottom: 6px;
+  li {
+    padding: 0;
+    @include setSize($w: 48px, $h: 48px);
+    @include setFlex($display: inline-flex, $justify: center, $align: center);
+    border: 1px solid #666666;
+    border-radius: 50%;
+    transition: all 0.4s;
+    svg {
+      path {
+        transition: all 0.4s;
+      }
+    }
+    &:hover {
+      border: 1px solid $color-hover;
+      transform: scale(0.95);
+      svg {
+        path {
+          fill: $color-hover;
+        }
+      }
+    }
+    a {
+      @include setSize($w: inherit, $h: inherit);
+      @include setFlex($display: inline-flex, $justify: center, $align: center);
+    }
+  }
+}
+
 .wrapper {
   width: 1440px;
   margin: 0 auto;
@@ -49,8 +83,42 @@
   margin-bottom: $margin-underline-big;
 }
 
-.notch{
+.notch {
   padding: $section-padding-big;
+}
+
+.social {
+  justify-self: end;
+  align-self: end;
+  @include setFlex($display: inline-flex, $justify: space-between);
+  width: 340px;
+  margin-bottom: 6px;
+  li {
+    padding: 0;
+    @include setSize($w: 48px, $h: 48px);
+    @include setFlex($display: inline-flex, $justify: center, $align: center);
+    border: 1px solid #666666;
+    border-radius: 50%;
+    transition: all 0.4s;
+    svg {
+      path {
+        transition: all 0.4s;
+      }
+    }
+    &:hover {
+      border: 1px solid $color-hover;
+      transform: scale(0.95);
+      svg {
+        path {
+          fill: $color-hover;
+        }
+      }
+    }
+    a {
+      @include setSize($w: inherit, $h: inherit);
+      @include setFlex($display: inline-flex, $justify: center, $align: center);
+    }
+  }
 }
 
 @media screen and (max-width: $screen-size-normal) {
@@ -59,10 +127,10 @@
     padding: 0 20px;
     margin: 0;
   }
-  .header-main{
+  .header-main {
     font-size: 50px;
   }
-  .notch{
+  .notch {
     padding: $section-padding-medium;
   }
 
@@ -71,10 +139,10 @@
   }
 }
 @media screen and (max-width: $screen-size-small) {
-  .header-main{
+  .header-main {
     font-size: 40px;
   }
-  .notch{
+  .notch {
     padding: $section-padding-small;
   }
   .header-underline {
@@ -82,7 +150,7 @@
   }
 }
 @media screen and (max-width: $screen-size-tiny) {
-  .header-main{
+  .header-main {
     font-size: 28px;
   }
 }

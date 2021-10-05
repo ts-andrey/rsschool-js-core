@@ -6,6 +6,12 @@ const formOpen = document.querySelector('.btn-buy');
 const form = document.querySelector('.form');
 const galleryPictures = document.querySelectorAll('.insert-gallery > li>img');
 
+const burgerMenu = document.querySelector('.burger-menu');
+const closeBurger = document.querySelector('.adaptive-menu > .close');
+const adaptiveMenu = document.querySelector('.welcome > aside');
+
+// console.log(adaptiveMenu);
+
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -50,6 +56,17 @@ function openFormHandler() {
 function closeFormHandler() {
   form.style.marginLeft = '-150%';
 }
+function adaptiveMenuHandler(ev) {
+  if (this === burgerMenu) {
+    burgerMenu.style.display = 'none';
+    closeBurger.style.display = 'inline-block';
+    adaptiveMenu.style.marginLeft = '0';
+  } else {
+    burgerMenu.style.display = 'inline-block';
+    closeBurger.style.display = 'none';
+    adaptiveMenu.style.marginLeft = '-100%';
+  }
+}
 
 videoProgressBar.forEach(el => {
   el.addEventListener('input', progressBarHandler);
@@ -69,6 +86,8 @@ form.addEventListener(
   },
   false
 );
+burgerMenu.addEventListener('click', adaptiveMenuHandler);
+closeBurger.addEventListener('click', adaptiveMenuHandler);
 
 const selfEvaluation = [
   ['Вёрстка валидная (проверено)', '+10'],

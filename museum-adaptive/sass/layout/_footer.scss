@@ -2,7 +2,7 @@
 @import '../util/util';
 
 footer {
-  min-width: $screen-size-big;
+  width: 100%;
   margin: 0 auto;
   background-color: #000;
   color: #fff;
@@ -91,36 +91,7 @@ footer {
     }
   }
   .social {
-    justify-self: end;
-    align-self: end;
-    @include setFlex($display: inline-flex, $justify: space-between);
-    width: 340px;
-    margin-bottom: 6px;
-    li {
-      @include setSize($w: 48px, $h: 48px);
-      @include setFlex($display: inline-flex, $justify: center, $align: center);
-      border: 1px solid #666666;
-      border-radius: 50%;
-      transition: all 0.4s;
-      svg {
-        path {
-          transition: all 0.4s;
-        }
-      }
-      &:hover {
-        border: 1px solid $color-hover;
-        transform: scale(0.95);
-        svg {
-          path {
-            fill: $color-hover;
-          }
-        }
-      }
-      a {
-        @include setSize($w: inherit, $h: inherit);
-        @include setFlex($display: inline-flex, $justify: center, $align: center);
-      }
-    }
+    @include setSocial;
   }
 }
 

@@ -74,6 +74,41 @@ body {
 .notch {
   padding: 75px 0; }
 
+.social {
+  justify-self: end;
+  align-self: end;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: normal;
+  width: 340px;
+  margin-bottom: 6px; }
+  .social li {
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #666666;
+    border-radius: 50%;
+    transition: all 0.4s; }
+    .social li svg path {
+      transition: all 0.4s; }
+    .social li:hover {
+      border: 1px solid #9d8665;
+      transform: scale(0.95); }
+      .social li:hover svg path {
+        fill: #9d8665; }
+    .social li a {
+      width: inherit;
+      height: inherit;
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
+
 @media screen and (max-width: 1045px) {
   .wrapper {
     width: 100%;
@@ -99,7 +134,7 @@ body {
     font-size: 28px; } }
 
 footer {
-  min-width: 1920px;
+  width: 100%;
   margin: 0 auto;
   background-color: #000;
   color: #fff; }
@@ -189,6 +224,7 @@ footer {
     width: 340px;
     margin-bottom: 6px; }
     footer .social li {
+      padding: 0;
       width: 48px;
       height: 48px;
       display: inline-flex;
@@ -315,7 +351,7 @@ footer {
         margin-right: 0; } }
 
 header {
-  min-width: 1920px;
+  width: 100%;
   margin: 0 auto;
   background-color: #000;
   color: #fff;
@@ -326,7 +362,7 @@ header {
   justify-content: space-between;
   align-items: center; }
 
-.burger-menu {
+.adaptive-menu {
   display: none; }
 
 .logo {
@@ -371,7 +407,20 @@ nav {
       position: relative; }
     header nav {
       display: none; }
+    header .adaptive-menu {
+      display: block;
+      position: relative;
+      width: 32px;
+      height: 25px; }
+      header .adaptive-menu .close {
+        position: absolute;
+        top: 1px;
+        right: 4px;
+        display: none; }
     header .burger-menu {
+      position: absolute;
+      top: 4px;
+      right: 0;
       display: flex;
       flex-direction: column;
       justify-content: normal;
@@ -386,7 +435,9 @@ nav {
 
 @media screen and (max-width: 450px) {
   header {
-    height: 90px; }
+    height: 90px;
+    padding: 0;
+    display: flex; }
   h1 {
     font-size: 16px; }
   .logo {
@@ -421,6 +472,41 @@ nav {
 .notch {
   padding: 75px 0; }
 
+.social {
+  justify-self: end;
+  align-self: end;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: normal;
+  width: 340px;
+  margin-bottom: 6px; }
+  .social li {
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #666666;
+    border-radius: 50%;
+    transition: all 0.4s; }
+    .social li svg path {
+      transition: all 0.4s; }
+    .social li:hover {
+      border: 1px solid #9d8665;
+      transform: scale(0.95); }
+      .social li:hover svg path {
+        fill: #9d8665; }
+    .social li a {
+      width: inherit;
+      height: inherit;
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
+
 @media screen and (max-width: 1045px) {
   .wrapper {
     width: 100%;
@@ -446,7 +532,7 @@ nav {
     font-size: 28px; } }
 
 main {
-  min-width: 1920px;
+  width: 100%;
   margin: 0 auto; }
 
 h2,
@@ -1446,6 +1532,8 @@ section .wrapper {
     height: 585px;
     position: relative; }
     .welcome aside {
+      margin-left: -100%;
+      padding: 35px 55px;
       position: absolute;
       top: 0;
       bottom: auto;
@@ -1455,18 +1543,22 @@ section .wrapper {
       height: 100%;
       background-color: #030303;
       z-index: 200;
-      display: block; }
+      display: block;
+      transition: all 1s ease-out; }
+      .welcome aside .addition {
+        display: none; }
       .welcome aside ul {
         display: flex;
         flex-direction: column;
         width: fit-content;
-        height: 100%;
-        margin: 35px 0 0 55px; }
+        height: 100%; }
       .welcome aside li {
         padding: 0;
         height: fit-content;
         width: fit-content;
         padding-top: 25px; }
+        .welcome aside li:first-of-type {
+          padding-top: 0; }
       .welcome aside a {
         width: 122px;
         height: 23px;
@@ -1482,13 +1574,12 @@ section .wrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        transition: all .5s ease-out; }
+        transition: all 0.5s ease-out; }
         .welcome aside a:hover {
           background: none;
           transform: translateX(10px);
           box-shadow: 0px 0px 10px 5px #363636; }
     .welcome .text {
-      display: none;
       margin-top: 50px;
       margin-left: 20px; }
     .welcome h2 {
@@ -1697,6 +1788,77 @@ section .wrapper {
     max-width: 790px; }
   .welcome {
     height: 861px; }
+    .welcome aside {
+      width: 100%;
+      height: max-content; }
+      .welcome aside .addition {
+        height: min-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center; }
+      .welcome aside .images2 {
+        display: none; }
+      .welcome aside .images1 {
+        height: fit-content;
+        display: grid;
+        width: 100%;
+        height: auto;
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: repeat(2, auto);
+        grid-gap: 20px;
+        margin-top: 35px;
+        padding-bottom: 35px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+        .welcome aside .images1 li {
+          padding: 0; }
+          .welcome aside .images1 li:nth-of-type(1) {
+            grid-row: 2;
+            grid-column: 1; }
+          .welcome aside .images1 li:nth-of-type(2) {
+            grid-row: 2;
+            grid-column: 2; }
+          .welcome aside .images1 li:nth-of-type(3) {
+            grid-row: 1;
+            grid-column: 1 / span 2; }
+      .welcome aside .social {
+        justify-self: end;
+        align-self: end;
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: normal;
+        width: 340px;
+        margin-bottom: 6px;
+        align-self: center;
+        height: fit-content;
+        margin: 35px 0 0 0; }
+        .welcome aside .social li {
+          padding: 0;
+          width: 48px;
+          height: 48px;
+          display: inline-flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid #666666;
+          border-radius: 50%;
+          transition: all 0.4s; }
+          .welcome aside .social li svg path {
+            transition: all 0.4s; }
+          .welcome aside .social li:hover {
+            border: 1px solid #9d8665;
+            transform: scale(0.95); }
+            .welcome aside .social li:hover svg path {
+              fill: #9d8665; }
+          .welcome aside .social li a {
+            width: inherit;
+            height: inherit;
+            display: inline-flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center; }
     .welcome .wrapper {
       display: flex;
       flex-direction: column;
@@ -1843,7 +2005,37 @@ section .wrapper {
   main {
     max-width: 450px; }
   .welcome {
-    height: fit-content; }
+    height: max-content;
+    overflow: visible; }
+    .welcome aside .images1 {
+      display: none; }
+    .welcome aside .images2 {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 35px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+      .welcome aside .images2 li {
+        padding: 0;
+        width: 95px;
+        height: 95px;
+        margin-bottom: 10px; }
+        .welcome aside .images2 li:nth-of-type(1) {
+          grid-row: 1;
+          grid-column: 1; }
+        .welcome aside .images2 li:nth-of-type(2) {
+          grid-row: 1;
+          grid-column: 3; }
+        .welcome aside .images2 li:nth-of-type(3) {
+          grid-row: 1;
+          grid-column: 2; }
+    .welcome aside .social {
+      width: 260px;
+      margin: 24px 0 0 0; }
     .welcome .container {
       width: 100%;
       height: 40px;
@@ -2003,6 +2195,41 @@ section .wrapper {
 
 .notch {
   padding: 75px 0; }
+
+.social {
+  justify-self: end;
+  align-self: end;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: normal;
+  width: 340px;
+  margin-bottom: 6px; }
+  .social li {
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #666666;
+    border-radius: 50%;
+    transition: all 0.4s; }
+    .social li svg path {
+      transition: all 0.4s; }
+    .social li:hover {
+      border: 1px solid #9d8665;
+      transform: scale(0.95); }
+      .social li:hover svg path {
+        fill: #9d8665; }
+    .social li a {
+      width: inherit;
+      height: inherit;
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
 
 @media screen and (max-width: 1045px) {
   .wrapper {

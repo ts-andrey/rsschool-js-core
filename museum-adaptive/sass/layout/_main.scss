@@ -1882,8 +1882,16 @@ section {
       height: 100%;
       width: 100%;
       padding-bottom: 50px;
+      width: 420px;
     }
     .details {
+      margin-bottom: 5f0px;
+      .date-time{
+        flex-wrap: wrap;
+        .input-group{
+          width: 100%;
+        }
+      }
       width: calc(100% - 60px);
       height: 100%;
       justify-content: stretch;

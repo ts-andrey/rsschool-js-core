@@ -2298,11 +2298,17 @@ section .wrapper {
     .form .booking {
       height: 100%;
       width: 100%;
-      padding-bottom: 50px; }
+      padding-bottom: 50px;
+      width: 420px; }
     .form .details {
+      margin-bottom: 50px;
       width: calc(100% - 60px);
       height: 100%;
       justify-content: stretch; }
+      .form .details .date-time {
+        flex-wrap: wrap; }
+        .form .details .date-time .input-group {
+          width: 100%; }
       .form .details .forum-header {
         margin-bottom: 40px; }
       .form .details h3 {

@@ -99,8 +99,10 @@ nav {
 }
 @media screen and (max-width: $screen-size-tiny) {
   header {
+    margin-top: 0;
     height: 90px;
     padding: 0;
+    padding-left: 4px;
     display: flex;
   }
   h1 {

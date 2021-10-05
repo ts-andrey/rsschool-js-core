@@ -1553,10 +1553,10 @@ section {
         h3 {
           margin-bottom: 38px;
         }
-        .senior{
+        .senior {
           margin-top: 25px;
         }
-        .total{
+        .total {
           margin-top: 37px;
         }
       }
@@ -1573,7 +1573,7 @@ section {
     max-height: 300px;
   }
   .contacts {
-    h2{
+    h2 {
       margin-top: 7px;
       margin-bottom: 70px;
     }
@@ -1584,7 +1584,7 @@ section {
       font-size: 20px;
       margin-bottom: 40px;
     }
-    li{
+    li {
       font-size: 18px;
     }
     .img {
@@ -1676,16 +1676,25 @@ section {
       margin: 20px 0;
       font-size: 16px;
       position: relative;
+      justify-content: center;
     }
     h2 {
-      margin-top: 10px;
+      margin-top: 7px;
+      margin-left: -7px;
     }
     p {
       font-size: 16px;
     }
     .pagination {
+      margin-top: 1px;
+      font-size: 16px;
       margin-left: 0;
       width: 230px;
+      div {
+        &:nth-of-type(1) {
+          width: 50px;
+        }
+      }
     }
     .pages {
       @include setSize($w: 75px, $h: 40px);
@@ -1694,20 +1703,27 @@ section {
       }
     }
     .arrows {
-      @include setSize($w: 50px, $h: 40px);
+      @include setSize($w: 55px, $h: 40px);
       svg {
         @include setSize($w: 20px, $h: 8px);
       }
     }
   }
   .visiting {
+    h2 {
+      &::after {
+        bottom: -29px;
+      }
+    }
     ul {
-      grid-template-columns: 100%;
+      grid-template-columns: 73%;
+      grid-gap: 44px 0;
       h3 {
-        margin-top: 25px;
+        margin-top: 21px;
         font-size: 18px;
+        letter-spacing: 4.8px;
         &::after {
-          width: 35%;
+          bottom: -14px;
         }
       }
       p {
@@ -1716,13 +1732,25 @@ section {
     }
   }
   .explore {
+    margin-top: 2px;
     height: fit-content;
+    h2 {
+      margin-top: 4px;
+      &::after {
+        bottom: -28px;
+      }
+    }
     img {
       width: 100%;
     }
   }
   .video {
+    margin-top: -3px;
+    h2 {
+      margin-top: 1px;
+    }
     .play-group {
+      left: 54%;
       svg {
         @include setSize($w: 50px, $h: 50px);
       }
@@ -1731,31 +1759,52 @@ section {
       height: 55px;
     }
     .play-btn {
-      margin: 0 7% 0 6%;
+      margin: 0px 8.1% 8px 5%;
       @include setSize($w: 14px, $h: 18px);
     }
     .volume-btn {
+      margin-bottom: 8px;
       @include setSize($w: 18px, $h: 14px);
     }
     .size-btn {
-      margin: 0 6% 0 7%;
+      margin: 0 4.9% 9px 7%;
       @include setSize($w: 18px, $h: 18px);
     }
     .progress {
       height: 4px;
+      margin-bottom: 8px;
     }
     .volume {
       width: auto;
       margin-left: 7%;
       height: 4px;
+      margin-bottom: 8px;
     }
     .slider {
+      margin-top: 40px;
       .videos {
         margin-bottom: 30px;
       }
+      iframe {
+        max-height: 100px;
+      }
+    }
+  }
+  .gallery {
+    margin-top: -12px;
+    height: 756px;
+    h2 {
+      margin-top: 5px;
+      margin-bottom: 44px;
     }
   }
   .tickets {
+    h2 {
+      margin-bottom: 99px;
+      &::after {
+        bottom: -25px;
+      }
+    }
     .data {
       grid-template-columns: 100%;
       grid-template-rows: repeat(3, auto);
@@ -1763,6 +1812,7 @@ section {
     .img {
       grid-row: 1;
       grid-column: 1;
+      max-height: 160px;
     }
 
     .ticket.amount {
@@ -1772,14 +1822,30 @@ section {
       grid-row: 2;
       grid-column: 1;
       h3 {
+        font-size: 16px;
         text-align: center;
+        margin-bottom: 20px;
+      }
+      .age {
+        p {
+          margin-bottom: 15px;
+        }
+      }
+      .senior {
+        margin-top: 20px;
+      }
+      p {
+        font-size: 16px;
       }
       .total {
         margin-top: 40px;
+        margin-left: 48px;
+        letter-spacing: 0.25px;
       }
     }
     .btn-buy {
       justify-self: center;
+      font-size: 16px;
       margin-top: 40px;
       margin-right: 0;
       grid-row: 3;
@@ -1852,6 +1918,21 @@ section {
       p {
         width: fit-content;
       }
+    }
+  }
+  .contacts {
+    h2 {
+      margin-bottom: 65px;
+
+      &::after {
+        bottom: -25px;
+      }
+    }
+    h3 {
+      font-size: 16px;
+    }
+    li {
+      font-size: 16px;
     }
   }
 }

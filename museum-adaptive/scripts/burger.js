@@ -3,9 +3,7 @@ const burgerMenu = document.querySelector('.burger-menu');
 const closeBurger = document.querySelector('.adaptive-menu > .close');
 const textBehind = document.querySelector('.welcome .text');
 
-console.log(textBehind);
-
-function adaptiveMenuHandler(ev) {
+function adaptiveMenuHandler() {
   if (this === burgerMenu) {
     burgerMenu.style.display = 'none';
     closeBurger.style.display = 'inline-block';

@@ -1903,7 +1903,7 @@ section {
       iframe {
         max-height: 105px;
       }
-      .slider-position{
+      .slider-position {
         width: 195px;
       }
       .page {
@@ -1913,7 +1913,7 @@ section {
         @include setSize($w: 7px, $h: 8px);
       }
     }
-    .iframe{
+    .iframe {
       svg {
         @include setSize($w: 68px, $h: 48px);
       }

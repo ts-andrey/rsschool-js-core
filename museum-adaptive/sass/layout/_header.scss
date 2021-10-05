@@ -68,14 +68,29 @@ nav {
       position: relative;
       width: 32px;
       height: 25px;
-
       .close {
         position: absolute;
         top: 0;
         right: 0;
         display: none;
       }
+      &:hover {
+        li {
+          border-bottom: 2px solid $color-hover;
+        }
+        svg {
+          rect {
+            fill: $color-hover;
+          }
+        }
+      }
+      svg {
+        rect {
+          transition: all 0.35s ease-in;
+        }
+      }
     }
+
     .burger-menu {
       position: absolute;
       top: 0;
@@ -85,6 +100,7 @@ nav {
         @include setSize($w: 32px, $h: 2px);
         padding-top: 6px;
         border-bottom: 2px solid #fff;
+        transition: all 0.35s ease-in;
         &:first-of-type {
           padding-top: 0;
         }

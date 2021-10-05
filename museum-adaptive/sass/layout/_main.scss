@@ -946,7 +946,7 @@ section {
     position: relative;
     aside {
       margin-left: -100%;
-      padding: 35px 55px;
+      padding: 44px 50px;
       @include setPosition($top: 0, $left: 0);
       @include setSize($w: 300px, $h: 100%);
       background-color: $color-bg-dark;
@@ -972,7 +972,7 @@ section {
         }
       }
       a {
-        @include setSize($w: 122px, $h: 23px);
+        @include setSize($w: 130px, $h: 23px);
         @include setFont(Roboto, 20px, 300, 2px);
         margin: 0;
         padding: 5px;
@@ -1312,11 +1312,12 @@ section {
   }
   .welcome {
     height: 861px;
-
     aside {
+      padding: 29px 50px;
       width: 100%;
       height: max-content;
       .addition {
+        margin-left: 4px;
         height: min-content;
         display: flex;
         flex-direction: column;
@@ -1597,6 +1598,9 @@ section {
     }
   }
   .form {
+    .forum-header{
+      margin-bottom: 41px;
+    }
     .booking {
       height: 100%;
       max-width: 590px;
@@ -1618,10 +1622,28 @@ section {
         }
       }
     }
+    .overview{
+      width: 100%;
+    }
     .payment {
       margin-left: 0;
+      .data-type{
+        width: auto;
+        margin: 15px;
+      }
       .amount {
         margin-right: 0;
+      }
+      .summary{
+        width: 94.5%;
+        margin: 15px;
+      }
+      .summary-card{
+        margin: 0 16px 19px -0;
+        width: 499px;
+      }
+      .sumbit{
+        margin: 8px 15px 11px 26px;
       }
     }
   }
@@ -1634,6 +1656,7 @@ section {
     height: max-content;
     overflow: visible;
     aside {
+      padding: 34px 50px;
       .images1 {
         display: none;
       }
@@ -1645,7 +1668,7 @@ section {
         justify-content: space-between;
         align-items: center;
         margin-top: 35px;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.5);
         li {
           padding: 0;
@@ -1867,7 +1890,11 @@ section {
       .forum-header {
         margin-bottom: 40px;
       }
-      margin-bottom: 50px;
+      h3{
+        font-size: 32px;
+        margin-bottom: 13px;
+      }
+      
     }
     .payment {
       justify-content: stretch;

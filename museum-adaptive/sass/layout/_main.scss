@@ -346,18 +346,65 @@ section {
     margin-top: 40px;
 
     .videos {
-      @include setFlex($display: flex, $justify: space-between);
       width: 1440px;
+      display: grid;
+      justify-content: space-between;
+      grid-template-columns: repeat(3, 31.4%);
       margin-bottom: 31px;
     }
     iframe {
       @include setSize($w: 452px, $h: 254px);
     }
+    li {
+      @include setSize($w: 100%, $h: auto);
+    }
+    .iframe {
+      @include setSize($w: 100%, $h: auto);
+      position: relative;
+      img {
+        @include setSize($w: 100%, $h: auto);
+      }
+      svg {
+        @include setPosition($top: 50%, $left: 50%);
+        transform: translate(-50%, -50%);
+      }
+    }
+    .top {
+      @include setPosition($top: 15px, $left: 10px);
+      width: calc(100% - 20px);
+      display: flex;
+      align-items: center;
+      color: #fff;
+      img {
+        @include setSize($w: 40px, $h: 40px);
+        margin-right: 10px;
+      }
+      ul {
+        @include setSize($w: 4px, $h: 16px);
+        @include setPosition($top: 8px, $right: 25px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+      p {
+        flex-grow: 1;
+        @include setFont(Roboto, 18px, 400);
+      }
+      li {
+        @include setSize($w: 4px, $h: 4px);
+        background-color: #fff;
+        border-radius: 50%;
+        &:last-of-type {
+          margin-top: 0;
+        }
+      }
+    }
 
     &-position {
-      @include setSize($w: 200px, $h: 30px);
+      @include setSize($w: 222px, $h: 30px);
       @include setFlex($display: flex, $justify: space-between, $align: center);
-
+      margin-left: 20px;
       .page {
         @include setSize($w: 12px, $h: 12px);
         border-radius: 50%;
@@ -1119,9 +1166,9 @@ section {
     }
     .text {
       margin-bottom: 45px;
-    }
-    p {
-      display: none;
+      p {
+        display: none;
+      }
     }
 
     & &-player {
@@ -1163,13 +1210,53 @@ section {
     .slider {
       .videos {
         width: 100%;
-        li {
-          width: 30.5%;
-        }
+        grid-template-columns: repeat(3, 30.5%);
+        max-height: 170px;
       }
       iframe {
         width: 100%;
         max-height: 170px;
+      }
+    }
+    .iframe {
+      max-height: 170px;
+      p {
+        visibility: hidden;
+        position: relative;
+        font-size: 18px;
+      }
+
+      .top {
+        align-items: start;
+      }
+    }
+    li {
+      &:nth-of-type(1) {
+        p {
+          &::after {
+            @include setPosition($top: 0, $left: 0);
+            visibility: visible;
+            content: 'Exposition - Le Corps...';
+          }
+        }
+      }
+      &:nth-of-type(2) {
+        p {
+          &::after {
+            @include setPosition($top: 0, $left: 0);
+            visibility: visible;
+            content: 'Au Louvre ! La Venu...';
+          }
+        }
+      }
+      &:nth-of-type(3) {
+        p {
+          &::after {
+            @include setPosition($top: 0, $left: 0);
+            visibility: visible;
+            content: 'Promenade dans les...';
+          }
+        }
       }
     }
   }
@@ -1501,18 +1588,22 @@ section {
       margin-top: 16px;
       .videos {
         margin-bottom: 10px;
+        grid-template-columns: repeat(2, 48.7%);
+        max-height: 200px;
         li {
           &:last-of-type {
             display: none;
           }
-          width: 48.63%;
         }
       }
       iframe {
         max-height: 200px;
       }
+      .iframe {
+        max-height: 200px;
+      }
       .slider-position {
-        width: 190px;
+        width: 210px;
       }
       .page {
         @include setSize($w: 10px, $h: 10px);
@@ -1804,12 +1895,46 @@ section {
       margin-bottom: 8px;
     }
     .slider {
-      margin-top: 40px;
+      margin-top: 36px;
       .videos {
-        margin-bottom: 30px;
+        grid-template-columns: repeat(2, 47%);
+        margin-bottom: 28px;
       }
       iframe {
-        max-height: 100px;
+        max-height: 105px;
+      }
+      .slider-position{
+        width: 195px;
+      }
+      .page {
+        @include setSize($w: 8px, $h: 8px);
+      }
+      svg {
+        @include setSize($w: 7px, $h: 8px);
+      }
+    }
+    .iframe{
+      svg {
+        @include setSize($w: 68px, $h: 48px);
+      }
+    }
+    .dots {
+      display: none;
+    }
+    li {
+      &:nth-of-type(1) {
+        p {
+          &::after {
+            content: 'Exposition...';
+          }
+        }
+      }
+      &:nth-of-type(2) {
+        p {
+          &::after {
+            content: 'Au Louvre ! ...';
+          }
+        }
       }
     }
   }

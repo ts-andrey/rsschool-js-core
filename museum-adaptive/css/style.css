@@ -1130,7 +1130,7 @@ section .wrapper {
   height: 400px;
   overflow: hidden;
   margin: 0 auto;
-  background-image: url("../assets/img/parallax.jpg");
+  background-image: url("../assets/img/parallax.webp");
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat; }

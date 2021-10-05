@@ -575,7 +575,7 @@ section {
   @include setSize($w: 100%, $h: 400px);
   overflow: hidden;
   margin: 0 auto;
-  background-image: url('../assets/img/parallax.jpg');
+  background-image: url('../assets/img/parallax.webp');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -1598,7 +1598,7 @@ section {
     }
   }
   .form {
-    .forum-header{
+    .forum-header {
       margin-bottom: 41px;
     }
     .booking {
@@ -1622,27 +1622,27 @@ section {
         }
       }
     }
-    .overview{
+    .overview {
       width: 100%;
     }
     .payment {
       margin-left: 0;
-      .data-type{
+      .data-type {
         width: auto;
         margin: 15px;
       }
       .amount {
         margin-right: 0;
       }
-      .summary{
+      .summary {
         width: 94.5%;
         margin: 15px;
       }
-      .summary-card{
+      .summary-card {
         margin: 0 16px 19px -0;
         width: 499px;
       }
-      .sumbit{
+      .sumbit {
         margin: 8px 15px 11px 26px;
       }
     }
@@ -1885,10 +1885,10 @@ section {
       width: 420px;
     }
     .details {
-      margin-bottom: 5f0px;
-      .date-time{
+      margin-bottom: 50px;
+      .date-time {
         flex-wrap: wrap;
-        .input-group{
+        .input-group {
           width: 100%;
         }
       }
@@ -1898,11 +1898,10 @@ section {
       .forum-header {
         margin-bottom: 40px;
       }
-      h3{
+      h3 {
         font-size: 32px;
         margin-bottom: 13px;
       }
-      
     }
     .payment {
       justify-content: stretch;

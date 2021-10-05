@@ -37,7 +37,7 @@ function getRandomArray() {
 function insertGallery() {
   const randomArray = getRandomArray();
   randomArray.forEach((el, index) => {
-    galleryPictures[index].setAttribute('src', `assets/img/galery/gallery${el}.jpg`);
+    galleryPictures[index].setAttribute('src', `assets/img/galery/gallery${el}.webp`);
     galleryPictures[index].setAttribute('alt', `gallery picture #${el}`);
   });
 }

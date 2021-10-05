@@ -1555,7 +1555,7 @@ section .wrapper {
     position: relative; }
     .welcome aside {
       margin-left: -100%;
-      padding: 35px 55px;
+      padding: 44px 50px;
       position: absolute;
       top: 0;
       bottom: auto;
@@ -1582,7 +1582,7 @@ section .wrapper {
         .welcome aside li:first-of-type {
           padding-top: 0; }
       .welcome aside a {
-        width: 122px;
+        width: 130px;
         height: 23px;
         font-family: Roboto;
         font-size: 20px;
@@ -1840,9 +1840,11 @@ section .wrapper {
   .welcome {
     height: 861px; }
     .welcome aside {
+      padding: 29px 50px;
       width: 100%;
       height: max-content; }
       .welcome aside .addition {
+        margin-left: 4px;
         height: min-content;
         display: flex;
         flex-direction: column;
@@ -2083,6 +2085,8 @@ section .wrapper {
   .contacts img {
     height: auto;
     width: 100%; }
+  .form .forum-header {
+    margin-bottom: 41px; }
   .form .booking {
     height: 100%;
     max-width: 590px;
@@ -2099,10 +2103,23 @@ section .wrapper {
         width: 47.4%; }
         .form .details .date-time .input-group input {
           width: 100%; }
+  .form .overview {
+    width: 100%; }
   .form .payment {
     margin-left: 0; }
+    .form .payment .data-type {
+      width: auto;
+      margin: 15px; }
     .form .payment .amount {
-      margin-right: 0; } }
+      margin-right: 0; }
+    .form .payment .summary {
+      width: 94.5%;
+      margin: 15px; }
+    .form .payment .summary-card {
+      margin: 0 16px 19px -0;
+      width: 499px; }
+    .form .payment .sumbit {
+      margin: 8px 15px 11px 26px; } }
 
 @media screen and (max-width: 450px) {
   main {
@@ -2110,35 +2127,37 @@ section .wrapper {
   .welcome {
     height: max-content;
     overflow: visible; }
-    .welcome aside .images1 {
-      display: none; }
-    .welcome aside .images2 {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 35px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
-      .welcome aside .images2 li {
-        padding: 0;
-        width: 95px;
-        height: 95px;
-        margin-bottom: 10px; }
-        .welcome aside .images2 li:nth-of-type(1) {
-          grid-row: 1;
-          grid-column: 1; }
-        .welcome aside .images2 li:nth-of-type(2) {
-          grid-row: 1;
-          grid-column: 3; }
-        .welcome aside .images2 li:nth-of-type(3) {
-          grid-row: 1;
-          grid-column: 2; }
-    .welcome aside .social {
-      width: 260px;
-      margin: 24px 0 0 0; }
+    .welcome aside {
+      padding: 34px 50px; }
+      .welcome aside .images1 {
+        display: none; }
+      .welcome aside .images2 {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 35px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
+        .welcome aside .images2 li {
+          padding: 0;
+          width: 95px;
+          height: 95px;
+          margin-bottom: 10px; }
+          .welcome aside .images2 li:nth-of-type(1) {
+            grid-row: 1;
+            grid-column: 1; }
+          .welcome aside .images2 li:nth-of-type(2) {
+            grid-row: 1;
+            grid-column: 3; }
+          .welcome aside .images2 li:nth-of-type(3) {
+            grid-row: 1;
+            grid-column: 2; }
+      .welcome aside .social {
+        width: 260px;
+        margin: 24px 0 0 0; }
     .welcome .container {
       width: 100%;
       height: 40px;
@@ -2283,10 +2302,12 @@ section .wrapper {
     .form .details {
       width: calc(100% - 60px);
       height: 100%;
-      justify-content: stretch;
-      margin-bottom: 50px; }
+      justify-content: stretch; }
       .form .details .forum-header {
         margin-bottom: 40px; }
+      .form .details h3 {
+        font-size: 32px;
+        margin-bottom: 13px; }
     .form .payment {
       justify-content: stretch;
       width: calc(100% - 60px);

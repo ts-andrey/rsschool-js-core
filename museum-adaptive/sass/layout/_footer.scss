@@ -2,7 +2,7 @@
 @import '../util/util';
 
 footer {
-  min-width: $screen-size-big;
+  width: 100%;
   margin: 0 auto;
   background-color: #000;
   color: #fff;
@@ -91,36 +91,7 @@ footer {
     }
   }
   .social {
-    justify-self: end;
-    align-self: end;
-    @include setFlex($display: inline-flex, $justify: space-between);
-    width: 340px;
-    margin-bottom: 6px;
-    li {
-      @include setSize($w: 48px, $h: 48px);
-      @include setFlex($display: inline-flex, $justify: center, $align: center);
-      border: 1px solid #666666;
-      border-radius: 50%;
-      transition: all 0.4s;
-      svg {
-        path {
-          transition: all 0.4s;
-        }
-      }
-      &:hover {
-        border: 1px solid $color-hover;
-        transform: scale(0.95);
-        svg {
-          path {
-            fill: $color-hover;
-          }
-        }
-      }
-      a {
-        @include setSize($w: inherit, $h: inherit);
-        @include setFlex($display: inline-flex, $justify: center, $align: center);
-      }
-    }
+    @include setSocial;
   }
 }
 
@@ -137,18 +108,19 @@ footer {
         height: 122px;
         p {
           &:nth-of-type(2) {
-            margin-left: 90px;
+            margin-left: 25px;
           }
         }
       }
     }
     .logo {
       @include setSize($w: 194px, $h: 30px);
-      margin-top: 60px;
+      margin-top: 70px;
+      margin-left: 3px;
     }
     nav {
-      width: 313px;
-      margin: 6.8% 1% 50px -1%;
+      width: 309px;
+      margin: 7.3% 1% 50px -4.5%;
       ul {
         justify-content: space-between;
       }
@@ -161,6 +133,7 @@ footer {
 }
 @media screen and (max-width: $screen-size-small) {
   footer {
+    margin-top: 28px;
     .string.first {
       height: 308px;
       .wrapper {
@@ -185,10 +158,13 @@ footer {
       grid-row: 2;
       align-self: center;
       justify-self: center;
-      margin: 1px 0 1px 0;
+      margin: -2px -9px 1px 0;
     }
     .last {
       height: 102px;
+      p{
+        margin-bottom: 20px;
+      }
     }
   }
 }

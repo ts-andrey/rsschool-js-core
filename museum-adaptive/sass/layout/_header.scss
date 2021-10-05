@@ -75,6 +75,7 @@ nav {
         display: none;
       }
       &:hover {
+        cursor: pointer;
         li {
           border-bottom: 2px solid $color-hover;
         }

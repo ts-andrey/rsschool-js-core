@@ -433,6 +433,14 @@ nav {
         top: 0;
         right: 0;
         display: none; }
+      header .adaptive-menu:hover {
+        cursor: pointer; }
+        header .adaptive-menu:hover li {
+          border-bottom: 2px solid #9d8665; }
+        header .adaptive-menu:hover svg rect {
+          fill: #9d8665; }
+      header .adaptive-menu svg rect {
+        transition: all 0.35s ease-in; }
     header .burger-menu {
       position: absolute;
       top: 0;
@@ -445,7 +453,8 @@ nav {
         width: 32px;
         height: 2px;
         padding-top: 6px;
-        border-bottom: 2px solid #fff; }
+        border-bottom: 2px solid #fff;
+        transition: all 0.35s ease-in; }
         header .burger-menu li:first-of-type {
           padding-top: 0; } }
 

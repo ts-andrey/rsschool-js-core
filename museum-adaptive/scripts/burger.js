@@ -11,7 +11,6 @@ function closeAside() {
   textBehind.style.display = 'block';
 }
 function adaptiveMenuHandler(ev) {
-  console.log(ev.target);
   if (this === burgerMenu) {
     burgerMenu.style.display = 'none';
     closeBurger.style.display = 'inline-block';

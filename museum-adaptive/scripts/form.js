@@ -14,8 +14,8 @@ formClose.addEventListener('click', closeFormHandler);
 
 form.addEventListener(
   'click',
-  function (event) {
-    if (event.target.matches('.close') || !event.target.closest('form')) closeFormHandler(event);
+  function (ev) {
+    if (ev.target.matches('.close') || !ev.target.closest('form')) closeFormHandler(event);
   },
   false
 );

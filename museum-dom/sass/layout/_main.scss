@@ -29,6 +29,14 @@ section {
 .welcome {
   aside {
     display: none;
+    nav {
+      svg {
+        pointer-events: none;
+      }
+      span {
+        pointer-events: none;
+      }
+    }
   }
   @include setSize($h: 810px);
   color: #fff;
@@ -67,12 +75,16 @@ section {
   .img {
     @include setSize($w: 1000px, $h: 750px);
     position: relative;
+    img {
+      transition: all 0.15s;
+    }
   }
   .shadow {
     @include setPosition($top: 0, $right: 0);
     @include setSize($w: inherit, $h: inherit);
     z-index: 1;
     background: linear-gradient(to right, $color-bg-dark 0%, transparent 30%);
+    pointer-events: none;
   }
 
   .container {
@@ -126,6 +138,7 @@ section {
     .page {
       @include setSize($w: 16px, $h: 16px);
       align-self: center;
+      pointer-events: none;
       transition: 0.3s;
     }
     .active {
@@ -136,7 +149,9 @@ section {
     @include setSize($w: 80px, $h: inherit);
     li {
       svg {
+        pointer-events: none;
         path {
+          pointer-events: none;
           transition: all 0.3s;
         }
       }

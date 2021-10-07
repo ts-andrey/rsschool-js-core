@@ -16,14 +16,7 @@ function adaptiveMenuHandler(ev) {
     closeBurger.style.display = 'inline-block';
     adaptiveMenu.style.marginLeft = '0';
     textBehind.style.display = 'none';
-  } else if (
-    ev.target.matches('.adaptive-link') ||
-    ev.target.matches('span') ||
-    ev.target.matches('svg') ||
-    ev.target.matches('path') ||
-    !ev.target.closest('aside') ||
-    ev.target.matches('.close')
-  ) {
+  } else if (ev.target.matches('.adaptive-link') || !ev.target.closest('aside') || ev.target.matches('.close')) {
     closeAside();
   }
 }

@@ -593,6 +593,10 @@ section .wrapper {
   overflow: hidden; }
   .welcome aside {
     display: none; }
+    .welcome aside nav svg {
+      pointer-events: none; }
+    .welcome aside nav span {
+      pointer-events: none; }
   .welcome .wrapper {
     display: flex;
     flex-direction: row;
@@ -634,6 +638,8 @@ section .wrapper {
     width: 1000px;
     height: 750px;
     position: relative; }
+    .welcome .img img {
+      transition: all 0.15s; }
   .welcome .shadow {
     position: absolute;
     top: 0;
@@ -643,7 +649,8 @@ section .wrapper {
     width: inherit;
     height: inherit;
     z-index: 1;
-    background: linear-gradient(to right, #030303 0%, transparent 30%); }
+    background: linear-gradient(to right, #030303 0%, transparent 30%);
+    pointer-events: none; }
   .welcome .container {
     width: 600px;
     height: 120px;
@@ -710,14 +717,18 @@ section .wrapper {
       width: 16px;
       height: 16px;
       align-self: center;
+      pointer-events: none;
       transition: 0.3s; }
     .welcome .pages .active {
       background-color: #9d8665; }
   .welcome .arrows {
     width: 80px;
     height: inherit; }
-    .welcome .arrows li svg path {
-      transition: all 0.3s; }
+    .welcome .arrows li svg {
+      pointer-events: none; }
+      .welcome .arrows li svg path {
+        pointer-events: none;
+        transition: all 0.3s; }
     .welcome .arrows li:hover {
       cursor: pointer; }
       .welcome .arrows li:hover svg path {

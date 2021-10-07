@@ -17,4 +17,4 @@ const selfEvaluation = [
   ['Общее количество баллов самооценки', 160],
 ];
 
-console.table(selfEvaluation);
+// console.table(selfEvaluation);

@@ -593,6 +593,10 @@ section .wrapper {
   overflow: hidden; }
   .welcome aside {
     display: none; }
+    .welcome aside nav svg {
+      pointer-events: none; }
+    .welcome aside nav span {
+      pointer-events: none; }
   .welcome .wrapper {
     display: flex;
     flex-direction: row;
@@ -633,7 +637,10 @@ section .wrapper {
   .welcome .img {
     width: 1000px;
     height: 750px;
-    position: relative; }
+    position: relative;
+    overflow: hidden; }
+    .welcome .img img {
+      transition: all 0.4s; }
   .welcome .shadow {
     position: absolute;
     top: 0;
@@ -643,7 +650,8 @@ section .wrapper {
     width: inherit;
     height: inherit;
     z-index: 1;
-    background: linear-gradient(to right, #030303 0%, transparent 30%); }
+    background: linear-gradient(to right, #030303 0%, transparent 30%);
+    pointer-events: none; }
   .welcome .container {
     width: 600px;
     height: 120px;
@@ -710,14 +718,18 @@ section .wrapper {
       width: 16px;
       height: 16px;
       align-self: center;
+      pointer-events: none;
       transition: 0.3s; }
     .welcome .pages .active {
       background-color: #9d8665; }
   .welcome .arrows {
     width: 80px;
     height: inherit; }
-    .welcome .arrows li svg path {
-      transition: all 0.3s; }
+    .welcome .arrows li svg {
+      pointer-events: none; }
+      .welcome .arrows li svg path {
+        pointer-events: none;
+        transition: all 0.3s; }
     .welcome .arrows li:hover {
       cursor: pointer; }
       .welcome .arrows li:hover svg path {
@@ -858,6 +870,15 @@ section .wrapper {
     transition: all 0.4s; }
   .video .video-player svg:hover path {
     fill: #9d8665; }
+  .video .video-player:fullscreen {
+    width: 100%;
+    height: 100%; }
+    .video .video-player:fullscreen .film {
+      width: 100%;
+      height: 100%;
+      background-color: #030303; }
+    .video .video-player:fullscreen .player-panel {
+      align-self: center; }
 
 .video .play-group {
   width: min-content;
@@ -867,13 +888,15 @@ section .wrapper {
   bottom: auto;
   left: 50%;
   right: auto;
+  z-index: 5;
   transform: translate(-50%, -50%); }
-  .video .play-group svg:hover path {
+  .video .play-group:hover svg path {
     transform: scale(0.9) translate(10px, 10px); }
 
-.video img {
-  width: 1440px;
-  height: 650px; }
+.video .film {
+  width: 100%;
+  height: 650px;
+  background-color: #030303; }
 
 .video .player-panel {
   width: inherit;
@@ -882,12 +905,17 @@ section .wrapper {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 2.1%;
   background: #030303; }
-  .video .player-panel svg path {
-    transition: all 0.4s; }
-  .video .player-panel svg:hover path {
-    fill: #9d8665; }
+
+.video .panel-btn svg {
+  pointer-events: none; }
+  .video .panel-btn svg path {
+    transition: all 0.5s;
+    pointer-events: none; }
+
+.video .panel-btn:hover svg path {
+  fill: #9d8665; }
 
 .video .progress {
   width: 930px;
@@ -1041,8 +1069,14 @@ section .wrapper {
     margin-bottom: 24px; }
     .gallery li:nth-of-type(1), .gallery li:nth-of-type(11) {
       padding-top: 50px; }
+  .gallery .shown {
+    transform: translate(0, 0) scale(1);
+    opacity: 1; }
   .gallery img {
-    width: 100%; }
+    width: 100%;
+    transition: all 2s ease-out;
+    transform: translate(0, 120%) scale(0.5);
+    opacity: 0; }
   .gallery .shadow {
     position: absolute;
     top: auto;
@@ -1169,7 +1203,9 @@ section .wrapper {
     margin-top: 49px;
     font-weight: 700;
     font-size: 28px;
-    letter-spacing: 1.65px; }
+    letter-spacing: 1.65px;
+    width: max-content;
+    align-self: end; }
   .tickets .btn-buy {
     width: 175px;
     height: 50px;
@@ -1289,6 +1325,22 @@ section .wrapper {
       letter-spacing: 0;
       margin-bottom: 10px;
       color: #710707; }
+  .form .valid {
+    border: 1px solid #00dd00 !important; }
+  .form .invalid {
+    margin-top: 2px;
+    border: 1px solid red !important; }
+    .form .invalid:focus {
+      border: 1px solid red !important;
+      outline: none; }
+  .form .invalid-text {
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: red;
+    position: sticky;
+    display: none; }
   .form .details {
     width: 400px;
     height: 663px;
@@ -1325,23 +1377,40 @@ section .wrapper {
       letter-spacing: 0;
       width: inherit;
       height: inherit;
-      padding-left: 95px;
+      padding-left: 40px;
       border: 1px solid #030303;
+      color: #030303; }
+      .form .details input::-webkit-input-placeholder {
+        color: #030303;
+        font-family: Roboto;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0; }
+    .form .details .ticket-date::-webkit-datetime-edit-text {
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0;
       color: #030303; }
     .form .details select {
       width: inherit;
       height: inherit;
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0;
       -webkit-appearance: none;
       background: url(../assets/svg/form/arrow.svg);
       background-repeat: no-repeat;
-      background-position: right 14px top 14px; }
+      background-position: right 14px top 14px;
+      padding-left: 40px; }
     .form .details .date-time {
       display: flex;
       justify-content: space-between; }
       .form .details .date-time .input-group {
         width: 190px; }
         .form .details .date-time .input-group input {
-          padding-left: 87px; }
+          padding-left: 40px; }
       .form .details .date-time input::-webkit-calendar-picker-indicator {
         padding: 0;
         width: 40px;
@@ -1765,7 +1834,7 @@ section .wrapper {
   .video .play-group svg {
     width: 152px;
     height: 152px; }
-  .video img {
+  .video .film {
     width: 100%;
     height: auto; }
   .video .progress {
@@ -2474,6 +2543,24 @@ section .wrapper {
     font-size: 16px; }
   .contacts li {
     font-size: 16px; } }
+
+.moveLeft {
+  animation: moveLeft 0.5s ease-out;
+  animation-fill-mode: forwards; }
+
+.moveRight {
+  animation: moveRight 0.5s ease-out;
+  animation-fill-mode: forwards; }
+
+@keyframes moveLeft {
+  100% {
+    transform: translateX(-110%);
+    display: none; } }
+
+@keyframes moveRight {
+  100% {
+    transform: translateX(110%);
+    display: none; } }
 
 .wrapper {
   width: 1440px;

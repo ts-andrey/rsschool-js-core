@@ -75,8 +75,9 @@ section {
   .img {
     @include setSize($w: 1000px, $h: 750px);
     position: relative;
+    overflow: hidden;
     img {
-      transition: all 0.15s;
+      transition: all 0.4s;
     }
   }
   .shadow {
@@ -298,34 +299,51 @@ section {
         }
       }
     }
+    &:fullscreen{
+      @include setSize($w: 100%, $h: 100%);
+      .film {
+        @include setSize($w: 100%, $h: 100%);
+        background-color: $color-bg-dark;
+      }
+      .player-panel{
+        align-self: center;
+      }
+    }
   }
 
   .play-group {
     @include setSize($w: min-content, $h: min-content);
     @include setPosition($top: 44.5%, $left: 50%);
+    z-index: 5;
     transform: translate(-50%, -50%);
-    svg {
-      &:hover {
+    &:hover {
+      svg {
         path {
           transform: scale(0.9) translate(10px, 10px);
         }
       }
     }
   }
-  img {
-    @include setSize($w: 1440px, $h: 650px);
+  .film {
+    @include setSize($w: 100%, $h: 650px);
+    background-color: $color-bg-dark;
   }
   .player-panel {
     @include setSize($w: inherit, $h: 85px);
     @include setFlex($display: flex, $justify: space-between, $align: center);
-    padding: 0 30px;
+    padding: 0 2.1%;
     background: $color-bg-dark;
-
+  }
+  .panel-btn {
     svg {
+      pointer-events: none;
       path {
-        transition: all 0.4s;
+        transition: all 0.5s;
+        pointer-events: none;
       }
-      &:hover {
+    }
+    &:hover {
+      svg {
         path {
           fill: $color-hover;
         }
@@ -489,8 +507,15 @@ section {
       padding-top: 50px;
     }
   }
+  .shown {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
   img {
     width: 100%;
+    transition: all 2s ease-out;
+    transform: translate(0, 120%) scale(0.5);
+    opacity: 0;
   }
   .shadow {
     @include setPosition($bottom: 0);
@@ -559,6 +584,7 @@ section {
         background: radial-gradient($color-bg-dark 35%, transparent 36%);
       }
     }
+
     &.amount {
       justify-self: end;
       width: 150px;
@@ -613,6 +639,8 @@ section {
     font-weight: 700;
     font-size: 28px;
     letter-spacing: 1.65px;
+    width: max-content;
+    align-self: end;
   }
   .btn-buy {
     @include setSize($w: 175px, $h: 50px);
@@ -713,6 +741,23 @@ section {
     }
   }
 
+  .valid {
+    border: 1px solid rgb(0, 221, 0) !important;
+  }
+  .invalid {
+    margin-top: 2px;
+    border: 1px solid red !important;
+    &:focus {
+      border: 1px solid red !important;
+      outline: none;
+    }
+  }
+  .invalid-text {
+    @include setFont(Roboto, 12px, 400);
+    color: red;
+    position: sticky;
+    display: none;
+  }
   .details {
     @include setSize($w: 400px, $h: 663px);
     @include setFlex($display: flex, $direction: column);
@@ -735,16 +780,28 @@ section {
     input {
       @include setFont(Roboto, 18px, 400);
       @include setSize($w: inherit, $h: inherit);
-      padding-left: 95px;
+      padding-left: 40px;
       border: 1px solid $color-bg-dark;
       color: $color-bg-dark;
+      &::-webkit-input-placeholder {
+        color: $color-bg-dark;
+        @include setFont(Roboto, 18px, 400);
+      }
+    }
+    .ticket-date {
+      &::-webkit-datetime-edit-text {
+        @include setFont(Roboto, 18px, 400);
+        color: $color-bg-dark;
+      }
     }
     select {
       @include setSize($w: inherit, $h: inherit);
+      @include setFont(Roboto, 18px, 400);
       -webkit-appearance: none;
       background: url(../assets/svg/form/arrow.svg);
       background-repeat: no-repeat;
       background-position: right 14px top 14px;
+      padding-left: 40px;
     }
 
     .date-time {
@@ -753,7 +810,7 @@ section {
       .input-group {
         width: 190px;
         input {
-          padding-left: 87px;
+          padding-left: 40px;
         }
       }
       input {
@@ -1195,7 +1252,7 @@ section {
         @include setSize($w: 152px, $h: 152px);
       }
     }
-    img {
+    .film {
       @include setSize($w: 100%, $h: auto);
     }
 
@@ -1408,6 +1465,7 @@ section {
     }
   }
 }
+
 @media screen and (max-width: $screen-size-small) {
   main {
     max-width: $screen-size-small;
@@ -1754,6 +1812,7 @@ section {
     }
   }
 }
+
 @media screen and (max-width: $screen-size-tiny) {
   main {
     max-width: $screen-size-tiny;
@@ -2108,5 +2167,28 @@ section {
     li {
       font-size: 16px;
     }
+  }
+}
+
+.moveLeft {
+  animation: moveLeft 0.5s ease-out;
+  animation-fill-mode: forwards;
+}
+.moveRight {
+  animation: moveRight 0.5s ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes moveLeft {
+  100% {
+    transform: translateX(-110%);
+    display: none;
+  }
+}
+
+@keyframes moveRight {
+  100% {
+    transform: translateX(110%);
+    display: none;
   }
 }

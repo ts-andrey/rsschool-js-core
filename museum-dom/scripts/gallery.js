@@ -1,4 +1,5 @@
 const galleryPictures = document.querySelectorAll('.insert-gallery > li>img');
+const pictureContainers = document.querySelectorAll('.insert-gallery > li');
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -6,6 +7,25 @@ function shuffle(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
+}
+
+function ariseHandler() {
+  pictureContainers.forEach(el => {
+    const itemHeight = el.offsetHeight;
+    const itemOffset = el.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
+    const startPoint = 4;
+
+    let animationStart = window.innerHeight - itemHeight / startPoint;
+    if (itemHeight > window.innerHeight) {
+      animationStart = window.innerHeight - window.innerHeight / startPoint;
+    }
+
+    if (pageYOffset > itemOffset - animationStart && pageYOffset < itemOffset + itemHeight) {
+      el.childNodes[0].classList.add('shown');
+    } else {
+      el.childNodes[0].classList.remove('shown');
+    }
+  });
 }
 
 function getRandomArray() {
@@ -31,3 +51,4 @@ function insertGallery() {
 }
 
 window.addEventListener('load', insertGallery);
+window.addEventListener('scroll', ariseHandler);

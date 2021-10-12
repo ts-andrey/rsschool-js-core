@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="assets/favicon.ico" />
     <link rel="stylesheet" href="./css/style.css" defer />
+    <link href="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css" rel="stylesheet" />
     <title>Museum</title>
   </head>
   <body>
@@ -325,18 +326,24 @@
             </p>
           </div>
           <div class="img">
-            <img src="./assets/img/explore-slider/before.webp" alt="explore slider before image" />
-            <svg width="39" height="700" viewBox="0 0 39 700" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M19.5 365C27.5081 365 34 358.508 34 350.5C34 342.492 27.5081 336 19.5 336C11.4919 336 5 342.492 5 350.5C5 358.508 11.4919 365 19.5 365ZM19.5 370C30.2696 370 39 361.27 39 350.5C39 339.73 30.2696 331 19.5 331C8.73045 331 0 339.73 0 350.5C0 361.27 8.73045 370 19.5 370Z"
-                fill="white"
-              />
-              <path d="M17 0H22V332H17V0Z" fill="white" />
-              <path d="M17 368H22V700H17V368Z" fill="white" />
-            </svg>
-            <img src="./assets/img/explore-slider/after.webp" alt="explore slider after image" />
+            <div class="img-container img-container-1">
+              <img src="./assets/img/explore-slider/before.webp" alt="explore slider before image" />
+            </div>
+            <div class="comparer" draggable="true">
+              <svg width="39" height="700" viewBox="0 0 39 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M19.5 365C27.5081 365 34 358.508 34 350.5C34 342.492 27.5081 336 19.5 336C11.4919 336 5 342.492 5 350.5C5 358.508 11.4919 365 19.5 365ZM19.5 370C30.2696 370 39 361.27 39 350.5C39 339.73 30.2696 331 19.5 331C8.73045 331 0 339.73 0 350.5C0 361.27 8.73045 370 19.5 370Z"
+                  fill="white"
+                />
+                <path d="M17 0H22V332H17V0Z" fill="white" />
+                <path d="M17 368H22V700H17V368Z" fill="white" />
+              </svg>
+            </div>
+            <div class="img-container img-container-2">
+              <img src="./assets/img/explore-slider/after.webp" alt="explore slider after image" />
+            </div>
           </div>
         </div>
       </section>
@@ -372,7 +379,7 @@
               </div>
               <input type="range" class="progress bar" name="progress-bar" value="53.5" min="0" max="100" step="0.1" />
               <div class="panel-btn volume-btn">
-                <svg  width="38" height="31" viewBox="0 0 38 31" xmlns="http://www.w3.org/2000/svg">
+                <svg width="38" height="31" viewBox="0 0 38 31" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M19.3511 0C18.875 0 18.4622 0.161587 18.1138 0.484761L8.9609 8.97374H1.76C1.28282 8.97374 0.871122 9.13533 0.522673 9.4585C0.174224 9.78167 0 10.1645 0 10.6061V20.3939C0 20.8355 0.174224 21.2183 0.522673 21.5415C0.871122 21.8647 1.28393 22.0263 1.76 22.0263H8.9609L18.1138 30.5152C18.4622 30.8384 18.8739 31 19.3511 31C19.8283 31 20.24 30.8384 20.5884 30.5152C20.9369 30.1921 21.1111 29.8102 21.1111 29.3677V1.63234C21.1111 1.1908 20.9369 0.807935 20.5895 0.484761C20.2422 0.161587 19.8294 0 19.3522 0H19.3511Z"
                     fill="#B3B3B3"
@@ -446,6 +453,50 @@
               </li>
               <li>
                 <div class="iframe third">
+                  <img src="./assets/video/poster2.webp" alt="poster 3" />
+                  <div class="top">
+                    <img src="./assets/video/slider_photo.webp" alt="icon at video" />
+                    <p>Promenade dans les collections mesop...</p>
+                    <ul class="dots">
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
+                  <svg width="68" height="48" viewBox="0 0 68 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M66.599 7.51079C65.8151 4.57394 63.5184 2.25899 60.6058 1.46816C55.2845 0 33.9993 0 33.9993 0C33.9993 0 12.7147 0 7.39337 1.4122C4.53688 2.2025 2.18413 4.57447 1.40023 7.51079C0 12.875 0 24 0 24C0 24 0 35.1809 1.40023 40.4892C2.18465 43.4255 4.48085 45.741 7.39389 46.5318C12.7707 48 33.9999 48 33.9999 48C33.9999 48 55.2845 48 60.6058 46.5878C63.5189 45.7975 65.8151 43.482 66.5995 40.5457C67.9997 35.1809 67.9997 24.0565 67.9997 24.0565C67.9997 24.0565 68.0557 12.875 66.599 7.51079Z"
+                      fill="#212121"
+                      fill-opacity="0.8"
+                    />
+                    <path d="M27 34.4348L45 24L27 13.5652V34.4348Z" fill="white" />
+                  </svg>
+                </div>
+              </li>
+              <li>
+                <div class="iframe fourth">
+                  <img src="./assets/video/poster2.webp" alt="poster 3" />
+                  <div class="top">
+                    <img src="./assets/video/slider_photo.webp" alt="icon at video" />
+                    <p>Promenade dans les collections mesop...</p>
+                    <ul class="dots">
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
+                  <svg width="68" height="48" viewBox="0 0 68 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M66.599 7.51079C65.8151 4.57394 63.5184 2.25899 60.6058 1.46816C55.2845 0 33.9993 0 33.9993 0C33.9993 0 12.7147 0 7.39337 1.4122C4.53688 2.2025 2.18413 4.57447 1.40023 7.51079C0 12.875 0 24 0 24C0 24 0 35.1809 1.40023 40.4892C2.18465 43.4255 4.48085 45.741 7.39389 46.5318C12.7707 48 33.9999 48 33.9999 48C33.9999 48 55.2845 48 60.6058 46.5878C63.5189 45.7975 65.8151 43.482 66.5995 40.5457C67.9997 35.1809 67.9997 24.0565 67.9997 24.0565C67.9997 24.0565 68.0557 12.875 66.599 7.51079Z"
+                      fill="#212121"
+                      fill-opacity="0.8"
+                    />
+                    <path d="M27 34.4348L45 24L27 13.5652V34.4348Z" fill="white" />
+                  </svg>
+                </div>
+              </li>
+              <li>
+                <div class="iframe fifth">
                   <img src="./assets/video/poster2.webp" alt="poster 3" />
                   <div class="top">
                     <img src="./assets/video/slider_photo.webp" alt="icon at video" />
@@ -613,7 +664,16 @@
                       />
                     </svg>
                   </div>
-                  <input type="time" name="ticket-time" class="ticket-time" list="ticket-time-picker" min="09:00" max="18:00" step="1800" value="09:00"/>
+                  <input
+                    type="time"
+                    name="ticket-time"
+                    class="ticket-time"
+                    list="ticket-time-picker"
+                    min="09:00"
+                    max="18:00"
+                    step="1800"
+                    value="09:00"
+                  />
                   <datalist id="ticket-time-picker">
                     <option value="09:00"></option>
                     <option value="09:30"></option>
@@ -646,7 +706,7 @@
                     />
                   </svg>
                 </div>
-                <input type="text" name="name" class="form-input ticket-name" placeholder="Name"/>
+                <input type="text" name="name" class="form-input ticket-name" placeholder="Name" />
                 <span class="invalid-text invalid-name">123</span>
               </div>
               <div class="input-group">
@@ -670,7 +730,14 @@
                     />
                   </svg>
                 </div>
-                <input type="tel" name="telephone" class="form-input ticket-telephone" placeholder="Phone" pattern="2-[0-9]{3}-[0-9]{3}" max="10"/>
+                <input
+                  type="tel"
+                  name="telephone"
+                  class="form-input ticket-telephone"
+                  placeholder="Phone"
+                  pattern="2-[0-9]{3}-[0-9]{3}"
+                  max="10"
+                />
                 <span class="invalid-text invalid-tel">231</span>
               </div>
               <div class="input-group">
@@ -914,7 +981,9 @@
                 <li><a href="mailto:info@louvre.fr">mail: info@louvre.fr</a></li>
               </ul>
             </div>
-            <div class="img"><img src="./assets/img/contacts/map.webp" alt="contacts-map" /></div>
+            <div class="img" id="map">
+              <!-- <img src="./assets/img/contacts/map.webp" alt="contacts-map" /> -->
+            </div>
           </div>
         </div>
       </section>
@@ -1003,8 +1072,10 @@
         </div>
       </div>
     </footer>
+    <script src="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js"></script>
+    <script src="./scripts/map.js" defer></script>
     <script src="./scripts/slider.js" defer></script>
-    <script src="./scripts/sliderUni.js" defer></script>
+    <!-- <script src="./scripts/sliderUni.js" defer></script> -->
     <script src="./scripts/video.js" defer></script>
     <script src="./scripts/gallery.js" defer></script>
     <script src="./scripts/compare.js" defer></script>

@@ -412,6 +412,7 @@ section {
       @include setSize($w: 452px, $h: 254px);
     }
     li {
+      transition: all 0.5s;
       @include setSize($w: 100%, $h: auto);
     }
     .iframe {
@@ -459,10 +460,11 @@ section {
 
     &-position {
       @include setSize($w: 222px, $h: 30px);
-      @include setFlex($display: flex, $justify: space-between, $align: center);
+      @include setFlex($display: inline-flex, $justify: space-between, $align: center);
       margin-left: 20px;
       .page {
         @include setSize($w: 12px, $h: 12px);
+        pointer-events: none;
         border-radius: 50%;
         align-self: center;
         background-color: #999999;
@@ -474,8 +476,13 @@ section {
       }
 
       li {
+        @include setFlex($display: inline-flex, $justify: space-between, $align: center);
+        align-self: center;
+        height: inherit;
         svg {
+          pointer-events: none;
           path {
+            pointer-events: none;
             transition: 0.3s;
           }
         }
@@ -488,7 +495,7 @@ section {
           }
           svg {
             path {
-              fill: $color-hover;
+              fill: $color-bg-dark;
               transform: scale(0.9);
             }
           }
@@ -701,7 +708,7 @@ section {
   .data {
     @include setFlex($display: flex, $justify: space-between);
   }
-  #map{
+  #map {
     @include setSize($w: 963px, $h: 625px);
     z-index: 100;
   }
@@ -1084,7 +1091,7 @@ section {
 .go-to-top {
   @include setSize($w: 40px, $h: 40px);
   @include setFont(Roboto, 30px, 400);
-  @include setFlex($display: flex, $justify:center, $align: center);
+  @include setFlex($display: flex, $justify: center, $align: center);
   position: fixed;
   padding: 0;
   margin: 0;
@@ -1095,8 +1102,8 @@ section {
   color: rgba(255, 255, 255, 0.171);
   border: 1px solid rgba(255, 255, 255, 0.062);
   opacity: 0.6;
-  transition: all .5s;
-  &:hover{
+  transition: all 0.5s;
+  &:hover {
     opacity: 0.9;
     transform: scale(1.2);
   }
@@ -1497,8 +1504,8 @@ section {
     .text {
       min-width: 290px;
     }
-  
-    #map{
+
+    #map {
       @include setSize($w: 963px, $h: 625px);
       z-index: 100;
     }

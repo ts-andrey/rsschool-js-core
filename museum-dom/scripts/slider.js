@@ -9,7 +9,6 @@ const welcomeImage = document.querySelector('.welcome .img img');
 
 const welcomePictures = ['./assets/img/welcome-slider/1.webp'];
 
-/* ************    V I D E O   S L I D E R     ************** */
 
 let WELCOME_PAIGE = 1;
 let MOVE_RIGHT = true;

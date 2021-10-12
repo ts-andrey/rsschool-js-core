@@ -2,47 +2,43 @@ const imgComparer = document.querySelector('.comparer');
 const imgContainer = document.querySelector('.explore .img');
 const imgOverlay = document.querySelector('.img-container-1');
 
-console.log(imgOverlay);
-
 function compareImages() {
   let slider = imgComparer;
   let img = imgOverlay;
   let clicked = 0;
-  let w;
-  let h;
+  let width;
 
-  w = img.offsetWidth;
-  h = img.offsetHeight;
+  width = img.offsetWidth;
 
-  img.style.width = `${w / 4 *2.5}px`;
-  slider.style.left =`${w / 4 *2.5 - slider.offsetWidth / 4 *2.5}px`;
+  img.style.width = `${width / 4 *2.5}px`;
+  slider.style.left =`${width / 4 *2.5 - slider.offsetWidth / 4 *2.5}px`;
 
-  function getCursorPos(e) {
-    let a;
-    let x = 0;
-    e = e || window.event;
-    a = img.getBoundingClientRect();
-    x = e.pageX - a.left;
-    x = x - window.pageXOffset;
-    return x;
+  function getCursorPos(ev) {
+    let imgRect;
+    let coordX = 0;
+    ev = ev || window.event;
+    imgRect = img.getBoundingClientRect();
+    coordX = ev.pageX - imgRect.left;
+    coordX = coordX - window.pageXOffset;
+    return coordX;
   }
 
-  function slide(x) {
-    img.style.width = x + 'px';
+  function slide(width) {
+    img.style.width = width + 'px';
     slider.style.left = img.offsetWidth - slider.offsetWidth / 2 + 'px';
   }
 
-  function slideMove(e) {
+  function slideMove(ev) {
     let pos;
     if (clicked === 0) return false;
-    pos = getCursorPos(e);
+    pos = getCursorPos(ev);
     if (pos < 0) pos = 0;
-    if (pos > w) pos = w;
+    if (pos > width) pos = width;
     slide(pos);
   }
 
-  function slideReady(e) {
-    e.preventDefault();
+  function slideReady(ev) {
+    ev.preventDefault();
     clicked = 1;
     window.addEventListener('mousemove', slideMove);
     window.addEventListener('touchmove', slideMove);

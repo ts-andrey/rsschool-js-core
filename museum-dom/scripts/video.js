@@ -180,31 +180,39 @@ function shiftPositionHandler({ e, value }) {
         return (video.currentTime = (video.duration / 100) * 90);
     }
   } else {
-    const position = (e.offsetX / progress.offsetWidth) * video.duration;
+    const position = (e.offsetX / panelProgressBar.offsetWidth) * video.duration;
     video.currentTime = position;
   }
 }
 
-function handleRangeUpdate() {
-  video[this.name] = this.value;
+function soundClickHandler() {
+  video.volume = this.value / 100;
 }
 
 function headwayHandler() {
   const headway = (video.currentTime / video.duration) * 100;
-  panelProgressBar.setAttribute('value', `${headway}`);
+  panelProgressBar.value = headway;
   panelProgressBar.style.background = `linear-gradient(to right, #710707 0%, #710707 ${headway}%, #c4c4c4 ${headway}%, #c4c4c4 100%)`;
 }
 
+function skip({ value }) {
+  if (value) {
+    if (video.currentTime + value > 0 && video.currentTime + value < video.duration) video.currentTime += value;
+    else if (video.currentTime + value < 0) video.currentTime = 0;
+    else video.currentTime;
+  } else video.currentTime += parseFloat(this.dataset.skip);
+}
+
 function keydownHandler(e) {
-  if (e.key === 'f' || e.key === 'а') toggleFullscreen();
+  if (e.key === ' ') e.preventDefault();
+  if (e.key === 'f' || e.key === 'а') sizeHandler();
   else if (e.key === ' ') toggleButtonPlay();
   else if (e.key === 'm' || e.key === 'ь') muteHandler();
-  else if (e.key === ',' || e.key === 'б') speedRateHandler({ value: -0.1 });
-  else if (e.key === '.' || e.key === 'ю') speedRateHandler({ value: 0.1 });
+  else if (e.key === '<' || e.key === 'Б') speedRateHandler({ value: -0.1 });
+  else if (e.key === '>' || e.key === 'Ю') speedRateHandler({ value: 0.1 });
   else if (e.key === 'j' || e.key === 'о') skip({ value: -5 });
   else if (e.key === 'k' || e.key === 'л') toggleButtonPlay();
   else if (e.key === 'l' || e.key === 'д') skip({ value: 5 });
-  else if (e.key === 't' || e.key === 'е') wideScreenHandler();
   else if (e.key === '1') shiftPositionHandler({ value: 1 });
   else if (e.key === '2') shiftPositionHandler({ value: 2 });
   else if (e.key === '3') shiftPositionHandler({ value: 3 });
@@ -216,6 +224,8 @@ function keydownHandler(e) {
   else if (e.key === '9') shiftPositionHandler({ value: 9 });
 }
 
+video.volume = panelVolumeBar.value / 100;
+
 videoProgressBar.forEach(el => {
   el.addEventListener('input', progressBarHandler);
 });
@@ -224,11 +234,24 @@ videoIframes.forEach(el => {
   el.addEventListener('mouseover', renderVideoHandler);
 });
 
+let progressMousedown = false;
+let volumeMousedown = false;
+panelProgressBar.addEventListener('mousedown', () => (volumeMousedown = true));
+panelProgressBar.addEventListener('mouseup', () => (volumeMousedown = false));
+panelVolumeBar.addEventListener('mousedown', () => (progressMousedown = true));
+panelVolumeBar.addEventListener('mouseup', () => (progressMousedown = false));
+
 playBtn.addEventListener('click', toggleButtonPlay);
 panelPlay.addEventListener('click', toggleButtonPlay);
 panelSize.addEventListener('click', sizeHandler);
+panelProgressBar.addEventListener('click', e => shiftPositionHandler({ e }));
+panelProgressBar.addEventListener('mousemove', e => progressMousedown && shiftPositionHandler({ e }));
+panelVolumeBar.addEventListener('change', soundClickHandler);
+panelVolumeBar.addEventListener('mousemove', e => progressMousedown && soundClickHandler);
 panelSound.addEventListener('click', muteHandler);
 video.addEventListener('click', togglePlay);
 video.addEventListener('play', updateButtons);
 video.addEventListener('pause', updateButtons);
 video.addEventListener('timeupdate', headwayHandler);
+
+window.addEventListener('keydown', keydownHandler);

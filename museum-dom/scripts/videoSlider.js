@@ -25,10 +25,10 @@ const VIDEO_PATH = {
   5: './assets/video/video0.webm',
 };
 
-function changePicture(number) {
+function videoChangePicture(number) {
   VIDEO_PAIGE = number;
-  removeActiveState();
-  setActiveState(VIDEO_PAIGE);
+  videoRemoveActiveState();
+  videoSetActiveState(VIDEO_PAIGE);
   allVideos.forEach(el => {
     el.style.marginLeft = `-${110 * (VIDEO_PAIGE - 1)}%`;
   });
@@ -41,23 +41,23 @@ function changePicture(number) {
     panelProgressBar.value = 0;
   }, 100);
 }
-function removeActiveState() {
+function videoRemoveActiveState() {
   videoPages.forEach(el => {
     el.childNodes[0].classList.remove('active');
   });
 }
-function setActiveState(pageNumber) {
+function videoSetActiveState(pageNumber) {
   videoPages[pageNumber - 1].childNodes[0].classList.add('active');
 }
 
-function pageClickHandler() {
+function videoPageClickHandler() {
   const number = Number(this.getAttribute('data-num'));
   if (VIDEO_PAIGE < number) MOVE_LEFT = true;
   else MOVE_LEFT = false;
-  changePicture(number);
+  videoChangePicture(number);
 }
 
-function changePageNumber(next) {
+function videoChangePageNumber(next) {
   if (VIDEO_PAIGE === 1 && next === 'left') {
     MOVE_LEFT = false;
     VIDEO_PAIGE = 5;
@@ -75,13 +75,13 @@ function changePageNumber(next) {
   }
 }
 
-function arrowClickHandler() {
+function videoArrowClickHandler() {
   const arrow = this.getAttribute('data-side');
   videoPages.forEach((el, index) => {
     if (el.childNodes[0].classList.contains('active')) return (VIDEO_PAIGE = ++index);
   });
-  changePageNumber(arrow);
-  changePicture(VIDEO_PAIGE);
+  videoChangePageNumber(arrow);
+  videoChangePicture(VIDEO_PAIGE);
 }
 
 // function renderVideoHandler() {
@@ -180,10 +180,10 @@ function renderVideoHandler() {
 }
 
 videoPages.forEach(el => {
-  el.addEventListener('click', pageClickHandler);
+  el.addEventListener('click', videoPageClickHandler);
 });
 videoArrows.forEach(el => {
-  el.addEventListener('click', arrowClickHandler);
+  el.addEventListener('click', videoArrowClickHandler);
 });
 
 function iframeClickHandler() {

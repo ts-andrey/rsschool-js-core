@@ -979,6 +979,7 @@ section .wrapper {
     width: 452px;
     height: 254px; }
   .video .slider li {
+    transition: all 0.5s;
     width: 100%;
     height: auto; }
   .video .slider .iframe {
@@ -1037,7 +1038,7 @@ section .wrapper {
   .video .slider-position {
     width: 222px;
     height: 30px;
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -1045,23 +1046,34 @@ section .wrapper {
     .video .slider-position .page {
       width: 12px;
       height: 12px;
+      pointer-events: none;
       border-radius: 50%;
       align-self: center;
       background-color: #999999;
       transition: 0.3s; }
     .video .slider-position .active {
       background-color: #030303; }
-    .video .slider-position li svg path {
-      transition: 0.3s; }
-    .video .slider-position li:hover {
-      cursor: pointer; }
-      .video .slider-position li:hover .page {
-        cursor: inherit;
-        background-color: #030303;
-        transform: scale(0.9); }
-      .video .slider-position li:hover svg path {
-        fill: #9d8665;
-        transform: scale(0.9); }
+    .video .slider-position li {
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      align-self: center;
+      height: inherit; }
+      .video .slider-position li svg {
+        pointer-events: none; }
+        .video .slider-position li svg path {
+          pointer-events: none;
+          transition: 0.3s; }
+      .video .slider-position li:hover {
+        cursor: pointer; }
+        .video .slider-position li:hover .page {
+          cursor: inherit;
+          background-color: #030303;
+          transform: scale(0.9); }
+        .video .slider-position li:hover svg path {
+          fill: #030303;
+          transform: scale(0.9); }
 
 .gallery {
   height: 2200px;
@@ -1728,7 +1740,7 @@ section .wrapper {
   color: rgba(255, 255, 255, 0.171);
   border: 1px solid rgba(255, 255, 255, 0.062);
   opacity: 0.6;
-  transition: all .5s; }
+  transition: all 0.5s; }
   .go-to-top:hover {
     opacity: 0.9;
     transform: scale(1.2); }

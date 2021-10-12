@@ -72,6 +72,27 @@ section {
     }
   }
 
+  .slider-description-tooltip {
+    @include setPosition($top: 1%, $right: 1%);
+    @include setFont(Roboto, 16px, 300, 2px);
+    @include setSize($w: 30%, $h: auto);
+    counter-reset: #fff;
+    background-color: lighten($color-bg-dark, 15%);
+    border-radius: 10px;
+    padding: 5px 10px;
+    opacity: 0.85;
+    transform: translateY(200px);
+    transition: all 0.5s;
+    display: none;
+    pointer-events: none;
+  }
+
+  .arisen{
+    transition: all 0.5s;
+    display: block;
+    transform: translateY(0);
+  }
+
   .img {
     @include setSize($w: 1000px, $h: 750px);
     position: relative;

@@ -634,6 +634,31 @@ section .wrapper {
       background: #9d8665;
       transform: scale(1.05);
       box-shadow: 0px 0px 10px 5px #363636; }
+  .welcome .slider-description-tooltip {
+    position: absolute;
+    top: 1%;
+    bottom: auto;
+    left: auto;
+    right: 1%;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    width: 30%;
+    height: auto;
+    counter-reset: #fff;
+    background-color: #292929;
+    border-radius: 10px;
+    padding: 5px 10px;
+    opacity: 0.85;
+    transform: translateY(200px);
+    transition: all 0.5s;
+    display: none;
+    pointer-events: none; }
+  .welcome .arisen {
+    transition: all 0.5s;
+    display: block;
+    transform: translateY(0); }
   .welcome .img {
     width: 1000px;
     height: 750px;

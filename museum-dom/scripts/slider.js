@@ -6,9 +6,17 @@ const welcomeArrows = document.querySelectorAll('.arrows li');
 
 const welcomeImageContainer = document.querySelector('.welcome .img');
 const welcomeImage = document.querySelector('.welcome .img img');
+const imgDescription = document.querySelector('.slider-description-tooltip');
 
 const welcomePictures = ['./assets/img/welcome-slider/1.webp'];
 
+const sliderDescription = {
+  1: 'The Mona Lisa is a half-length portrait painting by Italian artist Leonardo da Vinci. Considered an archetypal masterpiece of the Italian Renaissance, it has been described as "the best known, the most visited, the most written about, the most sung about, the most parodied work of art in the world".',
+  2: 'Liberty Leading the People is a painting by Eugène Delacroix commemorating the July Revolution of 1830, which toppled King Charles X of France.',
+  3: 'La Belle Ferronnière is a portrait of a lady, usually attributed to Leonardo da Vinci, in the Louvre. It is also known as Portrait of an Unknown Woman.',
+  4: 'The Raft of the Medusa – originally titled Scène de Naufrage – is an oil painting of 1818–19 by the French Romantic painter and lithographer Théodore Géricault. Completed when the artist was 27, the work has become an icon of French Romanticism.',
+  5: 'The Astronomer is a painting finished in about 1668 by the Dutch Golden Age painter Johannes Vermeer. It is in oil on canvas, 51 cm × 45 cm, and is on display at the Louvre, in Paris, France. ',
+};
 
 let WELCOME_PAIGE = 1;
 let MOVE_RIGHT = true;
@@ -77,6 +85,14 @@ function swipeHandler(next) {
   WELCOME_IMAGE_DRAGGING = false;
 }
 
+function tooltipAddHandler() {
+  imgDescription.innerHTML = sliderDescription[WELCOME_PAIGE];
+  imgDescription.classList.add('arisen');
+}
+function tooltipRemoveHandler() {
+  imgDescription.classList.remove('arisen');
+}
+
 welcomeSliderPages.forEach(el => {
   el.addEventListener('click', pageClickHandler);
 });
@@ -97,3 +113,6 @@ welcomeImage.addEventListener('mousemove', ev => {
     }
   } else return;
 });
+
+welcomeImage.addEventListener('mouseover', tooltipAddHandler);
+welcomeImage.addEventListener('mouseout', tooltipRemoveHandler);

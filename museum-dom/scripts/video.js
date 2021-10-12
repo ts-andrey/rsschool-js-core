@@ -187,6 +187,8 @@ function shiftPositionHandler({ e, value }) {
 
 function soundClickHandler() {
   video.volume = this.value / 100;
+  if (video.volume === 0) panelSound.innerHTML = panelIconMute;
+  if (video.volume > 0) panelSound.innerHTML = panelIconSound;
 }
 
 function headwayHandler() {

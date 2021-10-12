@@ -156,8 +156,8 @@ function keydownHandler(e) {
   if (e.key === 'f' || e.key === 'а') sizeHandler();
   else if (e.key === ' ') toggleButtonPlay();
   else if (e.key === 'm' || e.key === 'ь') muteHandler();
-  else if (e.key === '<' || e.key === 'Б') speedRateHandler({ value: -0.1 });
-  else if (e.key === '>' || e.key === 'Ю') speedRateHandler({ value: 0.1 });
+  else if (e.key === '<' || e.key === 'Б') speedRateHandler({ value: +0.25 });
+  else if (e.key === '>' || e.key === 'Ю') speedRateHandler({ value: -0.25 });
   else if (e.key === 'j' || e.key === 'о') skip({ value: -5 });
   else if (e.key === 'k' || e.key === 'л') toggleButtonPlay();
   else if (e.key === 'l' || e.key === 'д') skip({ value: 5 });

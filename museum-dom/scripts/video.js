@@ -8,6 +8,7 @@ const panelSize = document.querySelector('.size-btn');
 const panelProgressBar = document.querySelector('.progress.bar');
 const panelVolumeBar = document.querySelector('.volume.bar');
 const videoPlayer = document.querySelector('.video-player');
+const playSpeedShow = document.querySelector('.playspeed-rate');
 
 const panelIconPlay = `
 <svg width="23" height="31" viewBox="0 0 23 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +50,7 @@ video.setAttribute('src', './assets/video/video3.webm');
 setTimeout(() => {
   video.currentTime = 0;
   panelProgressBar.value = 0;
-  panelProgressBar.style.background = `linear-gradient(to right, #710707 0%, #710707 ${0}%, #fff ${0}%, #fff 100%)`
+  panelProgressBar.style.background = `linear-gradient(to right, #710707 0%, #710707 ${0}%, #fff ${0}%, #fff 100%)`;
 }, 200);
 
 function sizeHandler() {
@@ -84,11 +85,16 @@ function updateButtons() {
 
 function speedRateHandler({ value }) {
   if (value) {
-    if (video.playbackRate + value >= 0.5 && video.playbackRate + value <= 2) video.playbackRate += value;
-    else if (video.playbackRate + value < 0.5) video.playbackRate = 0.5;
-    else if (video.playbackRate + value > 2) video.playbackRate = 2;
+    if (video.playbackRate + value >= 0.25 && video.playbackRate + value <= 2.5) video.playbackRate += value;
+    else if (video.playbackRate + value < 0.25) video.playbackRate = 0.25;
+    else if (video.playbackRate + value > 2.5) video.playbackRate = 2.5;
     else video.playbackRate;
   } else video.playbackRate = this.value;
+  playSpeedShow.innerHTML = `Speed rate: ${video.playbackRate}`;
+  setTimeout(() => {
+    playSpeedShow.style.display = 'none';
+  }, 2000);
+  playSpeedShow.style.display = 'inline';
 }
 
 function muteHandler() {

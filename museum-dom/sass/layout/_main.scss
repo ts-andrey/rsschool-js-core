@@ -395,6 +395,19 @@ section {
     }
   }
 
+  .playspeed-rate {
+    @include setPosition($top: 10%, $left: 46%);
+    @include setFont(Roboto, 18px, 400);
+    transform: translate(0, -50%);
+    position: absolute;
+    color: #fff;
+    background-color: lighten($color-bg-dark, 10%);
+    padding: 5px;
+    border-radius: 50px;
+    opacity: 0.85;
+    display: none;
+  }
+
   .slider {
     @include setFlex($display: flex, $justify: space-between, $align: center, $direction: column);
     margin-top: 40px;

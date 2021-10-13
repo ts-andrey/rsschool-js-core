@@ -1,10 +1,16 @@
 const buttonSubmit = document.querySelector('.submit');
+const scrollTop = document.querySelector('.go-to-top');
 
 function submitHandler(ev) {
   ev.preventDefault();
 }
 
+function scrollToTopHandler(){
+  window.scrollTo(top);
+}
+
 buttonSubmit.addEventListener('click', submitHandler);
+scrollTop.addEventListener('click', scrollToTopHandler);
 
 const selfEvaluation = [
   ['Слайдер в секции Welcome', '+24'],

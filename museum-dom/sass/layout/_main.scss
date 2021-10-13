@@ -80,17 +80,16 @@ section {
     background-color: lighten($color-bg-dark, 15%);
     border-radius: 10px;
     padding: 5px 10px;
-    opacity: 0.85;
-    transform: translateY(200px);
+    opacity: 0;
+    transform: translateX(400px);
     transition: all 0.5s;
-    display: none;
     pointer-events: none;
   }
 
   .arisen{
     transition: all 0.5s;
-    display: block;
-    transform: translateY(0);
+    opacity: 0.85;
+    transform: translate(0, 0);
   }
 
   .img {
@@ -1139,7 +1138,9 @@ section {
   transition: all 0.5s;
   &:hover {
     opacity: 0.9;
+    color: $color-hover;
     transform: scale(1.2);
+    border: 2px solid rgba(0, 0, 0, 1);
   }
 }
 

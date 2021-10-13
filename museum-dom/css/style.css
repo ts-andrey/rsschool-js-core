@@ -650,15 +650,14 @@ section .wrapper {
     background-color: #292929;
     border-radius: 10px;
     padding: 5px 10px;
-    opacity: 0.85;
-    transform: translateY(200px);
+    opacity: 0;
+    transform: translateX(400px);
     transition: all 0.5s;
-    display: none;
     pointer-events: none; }
   .welcome .arisen {
     transition: all 0.5s;
-    display: block;
-    transform: translateY(0); }
+    opacity: 0.85;
+    transform: translate(0, 0); }
   .welcome .img {
     width: 1000px;
     height: 750px;
@@ -1787,7 +1786,9 @@ section .wrapper {
   transition: all 0.5s; }
   .go-to-top:hover {
     opacity: 0.9;
-    transform: scale(1.2); }
+    color: #9d8665;
+    transform: scale(1.2);
+    border: 2px solid black; }
 
 @media screen and (max-width: 1045px) {
   main {

@@ -86,7 +86,7 @@ section {
     pointer-events: none;
   }
 
-  .arisen{
+  .arisen {
     transition: all 0.5s;
     opacity: 0.85;
     transform: translate(0, 0);
@@ -384,6 +384,7 @@ section {
       }
     }
     &:hover {
+      cursor: pointer;
       svg {
         path {
           fill: $color-hover;
@@ -412,6 +413,9 @@ section {
       -webkit-appearance: none;
       cursor: pointer;
       background: #fff;
+    }
+    &:hover{
+      cursor: pointer;
     }
   }
 

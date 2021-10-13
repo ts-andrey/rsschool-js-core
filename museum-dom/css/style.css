@@ -958,8 +958,10 @@ section .wrapper {
     transition: all 0.5s;
     pointer-events: none; }
 
-.video .panel-btn:hover svg path {
-  fill: #9d8665; }
+.video .panel-btn:hover {
+  cursor: pointer; }
+  .video .panel-btn:hover svg path {
+    fill: #9d8665; }
 
 .video .progress {
   width: 930px;
@@ -984,6 +986,8 @@ section .wrapper {
     -webkit-appearance: none;
     cursor: pointer;
     background: #fff; }
+  .video .bar:hover {
+    cursor: pointer; }
 
 .video .playspeed-rate {
   position: absolute;

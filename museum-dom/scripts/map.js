@@ -1,7 +1,7 @@
 L.mapbox.accessToken = 'pk.eyJ1IjoiemFsZ29hIiwiYSI6ImNra3Nicmh0dzBicmcyd3BsaHJ4anhsZjYifQ.eIvW8DdJBsYAiDiltLuulg';
 const map = L.mapbox
   .map('map')
-  .setView([48.86112605179928, 2.337762418762188], 16.5)
+  .setView([48.86091, 2.3364], 16.5)
   .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/light-v10'));
 
 

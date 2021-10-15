@@ -97,6 +97,7 @@ section {
     position: relative;
     overflow: hidden;
     img {
+      user-select: none;
       transition: all 0.4s;
     }
   }
@@ -414,7 +415,7 @@ section {
       cursor: pointer;
       background: #fff;
     }
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
@@ -1140,11 +1141,16 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.062);
   opacity: 0.6;
   transition: all 0.5s;
+  cursor: pointer;
   &:hover {
     opacity: 0.9;
     color: $color-hover;
     transform: scale(1.2);
     border: 2px solid rgba(0, 0, 0, 1);
+  }
+  span {
+    pointer-events: none;
+    user-select: none;
   }
 }
 

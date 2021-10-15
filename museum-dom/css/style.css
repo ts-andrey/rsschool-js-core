@@ -664,6 +664,7 @@ section .wrapper {
     position: relative;
     overflow: hidden; }
     .welcome .img img {
+      user-select: none;
       transition: all 0.4s; }
   .welcome .shadow {
     position: absolute;
@@ -1787,12 +1788,16 @@ section .wrapper {
   color: rgba(255, 255, 255, 0.171);
   border: 1px solid rgba(255, 255, 255, 0.062);
   opacity: 0.6;
-  transition: all 0.5s; }
+  transition: all 0.5s;
+  cursor: pointer; }
   .go-to-top:hover {
     opacity: 0.9;
     color: #9d8665;
     transform: scale(1.2);
     border: 2px solid black; }
+  .go-to-top span {
+    pointer-events: none;
+    user-select: none; }
 
 @media screen and (max-width: 1045px) {
   main {

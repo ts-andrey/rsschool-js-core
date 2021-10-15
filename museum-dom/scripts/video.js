@@ -46,6 +46,8 @@ const panelIconMute = `
 </svg>
 `;
 
+let videoActive = false;
+
 video.setAttribute('src', './assets/video/video3.webm');
 setTimeout(() => {
   video.currentTime = 0;
@@ -204,4 +206,10 @@ video.addEventListener('play', updateButtons);
 video.addEventListener('pause', updateButtons);
 video.addEventListener('timeupdate', headwayHandler);
 
-window.addEventListener('keydown', keydownHandler);
+function setPlayerKeys(e) {
+  if (e.target.parentNode === videoPlayer || e.target.parentNode.parentNode === videoPlayer) videoActive = true;
+  else videoActive = false;
+}
+
+window.addEventListener('click', setPlayerKeys, true);
+window.addEventListener('keydown', e => videoActive && keydownHandler(e));

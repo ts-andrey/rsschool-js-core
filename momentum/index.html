@@ -1,12 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Momentum</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Momentum</title>
+  </head>
+  <body>
+    <div class="momentum">
+      <div class="images">
+        <div class="img-container"></div>
+        <div class="img-container"></div>
+        <div class="img-container"></div>
+        <div class="img-container"></div>
+        <div class="img-container"></div>
+      </div>
+      <div class="slider-skip prev">
+        <svg
+          enable-background="new 0 0 15 26"
+          version="1.1"
+          viewBox="0 0 15 26"
+          xml:space="preserve"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <polygon
+            fill="#231F20"
+            points="12.885,0.58 14.969,2.664 4.133,13.5 14.969,24.336 12.885,26.42 2.049,15.584 -0.035,13.5 "
+          />
+        </svg>
+      </div>
+      <div class="slider-skip next">
+        <svg
+          enable-background="new 0 0 15 26"
+          version="1.1"
+          viewBox="0 0 15 26"
+          xml:space="preserve"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <polygon
+            fill="#231F20"
+            points="2.019,0.58 -0.035,2.634 10.646,13.316 -0.035,23.997 2.019,26.052 14.755,13.316 "
+          />
+        </svg>
+      </div>
+      <header>
+        <div class="player top">
+          <ul class="control">
+            <li class="control-buttons">
+              <div class="button prev">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+                  <title>backward</title>
+                  <path
+                    fill="#fff"
+                    d="M32 64c17.673 0 32-14.327 32-32s-14.327-32-32-32-32 14.327-32 32 14.327 32 32 32zM32 6c14.359 0 26 11.641 26 26s-11.641 26-26 26-26-11.641-26-26 11.641-26 26-26zM44 42l-14-10 14-10zM28 42l-14-10 14-10z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="button play">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+                  <title>play2</title>
+                  <path
+                    fill="#fff"
+                    d="M32 0c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zM32 58c-14.359 0-26-11.641-26-26s11.641-26 26-26 26 11.641 26 26-11.641 26-26 26zM24 18l24 14-24 14z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="button next">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+                  <title>forward2</title>
+                  <path
+                    fill="#fff"
+                    d="M32 0c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zM32 58c-14.359 0-26-11.641-26-26s11.641-26 26-26 26 11.641 26 26-11.641 26-26 26zM20 22l14 10-14 10zM36 22l14 10-14 10z"
+                  ></path>
+                </svg>
+              </div>
+            </li>
+            <li class="control-bar">
+              <input type="range" name="duration" class="duration" />
+            </li>
+          </ul>
+          <ul class="songs">
+            <li class="song">
+              <figure>
+                <audio src="./assets/music/bon_jovi_it's_my_life.mp3"></audio>
+                <figcaption>It's my life (Bon Jovi)</figcaption>
+              </figure>
+            </li>
+            <li class="song">
+              <figure>
+                <audio src="./assets/music/ed_sheeran_bad_habits.mp3"></audio>
+                <figcaption>Bad habits (Ed Sheeran)</figcaption>
+              </figure>
+            </li>
+            <li class="song">
+              <figure>
+                <audio src="./assets/music/feel_good_metal_cover.mp3"></audio>
+                <figcaption>Feel good (metal cover by Leo Moracchioli)</figcaption>
+              </figure>
+            </li>
+            <li class="song">
+              <figure>
+                <audio src="./assets/music/gorillaz_clint_eastwood.mp3"></audio>
+                <figcaption>Clint Eastwood (Gorillaz)</figcaption>
+              </figure>
+            </li>
+            <li class="song"><audio src="./assets/music/onerepublic_counting_stars.mp3"></audio></li>
+            <li class="song">
+              <figure>
+                <audio src="./assets/music/thriller_metal_cover.mp3"></audio>
+                <figcaption>Thriller (metal cover by Leo Moracchioli)</figcaption>
+              </figure>
+            </li>
+          </ul>
+        </div>
+
+        <div class="weather top"></div>
+      </header>
+      <main>
+        <div class="time mid"></div>
+        <div class="date mid"></div>
+        <div class="greet mid"></div>
+      </main>
+      <footer>
+        <div class="quote">
+          <div class="new"></div>
+          <div class="text"></div>
+        </div>
+        <div class="git-logo">
+          <div class="git"></div>
+          <div class="logo"></div>
+        </div>
+      </footer>
+      <script src="./index.js" defer></script>
+      <script src="./scripts/quote.js" defer></script>
+      <script src="./scripts/slider.js" defer></script>
+      <script src="./scripts/soundPlayer.js" defer></script>
+      <script src="./scripts/time.js" defer></script>
+      <script src="./scripts/weather.js" defer></script>
+    </div>
+  </body>
 </html>

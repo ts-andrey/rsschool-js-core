@@ -1,1 +1,27 @@
 @import '../util/variables';
+
+header {
+  background-color: rgb(0, 156, 122);
+  display: inline-flex;
+  justify-content: space-between;
+}
+.player {
+  background-color: #aaa;
+}
+.weather {
+  background-color: #aaa;
+  width: 10%;
+  height: 100%;
+}
+.control-buttons {
+  display: flex;
+  justify-content: center;
+  svg {
+    width: 3.5rem;
+  }
+}
+.button {
+  &:nth-of-type(2) {
+    margin: 0 1rem;
+  }
+}

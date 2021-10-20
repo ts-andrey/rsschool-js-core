@@ -22,6 +22,10 @@ a {
   text-decoration: none;
   color: inherit; }
 
+body {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.6rem; }
+
 .momentum {
   width: inherit;
   height: inherit;
@@ -37,7 +41,13 @@ main {
 .slider-skip {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%); }
+  transform: translateY(-50%);
+  background-color: #1a1a1a;
+  opacity: 0.3;
+  padding: 0.5rem 1.855rem;
+  border-radius: 50%;
+  transition: all 0.3s;
+  outline: 2px solid #e6e6e6; }
   .slider-skip.prev {
     left: 1%; }
   .slider-skip.next {
@@ -48,7 +58,8 @@ main {
     .slider-skip svg polygon {
       fill: #fff; }
   .slider-skip:hover {
-    cursor: pointer; }
+    cursor: pointer;
+    opacity: 0.7; }
 
 .images {
   position: absolute;
@@ -100,16 +111,28 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  width: min-content; }
 
 .mid {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
-  width: 10vw;
-  height: 15vh; }
+  background-color: #fff; }
+
+.greet {
+  font-size: 2.5rem; }
+
+.user-name {
+  font-size: inherit;
+  font-family: inherit;
+  height: fit-content;
+  width: 15rem;
+  border: none;
+  outline: none;
+  padding: .3rem .9rem .3rem 0;
+  border-radius: .3rem; }
 
 footer {
   width: 100%;

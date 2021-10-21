@@ -1,23 +1,40 @@
 @import '../util/variables';
 
 main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: min-content;
+  color: #fafafa;
 }
 
-.mid {
+.info {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3rem;
+  background-color: rgba(0, 0, 0, 0.1);
+
+  padding: 1rem;
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 }
 
-.greet{
+.time {
+  font-size: 12rem;
+}
+
+.date {
+  margin-top: -1rem;
   font-size: 2.5rem;
+}
+
+.greet {
+  font-size: 4rem;
 }
 
 .user-name {
@@ -27,6 +44,7 @@ main {
   width: 15rem;
   border: none;
   outline: none;
-  padding: .3rem .9rem .3rem 0;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
+  background-color: transparent;
+  color: inherit;
 }

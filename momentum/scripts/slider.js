@@ -3,22 +3,17 @@ const imgContainer = document.querySelector('.images');
 let allImgContainers = document.querySelectorAll('.img-container');
 
 const resolutions = ['low', 'medium', 'high'];
-const dayParts = ['morning', 'afternoon', 'evening', 'night'];
 
 window.localStorage.setItem('resolution', resolutions[2]);
-window.localStorage.setItem('dayPart', dayParts[2]);
 
 let currResolution = window.localStorage.getItem('resolution');
 let currDayPart = window.localStorage.getItem('dayPart');
 
-let imgNumFirst;
-let imgNumSecond;
+let imgNumFirst, imgNumSecond, imgNumFourth, imgNumFifth;
 let imgNumThird = Math.floor(Math.random() * 20 + 1);
-let imgNumFourth;
-let imgNumFifth;
 
-const imagePath = (partOfDay, resolution, imgNumber) =>
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${partOfDay}/${resolution}/${imgNumber}.webp`;
+const imagePath = imgNumber =>
+  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${imgNumber}.webp`;
 
 function shiftImgNum(num) {
   imgNumFirst = num - 2 < 1 ? 20 + num - 2 : num - 2;
@@ -28,48 +23,41 @@ function shiftImgNum(num) {
   imgNumFifth = num + 2 > 20 ? num + 2 - 20 : num + 2;
 }
 
-const getElement = num => {
+const createElement = num => {
   const element = document.createElement('div');
   element.classList.add('img-container');
-  element.style.background = `center / cover url(${imagePath(currDayPart, currResolution, num)})`;
+  element.style.background = `center / cover url(${imagePath(num)})`;
   return element;
 };
 
-function setImages(side) {
-  if (side === 'left') {
-    shiftImgNum(--imgNumThird);
-    imgContainer.insertAdjacentElement('afterbegin', getElement(imgNumFirst));
-    allImgContainers = document.querySelectorAll('.img-container');
-    imgContainer.removeChild(allImgContainers[5]);
-    console.log(allImgContainers);
-  } else if (side === 'right') {
-    shiftImgNum(++imgNumThird);
-    imgContainer.removeChild(allImgContainers[0]);
-    imgContainer.insertAdjacentElement('beforeend', getElement(imgNumFifth));
-    allImgContainers = document.querySelectorAll('.img-container');
-  } else {
-    allImgContainers[0].style.background = `center / cover url(${imagePath(currDayPart, currResolution, imgNumFirst)})`;
-    allImgContainers[1].style.background = `center / cover url(${imagePath(
-      currDayPart,
-      currResolution,
-      imgNumSecond
-    )})`;
-    allImgContainers[2].style.background = `center / cover url(${imagePath(currDayPart, currResolution, imgNumThird)})`;
-    allImgContainers[3].style.background = `center / cover url(${imagePath(
-      currDayPart,
-      currResolution,
-      imgNumFourth
-    )})`;
-    allImgContainers[4].style.background = `center / cover url(${imagePath(currDayPart, currResolution, imgNumFifth)})`;
-  }
-}
+const getSliderPrev = () => {
+  shiftImgNum(--imgNumThird);
+  imgContainer.insertAdjacentElement('afterbegin', createElement(imgNumFirst));
+  allImgContainers = document.querySelectorAll('.img-container');
+  imgContainer.removeChild(allImgContainers[5]);
+};
+
+const getSliderNext = () => {
+  shiftImgNum(++imgNumThird);
+  imgContainer.removeChild(allImgContainers[0]);
+  imgContainer.insertAdjacentElement('beforeend', createElement(imgNumFifth));
+  allImgContainers = document.querySelectorAll('.img-container');
+};
+
+const setImages = () => {
+  allImgContainers[0].style.background = `center / cover url(${imagePath(imgNumFirst)})`;
+  allImgContainers[1].style.background = `center / cover url(${imagePath(imgNumSecond)})`;
+  allImgContainers[2].style.background = `center / cover url(${imagePath(imgNumThird)})`;
+  allImgContainers[3].style.background = `center / cover url(${imagePath(imgNumFourth)})`;
+  allImgContainers[4].style.background = `center / cover url(${imagePath(imgNumFifth)})`;
+};
 
 function sliderHandler() {
-  if (this.classList.contains('prev')) setImages('left');
-  if (this.classList.contains('next')) setImages('right');
+  if (this.classList.contains('prev')) getSliderPrev();
+  if (this.classList.contains('next')) getSliderNext();
 }
 
 shiftImgNum(imgNumThird);
-setImages('');
+setImages();
 
 sliderButtons.forEach(el => el.addEventListener('click', sliderHandler));

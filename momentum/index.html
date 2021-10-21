@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/owfont-regular.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Momentum</title>
   </head>
   <body>
@@ -80,47 +81,46 @@
                   ></path>
                 </svg>
               </div>
+              <div class="button sound">
+                <svg
+                  id="Layer_1_1_"
+                  style="enable-background: new 0 0 16 16"
+                  version="1.1"
+                  viewBox="0 0 16 16"
+                  xml:space="preserve"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <polygon points="10,16 10,0 3,5 0,5 0,11 3,11 " />
+                  <path
+                    d="M11,13.91c2.837-0.477,5-2.938,5-5.91s-2.163-5.433-5-5.91v1.011C13.279,3.566,15,5.585,15,8s-1.721,4.434-4,4.899V13.91z"
+                  />
+                  <path
+                    d="M11,9.722v1.094c1.163-0.413,2-1.512,2-2.816s-0.837-2.403-2-2.816v1.094C11.595,6.625,12,7.263,12,8  C12,8.737,11.595,9.375,11,9.722z"
+                  />
+                </svg>
+              </div>
+              <input type="range" name="volume" class="bar volume" min="0" max="100" step="1" value="50"/>
             </li>
             <li class="control-bar">
-              <input type="range" name="duration" class="duration" />
+              <span class="track-name"></span>
+              <input type="range" name="duration" class="bar duration" min="0" max="100" step="0.1" value="0" />
             </li>
           </ul>
-          <ul class="songs">
-            <li class="song">
-              <figure>
-                <audio src="./assets/music/bon_jovi_it's_my_life.mp3"></audio>
-                <figcaption>It's my life (Bon Jovi)</figcaption>
-              </figure>
-            </li>
-            <li class="song">
-              <figure>
-                <audio src="./assets/music/ed_sheeran_bad_habits.mp3"></audio>
-                <figcaption>Bad habits (Ed Sheeran)</figcaption>
-              </figure>
-            </li>
-            <li class="song">
-              <figure>
-                <audio src="./assets/music/feel_good_metal_cover.mp3"></audio>
-                <figcaption>Feel good (metal cover by Leo Moracchioli)</figcaption>
-              </figure>
-            </li>
-            <li class="song">
-              <figure>
-                <audio src="./assets/music/gorillaz_clint_eastwood.mp3"></audio>
-                <figcaption>Clint Eastwood (Gorillaz)</figcaption>
-              </figure>
-            </li>
-            <li class="song"><audio src="./assets/music/onerepublic_counting_stars.mp3"></audio></li>
-            <li class="song">
-              <figure>
-                <audio src="./assets/music/thriller_metal_cover.mp3"></audio>
-                <figcaption>Thriller (metal cover by Leo Moracchioli)</figcaption>
-              </figure>
-            </li>
-          </ul>
+          <ul class="play-list"></ul>
         </div>
 
-        <div class="weather top"></div>
+        <div class="weather top">
+          <input type="text" name="city" class="weather-city" />
+          <div class="weather-icon"></div>
+          <div class="weather-temp">
+            <div class="current"></div>
+            <div class="feels-like"></div>
+          </div>
+          <div class="weather-cloud"></div>
+          <div class="weather-wind"></div>
+          <div class="weather-humidity"></div>
+        </div>
       </header>
       <main>
         <div class="info">
@@ -128,7 +128,7 @@
           <div class="date mid"></div>
           <div class="greet mid">
             <span>Good</span> <span class="day-time"></span>
-            <input type="text" name="name" class="user-name" placeholder="[Enter name]"/>
+            <input type="text" name="name" class="user-name" placeholder="[Enter name]" />
           </div>
         </div>
       </main>
@@ -145,7 +145,7 @@
       <script src="./index.js" defer></script>
       <script src="./scripts/quote.js" defer></script>
       <script src="./scripts/slider.js" defer></script>
-      <script src="./scripts/soundPlayer.js" defer></script>
+      <script type="module" src="./scripts/soundPlayer.js" defer></script>
       <script src="./scripts/time.js" defer></script>
       <script src="./scripts/weather.js" defer></script>
     </div>

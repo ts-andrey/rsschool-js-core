@@ -1,3 +1,4 @@
+@import '../util/mixins';
 @import '../util/variables';
 
 main {
@@ -6,6 +7,7 @@ main {
 }
 
 .info {
+  @include background;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -14,14 +16,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 3rem;
-  background-color: rgba(0, 0, 0, 0.1);
-
-  padding: 1rem;
-  transition: all 0.3s;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
 }
 
 .time {
@@ -30,21 +24,16 @@ main {
 
 .date {
   margin-top: -1rem;
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
 
 .greet {
-  font-size: 4rem;
+  font-size: 5.5rem;
 }
 
 .user-name {
-  font-size: inherit;
-  font-family: inherit;
   height: fit-content;
   width: 15rem;
-  border: none;
-  outline: none;
   border-radius: 0.3rem;
   background-color: transparent;
-  color: inherit;
 }

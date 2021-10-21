@@ -8,8 +8,8 @@ const dayParts = ['morning', 'afternoon', 'evening', 'night'];
 
 function showTime() {
   const newDate = new Date();
-  const curTime = newDate.toLocaleTimeString('ru-RU', { hour12: false });
-  const curDate = newDate.toLocaleDateString('ru-RU', {
+  const curTime = newDate.toLocaleTimeString('en-EN', { hour12: false });
+  const curDate = newDate.toLocaleDateString('en-EN', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -17,6 +17,7 @@ function showTime() {
   });
   date.textContent = curDate;
   time.textContent = curTime;
+  greetingTime.textContent = `${dayTime}, `;
   const curHour = newDate.getHours();
   if (curHour >= 1 && curHour <= 6) window.localStorage.setItem('dayPart', dayParts[3]);
   else if (curHour >= 7 && curHour <= 12) window.localStorage.setItem('dayPart', dayParts[0]);
@@ -42,8 +43,6 @@ function nameHandler(ev) {
     userName.style.fontSize = '70%';
   }
 }
-
-greetingTime.textContent = `${dayTime}, `;
 
 userName.addEventListener('input', nameHandler);
 

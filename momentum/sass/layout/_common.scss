@@ -2,7 +2,7 @@
 .momentum {
   width: inherit;
   height: inherit;
-  background-color: rgb(61, 0, 0);
+  background-color: rgb(0, 0, 0);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -23,6 +23,7 @@ main {
   border-radius: 50%;
   transition: all 0.3s;
   outline: 2px solid darken($slider-skip-color, 10%);
+  z-index: 10;
   &.prev {
     left: 1%;
   }

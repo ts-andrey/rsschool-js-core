@@ -4,7 +4,7 @@
 header {
   display: inline-flex;
   justify-content: space-between;
-  color: #fff;
+  color: $color-main-text;
 }
 svg {
   pointer-events: none;
@@ -35,7 +35,11 @@ svg {
 .weather-city {
   background-color: transparent;
   padding-bottom: 0.5rem;
-  border-bottom: solid 0.1rem #fff;
+  border-bottom: solid 0.1rem $color-main-text;
+}
+
+.control {
+  margin-bottom: 1.5rem;
 }
 
 .control-buttons {
@@ -45,14 +49,25 @@ svg {
   svg {
     height: 3rem;
     width: 3rem;
-    fill: #fff;
+    fill: $color-main-text;
   }
 }
+svg,
+path,
+polygon {
+  transition: all 0.4s;
+}
 .button {
-  margin: 0 1rem 0 0;
+  margin: 0 1.5rem 0 0;
   display: flex;
   &:hover {
     cursor: pointer;
+    polygon {
+      fill: $color-main-attract;
+    }
+    path {
+      fill: $color-main-attract;
+    }
   }
 }
 
@@ -60,19 +75,32 @@ svg {
   @include input-style;
   height: 0.7rem;
   width: 10rem;
-  
 }
+
+.track-name {
+  display: block;
+  height: 2.3rem;
+}
+
 .duration {
   @include input-style;
   height: 0.7rem;
-  width: 25rem;
-  margin: 2rem 0;
+  width: 100%;
+  margin: 1rem 0;
 }
 
 .track {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+}
+.active {
+  color: $color-main-attract;
+  border-radius: 2rem;
+  background: rgba(0, 0, 0, 0.85);
+  path {
+    fill: $color-main-attract;
+  }
 }
 .icon-play {
   margin-right: 1rem;
@@ -81,6 +109,12 @@ svg {
   svg {
     height: 3rem;
     width: 3rem;
-    fill: #fff;
+    fill: $color-main-text;
+  }
+  &:hover {
+    cursor: pointer;
+    path {
+      fill: $color-main-attract;
+    }
   }
 }

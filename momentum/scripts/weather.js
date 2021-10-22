@@ -18,13 +18,16 @@ async function getWeather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=${lang}&appid=${apiKey}&units=metric`;
   const response = await fetch(url);
   const data = await response.json();
+  console.log(data);
 
   weatherIcon.className = `weather-icon owf`;
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   weatherCurrent.textContent = `temperature: ${Math.floor(data.main.temp)}°C`;
   weatherFeelsLike.textContent = `feels like: ${Math.floor(data.main.feels_like)}°C`;
   weatherClouds.textContent = `cloudiness: ${data.weather[0].description}`;
-  weatherWind.textContent = `wind speed ${Math.floor(data.wind.speed)} - ${Math.floor(data.wind.gust)} (m/s)`;
+  if (data.wind.gust)
+    weatherWind.textContent = `wind speed ${Math.floor(data.wind.speed)} - ${Math.floor(data.wind.gust)} (m/s)`;
+  else weatherWind.textContent = `wind speed ${Math.floor(data.wind.speed)} (m/s)`;
   weatherHumidity.textContent = `humidity: ${data.main.humidity}%`;
 }
 getWeather();

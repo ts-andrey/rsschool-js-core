@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" defer />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin defer />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet" defer />
+    <link rel="stylesheet" href="./css/owfont-regular.css" defer />
+    <link rel="stylesheet" href="./css/style.css" defer />
+    <title>Momentum</title>
+  </head>
+  <body>
+    <div class="momentum">
+      <div class="images">
+        <div class="img-container"></div>
+        <div class="img-container"></div>
+        <div class="img-container"></div>
+        <div class="img-container"></div>
+        <div class="img-container"></div>
+      </div>
+      <div class="slider-skip prev">
+        <svg
+          enable-background="new 0 0 15 26"
+          version="1.1"
+          viewBox="0 0 15 26"
+          xml:space="preserve"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <polygon
+            fill="#231F20"
+            points="12.885,0.58 14.969,2.664 4.133,13.5 14.969,24.336 12.885,26.42 2.049,15.584 -0.035,13.5 "
+          />
+        </svg>
+      </div>
+      <div class="slider-skip next">
+        <svg
+          enable-background="new 0 0 15 26"
+          version="1.1"
+          viewBox="0 0 15 26"
+          xml:space="preserve"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <polygon
+            fill="#231F20"
+            points="2.019,0.58 -0.035,2.634 10.646,13.316 -0.035,23.997 2.019,26.052 14.755,13.316 "
+          />
+        </svg>
+      </div>
+      <header>
+        <div class="player top">
+          <ul class="control">
+            <li class="control-buttons">
+              <div class="button prev">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+                  <title>backward</title>
+                  <path
+                    fill="#fff"
+                    d="M32 64c17.673 0 32-14.327 32-32s-14.327-32-32-32-32 14.327-32 32 14.327 32 32 32zM32 6c14.359 0 26 11.641 26 26s-11.641 26-26 26-26-11.641-26-26 11.641-26 26-26zM44 42l-14-10 14-10zM28 42l-14-10 14-10z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="button play">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+                  <title>play2</title>
+                  <path
+                    fill="#fff"
+                    d="M32 0c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zM32 58c-14.359 0-26-11.641-26-26s11.641-26 26-26 26 11.641 26 26-11.641 26-26 26zM24 18l24 14-24 14z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="button next">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+                  <title>forward2</title>
+                  <path
+                    fill="#fff"
+                    d="M32 0c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zM32 58c-14.359 0-26-11.641-26-26s11.641-26 26-26 26 11.641 26 26-11.641 26-26 26zM20 22l14 10-14 10zM36 22l14 10-14 10z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="button sound">
+                <svg
+                  id="Layer_1_1_"
+                  style="enable-background: new 0 0 16 16"
+                  version="1.1"
+                  viewBox="0 0 16 16"
+                  xml:space="preserve"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <polygon points="10,16 10,0 3,5 0,5 0,11 3,11 " />
+                  <path
+                    d="M11,13.91c2.837-0.477,5-2.938,5-5.91s-2.163-5.433-5-5.91v1.011C13.279,3.566,15,5.585,15,8s-1.721,4.434-4,4.899V13.91z"
+                  />
+                  <path
+                    d="M11,9.722v1.094c1.163-0.413,2-1.512,2-2.816s-0.837-2.403-2-2.816v1.094C11.595,6.625,12,7.263,12,8  C12,8.737,11.595,9.375,11,9.722z"
+                  />
+                </svg>
+              </div>
+              <input type="range" name="volume" class="bar volume" min="0" max="100" step="1" value="50" />
+            </li>
+            <li class="control-bar">
+              <span class="track-name"></span>
+              <input type="range" name="duration" class="bar duration" min="0" max="100" step="0.1" value="0" />
+            </li>
+          </ul>
+          <ul class="play-list"></ul>
+        </div>
+
+        <div class="weather top">
+          <input type="text" name="city" class="weather-city" />
+          <div class="weather-icon"></div>
+          <div class="weather-temp">
+            <div class="current"></div>
+            <div class="feels-like"></div>
+          </div>
+          <div class="weather-cloud"></div>
+          <div class="weather-wind"></div>
+          <div class="weather-humidity"></div>
+        </div>
+      </header>
+      <main>
+        <div class="info">
+          <div class="time mid"></div>
+          <div class="date mid"></div>
+          <div class="greet mid">
+            <span>Good</span> <span class="day-time"></span>
+            <input type="text" name="name" class="user-name" placeholder="[Enter name]" />
+          </div>
+        </div>
+      </main>
+      <footer>
+        <div class="quote">
+          <div class="quote-new">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+              <title>loop2</title>
+              <path
+                fill="#fff"
+                d="M55.605 10.395c-5.851-6.388-14.26-10.395-23.605-10.395-17.673 0-32 14.327-32 32h6c0-14.359 11.641-26 26-26 7.689 0 14.596 3.339 19.356 8.644l-9.356 9.356h22v-22l-8.395 8.395z"
+              ></path>
+              <path
+                fill="#fff"
+                d="M58 32c0 14.359-11.641 26-26 26-7.689 0-14.596-3.339-19.356-8.644l9.356-9.356h-22v22l8.395-8.395c5.851 6.389 14.26 10.395 23.605 10.395 17.673 0 32-14.327 32-32h-6z"
+              ></path>
+            </svg>
+          </div>
+          <div class="quote-text"></div>
+          <div class="quote-author"></div>
+        </div>
+        <div class="git-logo">
+          <div class="git"></div>
+          <div class="logo"></div>
+        </div>
+      </footer>
+      <script src="./index.js" defer></script>
+      <script src="./scripts/quote.js" defer></script>
+      <script src="./scripts/slider.js" defer></script>
+      <script type="module" src="./scripts/soundPlayer.js" defer></script>
+      <script src="./scripts/time.js" defer></script>
+      <script src="./scripts/weather.js" defer></script>
+    </div>
+  </body>
+</html>

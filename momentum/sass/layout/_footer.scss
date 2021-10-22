@@ -1,0 +1,45 @@
+@import '../util/variables';
+
+footer {
+  width: 100%;
+  background-color: $color-area-background;
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 100%;
+  color: $color-main-text;
+}
+.quote {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  margin-bottom: 2%;
+  z-index: 1;
+  @include background;
+}
+.quote-new {
+  align-self: center;
+  svg {
+    height: 3rem;
+    width: 3rem;
+    pointer-events: none;
+  }
+  &:hover {
+    cursor: pointer;
+    path {
+      fill: $color-main-attract;
+    }
+  }
+}
+.git-logo {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: center;
+  justify-self: end;
+  height: 40%;
+  width: 20%;
+}

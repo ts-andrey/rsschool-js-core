@@ -11,6 +11,9 @@ const soundButton = document.querySelector('.button.sound');
 const trackName = document.querySelector('.track-name');
 const buttons = document.querySelectorAll('.button');
 
+const curTime = document.querySelector('.current-time');
+const wholeTime = document.querySelector('.whole-time');
+
 let playSpecific;
 
 const iconMute = `
@@ -103,10 +106,29 @@ function trackTimeHandler(ev) {
   const position = (ev.offsetX / durBar.offsetWidth) * playingTrack.duration;
   playingTrack.currentTime = position;
 }
+
+function showTime() {
+  curTime.textContent = `${
+    playingTrack.currentTime / 60 < 10
+      ? '0' + Math.floor(playingTrack.currentTime / 60)
+      : Math.floor(playingTrack.currentTime % 60)
+  }:${
+    playingTrack.currentTime % 60 < 10
+      ? '0' + Math.floor(playingTrack.currentTime % 60)
+      : Math.floor(playingTrack.currentTime % 60)
+  }`;
+  wholeTime.textContent = `0${Math.floor(playingTrack.duration / 60)}: ${
+    playingTrack.duration % 60 < 10
+      ? '0' + Math.floor(playingTrack.duration % 60)
+      : Math.floor(playingTrack.duration % 60)
+  }`;
+}
+
 function playingStatusHandler(el) {
   changeBarStatus(el);
   soundChangeHandler();
   checkTreckEnd();
+  showTime();
 }
 
 function setTrack() {

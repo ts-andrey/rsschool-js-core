@@ -51,6 +51,85 @@
           />
         </svg>
       </div>
+      <div class="settings">
+        <div class="settings-icon">
+          <svg
+            version="1.1"
+            viewBox="0 0 8.4666665 8.4666669"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:cc="http://creativecommons.org/ns#"
+            xmlns:dc="http://purl.org/dc/elements/1.1/"
+            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+            xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+            xmlns:svg="http://www.w3.org/2000/svg"
+          >
+            <g transform="translate(0,-288.53332)">
+              <path
+                d="m 14,1 c -0.43057,-2.2524e-4 -0.812955,0.2751544 -0.949219,0.6835938 l -1.015625,3.046875 c -0.410051,0.1443778 -0.81115,0.3099019 -1.203125,0.4980468 L 7.9589844,3.7929688 c -0.385025,-0.192405 -0.8499682,-0.1168812 -1.1542969,0.1875 l -2.828125,2.828125 c -0.3043812,0.3043287 -0.379905,0.7692719 -0.1875,1.1542968 l 1.4335937,2.8671874 c -0.1885794,0.39394 -0.3554568,0.796828 -0.5,1.208984 l -3.0429687,1.015626 c -0.4084391,0.136264 -0.68381856,0.518648 -0.68359375,0.949218 v 4 c -2.2524e-4,0.43057 0.27515435,0.812955 0.68359375,0.949219 l 3.0527344,1.017578 c 0.1438828,0.407584 0.3090971,0.805606 0.4960937,1.195313 l -1.4394531,2.878906 c -0.1924051,0.385025 -0.1168813,0.849968 0.1875,1.154297 l 2.828125,2.830078 c 0.3043287,0.304381 0.7692719,0.379905 1.1542969,0.1875 l 2.8730466,-1.4375 c 0.391573,0.187086 0.791637,0.352283 1.201172,0.496094 l 1.017578,3.050781 C 13.187045,30.734612 13.56943,31.009991 14,31.009766 h 4 c 0.43057,2.25e-4 0.812955,-0.275154 0.949219,-0.683594 l 1.017578,-3.056641 c 0.406496,-0.143244 0.804637,-0.308036 1.193359,-0.49414 l 2.88086,1.441406 c 0.385025,0.192405 0.849967,0.116881 1.154296,-0.1875 l 2.828126,-2.830078 c 0.304381,-0.304329 0.379905,-0.769272 0.1875,-1.154297 l -1.435547,-2.871094 c 0.188179,-0.392579 0.353616,-0.794395 0.498047,-1.205078 l 3.046874,-1.015625 c 0.40844,-0.136264 0.683819,-0.518649 0.683594,-0.949219 v -4 c 2.25e-4,-0.43057 -0.275155,-0.812954 -0.683594,-0.949218 L 27.271484,12.039062 C 27.127133,11.629665 26.96127,11.229223 26.773438,10.837891 l 1.4375,-2.8750004 c 0.192405,-0.3850249 0.116881,-0.8499681 -0.1875,-1.1542968 L 25.195312,3.9804688 C 24.890983,3.676088 24.426041,3.6005642 24.041016,3.7929688 l -2.865235,1.4316406 c -0.395249,-0.1889764 -0.799375,-0.3552819 -1.21289,-0.5 L 18.949219,1.6835938 C 18.812955,1.2751544 18.43057,0.99977476 18,1 Z m 1.996094,7.9980469 c 3.854148,0 7.005859,3.1516861 7.005859,7.0058591 0,3.854136 -3.151711,6.998047 -7.005859,6.998047 -3.854149,0 -6.9980471,-3.143911 -6.9980471,-6.998047 0,-3.854173 3.1438981,-7.0058591 6.9980471,-7.0058591 z"
+                transform="matrix(0.26458333,0,0,0.26458333,0,288.53332)"
+              />
+            </g>
+          </svg>
+        </div>
+        <div class="settings-menu">
+          <div class="lang-option option">
+            <p>Choose language:</p>
+            <label for="language-eng">English</label>
+            <input type="radio" name="language" id="language-eng" class="language" value="eng" checked />
+            <label for="language-ru">Russian </label>
+            <input type="radio" name="language" id="language-ru" class="language" value="ru" />
+          </div>
+          <div class="img-storage-option option">
+            <p>Choose picture source:</p>
+            <label for="storage-git">Github</label>
+            <input type="radio" name="img-storage" id="storage-git" class="img-storage" value="github" checked />
+            <label for="storage-flicr">Flickr</label>
+            <input type="radio" name="img-storage" id="storage-flicr" class="img-storage" value="flickr" />
+            <label for="storage-unsplash">Unsplash</label>
+            <input type="radio" name="img-storage" id="storage-unsplash" class="img-storage" value="unsplash" />
+          </div>
+          <div class="img-theme-option option">
+            <p>Image themes for API source:</p>
+            <select name="img-themes" class="img-themes">
+              <option value="empty" disabled selected>Choose image theme</option>
+              <option value="nature">Nature</option>
+              <option value="animals">Animals</option>
+            </select>
+          </div>
+          <div class="show-option option">
+            <p>Choose what to show:</p>
+            <div class="show-option-wrap">
+              <label for="show-playlist">Playlist</label>
+              <input type="checkbox" name="show" id="show-playlist" class="show-playlist" checked />
+            </div>
+            <div class="show-option-wrap">
+              <label for="show-weather">Weather</label>
+              <input type="checkbox" name="show" id="show-weather" class="show-weather" checked />
+            </div>
+            <div class="show-option-wrap">
+              <label for="show-time">Time</label>
+              <input type="checkbox" name="show" id="show-time" class="show-time" checked />
+            </div>
+            <div class="show-option-wrap">
+              <label for="show-date">Date</label>
+              <input type="checkbox" name="show" id="show-date" class="show-date" checked />
+            </div>
+            <div class="show-option-wrap">
+              <label for="show-greet">Greeting</label>
+              <input type="checkbox" name="show" id="show-greet" class="show-greet" checked />
+            </div>
+            <div class="show-option-wrap">
+              <label for="show-quotes">Quotes</label>
+              <input type="checkbox" name="show" id="show-quotes" class="show-quotes" checked />
+            </div>
+            <div class="show-option-wrap">
+              <label for="show-personal">Personal data</label>
+              <input type="checkbox" name="show" id="show-personal" class="show-personal" checked />
+            </div>
+          </div>
+        </div>
+      </div>
       <header>
         <div class="player top">
           <ul class="control">
@@ -106,6 +185,7 @@
             <li class="control-bar">
               <span class="track-name"></span>
               <input type="range" name="duration" class="bar duration" min="0" max="100" step="0.1" value="0" />
+              <div class="time-info"><span class="current-time"></span><span class="whole-time"></span></div>
             </li>
           </ul>
           <ul class="play-list"></ul>
@@ -128,7 +208,7 @@
           <div class="time mid"></div>
           <div class="date mid"></div>
           <div class="greet mid">
-            <span>Good</span> <span class="day-time"></span>
+            <span class="day-time"></span>
             <input type="text" name="name" class="user-name" placeholder="[Enter name]" />
           </div>
         </div>
@@ -152,16 +232,49 @@
           <div class="quote-author"></div>
         </div>
         <div class="git-logo">
-          <div class="git"></div>
-          <div class="logo"></div>
+          <ul>
+            <li>
+              <a href="https://github.com/ts-andrey" target="_blank">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 512 512"
+                  enable-background="new 0 0 512 512"
+                  xml:space="preserve"
+                >
+                  <g>
+                    <g>
+                      <path
+                        d="M255.968,5.329C114.624,5.329,0,120.401,0,262.353c0,113.536,73.344,209.856,175.104,243.872
+                            c12.8,2.368,17.472-5.568,17.472-12.384c0-6.112-0.224-22.272-0.352-43.712c-71.2,15.52-86.24-34.464-86.24-34.464
+                            c-11.616-29.696-28.416-37.6-28.416-37.6c-23.264-15.936,1.728-15.616,1.728-15.616c25.696,1.824,39.2,26.496,39.2,26.496
+                            c22.848,39.264,59.936,27.936,74.528,21.344c2.304-16.608,8.928-27.936,16.256-34.368
+                            c-56.832-6.496-116.608-28.544-116.608-127.008c0-28.064,9.984-51.008,26.368-68.992c-2.656-6.496-11.424-32.64,2.496-68
+                            c0,0,21.504-6.912,70.4,26.336c20.416-5.696,42.304-8.544,64.096-8.64c21.728,0.128,43.648,2.944,64.096,8.672
+                            c48.864-33.248,70.336-26.336,70.336-26.336c13.952,35.392,5.184,61.504,2.56,68c16.416,17.984,26.304,40.928,26.304,68.992
+                            c0,98.72-59.84,120.448-116.864,126.816c9.184,7.936,17.376,23.616,17.376,47.584c0,34.368-0.32,62.08-0.32,70.496
+                            c0,6.88,4.608,14.88,17.6,12.352C438.72,472.145,512,375.857,512,262.353C512,120.401,397.376,5.329,255.968,5.329z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+                <p>my github</p>
+              </a>
+            </li>
+            <li>
+              <p class="copyright">&#169; <time datetime="2021-10-22">2021 by Andrei Tsakunou</time></p>
+            </li>
+          </ul>
         </div>
       </footer>
       <script src="./index.js" defer></script>
-      <script src="./scripts/quote.js" defer></script>
+      <!-- <script src="./scripts/quote.js" defer></script> -->
+      <script type="module" src="./scripts/settings.js" defer></script>
       <script src="./scripts/slider.js" defer></script>
       <script type="module" src="./scripts/soundPlayer.js" defer></script>
       <script src="./scripts/time.js" defer></script>
-      <script src="./scripts/weather.js" defer></script>
+      <!-- <script src="./scripts/weather.js" defer></script> -->
     </div>
   </body>
 </html>

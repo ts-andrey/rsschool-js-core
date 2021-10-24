@@ -12,15 +12,17 @@
 @mixin input-style() {
   transition: all 0.3s;
   -webkit-appearance: none;
+  border: 1px solid $color-area-background;
   border-radius: 1rem;
   background: linear-gradient(to right, $color-main-attract 0%, $color-main-attract 50%, #c4c4c4 50.1%, #c4c4c4 100%);
   &::-webkit-slider-thumb {
     transition: all 0.3s;
     -webkit-appearance: none;
     cursor: pointer;
-    border-radius: 2px;
+    outline: 1px solid $color-area-background;
+    border-radius: 20%;
     height: 2rem;
-    width: 1rem;
+    width: .9rem;
     background: #fff;
   }
   &:hover {
@@ -28,5 +30,35 @@
     &::-webkit-slider-thumb {
       background: rgb(255, 0, 0);
     }
+  }
+}
+
+@mixin scrollbar-style() {
+  &::-webkit-scrollbar {
+    height: 10rem;
+    width: 1.2rem;
+    outline: 1px solid $color-area-background;
+    border-radius: 10rem;
+    background: $color-main-attract;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $color-area-background;
+    border-radius: 10rem;
+  }
+}
+
+@mixin checkbox-style() {
+  -webkit-appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  background: $color-main-text;
+  outline: 0.1rem solid $color-area-background;
+  transition: all 0.2s;
+  &:checked {
+    background-color: $color-area-background;
+    border: 0.2rem solid $color-main-attract;
   }
 }

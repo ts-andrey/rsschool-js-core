@@ -1,4 +1,3 @@
-const weather = document.querySelector('.weather');
 const weatherCity = document.querySelector('.weather-city');
 const weatherIcon = document.querySelector('.weather-icon');
 const weatherCurrent = document.querySelector('.weather-temp .current');
@@ -12,23 +11,28 @@ if (!window.localStorage.getItem('language')) window.localStorage.setItem('langu
 
 const apiKey = '3a027a2e4377124ad65147909257e334';
 let cityName = window.localStorage.getItem('weatherCity');
-let lang = window.localStorage.getItem('language');
+
+const weatherInfoDescrEng = ['temperature:', 'feels like:', 'cloudiness:', 'wind speed: ', 'humidity:'];
+const weatherInfoDescrRu = ['температура:', 'ощущается как:', 'облачность:', 'скорость ветра: ', 'влажность:'];
+let descriptions = weatherInfoDescrEng;
 
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=${lang}&appid=${apiKey}&units=metric`;
+  const language = window.localStorage.getItem('language');
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=${language}&appid=${apiKey}&units=metric`;
   const response = await fetch(url);
   const data = await response.json();
-  console.log(data);
 
   weatherIcon.className = `weather-icon owf`;
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-  weatherCurrent.textContent = `temperature: ${Math.floor(data.main.temp)}°C`;
-  weatherFeelsLike.textContent = `feels like: ${Math.floor(data.main.feels_like)}°C`;
-  weatherClouds.textContent = `cloudiness: ${data.weather[0].description}`;
+  if (language === 'eng') descriptions = weatherInfoDescrEng;
+  else descriptions = weatherInfoDescrRu;
+  weatherCurrent.textContent = `${descriptions[0]} ${Math.floor(data.main.temp)}°C`;
+  weatherFeelsLike.textContent = `${descriptions[1]} ${Math.floor(data.main.feels_like)}°C`;
+  weatherClouds.textContent = `${descriptions[2]} ${data.weather[0].description}`;
   if (data.wind.gust)
-    weatherWind.textContent = `wind speed ${Math.floor(data.wind.speed)} - ${Math.floor(data.wind.gust)} (m/s)`;
-  else weatherWind.textContent = `wind speed ${Math.floor(data.wind.speed)} (m/s)`;
-  weatherHumidity.textContent = `humidity: ${data.main.humidity}%`;
+    weatherWind.textContent = `${descriptions[3]} ${Math.floor(data.wind.speed)} - ${Math.floor(data.wind.gust)} (m/s)`;
+  else weatherWind.textContent = `${descriptions[3]} ${Math.floor(data.wind.speed)} (m/s)`;
+  weatherHumidity.textContent = `${descriptions[4]} ${data.main.humidity}%`;
 }
 getWeather();
 
@@ -40,3 +44,5 @@ function weatherHandler() {
 
 window.addEventListener('load', () => (weatherCity.value = window.localStorage.getItem('weatherCity')));
 weatherCity.addEventListener('change', weatherHandler);
+
+export { getWeather };

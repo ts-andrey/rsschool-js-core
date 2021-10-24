@@ -1,4 +1,6 @@
+@import '../util/mixins';
 @import '../util/variables';
+
 .momentum {
   width: inherit;
   height: inherit;
@@ -15,7 +17,7 @@ main {
 
 .slider-skip {
   position: absolute;
-  top: 60%;
+  top: 50%;
   transform: translateY(-50%);
   background-color: lighten($color-area-background, 10%);
   opacity: 0.3;
@@ -40,6 +42,10 @@ main {
   &:hover {
     cursor: pointer;
     opacity: 0.75;
+    transform: scale(0.9) translateY(-55%);
+  }
+  &:active {
+    transform: scale(1.2) translateY(-30%);
   }
 }
 
@@ -71,4 +77,78 @@ main {
   &:nth-of-type(5) {
     margin-left: 200%;
   }
+}
+
+.settings-icon {
+  position: absolute;
+  bottom: 1.5%;
+  left: 1%;
+  display: flex;
+  transition: all 0.3s;
+  svg {
+    pointer-events: none;
+    height: 4rem;
+    width: 4rem;
+  }
+  path {
+    fill: $color-main-attract;
+  }
+  &:hover {
+    cursor: pointer;
+    transform: scale(0.9);
+  }
+  &:active {
+    transform: scale(1.3);
+  }
+}
+
+.settings-menu {
+  @include background;
+  @include scrollbar-style;
+  position: absolute;
+  bottom: 6%;
+  left: 3%;
+  padding: 2rem;
+  color: $color-main-text;
+  z-index: 10;
+  margin: 0 0 -10rem -30rem;
+  height: 0rem;
+  opacity: 0;
+  overflow-y: scroll;
+  transition: all 0.5s;
+}
+
+.shown {
+  height: 25rem;
+  margin: 0;
+  opacity: 1;
+}
+
+.option {
+  border-bottom: 0.1rem solid $color-main-text;
+  padding-bottom: 1rem;
+  margin: 1rem 0;
+}
+
+.show-option {
+  input {
+    margin-left: 1rem;
+  }
+}
+input[type='radio'] {
+  @include checkbox-style();
+  border-radius: 50%;
+}
+select {
+  padding: 0.25rem 3rem 0.25rem 0.5rem;
+  -webkit-appearance: none;
+  border: 0.1rem solid $color-area-background;
+  outline: none;
+  background-image: url('../assets/svg/dropdown.svg');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 1.7rem;
+}
+input[type='checkbox'] {
+  @include checkbox-style();
 }

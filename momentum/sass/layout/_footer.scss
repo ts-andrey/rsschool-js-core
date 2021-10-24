@@ -9,6 +9,7 @@ footer {
   color: $color-main-text;
 }
 .quote {
+  @include background;
   grid-row: 1;
   grid-column: 1;
   align-self: center;
@@ -19,7 +20,6 @@ footer {
   width: 30%;
   margin-bottom: 2%;
   z-index: 1;
-  @include background;
 }
 .quote-new {
   align-self: center;
@@ -36,10 +36,30 @@ footer {
   }
 }
 .git-logo {
+  @include background;
   grid-row: 1;
   grid-column: 1;
-  align-self: center;
+  align-self: end;
   justify-self: end;
-  height: 40%;
-  width: 20%;
+  z-index: 1;
+  color: $color-main-text;
+  margin-bottom: 1%;
+  margin-right: 1%;
+  svg {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+  }
+  path {
+    fill: $color-main-attract;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
 }

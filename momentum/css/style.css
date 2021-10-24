@@ -313,6 +313,11 @@ polygon {
   width: 100%;
   margin: 1rem 0; }
 
+.time-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; }
+
 .track {
   display: flex;
   align-items: center;

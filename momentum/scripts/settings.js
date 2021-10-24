@@ -57,8 +57,6 @@ function translateSettings() {
   showWrapperLables[5].textContent = language === 'eng' ? showTextEng[6] : showTextRu[6];
 }
 
-console.log({ languageOptions, picSrcOptions, imageThemeAPIOption, showOptions });
-
 function languageHandler() {
   console.log(this.value);
   window.localStorage.setItem('language', this.value);

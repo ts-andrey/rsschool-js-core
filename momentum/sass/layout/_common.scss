@@ -131,12 +131,13 @@ main {
 }
 
 .show-option-wrap {
+  margin-left: 15%;
   input {
     &:hover {
       cursor: pointer;
       transform: scale(1.2);
     }
-    &:active{
+    &:active {
       transform: scale(0.5);
     }
   }
@@ -150,6 +151,13 @@ main {
 input[type='radio'] {
   @include checkbox-style();
   border-radius: 50%;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+  &:active {
+    transform: scale(0.5);
+  }
 }
 select {
   padding: 0.25rem 3rem 0.25rem 0.5rem;
@@ -160,6 +168,9 @@ select {
   background-repeat: no-repeat;
   background-position: right;
   background-size: 1.7rem;
+  &:hover{
+    cursor: pointer;
+  }
 }
 input[type='checkbox'] {
   @include checkbox-style();

@@ -1,5 +1,6 @@
 import { getWeather } from './weather.js';
 import { getQuotes } from './quote.js';
+import { slider } from './slider.js';
 
 const setIcon = document.querySelector('.settings-icon');
 const settingsMenu = document.querySelector('.settings-menu');
@@ -29,13 +30,40 @@ const langTextRu = ['Выберите язык:', 'Английский', 'Ру�
 const ImgTextEng = ['Choose picture source:'];
 const ImgTextRu = ['Выберите источник изображений:'];
 
-const ImgThemeTextEng = ['Image themes for API source:', 'Choose image theme', 'Nature', 'Animals'];
-const ImgThemeTextRu = ['Тематика изображений для API:', 'Выберите тематику', 'Природа', 'Животные'];
+const ImgThemeTextEng = [
+  'Image themes for API source:',
+  'Choose image theme',
+  'Nature',
+  'Animals',
+  'Cities',
+  'Cars',
+  'Kids',
+  'Movies',
+];
+const ImgThemeTextRu = [
+  'Тематика изображений для API:',
+  'Выберите тематику',
+  'Природа',
+  'Животные',
+  'Города',
+  'Машины',
+  'Дети',
+  'Фильмы',
+];
 
-const showTextEng = ['Choose what to show:', 'Playlist', 'Weather', 'Info-block', 'Time', 'Date', 'Greeting', 'Quotes'];
+const showTextEng = [
+  'Choose what to show:',
+  'Audioplayer',
+  'Weather',
+  'Info-block',
+  'Time',
+  'Date',
+  'Greeting',
+  'Quotes',
+];
 const showTextRu = [
   'Выберите что отображать:',
-  'Плэйлист',
+  'Аудиоплэер',
   'Погода',
   'Инфоблок',
   'Время',
@@ -64,10 +92,21 @@ function translateSettings() {
   imgWrapper.querySelector('p').textContent = language === 'eng' ? ImgTextEng[0] : ImgTextRu[0];
 
   imgThemeWrapper.querySelector('p').textContent = language === 'eng' ? ImgThemeTextEng[0] : ImgThemeTextRu[0];
+
   const imgThemeOptions = imgThemeWrapper.querySelectorAll('option');
   imgThemeOptions[0].textContent = language === 'eng' ? ImgThemeTextEng[1] : ImgThemeTextRu[1];
+
   imgThemeOptions[1].textContent = language === 'eng' ? ImgThemeTextEng[2] : ImgThemeTextRu[2];
+
   imgThemeOptions[2].textContent = language === 'eng' ? ImgThemeTextEng[3] : ImgThemeTextRu[3];
+
+  imgThemeOptions[3].textContent = language === 'eng' ? ImgThemeTextEng[4] : ImgThemeTextRu[4];
+
+  imgThemeOptions[4].textContent = language === 'eng' ? ImgThemeTextEng[5] : ImgThemeTextRu[5];
+
+  imgThemeOptions[5].textContent = language === 'eng' ? ImgThemeTextEng[6] : ImgThemeTextRu[6];
+
+  imgThemeOptions[6].textContent = language === 'eng' ? ImgThemeTextEng[7] : ImgThemeTextRu[7];
 
   showWrapper.querySelector('p').textContent = language === 'eng' ? showTextEng[0] : showTextRu[0];
   const showWrapperLables = showWrapper.querySelectorAll('label');
@@ -81,7 +120,6 @@ function translateSettings() {
 }
 
 function languageHandler() {
-  console.log(this.value);
   window.localStorage.setItem('language', this.value);
   getWeather();
   getQuotes();
@@ -107,10 +145,14 @@ function displayHandler() {
 
 function imgStorageHandler() {
   window.localStorage.setItem('imgSrc', this.value);
+  if (this.value === 'github') imgThemeWrapper.classList.add('invisible');
+  else imgThemeWrapper.classList.remove('invisible');
+  slider();
 }
 
 function imgThemeHandler() {
   window.localStorage.setItem('imgTheme', this.value);
+  slider();
 }
 
 function setInitialState() {
@@ -126,6 +168,10 @@ function setInitialState() {
   const imgTheme = window.localStorage.getItem('imgTheme');
   if (imgTheme === 'nature') imageThemeAPIOption[1].selected = true;
   if (imgTheme === 'animals') imageThemeAPIOption[2].selected = true;
+  if (imgTheme === 'cities') imageThemeAPIOption[3].selected = true;
+  if (imgTheme === 'cars') imageThemeAPIOption[4].selected = true;
+  if (imgTheme === 'kids') imageThemeAPIOption[5].selected = true;
+  if (imgTheme === 'movies') imageThemeAPIOption[6].selected = true;
 
   showOptionsObject = JSON.parse(window.localStorage.getItem('showObject'));
   showOptions.forEach(el => {
@@ -158,6 +204,7 @@ function setInitialState() {
 
 setInitialState();
 translateSettings();
+slider();
 
 setIcon.addEventListener('click', showMenuHandler);
 

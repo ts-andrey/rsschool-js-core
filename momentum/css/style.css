@@ -154,12 +154,13 @@ main {
   padding-bottom: 1rem;
   margin: 1rem 0; }
 
-.show-option-wrap input:hover {
-  cursor: pointer;
-  transform: scale(1.2); }
-
-.show-option-wrap input:active {
-  transform: scale(0.5); }
+.show-option-wrap {
+  margin-left: 15%; }
+  .show-option-wrap input:hover {
+    cursor: pointer;
+    transform: scale(1.2); }
+  .show-option-wrap input:active {
+    transform: scale(0.5); }
 
 .show-option input {
   margin-left: 1rem; }
@@ -175,6 +176,11 @@ input[type='radio'] {
   input[type='radio']:checked {
     background-color: #000;
     border: 0.2rem solid #ff4901; }
+  input[type='radio']:hover {
+    cursor: pointer;
+    transform: scale(1.2); }
+  input[type='radio']:active {
+    transform: scale(0.5); }
 
 select {
   padding: 0.25rem 3rem 0.25rem 0.5rem;
@@ -185,6 +191,8 @@ select {
   background-repeat: no-repeat;
   background-position: right;
   background-size: 1.7rem; }
+  select:hover {
+    cursor: pointer; }
 
 input[type='checkbox'] {
   -webkit-appearance: none;

@@ -20,15 +20,18 @@ main {
 
 .time {
   font-size: 12rem;
+  transition: all 0.5s;
 }
 
 .date {
   margin-top: -1rem;
   font-size: 3rem;
+  transition: all 0.5s;
 }
 
 .greet {
   font-size: 5.5rem;
+  transition: all 0.5s;
 }
 
 .user-name {

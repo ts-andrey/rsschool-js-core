@@ -130,6 +130,18 @@ main {
   margin: 1rem 0;
 }
 
+.show-option-wrap {
+  input {
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.2);
+    }
+    &:active{
+      transform: scale(0.5);
+    }
+  }
+}
+
 .show-option {
   input {
     margin-left: 1rem;

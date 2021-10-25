@@ -104,7 +104,14 @@
           <div class="show-option option">
             <p>Choose what to show:</p>
             <div class="show-option-wrap">
-              <input data-name="playlist" type="checkbox" name="show" id="show-playlist" class="show-playlist" checked />
+              <input
+                data-name="playlist"
+                type="checkbox"
+                name="show"
+                id="show-playlist"
+                class="show-playlist"
+                checked
+              />
               <label for="show-playlist">Audioplayer</label>
             </div>
             <div class="show-option-wrap">
@@ -130,6 +137,10 @@
             <div class="show-option-wrap">
               <input data-name="quote" type="checkbox" name="show" id="show-quotes" class="show-quotes" checked />
               <label for="show-quotes">Quotes</label>
+            </div>
+            <div class="show-option-wrap">
+              <input data-name="todo" type="checkbox" name="show" id="show-todo" class="show-todo" checked />
+              <label for="show-todo">To-do list</label>
             </div>
           </div>
         </div>
@@ -216,6 +227,27 @@
             <input type="text" name="name" class="user-name" placeholder="[Enter name]" />
           </div>
         </div>
+        <div class="to-do-list">
+          <ul class="to-dos"></ul>
+          <div class="to-do-create">
+            <input type="text" name="" id="to-do" class="to-do" />
+            <div class="add-new">
+              <svg
+                height="24"
+                stroke="#000"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line x1="12" x2="12" y1="5" y2="19" />
+                <line x1="5" x2="19" y1="12" y2="12" />
+              </svg>
+            </div>
+          </div>
+        </div>
       </main>
       <footer>
         <div class="quote">
@@ -273,12 +305,10 @@
         </div>
       </footer>
       <script src="./index.js" defer></script>
-      <!-- <script src="./scripts/quote.js" defer></script> -->
       <script type="module" src="./scripts/settings.js" defer></script>
-      <!-- <script src="./scripts/slider.js" defer></script> -->
       <script type="module" src="./scripts/soundPlayer.js" defer></script>
       <script src="./scripts/time.js" defer></script>
-      <!-- <script src="./scripts/weather.js" defer></script> -->
+      <script src="./scripts/toDo.js" defer></script>
     </div>
   </body>
 </html>

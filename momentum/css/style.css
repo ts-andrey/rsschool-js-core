@@ -400,6 +400,58 @@ main {
   border-radius: 0.3rem;
   background-color: transparent; }
 
+.to-do-list {
+  border-radius: 3rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  transition: all 0.3s;
+  position: absolute;
+  right: 1%;
+  bottom: 10%;
+  display: flex;
+  flex-direction: column; }
+  .to-do-list:hover {
+    background-color: rgba(0, 0, 0, 0.5); }
+
+.to-dos {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #fff;
+  display: flex;
+  flex-direction: column; }
+
+.to-dos-item {
+  display: inline-flex;
+  align-items: center; }
+
+.checker {
+  margin-right: 1rem; }
+
+.to-do-create {
+  color: #000;
+  display: flex;
+  justify-items: center; }
+
+.add-new {
+  display: flex;
+  margin-left: 1rem; }
+  .add-new svg {
+    border: 0.2rem solid #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    height: 3rem;
+    width: 3rem;
+    stroke: #fff; }
+  .add-new:hover svg {
+    border: 0.2rem solid #ff4901;
+    stroke: #ff4901;
+    transform: scale(1.2); }
+  .add-new:active svg {
+    transform: scale(0.4); }
+
+.crossed {
+  text-decoration: line-through;
+  color: #b3b3b3; }
+
 footer {
   width: 100%;
   background-color: #000;

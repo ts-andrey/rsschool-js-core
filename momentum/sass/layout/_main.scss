@@ -40,3 +40,58 @@ main {
   border-radius: 0.3rem;
   background-color: transparent;
 }
+
+.to-do-list {
+  @include background;
+  position: absolute;
+  right: 1%;
+  bottom: 10%;
+  display: flex;
+  flex-direction: column;
+}
+.to-dos {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid $color-main-text;
+  display: flex;
+  flex-direction: column;
+}
+.to-dos-item {
+  display: inline-flex;
+  align-items: center;
+}
+.checker {
+  margin-right: 1rem;
+}
+.to-do-create {
+  color: $color-area-background;
+  display: flex;
+  justify-items: center;
+}
+.add-new {
+  display: flex;
+  margin-left: 1rem;
+  svg {
+    border: 0.2rem solid $color-main-text;
+    border-radius: 50%;
+    pointer-events: none;
+    height: 3rem;
+    width: 3rem;
+    stroke: $color-main-text;
+  }
+  &:hover {
+    svg {
+      border: 0.2rem solid $color-main-attract;
+      stroke: $color-main-attract;
+      transform: scale(1.2);
+    }
+  }
+  &:active {
+    svg {
+      transform: scale(0.4);
+    }
+  }
+}
+.crossed {
+  text-decoration: line-through;
+  color: darken($color-main-text, 30%);
+}

@@ -21,6 +21,7 @@ const dateItem = document.querySelector('.date');
 const greetItem = document.querySelector('.greet');
 const infoItem = document.querySelector('.info');
 const quoteItem = document.querySelector('.quote');
+const todoItem = document.querySelector('.to-do-list');
 
 let language = window.localStorage.getItem('language');
 
@@ -60,6 +61,7 @@ const showTextEng = [
   'Date',
   'Greeting',
   'Quotes',
+  'To-do list',
 ];
 const showTextRu = [
   'Выберите что отображать:',
@@ -70,6 +72,7 @@ const showTextRu = [
   'Дата',
   'Приветствие',
   'Цитаты',
+  'Список дел',
 ];
 let showOptionsObject = {
   playlist: true,
@@ -79,6 +82,7 @@ let showOptionsObject = {
   date: true,
   greet: true,
   quote: true,
+  todo: true,
 };
 
 function translateSettings() {
@@ -138,6 +142,7 @@ function displayHandler() {
   if (this.classList.contains('show-greet')) greetItem.classList.toggle('invisible');
   if (this.classList.contains('show-info')) infoItem.classList.toggle('invisible');
   if (this.classList.contains('show-quotes')) quoteItem.classList.toggle('invisible');
+  if (this.classList.contains('show-todo')) todoItem.classList.toggle('invisible');
 
   showOptionsObject[this.getAttribute('data-name')] = this.checked;
   window.localStorage.setItem('showObject', JSON.stringify(showOptionsObject));
@@ -199,6 +204,9 @@ function setInitialState() {
 
     if (key === 'quote' && showOptionsObject[key]) quoteItem.classList.remove('invisible');
     else if (key === 'quote' && !showOptionsObject[key]) quoteItem.classList.add('invisible');
+
+    if (key === 'todo' && showOptionsObject[key]) todoItem.classList.remove('invisible');
+    else if (key === 'todo' && !showOptionsObject[key]) todoItem.classList.add('invisible');
   }
 }
 

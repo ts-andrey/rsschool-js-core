@@ -16,7 +16,6 @@ const wholeTime = document.querySelector('.whole-time');
 
 let playSpecific;
 
-
 const iconMute = `
 <svg style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="10,16 10,0 3,5 0,5 0,11 3,11 "/><polygon points="14.646,5.646 13,7.293 11.354,5.646 10.646,6.354 12.293,8 10.646,9.646 11.354,10.354 13,8.707 14.646,10.354   15.354,9.646 13.707,8 15.354,6.354 "/></svg>
 `;
@@ -137,6 +136,7 @@ function setTrack() {
   playingTrack = tracks[curTrackNum].querySelector('audio');
   playingTrack.currentTime = 0;
 }
+
 function playIconHandler() {
   playButton.innerHTML = playingTrack.paused ? iconPlay : iconPause;
   specificIcon = tracks[curTrackNum].querySelector('.icon-play');
@@ -181,10 +181,15 @@ function playNext() {
   playTrack();
 }
 function playSpecificHandler() {
-  beforePlaying();
-  curTrackNum = +this.getAttribute('data-number');
-  setTrack();
-  playTrack();
+  if (curTrackNum === +this.getAttribute('data-number')) {
+    if (!playingTrack.paused) beforePlaying();
+    else playTrack();
+  } else {
+    beforePlaying();
+    curTrackNum = +this.getAttribute('data-number');
+    setTrack();
+    playTrack();
+  }
 }
 setTrack();
 playingTrack.volume = volBar.value / 100;

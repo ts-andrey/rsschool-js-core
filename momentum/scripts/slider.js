@@ -59,7 +59,6 @@ async function getUnsplashImgs() {
   });
   images = unsplashImages;
   setImages();
-  console.log(images);
 }
 
 async function getFlickrImgs() {
@@ -72,7 +71,6 @@ async function getFlickrImgs() {
   });
   images = flickrImages;
   setImages();
-  console.log(images);
 }
 
 function shiftImgNum(num) {

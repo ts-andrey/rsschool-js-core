@@ -10,6 +10,7 @@ let imgTheme = window.localStorage.getItem('imgTheme');
 window.localStorage.setItem('resolution', resolutions[2]);
 
 let currResolution = window.localStorage.getItem('resolution');
+if (!window.localStorage.getItem('dayPart')) window.localStorage.setItem('dayPart', 'morning');
 let currDayPart = window.localStorage.getItem('dayPart');
 
 let imgNumFirst, imgNumSecond, imgNumFourth, imgNumFifth;
@@ -41,7 +42,7 @@ const gitImages = [
 ];
 let unsplashImages = [];
 let flickrImages = [];
-let images;
+let images = gitImages;
 
 async function getGithubImgs() {
   images = gitImages;

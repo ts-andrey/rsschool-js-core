@@ -20,19 +20,38 @@ async function getWeather() {
   const language = window.localStorage.getItem('language');
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=${language}&appid=${apiKey}&units=metric`;
   const response = await fetch(url);
-  const data = await response.json();
+  if (response.ok) {
+    weatherCurrent.classList.remove('error');
+    weatherFeelsLike.classList.remove('error');
+    weatherClouds.classList.remove('error');
+    weatherWind.classList.remove('error');
+    const data = await response.json();
 
-  weatherIcon.className = `weather-icon owf`;
-  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-  if (language === 'eng') descriptions = weatherInfoDescrEng;
-  else descriptions = weatherInfoDescrRu;
-  weatherCurrent.textContent = `${descriptions[0]} ${Math.floor(data.main.temp)}°C`;
-  weatherFeelsLike.textContent = `${descriptions[1]} ${Math.floor(data.main.feels_like)}°C`;
-  weatherClouds.textContent = `${descriptions[2]} ${data.weather[0].description}`;
-  if (data.wind.gust)
-    weatherWind.textContent = `${descriptions[3]} ${Math.floor(data.wind.speed)} - ${Math.floor(data.wind.gust)} (m/s)`;
-  else weatherWind.textContent = `${descriptions[3]} ${Math.floor(data.wind.speed)} (m/s)`;
-  weatherHumidity.textContent = `${descriptions[4]} ${data.main.humidity}%`;
+    weatherIcon.className = `weather-icon owf`;
+    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+    if (language === 'eng') descriptions = weatherInfoDescrEng;
+    else descriptions = weatherInfoDescrRu;
+    weatherCurrent.textContent = `${descriptions[0]} ${Math.floor(data.main.temp)}°C`;
+    weatherFeelsLike.textContent = `${descriptions[1]} ${Math.floor(data.main.feels_like)}°C`;
+    weatherClouds.textContent = `${descriptions[2]} ${data.weather[0].description}`;
+    if (data.wind.gust)
+      weatherWind.textContent = `${descriptions[3]} ${Math.floor(data.wind.speed)} - ${Math.floor(
+        data.wind.gust
+      )} (m/s)`;
+    else weatherWind.textContent = `${descriptions[3]} ${Math.floor(data.wind.speed)} (m/s)`;
+    weatherHumidity.textContent = `${descriptions[4]} ${data.main.humidity}%`;
+  } else {
+    weatherCurrent.classList.add('error');
+    weatherFeelsLike.classList.add('error');
+    weatherClouds.classList.add('error');
+    weatherWind.classList.add('error');
+    weatherCurrent.textContent = 'Error:';
+    weatherFeelsLike.textContent = 'Wrong city name';
+    weatherClouds.textContent = 'Please provide correct city name';
+    weatherWind.textContent = 'or try later';
+    weatherIcon.className = '';
+    weatherHumidity.textContent = '';
+  }
 }
 getWeather();
 

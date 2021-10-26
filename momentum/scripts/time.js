@@ -50,7 +50,7 @@ function nameHandler(ev) {
     let elWidth;
     if (storedName.length < 5) elWidth = `${storedName.length * 1.3}ch`;
     else if (storedName.length > 7) elWidth = `${storedName.length * 0.85}ch`;
-    else elWidth = `${storedName.length}ch`;
+    else elWidth = `${storedName.length * 1.1}ch`;
     userName.style.width = elWidth;
   } else if (!storedName) {
     userName.style.width = '20rem';

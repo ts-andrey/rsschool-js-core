@@ -64,3 +64,43 @@ footer {
     margin-right: 1rem;
   }
 }
+@media (max-width: 1000px) {
+  .quote {
+    justify-self: flex-start;
+    margin-left: 45%;
+    transform: translateX(-50%);
+    margin-bottom: 6rem;
+  }
+}
+@media (max-width: 880px) {
+  footer {
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: 100%;
+  }
+  .quote {
+    justify-self: center;
+    margin-left: 0;
+    transform: translateX(0);
+    width: 100%;
+    margin-bottom: 0;
+    grid-row: 1;
+    font-size: 1.4rem;
+  }
+  .quote-new {
+    svg {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  }
+  .git-logo {
+    grid-row: 2;
+    justify-self: center;
+    font-size: 1.2rem;
+    padding: 0.3rem;
+    svg {
+      transform: scale(0.7);
+    }
+  }
+}
+@media (max-width: 600px) {
+}

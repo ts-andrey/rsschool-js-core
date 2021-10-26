@@ -161,6 +161,7 @@ function imgThemeHandler() {
 }
 
 function setInitialState() {
+  if (!window.localStorage.getItem('imgSrc')) window.localStorage.setItem('imgSrc', 'github');
   if (language === 'eng') languageOptions[0].checked = true;
   else languageOptions[1].checked = true;
   if (!window.localStorage.getItem('showObject'))

@@ -140,3 +140,34 @@ polygon {
     transform: scale(1.1);
   }
 }
+
+@media (max-width: 1400px) {
+  .weather {
+    font-size: 1.7rem;
+  }
+  .weather-city {
+    width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .player {
+    font-size: 1.4rem;
+    width: 20rem;
+  }
+  .volume {
+    width: 100%;
+  }
+  .button {
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-right: 0.5rem;
+  }
+  .icon-play {
+    height: 2rem;
+    width: 2rem;
+  }
+  .weather {
+    font-size: 1.4rem;
+  }
+}

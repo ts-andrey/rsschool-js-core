@@ -19,7 +19,7 @@ main {
 }
 
 .time {
-  font-size: 12rem;
+  font-size: 11rem;
   transition: all 0.5s;
 }
 
@@ -30,7 +30,7 @@ main {
 }
 
 .greet {
-  font-size: 5.5rem;
+  font-size: 5rem;
   transition: all 0.5s;
 }
 
@@ -50,10 +50,13 @@ main {
   flex-direction: column;
 }
 .to-dos {
+  @include scrollbar-style();
+  max-height: 10rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid $color-main-text;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 .to-dos-item {
   display: inline-flex;
@@ -94,4 +97,43 @@ main {
 .crossed {
   text-decoration: line-through;
   color: darken($color-main-text, 30%);
+}
+
+@media (max-width: 1400px) {
+  .time {
+    font-size: 7.5rem;
+  }
+  .date {
+    font-size: 2rem;
+  }
+
+  .greet {
+    font-size: 3.6rem;
+  }
+}
+
+@media (max-width: 880px) {
+  .time {
+    font-size: 4.5rem;
+  }
+  .date {
+    font-size: 1.6rem;
+  }
+
+  .greet {
+    font-size: 2.5rem;
+  }
+
+  .to-do-list {
+    font-size: 1.4rem;
+    right: 50%;
+    transform: translateX(50%);
+    margin-bottom: 6rem;
+  }
+  .add-new{
+    svg{
+      height: 2.3rem;
+    width: 2.3rem;
+    }
+  }
 }

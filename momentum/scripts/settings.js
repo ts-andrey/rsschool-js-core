@@ -140,9 +140,21 @@ function displayHandler() {
   if (this.classList.contains('show-time')) timeItem.classList.toggle('invisible');
   if (this.classList.contains('show-date')) dateItem.classList.toggle('invisible');
   if (this.classList.contains('show-greet')) greetItem.classList.toggle('invisible');
-  if (this.classList.contains('show-info')) infoItem.classList.toggle('invisible');
   if (this.classList.contains('show-quotes')) quoteItem.classList.toggle('invisible');
   if (this.classList.contains('show-todo')) todoItem.classList.toggle('invisible');
+
+  if (this.classList.contains('show-info')) {
+    if (this.checked) infoItem.classList.remove('invisible');
+    else infoItem.classList.add('invisible');
+  } else {
+    if (
+      timeItem.classList.contains('invisible') &&
+      dateItem.classList.contains('invisible') &&
+      greetItem.classList.contains('invisible')
+    )
+      infoItem.classList.add('invisible');
+    else infoItem.classList.remove('invisible');git
+  }
 
   showOptionsObject[this.getAttribute('data-name')] = this.checked;
   window.localStorage.setItem('showObject', JSON.stringify(showOptionsObject));
@@ -209,6 +221,12 @@ function setInitialState() {
     if (key === 'todo' && showOptionsObject[key]) todoItem.classList.remove('invisible');
     else if (key === 'todo' && !showOptionsObject[key]) todoItem.classList.add('invisible');
   }
+  if (
+    timeItem.classList.contains('invisible') &&
+    dateItem.classList.contains('invisible') &&
+    greetItem.classList.contains('invisible')
+  )
+    infoItem.classList.add('invisible');
 }
 
 setInitialState();

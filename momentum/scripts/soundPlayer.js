@@ -158,7 +158,8 @@ function soundIconHandler() {
 function playTrack() {
   specificIcon.innerHTML = playingTrack.paused ? iconPlay : iconPause;
   tracks[curTrackNum].classList.add('active');
-  trackName.textContent = playingTrackName.textContent;
+  tracks[curTrackNum].scrollIntoView({ behavior: 'smooth', block: 'end' });
+  trackName.textContent = playingTrackName.textContent.split('(')[0];
   playingTrack.addEventListener('timeupdate', () => playingStatusHandler(playingTrack));
   playingTrack[playingTrack.paused ? 'play' : 'pause']();
   playIconHandler();

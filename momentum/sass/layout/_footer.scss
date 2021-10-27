@@ -22,17 +22,11 @@ footer {
   z-index: 1;
 }
 .quote-new {
+  @include hover-svg-style(0.92, 1.3);
   align-self: center;
   svg {
     height: 3rem;
     width: 3rem;
-    pointer-events: none;
-  }
-  &:hover {
-    cursor: pointer;
-    path {
-      fill: $color-main-attract;
-    }
   }
 }
 .git-logo {
@@ -90,6 +84,8 @@ footer {
     svg {
       height: 2.5rem;
       width: 2.5rem;
+    }
+    &:hover {
     }
   }
   .git-logo {

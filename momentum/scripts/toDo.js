@@ -62,6 +62,7 @@ function toDoHandler() {
     const value = newToDo.value;
     newToDo.value = '';
     addDeed(value);
+    toDoList.scrollTop = toDoList.scrollHeight;
     window.localStorage.setItem('toDoList', JSON.stringify(toDoArr));
   }
 }

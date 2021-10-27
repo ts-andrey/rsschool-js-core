@@ -41,14 +41,16 @@ async function getWeather() {
     else weatherWind.textContent = `${descriptions[3]} ${Math.floor(data.wind.speed)} (m/s)`;
     weatherHumidity.textContent = `${descriptions[4]} ${data.main.humidity}%`;
   } else {
+    const language = window.localStorage.getItem('language');
     weatherCurrent.classList.add('error');
     weatherFeelsLike.classList.add('error');
     weatherClouds.classList.add('error');
     weatherWind.classList.add('error');
-    weatherCurrent.textContent = 'Error:';
-    weatherFeelsLike.textContent = 'Wrong city name';
-    weatherClouds.textContent = 'Please provide correct city name';
-    weatherWind.textContent = 'or try later';
+    weatherCurrent.textContent = language === 'eng' ? 'Error' : 'Ошибка';
+    weatherFeelsLike.textContent = language === 'eng' ? 'Wrong city name' : 'Неверное название города';
+    weatherClouds.textContent =
+      language === 'eng' ? 'Please provide correct city name' : 'Пожалуйста, введите корректное имя города';
+    weatherWind.textContent = language === 'eng' ? 'or try again later' : 'или попытайтесь еще раз позже';
     weatherIcon.className = '';
     weatherHumidity.textContent = '';
   }

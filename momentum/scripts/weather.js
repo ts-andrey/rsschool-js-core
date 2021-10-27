@@ -6,7 +6,10 @@ const weatherClouds = document.querySelector('.weather-cloud');
 const weatherWind = document.querySelector('.weather-wind');
 const weatherHumidity = document.querySelector('.weather-humidity');
 
-if (!window.localStorage.getItem('weatherCity')) window.localStorage.setItem('weatherCity', 'Minsk');
+if (!window.localStorage.getItem('weatherCity')) {
+  if (window.localStorage.getItem('language') === 'eng') window.localStorage.setItem('weatherCity', 'Minsk');
+  else window.localStorage.setItem('weatherCity', 'Минск');
+}
 if (!window.localStorage.getItem('language')) window.localStorage.setItem('language', 'eng');
 
 const apiKey = '3a027a2e4377124ad65147909257e334';

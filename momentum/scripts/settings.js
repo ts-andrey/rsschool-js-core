@@ -121,6 +121,7 @@ function translateSettings() {
   showWrapperLables[4].textContent = language === 'eng' ? showTextEng[5] : showTextRu[5];
   showWrapperLables[5].textContent = language === 'eng' ? showTextEng[6] : showTextRu[6];
   showWrapperLables[6].textContent = language === 'eng' ? showTextEng[7] : showTextRu[7];
+  showWrapperLables[7].textContent = language === 'eng' ? showTextEng[8] : showTextRu[8];
 }
 
 function languageHandler() {

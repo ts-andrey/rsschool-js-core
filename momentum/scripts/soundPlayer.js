@@ -73,6 +73,8 @@ durBar.style.background = `linear-gradient(to right, #ff4901 0%, #ff4901 0%, #c4
 tracks = document.querySelectorAll('.track');
 specificIcon = tracks[curTrackNum].querySelector('.icon-play');
 
+if (!trackName.textContent) trackName.classList.add('invisible');
+
 function progressBarHandler(el) {
   el.style.background = `linear-gradient(to right, #ff4901 0%, #ff4901 ${el.value}%, #c4c4c4 ${el.value}%, #c4c4c4 100%)`;
 }
@@ -156,6 +158,7 @@ function soundIconHandler() {
   } else muteHandler(lastSoundVal, iconSound);
 }
 function playTrack() {
+  trackName.classList.remove('invisible');
   specificIcon.innerHTML = playingTrack.paused ? iconPlay : iconPause;
   tracks[curTrackNum].classList.add('active');
   tracks[curTrackNum].scrollIntoView({ behavior: 'smooth', block: 'end' });

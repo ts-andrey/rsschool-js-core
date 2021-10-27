@@ -7,11 +7,10 @@ const resolutions = ['low', 'medium', 'high'];
 let imgSettings = window.localStorage.getItem('imgSrc');
 let imgTheme = window.localStorage.getItem('imgTheme');
 
-window.localStorage.setItem('resolution', resolutions[2]);
-
+checkScreenWidth();
 let currResolution = window.localStorage.getItem('resolution');
 let currDayPart;
-const gitImages = [];
+let gitImages = [];
 if (!window.localStorage.getItem('dayPart')) {
   let part = '';
   const hour = new Date().getHours();
@@ -36,6 +35,11 @@ let flickrImages = [];
 let images = gitImages;
 
 async function getGithubImgs() {
+  gitImages = [];
+  for (let index = 1; index <= 20; index++) {
+    const element = `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${index}.webp`;
+    gitImages.push(element);
+  }
   images = gitImages;
   setImages();
 }
@@ -63,6 +67,12 @@ async function getFlickrImgs() {
   });
   images = flickrImages;
   setImages();
+}
+
+function checkScreenWidth() {
+  if (document.body.offsetWidth > 1400) window.localStorage.setItem('resolution', resolutions[2]);
+  else if (document.body.offsetWidth < 800) window.localStorage.setItem('resolution', resolutions[0]);
+  else if (document.body.offsetWidth < 1400) window.localStorage.setItem('resolution', resolutions[1]);
 }
 
 function shiftImgNum(num) {
@@ -113,6 +123,7 @@ function sliderHandler() {
 }
 
 function slider() {
+  checkScreenWidth();
   images = [];
   flickrImages = [];
   unsplashImages = [];

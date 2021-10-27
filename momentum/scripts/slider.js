@@ -10,36 +10,27 @@ let imgTheme = window.localStorage.getItem('imgTheme');
 window.localStorage.setItem('resolution', resolutions[2]);
 
 let currResolution = window.localStorage.getItem('resolution');
-if (!window.localStorage.getItem('dayPart')) window.localStorage.setItem('dayPart', 'morning');
-let currDayPart = window.localStorage.getItem('dayPart');
+let currDayPart;
+const gitImages = [];
+if (!window.localStorage.getItem('dayPart')) {
+  let part = '';
+  const hour = new Date().getHours();
+  if (hour >= 1 && hour <= 6) part = 'night';
+  if (hour >= 7 && hour <= 12) part = 'morning';
+  if (hour >= 13 && hour <= 18) part = 'afternoon';
+  if (hour >= 19 && hour <= 24) part = 'evening';
+  currDayPart = part;
+  window.localStorage.setItem('dayPart', part);
+} else currDayPart = window.localStorage.getItem('dayPart');
 
 let imgNumFirst, imgNumSecond, imgNumFourth, imgNumFifth;
 let imgNumThird = Math.floor(Math.random() * 20);
 
-// const gitImagePath = imgNumber =>
-//   `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${imgNumber}.webp`;
-const gitImages = [
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${1}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${2}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${3}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${4}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${5}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${6}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${7}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${8}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${9}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${10}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${11}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${12}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${13}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${14}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${15}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${16}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${17}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${18}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${19}.webp`,
-  `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${20}.webp`,
-];
+for (let index = 1; index <= 20; index++) {
+  const element = `https://raw.githubusercontent.com/ts-andrey/momentum-images/main/images/${currDayPart}/${currResolution}/${index}.webp`;
+  gitImages.push(element);
+}
+
 let unsplashImages = [];
 let flickrImages = [];
 let images = gitImages;

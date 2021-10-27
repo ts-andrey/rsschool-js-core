@@ -29,6 +29,9 @@ input {
   border: none;
   outline: none; }
 
+svg {
+  pointer-events: none; }
+
 body {
   font-family: 'Nunito', sans-serif;
   font-size: 1.6rem; }
@@ -134,7 +137,7 @@ main {
     background-color: rgba(0, 0, 0, 0.5); }
   @media (max-width: 880px) {
     .settings-menu {
-      padding: .7rem; } }
+      padding: 0.7rem; } }
   .settings-menu::-webkit-scrollbar {
     height: 10rem;
     width: 1.2rem;
@@ -220,14 +223,12 @@ header {
   justify-content: space-between;
   color: #fff; }
 
-svg {
-  pointer-events: none; }
-
 .weather {
   border-radius: 3rem;
   background-color: rgba(0, 0, 0, 0.1);
   padding: 2rem;
   transition: all 0.4s;
+  max-width: 30rem;
   margin: 1% 2% 0 0;
   display: flex;
   flex-direction: column;
@@ -237,7 +238,7 @@ svg {
     background-color: rgba(0, 0, 0, 0.5); }
   @media (max-width: 880px) {
     .weather {
-      padding: .7rem; } }
+      padding: 0.7rem; } }
 
 .weather-city {
   width: 20rem; }
@@ -263,7 +264,7 @@ svg {
     background-color: rgba(0, 0, 0, 0.5); }
   @media (max-width: 880px) {
     .player {
-      padding: .7rem; } }
+      padding: 0.7rem; } }
 
 .control {
   margin-bottom: 1.5rem; }
@@ -299,15 +300,15 @@ polygon {
   transition: all 0.4s; }
 
 .button {
+  transition: all 0.3s;
   margin: 0 1.5rem 0 0;
-  display: flex;
-  transition: all 0.3s; }
+  display: flex; }
   .button:hover {
     cursor: pointer;
-    transform: scale(0.95); }
-    .button:hover polygon {
-      fill: #ff4901; }
+    transform: scale(0.92); }
     .button:hover path {
+      fill: #ff4901; }
+    .button:hover polygon {
       fill: #ff4901; }
   .button:active {
     transform: scale(1.3); }
@@ -319,7 +320,14 @@ polygon {
   border-radius: 1rem;
   background: linear-gradient(to right, #ff4901 0%, #ff4901 50%, #c4c4c4 50.1%, #c4c4c4 100%);
   height: 0.85rem; }
-  .bar::-webkit-slider-thumb {
+  .bar:hover {
+    cursor: pointer; }
+    .bar:hover::-webkit-slider-thumb {
+      background: red; }
+
+.volume {
+  width: 10rem; }
+  .volume::-webkit-slider-thumb {
     transition: all 0.3s;
     -webkit-appearance: none;
     cursor: pointer;
@@ -328,21 +336,22 @@ polygon {
     height: 2rem;
     width: 0.9rem;
     background: #fff; }
-  .bar:hover {
-    cursor: pointer; }
-    .bar:hover::-webkit-slider-thumb {
-      background: red; }
-
-.volume {
-  width: 10rem; }
 
 .track-name {
-  display: block;
-  height: 2.3rem; }
+  width: fit-content;
+  display: inline;
+  height: 2.3rem;
+  color: black;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 0.2rem;
+  border-radius: 3rem; }
 
 .duration {
   width: 100%;
   margin: 1rem 0; }
+  .duration::-webkit-slider-thumb {
+    -webkit-appearance: none; }
 
 .time-info {
   width: 100%;
@@ -364,18 +373,21 @@ polygon {
 .icon-play {
   margin-right: 1rem;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  transition: all 0.3s; }
   .icon-play svg {
     height: 3rem;
     width: 3rem;
     fill: #fff; }
   .icon-play:hover {
     cursor: pointer;
-    transform: scale(0.95); }
+    transform: scale(0.92); }
     .icon-play:hover path {
       fill: #ff4901; }
+    .icon-play:hover polygon {
+      fill: #ff4901; }
   .icon-play:active {
-    transform: scale(1.1); }
+    transform: scale(1.3); }
 
 @media (max-width: 1400px) {
   .weather {
@@ -423,7 +435,7 @@ main {
     background-color: rgba(0, 0, 0, 0.5); }
   @media (max-width: 880px) {
     .info {
-      padding: .7rem; } }
+      padding: 0.7rem; } }
 
 .time {
   font-size: 11rem;
@@ -458,7 +470,7 @@ main {
     background-color: rgba(0, 0, 0, 0.5); }
   @media (max-width: 880px) {
     .to-do-list {
-      padding: .7rem; } }
+      padding: 0.7rem; } }
 
 .to-dos {
   max-height: 10rem;
@@ -466,7 +478,8 @@ main {
   border-bottom: 1px solid #fff;
   display: flex;
   flex-direction: column;
-  overflow-y: auto; }
+  overflow-y: auto;
+  scroll-behavior: smooth; }
   .to-dos::-webkit-scrollbar {
     height: 10rem;
     width: 1.2rem;
@@ -484,7 +497,10 @@ main {
   align-items: center; }
 
 .checker {
-  margin-right: 1rem; }
+  margin-right: 1rem;
+  transition: all 0.35s; }
+  .checker:hover {
+    cursor: pointer; }
 
 .to-do-create {
   color: #000;
@@ -497,14 +513,15 @@ main {
   .add-new svg {
     border: 0.2rem solid #fff;
     border-radius: 50%;
-    pointer-events: none;
     height: 3rem;
     width: 3rem;
     stroke: #fff; }
-  .add-new:hover svg {
-    border: 0.2rem solid #ff4901;
-    stroke: #ff4901;
-    transform: scale(1.2); }
+  .add-new:hover {
+    cursor: pointer; }
+    .add-new:hover svg {
+      border: 0.2rem solid #ff4901;
+      stroke: #ff4901;
+      transform: scale(1.2); }
   .add-new:active svg {
     transform: scale(0.4); }
 
@@ -563,18 +580,23 @@ footer {
     background-color: rgba(0, 0, 0, 0.5); }
   @media (max-width: 880px) {
     .quote {
-      padding: .7rem; } }
+      padding: 0.7rem; } }
 
 .quote-new {
+  transition: all 0.3s;
   align-self: center; }
-  .quote-new svg {
-    height: 3rem;
-    width: 3rem;
-    pointer-events: none; }
   .quote-new:hover {
-    cursor: pointer; }
+    cursor: pointer;
+    transform: scale(0.92); }
     .quote-new:hover path {
       fill: #ff4901; }
+    .quote-new:hover polygon {
+      fill: #ff4901; }
+  .quote-new:active {
+    transform: scale(1.3); }
+  .quote-new svg {
+    height: 3rem;
+    width: 3rem; }
 
 .git-logo {
   border-radius: 3rem;
@@ -594,7 +616,7 @@ footer {
     background-color: rgba(0, 0, 0, 0.5); }
   @media (max-width: 880px) {
     .git-logo {
-      padding: .7rem; } }
+      padding: 0.7rem; } }
   .git-logo svg {
     width: 3rem;
     height: 3rem;

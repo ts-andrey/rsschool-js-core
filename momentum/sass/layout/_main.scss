@@ -57,6 +57,7 @@ main {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 .to-dos-item {
   display: inline-flex;
@@ -64,6 +65,10 @@ main {
 }
 .checker {
   margin-right: 1rem;
+  transition: all 0.35s;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .to-do-create {
   color: $color-area-background;
@@ -76,12 +81,12 @@ main {
   svg {
     border: 0.2rem solid $color-main-text;
     border-radius: 50%;
-    pointer-events: none;
     height: 3rem;
     width: 3rem;
     stroke: $color-main-text;
   }
   &:hover {
+    cursor: pointer;
     svg {
       border: 0.2rem solid $color-main-attract;
       stroke: $color-main-attract;
@@ -130,10 +135,10 @@ main {
     transform: translateX(50%);
     margin-bottom: 6rem;
   }
-  .add-new{
-    svg{
+  .add-new {
+    svg {
       height: 2.3rem;
-    width: 2.3rem;
+      width: 2.3rem;
     }
   }
 }

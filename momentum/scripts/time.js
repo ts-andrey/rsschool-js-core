@@ -36,6 +36,8 @@ function showTime() {
     storage.setItem('dayPart', dayPartsEng[2]);
     if (lang === 'ru') greetingTime.textContent = `Добрый ${dayPartsRu[2]}, `;
   }
+  if (userName.value === '' && lang === 'eng') userName.setAttribute('placeholder', 'Enter name');
+  if (userName.value === '' && lang === 'ru') userName.setAttribute('placeholder', 'Введите имя');
 
   setTimeout(showTime, 1000);
 }

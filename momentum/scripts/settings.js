@@ -154,7 +154,7 @@ function displayHandler() {
       greetItem.classList.contains('invisible')
     )
       infoItem.classList.add('invisible');
-    else infoItem.classList.remove('invisible');git
+    else infoItem.classList.remove('invisible');
   }
 
   showOptionsObject[this.getAttribute('data-name')] = this.checked;

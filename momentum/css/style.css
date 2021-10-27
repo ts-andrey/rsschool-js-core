@@ -294,6 +294,10 @@ header {
     width: 3rem;
     fill: #fff; }
 
+.control-bar {
+  display: flex;
+  flex-direction: column; }
+
 svg,
 path,
 polygon {
@@ -344,8 +348,8 @@ polygon {
   color: black;
   font-weight: bold;
   background: rgba(255, 255, 255, 0.4);
-  padding: 0.2rem;
-  border-radius: 3rem; }
+  padding: 0 1rem;
+  border-radius: 10rem; }
 
 .duration {
   width: 100%;
@@ -502,6 +506,28 @@ main {
   .checker:hover {
     cursor: pointer; }
 
+.to-do-text {
+  flex-grow: 1; }
+
+.to-do-delete {
+  transition: all 0.3s;
+  margin-right: 2rem;
+  display: flex; }
+  .to-do-delete:hover {
+    cursor: pointer;
+    transform: scale(0.9); }
+    .to-do-delete:hover path {
+      fill: #ff4901; }
+    .to-do-delete:hover polygon {
+      fill: #ff4901; }
+  .to-do-delete:active {
+    transform: scale(1.1); }
+  .to-do-delete svg {
+    pointer-events: none;
+    justify-self: flex-end;
+    width: 2rem;
+    fill: #fff; }
+
 .to-do-create {
   color: #000;
   display: flex;
@@ -566,6 +592,7 @@ footer {
   background-color: rgba(0, 0, 0, 0.1);
   padding: 2rem;
   transition: all 0.4s;
+  padding: 0.3rem 1rem;
   grid-row: 1;
   grid-column: 1;
   align-self: center;
@@ -573,6 +600,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 2rem;
   width: 30%;
   margin-bottom: 2%;
   z-index: 1; }
@@ -584,7 +612,8 @@ footer {
 
 .quote-new {
   transition: all 0.3s;
-  align-self: center; }
+  align-self: center;
+  margin-top: 1rem; }
   .quote-new:hover {
     cursor: pointer;
     transform: scale(0.92); }
@@ -597,6 +626,17 @@ footer {
   .quote-new svg {
     height: 3rem;
     width: 3rem; }
+
+.quote-text {
+  padding-top: 0.5rem; }
+
+.quote-author {
+  margin-top: 0.5rem;
+  color: black;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 0 1rem;
+  border-radius: 10rem; }
 
 .git-logo {
   border-radius: 3rem;

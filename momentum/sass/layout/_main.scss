@@ -70,6 +70,21 @@ main {
     cursor: pointer;
   }
 }
+.to-do-text {
+  flex-grow: 1;
+}
+.to-do-delete {
+  @include hover-svg-style(0.9, 1.1);
+  // padding: .5rem 1rem;
+  margin-right: 2rem;
+  display: flex;
+  svg {
+    pointer-events: none;
+    justify-self: flex-end;
+    width: 2rem;
+    fill: $color-main-text;
+  }
+}
 .to-do-create {
   color: $color-area-background;
   display: flex;

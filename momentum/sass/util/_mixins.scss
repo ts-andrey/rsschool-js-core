@@ -72,3 +72,11 @@
     transform: scale($max-scale);
   }
 }
+
+@mixin accent() {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 0 1rem;
+  border-radius: 10rem;
+}

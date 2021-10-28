@@ -15,8 +15,8 @@ if (!window.localStorage.getItem('language')) window.localStorage.setItem('langu
 const apiKey = '3a027a2e4377124ad65147909257e334';
 let cityName = window.localStorage.getItem('weatherCity');
 
-const weatherInfoDescrEng = ['temperature:', 'feels like:', 'cloudiness:', 'wind speed: ', 'humidity:'];
-const weatherInfoDescrRu = ['температура:', 'ощущается как:', 'облачность:', 'скорость ветра: ', 'влажность:'];
+const weatherInfoDescrEng = ['temperature:', 'feels like:', 'cloudiness:', 'wind speed: ', 'm/s', 'humidity:'];
+const weatherInfoDescrRu = ['температура:', 'ощущается как:', 'облачность:', 'скорость ветра: ', 'м/с', 'влажность:'];
 let descriptions = weatherInfoDescrEng;
 
 async function getWeather() {
@@ -40,9 +40,9 @@ async function getWeather() {
     if (data.wind.gust)
       weatherWind.textContent = `${descriptions[3]} ${Math.floor(data.wind.speed)} - ${Math.floor(
         data.wind.gust
-      )} (m/s)`;
-    else weatherWind.textContent = `${descriptions[3]} ${Math.floor(data.wind.speed)} (m/s)`;
-    weatherHumidity.textContent = `${descriptions[4]} ${data.main.humidity}%`;
+      )} ${descriptions[4]}`;
+    else weatherWind.textContent = `${descriptions[3]} ${Math.floor(data.wind.speed)} ${descriptions[4]}`;
+    weatherHumidity.textContent = `${descriptions[5]} ${data.main.humidity}%`;
   } else {
     const language = window.localStorage.getItem('language');
     weatherCurrent.classList.add('error');

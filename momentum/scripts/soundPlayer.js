@@ -42,6 +42,7 @@ let playingTrackName;
 let tracks;
 
 let curTrackNum = 0;
+let prevTrackNum = curTrackNum;
 let specificIcon;
 let lastSoundVal = 0;
 
@@ -88,13 +89,18 @@ function changeBarStatus(el) {
 function beforePlaying() {
   playingTrack.pause();
   specificIcon.innerHTML = playingTrack.paused ? iconPlay : iconPause;
-  tracks[curTrackNum].classList.remove('active');
+  if (prevTrackNum !== curTrackNum) tracks[prevTrackNum].classList.remove('active');
 }
 function checkTreckEnd() {
   if (playingTrack.currentTime >= playingTrack.duration) {
     beforePlaying();
-    if (curTrackNum + 1 > tracks.length - 1) curTrackNum = 0;
-    else curTrackNum += 1;
+    if (curTrackNum + 1 > tracks.length - 1) {
+      prevTrackNum = curTrackNum;
+      curTrackNum = 0;
+    } else {
+      prevTrackNum = curTrackNum;
+      curTrackNum += 1;
+    }
     setTrack();
     playTrack();
   }
@@ -160,6 +166,7 @@ function soundIconHandler() {
 function playTrack() {
   trackName.classList.remove('invisible');
   specificIcon.innerHTML = playingTrack.paused ? iconPlay : iconPause;
+  tracks[prevTrackNum].classList.remove('active');
   tracks[curTrackNum].classList.add('active');
   tracks[curTrackNum].scrollIntoView({ behavior: 'smooth', block: 'end' });
   trackName.textContent = playingTrackName.textContent.split('(')[0];
@@ -172,15 +179,25 @@ function playHandler() {
 }
 function playPrev() {
   beforePlaying();
-  if (curTrackNum - 1 < 0) curTrackNum = tracks.length - 1;
-  else curTrackNum -= 1;
+  if (curTrackNum - 1 < 0) {
+    prevTrackNum = curTrackNum;
+    curTrackNum = tracks.length - 1;
+  } else {
+    prevTrackNum = curTrackNum;
+    curTrackNum -= 1;
+  }
   setTrack();
   playTrack();
 }
 function playNext() {
   beforePlaying();
-  if (curTrackNum + 1 > tracks.length - 1) curTrackNum = 0;
-  else curTrackNum += 1;
+  if (curTrackNum + 1 > tracks.length - 1) {
+    prevTrackNum = curTrackNum;
+    curTrackNum = 0;
+  } else {
+    prevTrackNum = curTrackNum;
+    curTrackNum += 1;
+  }
   setTrack();
   playTrack();
 }
@@ -190,6 +207,7 @@ function playSpecificHandler() {
     else playTrack();
   } else {
     beforePlaying();
+    prevTrackNum = curTrackNum;
     curTrackNum = +this.getAttribute('data-number');
     setTrack();
     playTrack();

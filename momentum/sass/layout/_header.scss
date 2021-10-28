@@ -56,7 +56,7 @@ header {
     fill: $color-main-text;
   }
 }
-.control-bar{
+.control-bar {
   display: flex;
   flex-direction: column;
 }
@@ -79,16 +79,6 @@ polygon {
 
 .volume {
   width: 10rem;
-  &::-webkit-slider-thumb {
-    transition: all 0.3s;
-    -webkit-appearance: none;
-    cursor: pointer;
-    outline: 1px solid $color-area-background;
-    border-radius: 20%;
-    height: 2rem;
-    width: 0.9rem;
-    background: #fff;
-  }
 }
 
 .track-name {
@@ -101,9 +91,6 @@ polygon {
 .duration {
   width: 100%;
   margin: 1rem 0;
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-  }
 }
 .time-info {
   width: 100%;

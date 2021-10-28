@@ -18,6 +18,16 @@
   border: 1px solid $color-area-background;
   border-radius: 1rem;
   background: linear-gradient(to right, $color-main-attract 0%, $color-main-attract 50%, #c4c4c4 50.1%, #c4c4c4 100%);
+  &::-webkit-slider-thumb {
+    transition: all 0.3s;
+    -webkit-appearance: none;
+    cursor: pointer;
+    outline: 1px solid $color-area-background;
+    border-radius: 20%;
+    height: 2rem;
+    width: 0.9rem;
+    background: #fff;
+  }
   &:hover {
     cursor: pointer;
     &::-webkit-slider-thumb {

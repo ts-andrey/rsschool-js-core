@@ -324,14 +324,7 @@ polygon {
   border-radius: 1rem;
   background: linear-gradient(to right, #ff4901 0%, #ff4901 50%, #c4c4c4 50.1%, #c4c4c4 100%);
   height: 0.85rem; }
-  .bar:hover {
-    cursor: pointer; }
-    .bar:hover::-webkit-slider-thumb {
-      background: red; }
-
-.volume {
-  width: 10rem; }
-  .volume::-webkit-slider-thumb {
+  .bar::-webkit-slider-thumb {
     transition: all 0.3s;
     -webkit-appearance: none;
     cursor: pointer;
@@ -340,6 +333,13 @@ polygon {
     height: 2rem;
     width: 0.9rem;
     background: #fff; }
+  .bar:hover {
+    cursor: pointer; }
+    .bar:hover::-webkit-slider-thumb {
+      background: red; }
+
+.volume {
+  width: 10rem; }
 
 .track-name {
   width: fit-content;
@@ -354,8 +354,6 @@ polygon {
 .duration {
   width: 100%;
   margin: 1rem 0; }
-  .duration::-webkit-slider-thumb {
-    -webkit-appearance: none; }
 
 .time-info {
   width: 100%;

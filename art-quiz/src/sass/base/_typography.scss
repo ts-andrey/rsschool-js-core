@@ -1,0 +1,12 @@
+$header-font-family: 'Forum', cursive;
+$plain-text-font-family: 'Roboto', sans-serif;
+$plain-text-font-family-light: 'Roboto Slab', serif;
+
+h1, h2 {
+  font-family: $header-font-family;
+  font-size:8rem;
+  line-height: 9rem;
+  letter-spacing: .5rem;
+  text-transform: uppercase;
+  position: relative;
+}

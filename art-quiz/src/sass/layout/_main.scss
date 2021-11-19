@@ -1,0 +1,57 @@
+@import '../util/variables';
+
+main {
+  width: 100%;
+  flex-grow: 5;
+  background: top / 80% no-repeat url('../assets/background.webp');
+  background-position-y: 10%;
+  color: $color-text-default;
+}
+
+.menu {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+
+  &-list {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+  }
+  li {
+    width: 18rem;
+    &:last-of-type {
+      margin-left: 3rem;
+    }
+  }
+}
+
+.art-logo {
+  height: 18rem;
+  display: flex;
+  justify-content: center;
+}
+h1 {
+  margin-top: 1rem;
+  margin-left: 2rem;
+  font-size: 6rem;
+}
+
+.circle {
+  position: absolute;
+  margin-left: 6rem;
+  left: 1rem;
+
+  &-c1,
+  &-c2 {
+    position: absolute;
+    border-radius: 50%;
+    width: 9rem;
+    height: 9rem;
+    border: 1.5px solid $color-text-default;
+  }
+  &-c2 {
+    left: 5rem;
+  }
+}

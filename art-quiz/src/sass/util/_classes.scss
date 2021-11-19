@@ -1,0 +1,51 @@
+@import './variables';
+
+.wrapper {
+  height: inherit;
+  margin: 1rem 3rem;
+  // background-color: pink;
+}
+
+.container {
+  padding: 1rem;
+}
+
+.ceter {
+  margin: 0 auto;
+}
+.center_x {
+  display: flex;
+  justify-content: center;
+}
+.center_xy {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.btn {
+  border: 1.5px solid $color-text-default;
+  color: $color-text-default;
+  width: fit-content;
+  border-radius: 5rem;
+  padding: 1rem 0;
+  text-align: center;
+  transition: all 0.4s;
+  user-select: none;
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+    background-color: $color-link-hover;
+    border: 1.5px solid $color-text-link;
+  }
+  &:active {
+    background-color: darken($color-link-hover, 30%);
+    border: 1.5px solid $color-text-link;
+  }
+}
+
+.flex-col {
+  display: flex;
+  flex-flow: column;
+}

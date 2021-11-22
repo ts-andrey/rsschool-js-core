@@ -1,11 +1,36 @@
 @import '../util/variables';
+@import '../util/mixins';
 
 main {
   width: 100%;
   flex-grow: 5;
-  background: top / 80% no-repeat url('../assets/background.webp');
-  background-position-y: 10%;
   color: $color-text-default;
+}
+
+.container {
+  &-question {
+    z-index: 1;
+    display: grid;
+    grid-row-gap: 3rem;
+  }
+  &-result {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 2rem;
+  }
+  &-category {
+    display: grid;
+    grid-gap: 1rem 2rem;
+    grid-template-columns: repeat(6, auto);
+    grid-template-rows: repeat(2, auto);
+
+    li {
+      pointer-events: none;
+    }
+  }
 }
 
 .menu {
@@ -25,33 +50,336 @@ main {
       margin-left: 3rem;
     }
   }
+  @include art-logo(1);
+}
+.art-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10rem;
 }
 
-.art-logo {
-  height: 18rem;
+.configurator {
+  position: absolute;
+  top: 1.5rem;
+  right: 3rem;
+
+  &-icon {
+    height: 3rem;
+    width: fit-content;
+    transition: all 0.5s;
+
+    path {
+      fill: #fff;
+    }
+
+    &:hover {
+      transform: rotate(240deg);
+    }
+  }
+}
+
+// QUESTION SECTION ****************************************************
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  li {
+    display: flex;
+
+    &:nth-of-type(2) {
+      width: 85%;
+    }
+  }
+}
+
+.exit {
+  height: 2rem;
+  width: fit-content;
+  path {
+    fill: #fff;
+  }
+}
+.timelimit {
+  width: 100%;
+}
+
+.question {
+  text-align: center;
+}
+
+.question-img-container {
+  position: relative;
+}
+
+.questions-progress {
+  width: 100%;
+  position: absolute;
+  bottom: 2rem;
   display: flex;
   justify-content: center;
 }
-h1 {
-  margin-top: 1rem;
-  margin-left: 2rem;
-  font-size: 6rem;
+.question-number {
+  z-index: 2;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  background: rgb(192, 192, 192);
+  margin: 0 0.6rem;
 }
 
-.circle {
-  position: absolute;
-  margin-left: 6rem;
-  left: 1rem;
+.question-img {
+  max-width: 70vw;
+  max-height: 60vh;
+}
 
-  &-c1,
-  &-c2 {
-    position: absolute;
-    border-radius: 50%;
-    width: 9rem;
-    height: 9rem;
-    border: 1.5px solid $color-text-default;
+.answers {
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-row-gap: 1rem;
+  grid-column-gap: 1rem;
+  grid-template-rows: repeat(2, auto);
+}
+
+.text-answer {
+  z-index: inherit;
+  width: 95%;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  padding: 1rem 0;
+  border: 1px solid #fff;
+  border-radius: 5rem;
+}
+
+.img-answer {
+  max-width: 25rem;
+  pointer-events: none;
+}
+
+.answer-option {
+  transition: all 0.3s;
+  &-img {
+    &:hover {
+      transform: scale(0.95);
+    }
   }
-  &-c2 {
-    left: 5rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// RESULT SECTION *******************************************************
+.result {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.container-result {
+  padding: 2rem;
+  max-width: 40rem;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  color: #000;
+  li {
+    &:first-of-type {
+      margin-top: 0;
+    }
+    margin-top: 1rem;
+  }
+}
+
+.result-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    max-width: 100%;
+    border-radius: 2rem;
+  }
+}
+.result-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  svg {
+    height: 3rem;
+    width: fit-content;
+    fill: #000;
+  }
+}
+.result-image-name {
+  font-size: 2.5rem;
+}
+.result-image-author {
+  font-size: 1.8rem;
+  font-style: italic;
+}
+.result-button-option {
+  padding: 0.2rem 2rem !important;
+  border: 1.5px solid #000 !important;
+  color: #000 !important;
+}
+.btn-indent {
+  margin-right: 1rem;
+}
+.result-header {
+  font-size: 2.5rem;
+}
+
+// SETTINGS SECTION *****************************************************
+.top {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  padding: 0 3rem;
+
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+  svg {
+    height: 2.5rem;
+  }
+  p {
+    user-select: none;
+    margin-left: 0.5rem;
+  }
+}
+
+.settings {
+  li {
+    margin-bottom: 3rem;
+  }
+  h3 {
+    margin-bottom: 1rem;
+  }
+}
+
+.volume-bar {
+  width: 30rem;
+  margin-bottom: 1rem;
+}
+.sound {
+  display: flex;
+  justify-content: space-between;
+  svg {
+    height: 3rem;
+    width: min-content;
+    path {
+      fill: #fff;
+    }
+  }
+}
+.switcher-container {
+  display: flex;
+}
+.time-switcher {
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  height: 2.2rem;
+  width: 6rem;
+  border-radius: 3rem;
+  background: $color-link-hover;
+}
+.switcher {
+  height: 2rem;
+  width: 2rem;
+  margin: 0 0.1rem;
+  border-radius: 50%;
+  background: #000;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.time-btn {
+  height: 2.5rem;
+  width: 2.5rem;
+  font-size: 2rem;
+  text-align: center;
+  border-radius: 50%;
+  transition: 0.3s;
+  &:hover {
+    cursor: pointer;
+    background: $color-link-hover;
+  }
+  &:active {
+    background: darken($color-link-hover, 40%);
+  }
+}
+.time-amount {
+  margin: 0 0.7rem;
+}
+
+.desigion {
+  display: flex;
+  justify-content: end;
+}
+.settings-save-option {
+  padding: 0.2rem 1.5rem !important;
+}
+.save {
+  margin-left: 1.5rem;
+}
+
+// CATEGORIES *******************************************************
+
+.category-header {
+  position: absolute;
+  top: 1.5rem;
+  left: 4rem;
+
+  // width: 100vw;
+  display: flex;
+  align-items: center;
+
+  li {
+    width: fit-content;
+  }
+  @include art-logo(0.4);
+}
+.category-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 5rem;
+}
+.card {
+  transition: all 0.3s;
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.5rem);
+  }
+}
+.img-category {
+  width: 15rem;
+}
+.home {
+  margin-left: 4rem;
+  border: 1px;
+  transition: all 0.3s;
+  &:hover {
+    cursor: pointer;
+    color: $color-link-hover;
   }
 }

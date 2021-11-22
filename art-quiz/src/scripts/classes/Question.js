@@ -8,4 +8,4 @@ class Question {
   getQuestion() {}
 }
 
-module.exports.Question = Question;
+module.exports.QuestionInfo = Question;

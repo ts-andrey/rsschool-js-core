@@ -5,7 +5,6 @@ class Settings {
     this.time = 30;
     this.volume = 100;
   }
-
 }
 
-module.exports.Settings = Settings;
+module.exports.SettingsStore = Settings;

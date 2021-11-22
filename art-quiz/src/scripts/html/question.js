@@ -70,7 +70,15 @@ class Question {
   answerSeeker(handler) {
     this.answers = document.querySelectorAll('.answer-option');
     this.answers.forEach(el => {
-      el.addEventListener('click', ev => handler({ event: ev, element: el, answer: this.data[4] }));
+      el.addEventListener('click', ev =>
+        handler({
+          event: ev,
+          element: el,
+          answer: this.data[4],
+          answerData: this.data[5],
+          imgPath: this.data[1],
+        })
+      );
     });
   }
   closeSeeker(handler) {

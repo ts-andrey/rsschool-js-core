@@ -38,12 +38,12 @@ const iconEndBad = `<svg width="189" height="179" viewBox="0 0 189 179" fill="no
 const resultBetween = data => {
   const result = `
 <li class="result-image">
-  <img src="${data[0]}" alt="result image" />
-  <span class="result-icon">${data[1] === 'right' ? iconRight : iconWrong}</span>
+  <img src="${data[1]}" alt="result image" />
+  <span class="result-icon">${data[0] === true ? iconRight : iconWrong}</span>
 </li>
 <li class="result-image-name">${data[2]}</li>
 <li class="result-image-author">${data[3]}</li>
-<li class="btn result-button">Next</li>`;
+<li class="btn result-button-option">Next</li>`;
   return result;
 };
 const resultFinal = (type, data) => {
@@ -89,8 +89,8 @@ class Result {
     this.el.innerHTML = content(this.type, this.data);
     if (this.type === 'between') {
       const iconWrapper = document.querySelector('.result-icon');
-      if (this.data[1] === 'right') iconWrapper.style.background = '#1fbb00';
-      if (this.data[1] === 'wrong') iconWrapper.style.background = '#ff0000';
+      if (this.data[0] === true) iconWrapper.style.background = '#1fbb00';
+      if (this.data[0] === false) iconWrapper.style.background = '#ff0000';
     }
   }
   seeker(handler) {

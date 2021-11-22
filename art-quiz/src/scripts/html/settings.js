@@ -6,10 +6,11 @@ const soundHigh = `
 `;
 
 const content = `
-<div class="container">
+<div class="container-settings">
+<div class="coverer"></div>
 <ul class="top">
-  <li><svg baseProfile="tiny" height="24px" id="Layer_1" version="1.2" viewBox="0 0 24 24" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M12,9.059V6.5c0-0.256-0.098-0.512-0.293-0.708C11.512,5.597,11.256,5.5,11,5.5s-0.512,0.097-0.707,0.292L4,12l6.293,6.207  C10.488,18.402,10.744,18.5,11,18.5s0.512-0.098,0.707-0.293S12,17.755,12,17.5v-2.489c2.75,0.068,5.755,0.566,8,3.989v-1  C20,13.367,16.5,9.557,12,9.059z"/></svg><p>Return</p></li>
-  <li><svg data-name="Livello 1" id="Livello_1" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><title/><path d="M64,0a64,64,0,1,0,64,64A64.07,64.07,0,0,0,64,0Zm0,122a58,58,0,1,1,58-58A58.07,58.07,0,0,1,64,122Z"/><path d="M92.12,35.79a3,3,0,0,0-4.24,0L64,59.75l-23.87-24A3,3,0,0,0,35.88,40L59.76,64,35.88,88a3,3,0,0,0,4.25,4.24L64,68.25l23.88,24A3,3,0,0,0,92.13,88L68.24,64,92.13,40A3,3,0,0,0,92.12,35.79Z"/></svg></li>
+  <li class="return close-settings"><svg baseProfile="tiny" height="24px" id="Layer_1" version="1.2" viewBox="0 0 24 24" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M12,9.059V6.5c0-0.256-0.098-0.512-0.293-0.708C11.512,5.597,11.256,5.5,11,5.5s-0.512,0.097-0.707,0.292L4,12l6.293,6.207  C10.488,18.402,10.744,18.5,11,18.5s0.512-0.098,0.707-0.293S12,17.755,12,17.5v-2.489c2.75,0.068,5.755,0.566,8,3.989v-1  C20,13.367,16.5,9.557,12,9.059z"/></svg><p>Return</p></li>
+  <li class="close-settings"><svg data-name="Livello 1" id="Livello_1" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><title/><path d="M64,0a64,64,0,1,0,64,64A64.07,64.07,0,0,0,64,0Zm0,122a58,58,0,1,1,58-58A58.07,58.07,0,0,1,64,122Z"/><path d="M92.12,35.79a3,3,0,0,0-4.24,0L64,59.75l-23.87-24A3,3,0,0,0,35.88,40L59.76,64,35.88,88a3,3,0,0,0,4.25,4.24L64,68.25l23.88,24A3,3,0,0,0,92.13,88L68.24,64,92.13,40A3,3,0,0,0,92.12,35.79Z"/></svg></li>
 </ul>
   <ul class="settings">
     <li>
@@ -44,24 +45,31 @@ const content = `
 
 class Settings {
   constructor() {
-    this.el = document.querySelector('.settings-content');
+    this.el = document.querySelector('.main-content');
   }
   render() {
     this.el.innerHTML = content;
   }
+  seeker(handler) {
+    this.icon = document.querySelector('.configurator');
+    this.icon.addEventListener('click', ev => handler({ el: this.icon }));
+  }
   optionSeeker(handler) {
     this.options = document.querySelectorAll('.settings-save-option');
-    return handler(this.options);
   }
   volumeSeeker(handler) {
     this.volumeBar = document.querySelector('.volume-bar');
-    return handler(this.volumeBar);
   }
   timeSeeker(handler) {
     this.timer = document.querySelector('.timer');
     this.timerSwitcher = document.querySelector('.time-switcher');
     this.timeAmount = document.querySelector('.time-amount');
-    return handler(this.timer, this.timerSwitcher, this.timeAmount);
+  }
+  closeSeeker(handler) {
+    this.closeElements = document.querySelectorAll('.close-settings');
+    this.closeElements.forEach(el => {
+      el.addEventListener('click', ev => handler({ event: ev, element: el }));
+    });
   }
 }
 

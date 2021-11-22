@@ -14,6 +14,7 @@ import { Settings } from './scripts/html/settings.js';
 import data from './assets/data/imagesEng';
 
 const modes = ['artists', 'imgs'];
+// const settingsElement = document.querySelector('.configurator');
 
 const game = new Game();
 game.data = data;
@@ -38,10 +39,7 @@ const categoryImgs = new Categories(dataCategories.slice(12, 24));
 let category;
 const home = new Home();
 
-const result = new Result('bad', ['./assets/data/img/3.webp', 'right', 'image name', 'image author']);
 const settings = new Settings();
-
-home.render();
 
 // for random numbers
 const getRandomBetween = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
@@ -90,7 +88,7 @@ const prepareQuestion = (type, num) => {
   const answers = prepareAnswer(type, num);
   questionData.push(answers[0]);
   questionData.push(answers[1]);
-  console.log(questionData);
+  questionData.push(data[num]);
   return questionData;
 };
 
@@ -100,7 +98,15 @@ function homeHandler() {
 }
 
 function answerHandler(obj) {
-  console.log(+obj.element.getAttribute('data-num') === obj.answer);
+  const isRight = +obj.element.getAttribute('data-num') === obj.answer;
+  console.log(obj);
+  const result = new Result('between', [
+    isRight,
+    obj.imgPath,
+    obj.answerData.name,
+    `${obj.answerData.author}, ${obj.answerData.year}`,
+  ]);
+  result.render();
 }
 
 function categoryHandler(obj) {
@@ -126,12 +132,18 @@ function categoryRenderer(obj) {
   category.render();
   category.seeker({ home: homeHandler, category: categoryHandler });
 }
+
+function closeSettingsHandler() {
+  home.render();
+  home.seeker(categoryRenderer);
+}
+
+function settingsHandler() {
+  settings.render();
+  settings.closeSeeker(closeSettingsHandler);
+}
+
+home.render();
 home.seeker(categoryRenderer);
 
-// async function controller() {}
-
-// async function start() {
-//   await controller();
-// }
-
-// start();
+settings.seeker(settingsHandler);

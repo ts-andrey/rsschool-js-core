@@ -22,7 +22,9 @@ button {
 }
 
 svg {
+  transition: all 0.3s;
   path {
+    transition: all 0.3s;
     pointer-events: none;
   }
   &:hover {

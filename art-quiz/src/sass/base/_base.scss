@@ -1,0 +1,45 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+ul,
+li {
+  list-style: none;
+  font-family: inherit;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+}
+button {
+  border: none;
+  outline: none;
+}
+
+svg {
+  path {
+    pointer-events: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+html {
+  height: 100%;
+  font-size: 10px;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+  position: relative;
+  height: inherit;
+  font-size: 1.6rem;
+}

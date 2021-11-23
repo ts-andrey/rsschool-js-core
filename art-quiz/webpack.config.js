@@ -26,7 +26,7 @@ const cssLoaders = newLoader => {
     {
       loader: MiniCssExtractPlugin.loader,
     },
-    // 'style-loader',
+    // 'style-loader', // for inserting styles directly in html
     'css-loader',
   ];
   if (newLoader) loaders.push(newLoader);
@@ -76,11 +76,11 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|svg|giv|webp)$/,
-        use: ['file-loader'],
+        type: 'asset', //new file-loader replace,
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,
-        use: ['file-loader'],
+        type: 'asset',
       },
       {
         test: /\.css$/i,

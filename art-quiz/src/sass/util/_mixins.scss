@@ -1,0 +1,28 @@
+@mixin art-logo($size: 1) {
+  .art-logo {
+    position: relative;
+    height: $size * 9rem;
+    width: $size * 26rem;
+  }
+  h1 {
+    position: absolute;
+    left: $size * 3rem;
+    top: $size * 1rem;
+    font-size: $size * 6rem;
+  }
+
+  .circle {
+    &-c1,
+    &-c2 {
+      left: $size * 1rem;
+      position: absolute;
+      border-radius: 50%;
+      width: $size * 9rem;
+      height: $size * 9rem;
+      border: 1.5px solid $color-text-default;
+    }
+    &-c2 {
+      left: $size * 6rem;
+    }
+  }
+}

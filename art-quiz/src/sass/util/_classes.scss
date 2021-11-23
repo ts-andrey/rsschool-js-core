@@ -1,0 +1,60 @@
+@import './variables';
+
+.wrapper {
+  height: inherit;
+  margin: 1rem 3rem;
+  // background-color: pink;
+}
+
+.container {
+  padding: 1rem;
+}
+
+.ceter {
+  margin: 0 auto;
+}
+.center_x {
+  display: flex;
+  justify-content: center;
+}
+.center_xy {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.btn {
+  z-index: 1;
+  border: 1.5px solid $color-text-default;
+  color: $color-text-default;
+  border-radius: 5rem;
+  padding: 1rem 0;
+  text-align: center;
+  transition: all 0.4s;
+  user-select: none;
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+    background-color: $color-link-hover;
+    border: 1.5px solid $color-text-link;
+  }
+  &:active {
+    background-color: darken($color-link-hover, 30%);
+    border: 1.5px solid $color-text-link;
+  }
+}
+
+.flex-col {
+  display: flex;
+  flex-flow: column;
+}
+
+.bar{
+  transition: all 0.3s;
+  -webkit-appearance: none;
+  border: 1px solid #000;
+  border-radius: 1rem;
+  background: linear-gradient(to right, #ff4901 0%, #ff4901 50%, #c4c4c4 50.1%, #c4c4c4 100%);
+  height: 0.7rem;
+}

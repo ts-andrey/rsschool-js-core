@@ -1,10 +1,10 @@
 import './sass/style.scss';
 
-import { Game } from './scripts/classes/Game';
-import { QuestionInfo } from './scripts/classes/Question';
-import { Quiz } from './scripts/classes/Quiz';
-import { SettingsStore } from './scripts/classes/Settings';
+import { Game } from './scripts/classes/Game.js';
+import { Quiz } from './scripts/classes/Quiz.js';
+import { Config } from './scripts/classes/Config.js';
 
+import { Category } from './scripts/html/category.js';
 import { Categories } from './scripts/html/categories.js';
 import { Home } from './scripts/html/home.js';
 import { Question } from './scripts/html/question.js';
@@ -16,18 +16,18 @@ import data from './assets/data/imagesEng';
 const modes = ['artists', 'imgs'];
 const stages = { start: 'start', between: 'between', end: ['bad', 'normal', 'perfect'] };
 
+const gameProgress = JSON.parse(window.localStorage.getItem('progress'));
+console.log(gameProgress);
 const game = new Game(modes[0]);
-game.data = data;
+const quiz = new Quiz(data, gameProgress);
 game.progress = [];
 game.data = [];
-const questionInfo = new QuestionInfo();
-const quiz = new Quiz();
-const setStore = new SettingsStore();
+const config = new Config();
 
 const dataCategories = [];
-for (let i = 0, j = 0; i < data.length; i += 10, j++) {
+for (let i = 0, j = 0; i < quiz.data.length; i += 10, j++) {
   const tempObj = {};
-  tempObj.src = `./assets/data/img/${data[i].imageNum}.webp`;
+  tempObj.src = `./assets/data/img/${quiz.data[i].imageNum}.webp`;
   if (j >= 12) tempObj.type = modes[1];
   else tempObj.type = modes[0];
   dataCategories.push(tempObj);
@@ -36,8 +36,8 @@ for (let i = 0, j = 0; i < data.length; i += 10, j++) {
 // menu.render();
 
 // check rendering
-const categoryArtists = new Categories(dataCategories.slice(0, 12));
-const categoryImgs = new Categories(dataCategories.slice(12, 24));
+const categoryArtists = new Categories(dataCategories.slice(0, 12), gameProgress.artCategory);
+const categoryImgs = new Categories(dataCategories.slice(12, 24), gameProgress.imgCategory);
 let category;
 const home = new Home();
 
@@ -115,6 +115,15 @@ function resultNextHandler() {
   question.answerSeeker(answerHandler);
 }
 
+const setNewGame = () => {
+  if (game.gameType === modes[0]) quiz.progress.artCategory[game.category] = game.progress;
+  if (game.gameType === modes[1]) quiz.progress.imgCategory[game.category] = game.progress;
+  window.localStorage.setItem('progress', JSON.stringify(quiz.progress));
+  console.log(quiz);
+  game.progress = [];
+  game.data = [];
+};
+
 function resultHomeHandler() {
   const element = document.querySelector('.game');
   element.innerHTML = '';
@@ -124,6 +133,27 @@ function resultHomeHandler() {
   setNewGame();
 }
 
+function categoryHandler(obj) {
+  let startPosition = +obj.element.getAttribute('data-category-num');
+  const categoryType = obj.element.getAttribute('data-category-type');
+  let categoryData = [];
+  if (categoryType === modes[0]) {
+    for (let i = 0; i < 10; i++) {
+      const element = quiz.data[startPosition + i];
+      categoryData.push(element);
+    }
+  }
+  if (categoryType === modes[1]) {
+    for (let i = 0; i < 10; i++) {
+      const element = quiz.data[startPosition + 120 + i];
+      categoryData.push(element);
+    }
+  }
+  const category = new Category(categoryData);
+  category.render();
+  category.seeker(homeHandler);
+}
+
 function resultNewHandler() {
   const element = document.querySelector('.game');
   element.innerHTML = '';
@@ -131,7 +161,7 @@ function resultNewHandler() {
   if (game.gameType === modes[0]) category = categoryArtists;
   if (game.gameType === modes[1]) category = categoryImgs;
   category.render();
-  category.seeker({ home: homeHandler, category: categoryHandler });
+  category.seeker({ home: homeHandler, categoryPlay: categoryPlayHandler, category: categoryHandler });
   setNewGame();
 }
 
@@ -140,11 +170,6 @@ function resultRepeatHandler() {
   element.innerHTML = '';
   setNewGame();
 }
-
-const setNewGame = () => {
-  game.progress = [];
-  game.data = [];
-};
 
 function answerHandler(obj) {
   const isRight = +obj.element.getAttribute('data-num') === obj.answer;
@@ -166,29 +191,30 @@ function answerHandler(obj) {
   ]);
   result.render();
   if (currentStage === stages.between) {
-    game.playsound(isRight, 1);
+    game.playsound(isRight, config.volume);
     result.seekerNext(resultNextHandler);
   }
   if (currentStage === stages.end[0]) {
-    game.playsound(stages.end[0], 1);
+    game.playsound(stages.end[0], config.volume);
     result.seekerHome(resultHomeHandler);
     result.seekerRepeat(resultRepeatHandler);
   }
   if (currentStage === stages.end[1]) {
-    game.playsound(stages.end[1], 1);
+    game.playsound(stages.end[1], config.volume);
     result.seekerHome(resultHomeHandler);
     result.seekerNew(resultNewHandler);
   }
   if (currentStage === stages.end[2]) {
-    game.playsound(stages.end[2]);
+    game.playsound(stages.end[2], config.volume);
     result.seekerNew(resultNewHandler);
   }
 }
 
-function categoryHandler(obj) {
+function categoryPlayHandler(obj) {
   const type = obj.element.getAttribute('data-category-type');
   if (game.gameType !== type) game.gameType = type;
   let num = +obj.element.getAttribute('data-category-num');
+  game.category = num / 10;
   if (type === modes[0]) {
   }
   if (type === modes[1]) {
@@ -197,7 +223,7 @@ function categoryHandler(obj) {
 
   const question = new Question(type, prepareQuestion(type, num), true);
   game.isStarted = true;
-  game.playsound(stages.start, 1);
+  game.playsound(stages.start, config.volume);
   game.data.push(num);
 
   question.render();
@@ -208,7 +234,7 @@ function categoryRenderer(obj) {
   if (obj.element.getAttribute('data-type') === modes[0]) category = categoryArtists;
   else if (obj.element.getAttribute('data-type') === modes[1]) category = categoryImgs;
   category.render();
-  category.seeker({ home: homeHandler, category: categoryHandler });
+  category.seeker({ home: homeHandler, categoryPlay: categoryPlayHandler, category: categoryHandler });
 }
 
 function closeSettingsHandler() {

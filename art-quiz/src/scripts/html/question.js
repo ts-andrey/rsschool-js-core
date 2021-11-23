@@ -64,8 +64,19 @@ class Question {
     const backgroundElement = document.querySelector('main');
     backgroundElement.style.background = '#000';
     this.el.innerHTML = content(this.type, this.data, this.isTimer);
-    const progress = document.querySelectorAll('.question-number');
-    if (this.type === 'artists') for (let i = 0; i < this.data[2]; i++) progress[i].style.background = `#ff4901`;
+    const progress = this.data[2];
+    const elements = document.querySelectorAll('.question-number');
+    if (this.type === 'artists')
+      for (let i = 0; i < progress.length; i++) {
+        if (progress[i] === true) {
+          elements[i].style.background = `#ff4901`;
+          elements[i].style.border = `.1rem solid #000`;
+        }
+        if (progress[i] === false) {
+          elements[i].style.background = `#000`;
+          elements[i].style.border = `.1rem solid #fff`;
+        }
+      }
   }
   answerSeeker(handler) {
     this.answers = document.querySelectorAll('.answer-option');

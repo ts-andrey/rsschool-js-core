@@ -47,7 +47,6 @@ const resultBetween = data => {
   return result;
 };
 const resultFinal = (type, data) => {
-  console.log(data);
   let fillData = [];
   if (type === 'greit') {
     fillData[0] = iconEndGreit;
@@ -94,26 +93,29 @@ class Result {
       if (this.data[0] === false) iconWrapper.style.background = '#ff0000';
     }
   }
-  seeker({ next: nextHandler, home: homeHandler, new: newHandler, repeat: repeatHandler }) {
-    try {
-      this.btnNext = document.querySelector('.btn-next');
-      this.btnHome = document.querySelector('.btn-home');
-      this.btnNew = document.querySelector('.btn-new');
-      this.btnRepeat = document.querySelector('.btn-repeat');
-
-      this.btnNext.addEventListener('click', ev => nextHandler({ event: ev, element: this.btnNext, content: this.el }));
-      this.btnHome.addEventListener('click', ev => homeHandler({ event: ev, element: this.btnHome, content: this.el }));
-      this.btnNew.addEventListener('click', ev =>
-        newHandler({
-          event: ev,
-          element: this.btnNew,
-          content: this.el,
-        })
-      );
-      this.btnRepeat.addEventListener('click', ev =>
-        repeatHandler({ event: ev, element: this.btnRepeat, content: this.el })
-      );
-    } catch (error) {}
+  seekerNext(nextHandler) {
+    this.btnNext = document.querySelector('.btn-next');
+    this.btnNext.addEventListener('click', ev => nextHandler({ event: ev, element: this.btnNext, content: this.el }));
+  }
+  seekerHome(homeHandler) {
+    this.btnHome = document.querySelector('.btn-home');
+    this.btnHome.addEventListener('click', ev => homeHandler({ event: ev, element: this.btnHome, content: this.el }));
+  }
+  seekerNew(newHandler) {
+    this.btnNew = document.querySelector('.btn-new');
+    this.btnNew.addEventListener('click', ev =>
+      newHandler({
+        event: ev,
+        element: this.btnNew,
+        content: this.el,
+      })
+    );
+  }
+  seekerRepeat(repeatHandler) {
+    this.btnRepeat = document.querySelector('.btn-repeat');
+    this.btnRepeat.addEventListener('click', ev =>
+      repeatHandler({ event: ev, element: this.btnRepeat, content: this.el })
+    );
   }
 }
 

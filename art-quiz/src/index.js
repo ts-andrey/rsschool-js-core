@@ -87,7 +87,7 @@ const prepareQuestion = (type, num) => {
   }
   let progress;
   try {
-    progress = game.data.length;
+    progress = game.progress;
   } catch (error) {}
   questionData.push(`./assets/data/img/${num}.webp`);
   questionData.push(progress ? progress : 0);
@@ -121,6 +121,7 @@ function resultHomeHandler() {
 
   home.render();
   home.seeker(categoryRenderer);
+  setNewGame();
 }
 
 function resultNewHandler() {
@@ -131,43 +132,57 @@ function resultNewHandler() {
   if (game.gameType === modes[1]) category = categoryImgs;
   category.render();
   category.seeker({ home: homeHandler, category: categoryHandler });
+  setNewGame();
 }
 
 function resultRepeatHandler() {
   const element = document.querySelector('.game');
   element.innerHTML = '';
+  setNewGame();
 }
+
+const setNewGame = () => {
+  game.progress = [];
+  game.data = [];
+};
 
 function answerHandler(obj) {
   const isRight = +obj.element.getAttribute('data-num') === obj.answer;
-  if (isRight) game.progress.push(isRight);
+  game.progress.push(isRight);
   let currentStage;
+  const rightAnsCount = game.progress.filter(el => el === true).length;
   if (game.data.length <= 9) currentStage = stages.between;
   else {
-    if (game.progress.length === 0) currentStage = stages.end[0];
-    if (game.progress.length > 0 && game.progress.length < 10) currentStage = stages.end[1];
-    if (game.progress.length === 10) currentStage = stages.end[2];
+    if (rightAnsCount === 0) currentStage = stages.end[0];
+    if (rightAnsCount > 0 && rightAnsCount < 10) currentStage = stages.end[1];
+    if (rightAnsCount === 10) currentStage = stages.end[2];
   }
   const result = new Result(currentStage, [
     isRight,
     obj.imgPath,
     obj.answerData.name,
     `${obj.answerData.author}, ${obj.answerData.year}`,
-    `${game.progress.length}/10`,
+    `${rightAnsCount}/10`,
   ]);
   result.render();
-  if (!game.isEnded) game.playsound(isRight, 1);
-  if (game.isEnded) {
-    if (game.progress.length === 0) game.playsound(stages.end[0]);
-    if (game.progress.length > 0 && game.progress.length < 10) game.playsound(stages.end[1]);
-    if (game.progress.length === 10) game.playsound(stages.end[2]);
+  if (currentStage === stages.between) {
+    game.playsound(isRight, 1);
+    result.seekerNext(resultNextHandler);
   }
-  result.seeker({
-    home: resultHomeHandler,
-    next: resultNextHandler,
-    new: resultNewHandler,
-    repeat: resultRepeatHandler,
-  });
+  if (currentStage === stages.end[0]) {
+    game.playsound(stages.end[0], 1);
+    result.seekerHome(resultHomeHandler);
+    result.seekerRepeat(resultRepeatHandler);
+  }
+  if (currentStage === stages.end[1]) {
+    game.playsound(stages.end[1], 1);
+    result.seekerHome(resultHomeHandler);
+    result.seekerNew(resultNewHandler);
+  }
+  if (currentStage === stages.end[2]) {
+    game.playsound(stages.end[2]);
+    result.seekerNew(resultNewHandler);
+  }
 }
 
 function categoryHandler(obj) {

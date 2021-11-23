@@ -37,8 +37,8 @@ const content = `
     </li>
   </ul>
   <ul class="desigion">
-    <li data-type="default" class="default settings-save-option btn">Default</li>
-    <li data-type="save" class="save settings-save-option btn">Save</li>
+    <li class="default settings-save-option btn">Default</li>
+    <li class="save settings-save-option btn">Save</li>
   </ul>
 </div>
 `;
@@ -56,26 +56,15 @@ class Settings {
   }
   optionSeeker(handler) {
     this.options = document.querySelectorAll('.settings-save-option');
-    this.options.forEach(el => {
-      el.addEventListener('click', ev => handler({ event: ev, element: el }));
-    });
   }
   volumeSeeker(handler) {
     this.volumeBar = document.querySelector('.volume-bar');
-    this.volumeBar.addEventListener('change', ev => handler({ event: ev, element: this.volumeBar }));
   }
-  timeSeeker({ timer: timeHandler, timeSwither: timeSwitherHandler, timeAmount: timeAmountHandler }) {
+  timeSeeker(handler) {
     this.timer = document.querySelector('.timer');
     this.timerSwitcher = document.querySelector('.time-switcher');
     this.timeAmount = document.querySelector('.time-amount');
-
-    this.timer.addEventListener('click', ev => timeHandler({ event: ev, element: this.timer }));
-
-    this.timerSwitcher.addEventListener('click', ev => timeSwitherHandler({ event: ev, element: this.timerSwitcher }));
-
-    this.timeAmount.addEventListener('click', ev => timeAmountHandler({ event: ev, element: this.timeAmount }));
   }
-  
   closeSeeker(handler) {
     this.closeElements = document.querySelectorAll('.close-settings');
     this.closeElements.forEach(el => {

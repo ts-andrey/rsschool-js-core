@@ -1,10 +1,10 @@
-class Config {
+class Settings {
   constructor() {
     this.isMute = false;
     this.isTimerOn = false;
     this.time = 30;
-    this.volume = 1;
+    this.volume = 100;
   }
 }
 
-module.exports.Config = Config;
+module.exports.SettingsStore = Settings;

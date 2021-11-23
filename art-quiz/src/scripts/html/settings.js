@@ -15,7 +15,7 @@ const content = `
   <ul class="settings">
     <li>
       <h3>Volume</h3>
-      <input type="range" name="volume" class="volume-bar bar" />
+      <input type="range" name="volume" class="volume-bar bar" max="1" min="0" step="0.01" />
       <div class="sound">${soundMute}${soundHigh}</div>
     </li>
     <li>

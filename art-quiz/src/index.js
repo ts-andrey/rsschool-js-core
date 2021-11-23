@@ -14,10 +14,12 @@ import { Settings } from './scripts/html/settings.js';
 import data from './assets/data/imagesEng';
 
 const modes = ['artists', 'imgs'];
-// const settingsElement = document.querySelector('.configurator');
+const stages = { start: 'start', between: 'between', end: ['bad', 'normal', 'perfect'] };
 
-const game = new Game();
+const game = new Game(modes[0]);
 game.data = data;
+game.progress = [];
+game.data = [];
 const questionInfo = new QuestionInfo();
 const quiz = new Quiz();
 const setStore = new SettingsStore();
@@ -83,8 +85,12 @@ const prepareQuestion = (type, num) => {
   if (type === 'imgs') {
     questionData.push(`Which picture painted by ${data[num].author}?`);
   }
+  let progress;
+  try {
+    progress = game.data.length;
+  } catch (error) {}
   questionData.push(`./assets/data/img/${num}.webp`);
-  questionData.push(2);
+  questionData.push(progress ? progress : 0);
   const answers = prepareAnswer(type, num);
   questionData.push(answers[0]);
   questionData.push(answers[1]);
@@ -97,31 +103,88 @@ function homeHandler() {
   home.seeker(categoryRenderer);
 }
 
+function resultNextHandler() {
+  const element = document.querySelector('.game');
+  element.innerHTML = '';
+
+  const number = game.data[game.data.length - 1] + 1;
+  const question = new Question(game.gameType, prepareQuestion(game.gameType, number), true);
+
+  game.data.push(number);
+  question.render();
+  question.answerSeeker(answerHandler);
+}
+
+function resultHomeHandler() {
+  const element = document.querySelector('.game');
+  element.innerHTML = '';
+
+  home.render();
+  home.seeker(categoryRenderer);
+}
+
+function resultNewHandler() {
+  const element = document.querySelector('.game');
+  element.innerHTML = '';
+
+  if (game.gameType === modes[0]) category = categoryArtists;
+  if (game.gameType === modes[1]) category = categoryImgs;
+  category.render();
+  category.seeker({ home: homeHandler, category: categoryHandler });
+}
+
+function resultRepeatHandler() {
+  const element = document.querySelector('.game');
+  element.innerHTML = '';
+}
+
 function answerHandler(obj) {
   const isRight = +obj.element.getAttribute('data-num') === obj.answer;
-  console.log(obj);
-  const result = new Result('between', [
+  if (isRight) game.progress.push(isRight);
+  let currentStage;
+  if (game.data.length <= 9) currentStage = stages.between;
+  else {
+    if (game.progress.length === 0) currentStage = stages.end[0];
+    if (game.progress.length > 0 && game.progress.length < 10) currentStage = stages.end[1];
+    if (game.progress.length === 10) currentStage = stages.end[2];
+  }
+  const result = new Result(currentStage, [
     isRight,
     obj.imgPath,
     obj.answerData.name,
     `${obj.answerData.author}, ${obj.answerData.year}`,
+    `${game.progress.length}/10`,
   ]);
   result.render();
+  if (!game.isEnded) game.playsound(isRight, 1);
+  if (game.isEnded) {
+    if (game.progress.length === 0) game.playsound(stages.end[0]);
+    if (game.progress.length > 0 && game.progress.length < 10) game.playsound(stages.end[1]);
+    if (game.progress.length === 10) game.playsound(stages.end[2]);
+  }
+  result.seeker({
+    home: resultHomeHandler,
+    next: resultNextHandler,
+    new: resultNewHandler,
+    repeat: resultRepeatHandler,
+  });
 }
 
 function categoryHandler(obj) {
-  console.log(obj.element);
   const type = obj.element.getAttribute('data-category-type');
+  if (game.gameType !== type) game.gameType = type;
   let num = +obj.element.getAttribute('data-category-num');
-  console.log(num);
   if (type === modes[0]) {
-    console.log(type);
   }
   if (type === modes[1]) {
     num += 120;
   }
+
   const question = new Question(type, prepareQuestion(type, num), true);
-  console.log(question);
+  game.isStarted = true;
+  game.playsound(stages.start, 1);
+  game.data.push(num);
+
   question.render();
   question.answerSeeker(answerHandler);
 }

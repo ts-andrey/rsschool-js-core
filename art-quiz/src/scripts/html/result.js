@@ -43,26 +43,27 @@ const resultBetween = data => {
 </li>
 <li class="result-image-name">${data[2]}</li>
 <li class="result-image-author">${data[3]}</li>
-<li class="btn result-button-option">Next</li>`;
+<li class="btn result-button-option btn-next">Next</li>`;
   return result;
 };
 const resultFinal = (type, data) => {
+  console.log(data);
   let fillData = [];
   if (type === 'greit') {
     fillData[0] = iconEndGreit;
-    fillData[1] = `<h3 class="result-header">${data[0]}</h3>`;
-    fillData[2] = data[1];
-    fillData[3] = `<span data-type="next" class="result-button-option  btn">Next</span>`;
+    fillData[1] = `<h3 class="result-header">Grand result</h3>`;
+    fillData[2] = `Congratulations!`;
+    fillData[3] = `<span data-type="next" class="result-button-option btn btn-new">Next</span>`;
   } else if (type === 'normal') {
     fillData[0] = iconEndNormal;
-    fillData[1] = `<h3 class="result-header">${data[0]}</h3>`;
-    fillData[2] = data[1];
-    fillData[3] = `<span data-type="home" class="result-button-option  btn">Home</span><span data-type="next" class="result-button-option  btn">Next Quiz</span>`;
+    fillData[1] = `<h3 class="result-header">${data[4]}</h3>`;
+    fillData[2] = `Congratulations!`;
+    fillData[3] = `<span data-type="home" class="result-button-option  btn btn-home">Home</span><span data-type="next" class="result-button-option btn btn-new">Next Quiz</span>`;
   } else if (type === 'bad') {
     fillData[0] = iconEndBad;
-    fillData[1] = `<h3 class="result-header">${data[0]}</h3>`;
-    fillData[2] = data[1];
-    fillData[3] = `<span data-type="not-play" class="result-button-option  btn btn-indent">No</span><span data-type="play" class="result-button-option  btn">Yes</span>`;
+    fillData[1] = `<h3 class="result-header">Game over</h3>`;
+    fillData[2] = `Play again?`;
+    fillData[3] = `<span data-type="not-play" class="result-button-option btn btn-indent btn-home">No</span><span data-type="play" class="result-button-option btn btn-repeat">Yes</span>`;
   }
   const result = `<li class="result-final-icon">${fillData[0]}</li>
 <li class="result-result">${fillData[1]}</li>
@@ -93,9 +94,26 @@ class Result {
       if (this.data[0] === false) iconWrapper.style.background = '#ff0000';
     }
   }
-  seeker(handler) {
-    this.options = document.querySelectorAll('.result-button-option');
-    return handler(this.options);
+  seeker({ next: nextHandler, home: homeHandler, new: newHandler, repeat: repeatHandler }) {
+    try {
+      this.btnNext = document.querySelector('.btn-next');
+      this.btnHome = document.querySelector('.btn-home');
+      this.btnNew = document.querySelector('.btn-new');
+      this.btnRepeat = document.querySelector('.btn-repeat');
+
+      this.btnNext.addEventListener('click', ev => nextHandler({ event: ev, element: this.btnNext, content: this.el }));
+      this.btnHome.addEventListener('click', ev => homeHandler({ event: ev, element: this.btnHome, content: this.el }));
+      this.btnNew.addEventListener('click', ev =>
+        newHandler({
+          event: ev,
+          element: this.btnNew,
+          content: this.el,
+        })
+      );
+      this.btnRepeat.addEventListener('click', ev =>
+        repeatHandler({ event: ev, element: this.btnRepeat, content: this.el })
+      );
+    } catch (error) {}
   }
 }
 

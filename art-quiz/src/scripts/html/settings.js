@@ -52,7 +52,7 @@ class Settings {
   }
   seeker(handler) {
     this.icon = document.querySelector('.configurator');
-    this.icon.addEventListener('click', ev => handler({ el: this.icon }));
+    this.icon.addEventListener('click', ev => handler({ event: ev, element: this.icon }));
   }
   optionSeeker(handler) {
     this.options = document.querySelectorAll('.settings-save-option');
@@ -75,7 +75,7 @@ class Settings {
 
     this.timeAmount.addEventListener('click', ev => timeAmountHandler({ event: ev, element: this.timeAmount }));
   }
-  
+
   closeSeeker(handler) {
     this.closeElements = document.querySelectorAll('.close-settings');
     this.closeElements.forEach(el => {

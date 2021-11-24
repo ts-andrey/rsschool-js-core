@@ -105,7 +105,8 @@ const prepareQuestion = (type, num) => {
   return questionData;
 };
 
-function homeHandler() {
+function homeHandler(obj) {
+  obj.event.stopImmediatePropagation();
   home.render();
   home.seeker(categoryRenderer);
 }
@@ -163,7 +164,7 @@ function categoryHandler(obj) {
   categoryImgs.seeker(homeHandler);
 }
 
-function resultNewHandler() {
+function resultNewHandler(obj) {
   obj.event.stopImmediatePropagation();
   const element = document.querySelector('.game');
   element.innerHTML = '';
@@ -175,7 +176,7 @@ function resultNewHandler() {
   setNewGame();
 }
 
-function resultRepeatHandler() {
+function resultRepeatHandler(obj) {
   obj.event.stopImmediatePropagation();
   const element = document.querySelector('.game');
   element.innerHTML = '';
@@ -247,13 +248,13 @@ function categoryRenderer(obj) {
   category.seeker({ home: homeHandler, categoryPlay: categoryPlayHandler, category: categoryHandler });
 }
 
-function closeSettingsHandler() {
+function closeSettingsHandler(obj) {
   obj.event.stopImmediatePropagation();
   home.render();
   home.seeker(categoryRenderer);
 }
 
-function settingsHandler() {
+function settingsHandler(obj) {
   obj.event.stopImmediatePropagation();
   settings.render();
   settings.closeSeeker(closeSettingsHandler);

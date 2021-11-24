@@ -13,14 +13,17 @@ const content = (data, progress) => {
 <li><p class="home">Home</p></li>
 </ul>
 <h3 class="category-title">Category</h3>
-<div class="container-category">
+<div class="category-gallery">
 `;
   data.forEach((el, index) => {
     result += `
   <ul class="card">
-    <li><img class="img-category" src="./assets/data/img/${data[index].imageNum}.webp" alt="category image" /></li>
-    <li class="card-info"><span class="img-name">${data[index].name}</span></li>
-    <li class="card-info"><span class="description">${data[index].author}, ${data[index].year}</span></li>
+    <li class="card-img"><img class="img-category" src="./assets/data/img/${data[index].imageNum}.webp" alt="category image" /></li>
+    <li class="card-description">
+    <div class="img-name">${data[index].name}</div>
+    <div class="img-description"><i>${data[index].author}, ${data[index].year}</i></div>
+    </li>
+    <li class="card-cover"></li>
   </ul>
   `;
   });

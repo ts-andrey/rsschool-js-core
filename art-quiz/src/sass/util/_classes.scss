@@ -36,12 +36,12 @@
   &:hover,
   &:active {
     cursor: pointer;
-    background-color: $color-link-hover;
-    border: 1.5px solid $color-text-link;
+    background-color: $color-background-main;
+    border: 1.5px solid $color-text-dark;
   }
   &:active {
-    background-color: darken($color-link-hover, 30%);
-    border: 1.5px solid $color-text-link;
+    background-color: darken($color-background-main, 30%);
+    border: 1.5px solid $color-text-dark;
   }
 }
 

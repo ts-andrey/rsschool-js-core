@@ -160,8 +160,18 @@ function categoryHandler(obj) {
       categoryData.push(element);
     }
   }
-  const categoryImgs = new Category(categoryData);
-  categoryImgs.render();
+
+  const categoryDescription = {
+    type: categoryType === modes[0] ? 'Artists' : 'Paintings',
+    num: startPosition / 10 + 1,
+  };
+
+  let categoryProgress;
+  if (categoryType === modes[0]) categoryProgress = quiz.progress.artCategory[startPosition / 10];
+  if (categoryType === modes[1]) categoryProgress = quiz.progress.imgCategory[startPosition / 10];
+
+  const categoryImgs = new Category(categoryData, categoryProgress);
+  categoryImgs.render(categoryDescription);
   categoryImgs.seeker(homeHandler);
 }
 

@@ -1,4 +1,4 @@
-const content = (data, progress) => {
+const content = (data, progress, description) => {
   let result = `
 <ul class="category-header">
 <li>
@@ -12,13 +12,18 @@ const content = (data, progress) => {
 </li>
 <li><p class="home">Home</p></li>
 </ul>
-<h3 class="category-title">Category</h3>
+<h3 class="category-title">${description.type} category #${description.num}</h3>
 <div class="category-gallery">
 `;
+  // {this.progress[index] ? '' : 'progress-filter'}
   data.forEach((el, index) => {
     result += `
   <ul class="card">
-    <li class="card-img"><img class="img-category" src="./assets/data/img/${data[index].imageNum}.webp" alt="category image" /></li>
+    <li class="card-img">
+    <img class="${progress[index] ? '' : 'progress-filter'}" src="./assets/data/img/${
+      data[index].imageNum
+    }.webp" alt="category image" />
+    </li>
     <li class="card-description">
     <div class="img-name">${data[index].name}</div>
     <div class="img-description"><i>${data[index].author}, ${data[index].year}</i></div>
@@ -37,8 +42,8 @@ class Category {
     this.data = data;
     this.progress = progress;
   }
-  render() {
-    this.el.innerHTML = content(this.data, this.progress);
+  render(description) {
+    this.el.innerHTML = content(this.data, this.progress, description);
   }
   seeker(homeHandler) {
     this.homeEl = document.querySelector('.home');

@@ -407,6 +407,7 @@ main {
       transform: translateY(0);
     }
   }
+  z-index: 2;
 }
 .card-info {
   display: flex;
@@ -442,4 +443,5 @@ main {
 
   transition: all .3s;
   transform: translateY(4rem);
+  z-index: 5;
 }

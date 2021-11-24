@@ -132,7 +132,7 @@ function resultNextHandler(obj) {
   element.innerHTML = '';
 
   const number = game.data[game.data.length - 1] + 1;
-  const question = new Question(game.gameType, prepareQuestion(game.gameType, number), true);
+  const question = new Question(game.gameType, prepareQuestion(game.gameType, number), [config.isTimerOn, config.time]);
 
   game.data.push(number);
   question.render();
@@ -256,7 +256,7 @@ function categoryPlayHandler(obj) {
   game.category = num / 10;
   if (type === modes[1]) num += 120;
 
-  const question = new Question(type, prepareQuestion(type, num), config.isTimerOn);
+  const question = new Question(type, prepareQuestion(type, num), [config.isTimerOn, config.time]);
   game.isStarted = true;
   game.playsound(stages.start, config.volume);
   game.data.push(num);
@@ -280,20 +280,58 @@ function closeSettingsHandler(obj) {
 }
 
 function volumeHandler(obj) {
-  config.volume = obj.element.value;
-  obj.element.style.background = `linear-gradient(to right, #ff4901 0%, #ff4901 ${config.volume * 100}%, #c4c4c4 ${
-    config.volume * 100
+  const volumeVal = obj.element.value;
+  obj.element.style.background = `linear-gradient(to right, #ff4901 0%, #ff4901 ${volumeVal * 100}%, #c4c4c4 ${
+    volumeVal * 100
   }%, #c4c4c4 100%)`;
-  window.localStorage.setItem('settings', JSON.stringify(config));
 }
 
 function timeSwitchHandler(obj) {
   obj.switcher.classList.toggle('time-switcher-content');
-  config.isTimerOn = obj.switcher.classList.contains('time-switcher-content');
+  const switcherState = obj.switcher.classList.contains('time-switcher-content');
 
-  if (config.isTimerOn === true) obj.state.textContent = 'On';
-  if (config.isTimerOn === false) obj.state.textContent = 'Off';
-  window.localStorage.setItem('settings', JSON.stringify(config));
+  if (switcherState === true) obj.state.textContent = 'On';
+  if (switcherState === false) obj.state.textContent = 'Off';
+}
+
+function timeHandler(obj) {
+  const timeAmount = +obj.time.textContent;
+  if (obj.element.classList.contains('increase')) {
+    if (timeAmount >= 30) '';
+    else obj.time.textContent = timeAmount + 5;
+  }
+  if (obj.element.classList.contains('decrease')) {
+    if (timeAmount <= 5) '';
+    else obj.time.textContent = timeAmount - 5;
+  }
+}
+
+function settingsOptionHandler(obj) {
+  if (obj.element.getAttribute('data-type') === 'default') {
+    const elements = settings.getElements();
+
+    config.volume = defaultConfig.volume;
+    config.isTimerOn = defaultConfig.isTimerOn;
+    config.time = defaultConfig.time;
+    config.isMute = defaultConfig.isMute;
+
+    window.localStorage.setItem('settings', JSON.stringify(config));
+
+    elements.volume.value = config.volume;
+    elements.volume.style.background = `linear-gradient(to right, #ff4901 0%, #ff4901 100%, #c4c4c4 100%, #c4c4c4 100%)`;
+    if (elements.switcher.classList.contains('time-switcher-content'))
+      elements.switcher.classList.remove('time-switcher-content');
+    document.querySelector('.timer').textContent = 'Off';
+    elements.time.textContent = '30';
+  }
+  if (obj.element.getAttribute('data-type') === 'save') {
+    const elements = settings.getElements();
+
+    config.volume = elements.volume.value;
+    config.isTimerOn = elements.switcher.classList.contains('time-switcher-content');
+    config.time = +elements.time.textContent;
+    window.localStorage.setItem('settings', JSON.stringify(config));
+  }
 }
 
 function settingsHandler(obj) {
@@ -302,8 +340,9 @@ function settingsHandler(obj) {
   settings.closeSeeker(closeSettingsHandler);
 
   settings.volumeSeeker(volumeHandler);
-
   settings.timeSwitchSeeker(timeSwitchHandler);
+  settings.timeSeeker(timeHandler);
+  settings.optionSeeker(settingsOptionHandler);
 }
 
 home.render();

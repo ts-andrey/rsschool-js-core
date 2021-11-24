@@ -101,6 +101,10 @@ main {
     fill: #fff;
   }
 }
+.timebar {
+  flex-grow: 3;
+  padding: 0 0.5rem;
+}
 .timelimit {
   width: 100%;
 }
@@ -363,9 +367,6 @@ main {
   &:active {
     background: darken($color-background-main, 40%);
   }
-}
-.time-amount {
-  margin: 0 0.7rem;
 }
 
 .desigion {

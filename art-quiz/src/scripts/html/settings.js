@@ -22,7 +22,7 @@ const content = `
       <h3>Time game</h3>
       <div class="switcher-container">
         <p class="timer">Off</p>
-        <div class="time-switcher">
+        <div class="time-switcher ">
           <div class="switcher"></div>
         </div>
       </div>
@@ -47,8 +47,25 @@ class Settings {
   constructor() {
     this.el = document.querySelector('.main-content');
   }
-  render() {
+  render(obj) {
     this.el.innerHTML = content;
+
+    const volEl = document.querySelector('.volume-bar');
+    const timer = document.querySelector('.timer');
+    const state = document.querySelector('.time-switcher ');
+    volEl.value = obj.volume;
+    volEl.style.background = `linear-gradient(to right, #ff4901 0%, #ff4901 ${obj.volume * 100}%, #c4c4c4 ${
+      obj.volume * 100
+    }%, #c4c4c4 100%)`;
+
+    if (obj.isTimerOn === true) {
+      timer.textContent = 'On';
+      state.classList.add('time-switcher-content');
+    }
+    if (obj.isTimerOn === false) {
+      timer.textContent = 'Off';
+      state.classList.remove('time-switcher-content');
+    }
   }
   seeker(handler) {
     this.icon = document.querySelector('.configurator');
@@ -60,20 +77,22 @@ class Settings {
       el.addEventListener('click', ev => handler({ event: ev, element: el }));
     });
   }
+
   volumeSeeker(handler) {
     this.volumeBar = document.querySelector('.volume-bar');
     this.volumeBar.addEventListener('change', ev => handler({ event: ev, element: this.volumeBar }));
   }
-  timeSeeker({ timer: timeHandler, timeSwither: timeSwitherHandler, timeAmount: timeAmountHandler }) {
-    this.timer = document.querySelector('.timer');
-    this.timerSwitcher = document.querySelector('.time-switcher');
+  timeSwitchSeeker(timeSwitchHandler) {
+    this.timerState = document.querySelector('.timer');
+    this.switcher = document.querySelector('.switcher');
+    this.timeSwitcher = document.querySelector('.time-switcher ');
+
+    this.switcher.addEventListener('click', ev =>
+      timeSwitchHandler({ event: ev, el: this.switcher, switcher: this.timeSwitcher, state: this.timerState })
+    );
+  }
+  timeSeeker(timeHandler) {
     this.timeAmount = document.querySelector('.time-amount');
-
-    this.timer.addEventListener('click', ev => timeHandler({ event: ev, element: this.timer }));
-
-    this.timerSwitcher.addEventListener('click', ev => timeSwitherHandler({ event: ev, element: this.timerSwitcher }));
-
-    this.timeAmount.addEventListener('click', ev => timeAmountHandler({ event: ev, element: this.timeAmount }));
   }
 
   closeSeeker(handler) {

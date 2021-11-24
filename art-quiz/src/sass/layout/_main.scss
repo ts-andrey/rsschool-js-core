@@ -334,6 +334,10 @@ main {
   width: 6rem;
   border-radius: 3rem;
   background: $color-background-main;
+  transition: all 0.3s;
+}
+.time-switcher-content {
+  justify-content: flex-end;
 }
 .switcher {
   height: 2rem;

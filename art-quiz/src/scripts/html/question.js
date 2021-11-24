@@ -46,8 +46,8 @@ const content = (type, arr, isTimer) => {
 
   const result = `
 <ul class="container-question">
-  ${isTimer ? withTimer : null}
-  ${type === 'artists' ? artContent : type === 'imgs' ? imgContent : null}
+  ${isTimer ? withTimer : ''}
+  ${type === 'artists' ? artContent : type === 'imgs' ? imgContent : ''}
 </ul>
 `;
   return result;

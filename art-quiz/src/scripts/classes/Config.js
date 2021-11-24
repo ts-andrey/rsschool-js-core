@@ -1,9 +1,9 @@
 class Config {
-  constructor() {
-    this.isMute = false;
-    this.isTimerOn = false;
-    this.time = 30;
-    this.volume = 1;
+  constructor(obj) {
+    this.isMute = obj.isMute;
+    this.isTimerOn = obj.isTimerOn;
+    this.time = obj.time;
+    this.volume = obj.volume;
   }
 }
 

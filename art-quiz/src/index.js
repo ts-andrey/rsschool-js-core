@@ -18,6 +18,13 @@ import data from './assets/data/imagesEng';
 const modes = ['artists', 'imgs'];
 const stages = { start: 'start', between: 'between', end: ['bad', 'normal', 'perfect'] };
 
+const defaultConfig = {
+  isMute: false,
+  isTimerOn: false,
+  time: 30,
+  volume: 1,
+};
+
 let gameProgress = JSON.parse(window.localStorage.getItem('progress'));
 if (!gameProgress) {
   window.localStorage.setItem(
@@ -29,11 +36,18 @@ if (!gameProgress) {
   );
   gameProgress = JSON.parse(window.localStorage.getItem('progress'));
 }
+
+let gameSettings = JSON.parse(window.localStorage.getItem('settings'));
+if (!gameSettings) {
+  window.localStorage.setItem('settings', JSON.stringify(defaultConfig));
+  gameSettings = JSON.parse(window.localStorage.getItem('settings'));
+}
+
 const game = new Game(modes[0]);
 const quiz = new Quiz(data, gameProgress);
 game.progress = [];
 game.data = [];
-const config = new Config();
+const config = new Config(gameSettings);
 const home = new Home();
 const settings = new Settings();
 
@@ -242,7 +256,7 @@ function categoryPlayHandler(obj) {
   game.category = num / 10;
   if (type === modes[1]) num += 120;
 
-  const question = new Question(type, prepareQuestion(type, num), true);
+  const question = new Question(type, prepareQuestion(type, num), config.isTimerOn);
   game.isStarted = true;
   game.playsound(stages.start, config.volume);
   game.data.push(num);
@@ -267,14 +281,29 @@ function closeSettingsHandler(obj) {
 
 function volumeHandler(obj) {
   config.volume = obj.element.value;
+  obj.element.style.background = `linear-gradient(to right, #ff4901 0%, #ff4901 ${config.volume * 100}%, #c4c4c4 ${
+    config.volume * 100
+  }%, #c4c4c4 100%)`;
+  window.localStorage.setItem('settings', JSON.stringify(config));
+}
+
+function timeSwitchHandler(obj) {
+  obj.switcher.classList.toggle('time-switcher-content');
+  config.isTimerOn = obj.switcher.classList.contains('time-switcher-content');
+
+  if (config.isTimerOn === true) obj.state.textContent = 'On';
+  if (config.isTimerOn === false) obj.state.textContent = 'Off';
+  window.localStorage.setItem('settings', JSON.stringify(config));
 }
 
 function settingsHandler(obj) {
   obj.event.stopImmediatePropagation();
-  settings.render();
+  settings.render(config);
   settings.closeSeeker(closeSettingsHandler);
 
   settings.volumeSeeker(volumeHandler);
+
+  settings.timeSwitchSeeker(timeSwitchHandler);
 }
 
 home.render();

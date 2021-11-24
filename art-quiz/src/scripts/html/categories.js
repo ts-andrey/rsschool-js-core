@@ -21,7 +21,6 @@ const content = (data, progress) => {
   `;
   data.forEach((el, index) => {
     const sum = progress[index].filter(el => el === true).length;
-    console.log(sum);
     result += `
   <ul class="card" data-category-num="${index * 10}" data-category-type="${el.type}">
     <li class="card-info"><span class="category-name">Category #${index + 1}</span>${
@@ -29,7 +28,9 @@ const content = (data, progress) => {
     }</li>
     <li><img class="img-category" src="${el.src}" alt="category image" /></li>
     ${el.progress ? `<li class="offer">${iconAgain}<span>Play again?</span></li>` : ''}
-    <div class="play-btn">${sum !== 0 ? 'Play again?' : 'Play?'}</div>
+    <div class="play-btn" data-category-num="${index * 10}" data-category-type="${el.type}">${
+      sum !== 0 ? 'Play again?' : 'Play?'
+    }</div>
   </ul>
   `;
   });
@@ -51,11 +52,13 @@ class Categories {
   seeker({ home: homeHandler, categoryPlay: categoryPlayHandler, category: categoryHandler }) {
     this.homeEl = document.querySelector('.home');
     this.homeEl.addEventListener('click', ev => homeHandler({ events: ev, el: this.homeEl }));
+
     this.categories = document.querySelectorAll('.card');
-    this.categoriesPlay = document.querySelectorAll('.play-btn');
     this.categories.forEach(el => {
       el.addEventListener('click', ev => categoryHandler({ event: ev, element: el }));
     });
+
+    this.categoriesPlay = document.querySelectorAll('.play-btn');
     this.categoriesPlay.forEach(el => {
       el.addEventListener('click', ev => categoryPlayHandler({ event: ev, element: el }));
     });

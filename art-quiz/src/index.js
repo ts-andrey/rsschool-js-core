@@ -16,8 +16,17 @@ import data from './assets/data/imagesEng';
 const modes = ['artists', 'imgs'];
 const stages = { start: 'start', between: 'between', end: ['bad', 'normal', 'perfect'] };
 
-const gameProgress = JSON.parse(window.localStorage.getItem('progress'));
-console.log(gameProgress);
+let gameProgress = JSON.parse(window.localStorage.getItem('progress'));
+if (!gameProgress) {
+  window.localStorage.setItem(
+    'progress',
+    JSON.stringify({
+      artCategory: { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [] },
+      imgCategory: { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [] },
+    })
+  );
+  gameProgress = JSON.parse(window.localStorage.getItem('progress'));
+}
 const game = new Game(modes[0]);
 const quiz = new Quiz(data, gameProgress);
 game.progress = [];
@@ -33,14 +42,12 @@ for (let i = 0, j = 0; i < quiz.data.length; i += 10, j++) {
   dataCategories.push(tempObj);
 }
 
-// menu.render();
-
 // check rendering
 const categoryArtists = new Categories(dataCategories.slice(0, 12), gameProgress.artCategory);
 const categoryImgs = new Categories(dataCategories.slice(12, 24), gameProgress.imgCategory);
 let category;
-const home = new Home();
 
+const home = new Home();
 const settings = new Settings();
 
 // for random numbers
@@ -103,7 +110,8 @@ function homeHandler() {
   home.seeker(categoryRenderer);
 }
 
-function resultNextHandler() {
+function resultNextHandler(obj) {
+  obj.event.stopImmediatePropagation();
   const element = document.querySelector('.game');
   element.innerHTML = '';
 
@@ -119,12 +127,12 @@ const setNewGame = () => {
   if (game.gameType === modes[0]) quiz.progress.artCategory[game.category] = game.progress;
   if (game.gameType === modes[1]) quiz.progress.imgCategory[game.category] = game.progress;
   window.localStorage.setItem('progress', JSON.stringify(quiz.progress));
-  console.log(quiz);
   game.progress = [];
   game.data = [];
 };
 
-function resultHomeHandler() {
+function resultHomeHandler(obj) {
+  obj.event.stopImmediatePropagation();
   const element = document.querySelector('.game');
   element.innerHTML = '';
 
@@ -134,6 +142,7 @@ function resultHomeHandler() {
 }
 
 function categoryHandler(obj) {
+  obj.event.stopImmediatePropagation();
   let startPosition = +obj.element.getAttribute('data-category-num');
   const categoryType = obj.element.getAttribute('data-category-type');
   let categoryData = [];
@@ -149,12 +158,13 @@ function categoryHandler(obj) {
       categoryData.push(element);
     }
   }
-  const category = new Category(categoryData);
-  category.render();
-  category.seeker(homeHandler);
+  const categoryImgs = new Category(categoryData);
+  categoryImgs.render();
+  categoryImgs.seeker(homeHandler);
 }
 
 function resultNewHandler() {
+  obj.event.stopImmediatePropagation();
   const element = document.querySelector('.game');
   element.innerHTML = '';
 
@@ -166,12 +176,14 @@ function resultNewHandler() {
 }
 
 function resultRepeatHandler() {
+  obj.event.stopImmediatePropagation();
   const element = document.querySelector('.game');
   element.innerHTML = '';
   setNewGame();
 }
 
 function answerHandler(obj) {
+  obj.event.stopImmediatePropagation();
   const isRight = +obj.element.getAttribute('data-num') === obj.answer;
   game.progress.push(isRight);
   let currentStage;
@@ -211,15 +223,12 @@ function answerHandler(obj) {
 }
 
 function categoryPlayHandler(obj) {
+  obj.event.stopImmediatePropagation();
   const type = obj.element.getAttribute('data-category-type');
   if (game.gameType !== type) game.gameType = type;
   let num = +obj.element.getAttribute('data-category-num');
   game.category = num / 10;
-  if (type === modes[0]) {
-  }
-  if (type === modes[1]) {
-    num += 120;
-  }
+  if (type === modes[1]) num += 120;
 
   const question = new Question(type, prepareQuestion(type, num), true);
   game.isStarted = true;
@@ -231,6 +240,7 @@ function categoryPlayHandler(obj) {
 }
 
 function categoryRenderer(obj) {
+  obj.event.stopImmediatePropagation();
   if (obj.element.getAttribute('data-type') === modes[0]) category = categoryArtists;
   else if (obj.element.getAttribute('data-type') === modes[1]) category = categoryImgs;
   category.render();
@@ -238,11 +248,13 @@ function categoryRenderer(obj) {
 }
 
 function closeSettingsHandler() {
+  obj.event.stopImmediatePropagation();
   home.render();
   home.seeker(categoryRenderer);
 }
 
 function settingsHandler() {
+  obj.event.stopImmediatePropagation();
   settings.render();
   settings.closeSeeker(closeSettingsHandler);
 }

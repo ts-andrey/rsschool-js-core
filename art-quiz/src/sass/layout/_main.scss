@@ -257,7 +257,7 @@ main {
 .top {
   z-index: 2;
   position: absolute;
-  top: 1rem;
+  top: 2rem;
   left: 0;
   padding: 0 3rem;
 
@@ -271,9 +271,9 @@ main {
     transition: all 0.3s;
     &:hover {
       cursor: pointer;
-      color: $color-link-hover;
+      color: $color-background-main;
       path {
-        fill: $color-link-hover;
+        fill: $color-background-main;
       }
     }
   }
@@ -333,7 +333,7 @@ main {
   height: 2.2rem;
   width: 6rem;
   border-radius: 3rem;
-  background: $color-link-hover;
+  background: $color-background-main;
 }
 .switcher {
   height: 2rem;
@@ -354,10 +354,10 @@ main {
   transition: 0.3s;
   &:hover {
     cursor: pointer;
-    background: $color-link-hover;
+    background: $color-background-main;
   }
   &:active {
-    background: darken($color-link-hover, 40%);
+    background: darken($color-background-main, 40%);
   }
 }
 .time-amount {
@@ -422,7 +422,7 @@ main {
   transition: all 0.3s;
   &:hover {
     cursor: pointer;
-    color: $color-link-hover;
+    color: $color-background-main;
   }
 }
 
@@ -434,14 +434,81 @@ main {
   height: 3rem;
   border-radius: 1rem 1rem 0 0;
 
-  background: $color-link-hover;
+  background: $color-background-main;
   color: #000;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  transition: all .3s;
+  transition: all 0.3s;
   transform: translateY(4rem);
   z-index: 5;
+}
+
+// CATEGORY GALLERY
+.category-gallery {
+  width: 80vw;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-gap: 1rem 2rem;
+}
+.card-description {
+  width: 100%;
+  height: max-content;
+  padding: 1rem;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+
+  display: flex;
+  flex-flow: column;
+  color: $color-text-dark;
+  font-size: 110%;
+
+  transition: all 0.4s;
+  transform: translateY(100%);
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    &:last-of-type {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.card-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  transition: all 0.3s;
+  background: transparent; //rgba(255, 73, 1, 0.9)
+}
+
+.card {
+  &:hover {
+    .card-cover {
+      background: rgba(255, 73, 1, 0.95);
+    }
+
+    .card-description {
+      transform: translateY(0);
+    }
+  }
+}
+
+.card-img {
+  width: 100%;
+  img {
+    width: inherit;
+  }
 }

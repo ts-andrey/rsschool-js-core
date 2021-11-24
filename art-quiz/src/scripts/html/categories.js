@@ -51,7 +51,7 @@ class Categories {
   }
   seeker({ home: homeHandler, categoryPlay: categoryPlayHandler, category: categoryHandler }) {
     this.homeEl = document.querySelector('.home');
-    this.homeEl.addEventListener('click', ev => homeHandler({ events: ev, el: this.homeEl }));
+    this.homeEl.addEventListener('click', ev => homeHandler({ event: ev, el: this.homeEl }));
 
     this.categories = document.querySelectorAll('.card');
     this.categories.forEach(el => {

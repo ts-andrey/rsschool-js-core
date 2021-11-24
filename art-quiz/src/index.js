@@ -13,6 +13,8 @@ import { Settings } from './scripts/html/settings.js';
 
 import data from './assets/data/imagesEng';
 
+// window.localStorage.clear();
+
 const modes = ['artists', 'imgs'];
 const stages = { start: 'start', between: 'between', end: ['bad', 'normal', 'perfect'] };
 
@@ -32,6 +34,8 @@ const quiz = new Quiz(data, gameProgress);
 game.progress = [];
 game.data = [];
 const config = new Config();
+const home = new Home();
+const settings = new Settings();
 
 const dataCategories = [];
 for (let i = 0, j = 0; i < quiz.data.length; i += 10, j++) {
@@ -46,9 +50,6 @@ for (let i = 0, j = 0; i < quiz.data.length; i += 10, j++) {
 const categoryArtists = new Categories(dataCategories.slice(0, 12), gameProgress.artCategory);
 const categoryImgs = new Categories(dataCategories.slice(12, 24), gameProgress.imgCategory);
 let category;
-
-const home = new Home();
-const settings = new Settings();
 
 // for random numbers
 const getRandomBetween = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
@@ -254,10 +255,16 @@ function closeSettingsHandler(obj) {
   home.seeker(categoryRenderer);
 }
 
+function volumeHandler(obj) {
+  config.volume = obj.element.value;
+}
+
 function settingsHandler(obj) {
   obj.event.stopImmediatePropagation();
   settings.render();
   settings.closeSeeker(closeSettingsHandler);
+
+  settings.volumeSeeker(volumeHandler);
 }
 
 home.render();

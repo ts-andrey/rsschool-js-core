@@ -52,7 +52,9 @@ class Settings {
 
     const volEl = document.querySelector('.volume-bar');
     const timer = document.querySelector('.timer');
-    const state = document.querySelector('.time-switcher ');
+    const state = document.querySelector('.time-switcher');
+    const timeAmount = document.querySelector('.time-amount');
+    timeAmount.textContent = obj.time;
     volEl.value = obj.volume;
     volEl.style.background = `linear-gradient(to right, #ff4901 0%, #ff4901 ${obj.volume * 100}%, #c4c4c4 ${
       obj.volume * 100
@@ -71,11 +73,19 @@ class Settings {
     this.icon = document.querySelector('.configurator');
     this.icon.addEventListener('click', ev => handler({ event: ev, element: this.icon }));
   }
+
   optionSeeker(handler) {
     this.options = document.querySelectorAll('.settings-save-option');
     this.options.forEach(el => {
       el.addEventListener('click', ev => handler({ event: ev, element: el }));
     });
+  }
+
+  getElements() {
+    const volumeBar = document.querySelector('.volume-bar');
+    const switchState = document.querySelector('.time-switcher');
+    const timeValue = document.querySelector('.time-amount');
+    return { volume: volumeBar, switcher: switchState, time: timeValue };
   }
 
   volumeSeeker(handler) {
@@ -93,6 +103,11 @@ class Settings {
   }
   timeSeeker(timeHandler) {
     this.timeAmount = document.querySelector('.time-amount');
+    this.timeShifters = document.querySelectorAll('.time-btn');
+
+    this.timeShifters.forEach(el => {
+      el.addEventListener('click', ev => timeHandler({ event: ev, element: el, time: this.timeAmount }));
+    });
   }
 
   closeSeeker(handler) {

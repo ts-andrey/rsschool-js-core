@@ -399,6 +399,7 @@ main {
   position: relative;
   transition: all 0.3s;
   overflow: hidden;
+  border-radius: 0.5rem;
   &:hover {
     cursor: pointer;
     transform: translateY(-0.5rem);
@@ -414,6 +415,7 @@ main {
   justify-content: space-between;
 }
 .img-category {
+  border-radius: 0.5rem;
   width: 15rem;
 }
 .home {
@@ -504,6 +506,10 @@ main {
       transform: translateY(0);
     }
   }
+}
+
+.progress-filter {
+  filter: grayscale(100%);
 }
 
 .card-img {

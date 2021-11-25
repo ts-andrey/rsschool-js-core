@@ -13,10 +13,11 @@ import { Settings } from './scripts/html/settings.js';
 
 import data from './assets/data/imagesEng';
 
-// window.localStorage.clear();
+window.localStorage.clear();
 
 const modes = ['artists', 'imgs'];
 const stages = { start: 'start', between: 'between', end: ['bad', 'normal', 'perfect'] };
+let timerVal;
 
 const defaultConfig = {
   isMute: false,
@@ -61,8 +62,8 @@ for (let i = 0, j = 0; i < quiz.data.length; i += 10, j++) {
 }
 
 // check rendering
-const categoryArtists = new Categories(dataCategories.slice(0, 12), gameProgress.artCategory);
-const categoryImgs = new Categories(dataCategories.slice(12, 24), gameProgress.imgCategory);
+const categoryArtists = new Categories(dataCategories.slice(0, 12), gameProgress.artCategory, { type: 'Artists' });
+const categoryImgs = new Categories(dataCategories.slice(12, 24), gameProgress.imgCategory, { type: 'Paintings' });
 let category;
 
 // for random numbers
@@ -134,9 +135,10 @@ function resultNextHandler(obj) {
   const number = game.data[game.data.length - 1] + 1;
   const question = new Question(game.gameType, prepareQuestion(game.gameType, number), [config.isTimerOn, config.time]);
 
-  game.data.push(number);
-  question.render();
+  const timeValElement = question.render();
+  timerHandler(timeValElement);
   question.answerSeeker(answerHandler);
+  game.data.push(number);
 }
 
 const setNewGame = () => {
@@ -208,26 +210,20 @@ function resultRepeatHandler(obj) {
   setNewGame();
 }
 
-function answerHandler(obj) {
-  obj.event.stopImmediatePropagation();
-  const isRight = +obj.element.getAttribute('data-num') === obj.answer;
-  game.progress.push(isRight);
-  let currentStage;
+function gameProgressHandler(answer) {
+  game.progress.push(answer);
+  let currStage;
   const rightAnsCount = game.progress.filter(el => el === true).length;
-  if (game.data.length <= 9) currentStage = stages.between;
+  if (game.data.length <= 9) currStage = stages.between;
   else {
-    if (rightAnsCount === 0) currentStage = stages.end[0];
-    if (rightAnsCount > 0 && rightAnsCount < 10) currentStage = stages.end[1];
-    if (rightAnsCount === 10) currentStage = stages.end[2];
+    if (rightAnsCount === 0) currStage = stages.end[0];
+    if (rightAnsCount > 0 && rightAnsCount < 10) currStage = stages.end[1];
+    if (rightAnsCount === 10) currStage = stages.end[2];
   }
-  const result = new Result(currentStage, [
-    isRight,
-    obj.imgPath,
-    obj.answerData.name,
-    `${obj.answerData.author}, ${obj.answerData.year}`,
-    `${rightAnsCount}/10`,
-  ]);
-  result.render();
+  return [currStage, rightAnsCount];
+}
+
+function setStageHandler(currentStage, isRight, result) {
   if (currentStage === stages.between) {
     game.playsound(isRight, config.volume);
     result.seekerNext(resultNextHandler);
@@ -248,6 +244,64 @@ function answerHandler(obj) {
   }
 }
 
+function answerHandler(obj) {
+  clearInterval(timerVal);
+  startTime = null;
+
+  obj.event.stopImmediatePropagation();
+  const isRight = +obj.element.getAttribute('data-num') === obj.answer;
+  const [currentStage, rightAnsCount] = gameProgressHandler(isRight);
+
+  const result = new Result(currentStage, [
+    isRight,
+    obj.imgPath,
+    obj.answerData.name,
+    `${obj.answerData.author}, ${obj.answerData.year}`,
+    `${rightAnsCount}/10`,
+  ]);
+
+  result.render();
+  setStageHandler(currentStage, isRight, result);
+}
+
+let startTime;
+function timer() {
+  if (!startTime) startTime = new Date().getTime();
+  const currentTime = new Date().getTime();
+  const result = (config.time - (currentTime - startTime) / 1000).toFixed(2);
+  return result;
+}
+
+function timerHandler(timeValElement) {
+  if (config.isTimerOn) {
+    timerVal = setInterval(() => {
+      const hasTime = timer();
+
+      if (hasTime <= 0) {
+        clearInterval(timerVal);
+        startTime = null;
+        timeValElement[0].textContent = '00:00';
+        game.playsound(false, config.volume);
+        const [currentStage, rightAnsCount] = gameProgressHandler(false);
+
+        const result = new Result(currentStage, [
+          false,
+          timeValElement[1][1],
+          timeValElement[1][5].name,
+          `${timeValElement[1][5].author}, ${timeValElement[1][5].year}`,
+          `${rightAnsCount}/10`,
+        ]);
+
+        result.render();
+        setStageHandler(currentStage, false, result);
+        // result.seekerNext(resultNextHandler);
+      } else {
+        timeValElement[0].textContent = hasTime;
+      }
+    }, 250);
+  }
+}
+
 function categoryPlayHandler(obj) {
   obj.event.stopImmediatePropagation();
   const type = obj.element.getAttribute('data-category-type');
@@ -261,7 +315,8 @@ function categoryPlayHandler(obj) {
   game.playsound(stages.start, config.volume);
   game.data.push(num);
 
-  question.render();
+  const timeValElement = question.render();
+  timerHandler(timeValElement);
   question.answerSeeker(answerHandler);
 }
 
@@ -334,22 +389,30 @@ function settingsOptionHandler(obj) {
   }
 }
 
+function iconHandler(obj) {
+  if (obj.element.getAttribute('data-type') === 'mute') {
+    obj.volume.value = 0;
+    obj.volume.style.background = `linear-gradient(to right, #ff4901 0%, #ff4901 0%, #c4c4c4 0%, #c4c4c4 100%)`;
+  }
+  if (obj.element.getAttribute('data-type') === 'full') {
+    obj.volume.value = 1;
+    obj.volume.style.background = `linear-gradient(to right, #ff4901 0%, #ff4901 100%, #c4c4c4 100%, #c4c4c4 100%)`;
+  }
+}
+
 function settingsHandler(obj) {
   obj.event.stopImmediatePropagation();
   settings.render(config);
-  settings.closeSeeker(closeSettingsHandler);
+  settings.seekerClose(closeSettingsHandler);
 
-  settings.volumeSeeker(volumeHandler);
-  settings.timeSwitchSeeker(timeSwitchHandler);
-  settings.timeSeeker(timeHandler);
-  settings.optionSeeker(settingsOptionHandler);
+  settings.seekerVolume(volumeHandler);
+  settings.seekerTimeSwitch(timeSwitchHandler);
+  settings.seekerTime(timeHandler);
+  settings.seekerOption(settingsOptionHandler);
+  settings.seekerIcon(iconHandler);
 }
 
 home.render();
 home.seeker(categoryRenderer);
 
 settings.seeker(settingsHandler);
-
-console.log(
-  `Уважаемый проверяющий, если у тебя будет возможность и желание проверить в четверг, или в крайнем случае в среду вечером - буду безмерно благодарен! (Очень стараюсь доделать весь функционал)`
-);

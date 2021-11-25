@@ -327,6 +327,17 @@ main {
     }
   }
 }
+
+.vol-icon {
+  transition: all 0.3s;
+  &:hover {
+    cursor: pointer;
+    path {
+      fill: $color-background-main;
+    }
+  }
+}
+
 .switcher-container {
   display: flex;
 }

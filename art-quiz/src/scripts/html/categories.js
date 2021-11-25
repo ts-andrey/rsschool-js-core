@@ -22,7 +22,7 @@ const content = (data, progress, type) => {
   data.forEach((el, index) => {
     const sum = progress[index].filter(el => el === true).length;
     result += `
-  <ul class="card" data-category-num="${index * 10}" data-category-type="${el.type}">
+  <ul class="card ${sum ? '' : 'progress-filter'}" data-category-num="${index * 10}" data-category-type="${el.type}">
     <li class="card-info"><span class="category-name">Category #${index + 1}</span>${
       sum !== 0 ? `<span class='category-progress'>${sum}/10</span>` : ''
     }</li>

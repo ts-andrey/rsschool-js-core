@@ -127,6 +127,14 @@ function homeHandler(obj) {
   home.seeker(categoryRenderer);
 }
 
+function questionCloseHandler(obj) {
+  obj.event.stopImmediatePropagation();
+  clearInterval(timerVal);
+  startTime = null;
+  home.render();
+  home.seeker(categoryRenderer);
+}
+
 function resultNextHandler(obj) {
   obj.event.stopImmediatePropagation();
   const element = document.querySelector('.game');
@@ -137,7 +145,7 @@ function resultNextHandler(obj) {
 
   const timeValElement = question.render();
   timerHandler(timeValElement);
-  if (config.isTimerOn) question.closeSeeker(homeHandler);
+  if (config.isTimerOn) question.closeSeeker(questionCloseHandler);
   question.answerSeeker(answerHandler);
   game.data.push(number);
 }
@@ -318,7 +326,7 @@ function categoryPlayHandler(obj) {
 
   const timeValElement = question.render();
   timerHandler(timeValElement);
-  if (config.isTimerOn) question.closeSeeker(homeHandler);
+  if (config.isTimerOn) question.closeSeeker(questionCloseHandler);
   question.answerSeeker(answerHandler);
 }
 

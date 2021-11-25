@@ -137,6 +137,7 @@ function resultNextHandler(obj) {
 
   const timeValElement = question.render();
   timerHandler(timeValElement);
+  if (config.isTimerOn) question.closeSeeker(homeHandler);
   question.answerSeeker(answerHandler);
   game.data.push(number);
 }
@@ -317,6 +318,7 @@ function categoryPlayHandler(obj) {
 
   const timeValElement = question.render();
   timerHandler(timeValElement);
+  if (config.isTimerOn) question.closeSeeker(homeHandler);
   question.answerSeeker(answerHandler);
 }
 

@@ -13,8 +13,6 @@ import { Settings } from './scripts/html/settings.js';
 
 import data from './assets/data/imagesEng';
 
-window.localStorage.clear();
-
 const modes = ['artists', 'imgs'];
 const stages = { start: 'start', between: 'between', end: ['bad', 'normal', 'perfect'] };
 let timerVal;
@@ -303,7 +301,6 @@ function timerHandler(timeValElement) {
 
         result.render();
         setStageHandler(currentStage, false, result);
-        // result.seekerNext(resultNextHandler);
       } else {
         timeValElement[0].textContent = hasTime;
       }

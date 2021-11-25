@@ -1,8 +1,8 @@
 const soundMute = `
-<svg height="48px" version="1.1" viewBox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g id="Artboard-Copy" transform="translate(-407.000000, -429.000000)"><path d="M418,447 C416.895,447 416,447.895 416,449 L416,457 C416,458.104 416.895,459 418,459 L424.125,459 C426.259995,461.28542 427.881873,462.952303 428.990634,464.000651 C430.049072,465.001419 430.349426,465.001419 430.515442,465.001419 C431.640442,465.001419 432,464.105 432,463 L432,443 C432,441.896 431.638261,441 430.515442,441 C430.326612,441 430.053223,440.863403 429.033419,441.945337 C428.414276,442.602199 426.75747,444.287087 424.063,447 L418,447 Z M445.717,448.221 C445.424,447.926 444.947,447.926 444.654,448.221 L442,450.875 L439.344,448.221 C439.051,447.926 438.576,447.926 438.281,448.221 L437.219,449.283 C436.926,449.576 436.926,450.053 437.219,450.346 L439.873,453 L437.219,455.656 C436.928,455.949 436.928,456.424 437.219,456.719 L438.281,457.781 C438.576,458.074 439.051,458.074 439.344,457.781 L442,455.127 L444.654,457.781 C444.947,458.074 445.424,458.074 445.717,457.781 L446.779,456.719 C447.074,456.424 447.074,455.949 446.779,455.656 L444.125,453 L446.779,450.346 C447.074,450.053 447.074,449.576 446.779,449.283 L445.717,448.221 Z" fill="#000000" id="mute"/><g id="slices" transform="translate(47.000000, 9.000000)"/></g></g></svg>
+<svg data-type="mute" class="vol-icon" height="48px" version="1.1" viewBox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g id="Artboard-Copy" transform="translate(-407.000000, -429.000000)"><path d="M418,447 C416.895,447 416,447.895 416,449 L416,457 C416,458.104 416.895,459 418,459 L424.125,459 C426.259995,461.28542 427.881873,462.952303 428.990634,464.000651 C430.049072,465.001419 430.349426,465.001419 430.515442,465.001419 C431.640442,465.001419 432,464.105 432,463 L432,443 C432,441.896 431.638261,441 430.515442,441 C430.326612,441 430.053223,440.863403 429.033419,441.945337 C428.414276,442.602199 426.75747,444.287087 424.063,447 L418,447 Z M445.717,448.221 C445.424,447.926 444.947,447.926 444.654,448.221 L442,450.875 L439.344,448.221 C439.051,447.926 438.576,447.926 438.281,448.221 L437.219,449.283 C436.926,449.576 436.926,450.053 437.219,450.346 L439.873,453 L437.219,455.656 C436.928,455.949 436.928,456.424 437.219,456.719 L438.281,457.781 C438.576,458.074 439.051,458.074 439.344,457.781 L442,455.127 L444.654,457.781 C444.947,458.074 445.424,458.074 445.717,457.781 L446.779,456.719 C447.074,456.424 447.074,455.949 446.779,455.656 L444.125,453 L446.779,450.346 C447.074,450.053 447.074,449.576 446.779,449.283 L445.717,448.221 Z" fill="#000000" id="mute"/><g id="slices" transform="translate(47.000000, 9.000000)"/></g></g></svg>
 `;
 const soundHigh = `
-<svg height="48px" version="1.1" viewBox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g id="Artboard-Copy" transform="translate(-227.000000, -429.000000)"><path d="M236,447.005552 C234.895,447.005552 234,447.900552 234,449.005552 L234,457.005552 C234,458.109552 234.895,459.005552 236,459.005552 L242.125,459.005552 C244.259995,461.290971 245.881873,462.957855 246.990634,464.006203 C248.049072,465.006971 248.349426,465.006971 248.515442,465.006971 C249.640442,465.006971 250,464.110552 250,463.005552 L250,443.005552 C250,441.901552 249.638261,441.005552 248.515442,441.005552 C248.326612,441.005552 248.053223,440.868955 247.033419,441.950889 C246.414276,442.607751 244.75747,444.292638 242.063,447.005552 L236,447.005552 Z M260.8285,470 C266.2185,467.27 270.0005,460.912 270.0005,453.5 C270.0005,446.09 266.2185,439.73 260.8285,437 L260.8285,440.273 C264.7445,442.912 267.3785,447.848 267.3785,453.5 C267.3785,459.152 264.7445,464.086 260.8285,466.729 L260.8285,470 Z M254.9315,445.275 C257.3005,447.121 258.8615,450.266 258.8615,453.832 C258.8615,457.4 257.3005,460.543 254.9315,462.391 L254.9315,464.676 C258.7595,462.965 261.4845,458.605 261.4845,453.5 C261.4845,448.393 258.7595,444.035 254.9315,442.324 L254.9315,445.275 Z" fill="#000000" id="sound3"/><g id="slices" transform="translate(47.000000, 9.000000)"/></g></g></svg>
+<svg data-type="full" class="vol-icon" height="48px" version="1.1" viewBox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g id="Artboard-Copy" transform="translate(-227.000000, -429.000000)"><path d="M236,447.005552 C234.895,447.005552 234,447.900552 234,449.005552 L234,457.005552 C234,458.109552 234.895,459.005552 236,459.005552 L242.125,459.005552 C244.259995,461.290971 245.881873,462.957855 246.990634,464.006203 C248.049072,465.006971 248.349426,465.006971 248.515442,465.006971 C249.640442,465.006971 250,464.110552 250,463.005552 L250,443.005552 C250,441.901552 249.638261,441.005552 248.515442,441.005552 C248.326612,441.005552 248.053223,440.868955 247.033419,441.950889 C246.414276,442.607751 244.75747,444.292638 242.063,447.005552 L236,447.005552 Z M260.8285,470 C266.2185,467.27 270.0005,460.912 270.0005,453.5 C270.0005,446.09 266.2185,439.73 260.8285,437 L260.8285,440.273 C264.7445,442.912 267.3785,447.848 267.3785,453.5 C267.3785,459.152 264.7445,464.086 260.8285,466.729 L260.8285,470 Z M254.9315,445.275 C257.3005,447.121 258.8615,450.266 258.8615,453.832 C258.8615,457.4 257.3005,460.543 254.9315,462.391 L254.9315,464.676 C258.7595,462.965 261.4845,458.605 261.4845,453.5 C261.4845,448.393 258.7595,444.035 254.9315,442.324 L254.9315,445.275 Z" fill="#000000" id="sound3"/><g id="slices" transform="translate(47.000000, 9.000000)"/></g></g></svg>
 `;
 
 const content = `
@@ -74,7 +74,7 @@ class Settings {
     this.icon.addEventListener('click', ev => handler({ event: ev, element: this.icon }));
   }
 
-  optionSeeker(handler) {
+  seekerOption(handler) {
     this.options = document.querySelectorAll('.settings-save-option');
     this.options.forEach(el => {
       el.addEventListener('click', ev => handler({ event: ev, element: el }));
@@ -88,11 +88,11 @@ class Settings {
     return { volume: volumeBar, switcher: switchState, time: timeValue };
   }
 
-  volumeSeeker(handler) {
+  seekerVolume(handler) {
     this.volumeBar = document.querySelector('.volume-bar');
     this.volumeBar.addEventListener('change', ev => handler({ event: ev, element: this.volumeBar }));
   }
-  timeSwitchSeeker(timeSwitchHandler) {
+  seekerTimeSwitch(timeSwitchHandler) {
     this.timerState = document.querySelector('.timer');
     this.switcher = document.querySelector('.switcher');
     this.timeSwitcher = document.querySelector('.time-switcher ');
@@ -101,7 +101,7 @@ class Settings {
       timeSwitchHandler({ event: ev, el: this.switcher, switcher: this.timeSwitcher, state: this.timerState })
     );
   }
-  timeSeeker(timeHandler) {
+  seekerTime(timeHandler) {
     this.timeAmount = document.querySelector('.time-amount');
     this.timeShifters = document.querySelectorAll('.time-btn');
 
@@ -110,10 +110,18 @@ class Settings {
     });
   }
 
-  closeSeeker(handler) {
+  seekerClose(handler) {
     this.closeElements = document.querySelectorAll('.close-settings');
     this.closeElements.forEach(el => {
       el.addEventListener('click', ev => handler({ event: ev, element: el }));
+    });
+  }
+
+  seekerIcon(handler) {
+    this.volumeBar = document.querySelector('.volume-bar');
+    this.iconElements = document.querySelectorAll('.vol-icon');
+    this.iconElements.forEach(el => {
+      el.addEventListener('click', ev => handler({ event: ev, element: el, volume: this.volumeBar }));
     });
   }
 }

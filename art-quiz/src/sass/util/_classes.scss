@@ -37,6 +37,8 @@
   &:active {
     cursor: pointer;
     background-color: $color-background-main;
+    color: $color-text-dark;
+    font-weight: bold;
     border: 1.5px solid $color-text-dark;
   }
   &:active {
@@ -50,7 +52,7 @@
   flex-flow: column;
 }
 
-.bar{
+.bar {
   transition: all 0.3s;
   -webkit-appearance: none;
   border: 1px solid #000;

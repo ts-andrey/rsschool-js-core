@@ -40,7 +40,22 @@ const content = (type, arr, timeObj) => {
       <li class="answer-option answer-option-img" data-num="1"><img class="img-answer" src="${arr[3][1]}" alt="answer picture"/></li>
       <li class="answer-option answer-option-img" data-num="2"><img class="img-answer" src="${arr[3][2]}" alt="answer picture"/></li>
       <li class="answer-option answer-option-img" data-num="3"><img class="img-answer" src="${arr[3][3]}" alt="answer picture"/></li>
+      <li class="answer-paints-progress">
+        <ul class="questions-progress">
+          <li class="question-number"></li>
+          <li class="question-number"></li>
+          <li class="question-number"></li>
+          <li class="question-number"></li>
+          <li class="question-number"></li>
+          <li class="question-number"></li>
+          <li class="question-number"></li>
+          <li class="question-number"></li>
+          <li class="question-number"></li>
+          <li class="question-number"></li>
+        </ul>
+      </li>
     </ul>
+
   </li>
 `;
 
@@ -67,6 +82,17 @@ class Question {
     const progress = this.data[2];
     const elements = document.querySelectorAll('.question-number');
     if (this.type === 'artists')
+      for (let i = 0; i < progress.length; i++) {
+        if (progress[i] === true) {
+          elements[i].style.background = `#ff4901`;
+          elements[i].style.border = `.1rem solid #000`;
+        }
+        if (progress[i] === false) {
+          elements[i].style.background = `#000`;
+          elements[i].style.border = `.1rem solid #fff`;
+        }
+      }
+    if (this.type === 'imgs')
       for (let i = 0; i < progress.length; i++) {
         if (progress[i] === true) {
           elements[i].style.background = `#ff4901`;

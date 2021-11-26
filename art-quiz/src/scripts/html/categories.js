@@ -24,7 +24,7 @@ const content = (data, progress, type) => {
     result += `
   <ul class="card" data-category-num="${index * 10}" data-category-type="${el.type}">
     <li class="card-info"><span class="category-name">Category #${index + 1}</span>${
-      sum !== 0 ? `<span class='category-progress'>${sum}/10</span>` : ''
+      sum !== 0 ? `<span class='category-progress'>${sum}/10</span>` : `<span class='category-progress'>0/10</span>`
     }</li>
     <li><img class="img-category ${sum ? '' : 'progress-filter'}" src="${el.src}" alt="category image" /></li>
     ${el.progress ? `<li class="offer">${iconAgain}<span>Play again?</span></li>` : ''}

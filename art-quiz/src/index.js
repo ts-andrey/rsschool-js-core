@@ -16,6 +16,8 @@ import data from './assets/data/imagesEng';
 const modes = ['artists', 'imgs'];
 const stages = { start: 'start', between: 'between', end: ['bad', 'normal', 'perfect'] };
 let timerVal;
+let category;
+let startTime;
 
 const defaultConfig = {
   isMute: false,
@@ -61,7 +63,6 @@ for (let i = 0, j = 0; i < quiz.data.length; i += 10, j++) {
 // check rendering
 const categoryArtists = new Categories(dataCategories.slice(0, 12), gameProgress.artCategory, { type: 'Artists' });
 const categoryImgs = new Categories(dataCategories.slice(12, 24), gameProgress.imgCategory, { type: 'Paintings' });
-let category;
 
 // Helper functions
 
@@ -135,106 +136,11 @@ const prepareQuestion = (type, num) => {
   return questionData;
 };
 
-function homeHandler(obj) {
-  obj.event.stopImmediatePropagation();
-  if (startTime) timerClearer();
-  dataClearing();
-  goHome();
-}
-
-function resultNextHandler(obj) {
-  obj.event.stopImmediatePropagation();
-  const element = document.querySelector('.game');
-  element.innerHTML = '';
-
-  const number = game.data[game.data.length - 1] + 1;
-  const question = new Question(game.gameType, prepareQuestion(game.gameType, number), [config.isTimerOn, config.time]);
-
-  const timeValElement = question.render();
-  timerHandler(timeValElement);
-  if (config.isTimerOn) question.closeSeeker(homeHandler);
-  question.answerSeeker(answerHandler);
-  game.data.push(number);
-}
-
-const setNewGame = () => {
+function setNewGame() {
   if (game.gameType === modes[0]) quiz.progress.artCategory[game.category] = game.progress;
   if (game.gameType === modes[1]) quiz.progress.imgCategory[game.category] = game.progress;
   window.localStorage.setItem('progress', JSON.stringify(quiz.progress));
   dataClearing();
-};
-
-function resultHomeHandler(obj) {
-  obj.event.stopImmediatePropagation();
-  const element = document.querySelector('.game');
-  element.innerHTML = '';
-
-  goHome();
-  setNewGame();
-}
-
-function categoryHandler(obj) {
-  obj.event.stopImmediatePropagation();
-  let startPosition = +obj.element.getAttribute('data-category-num');
-  const categoryType = obj.element.getAttribute('data-category-type');
-  let categoryData = [];
-  if (categoryType === modes[0]) {
-    for (let i = 0; i < 10; i++) {
-      const element = quiz.data[startPosition + i];
-      categoryData.push(element);
-    }
-  }
-  if (categoryType === modes[1]) {
-    for (let i = 0; i < 10; i++) {
-      const element = quiz.data[startPosition + 120 + i];
-      categoryData.push(element);
-    }
-  }
-
-  const categoryDescription = {
-    type: categoryType === modes[0] ? 'Artists' : 'Paintings',
-    num: startPosition / 10 + 1,
-  };
-
-  let categoryProgress;
-  if (categoryType === modes[0]) categoryProgress = quiz.progress.artCategory[startPosition / 10];
-  if (categoryType === modes[1]) categoryProgress = quiz.progress.imgCategory[startPosition / 10];
-
-  const categoryImgs = new Category(categoryData, categoryProgress);
-  categoryImgs.render(categoryDescription);
-  categoryImgs.seeker(homeHandler);
-}
-
-function resultNewHandler(obj) {
-  obj.event.stopImmediatePropagation();
-  const element = document.querySelector('.game');
-  element.innerHTML = '';
-
-  if (game.gameType === modes[0]) category = categoryArtists;
-  if (game.gameType === modes[1]) category = categoryImgs;
-  category.render();
-  category.seeker({ home: homeHandler, categoryPlay: categoryPlayHandler, category: categoryHandler });
-  setNewGame();
-}
-
-function resultRepeatHandler(obj) {
-  obj.event.stopImmediatePropagation();
-  const element = document.querySelector('.game');
-  element.innerHTML = '';
-  setNewGame();
-}
-
-function gameProgressHandler(answer) {
-  game.progress.push(answer);
-  let currStage;
-  const rightAnsCount = game.progress.filter(el => el === true).length;
-  if (game.data.length <= 9) currStage = stages.between;
-  else {
-    if (rightAnsCount === 0) currStage = stages.end[0];
-    if (rightAnsCount > 0 && rightAnsCount < 10) currStage = stages.end[1];
-    if (rightAnsCount === 10) currStage = stages.end[2];
-  }
-  return [currStage, rightAnsCount];
 }
 
 function setStageHandler(currentStage, isRight, result) {
@@ -258,26 +164,19 @@ function setStageHandler(currentStage, isRight, result) {
   }
 }
 
-function answerHandler(obj) {
-  timerClearer();
-
-  obj.event.stopImmediatePropagation();
-  const isRight = +obj.element.getAttribute('data-num') === obj.answer;
-  const [currentStage, rightAnsCount] = gameProgressHandler(isRight);
-
-  const result = new Result(currentStage, [
-    isRight,
-    obj.imgPath,
-    obj.answerData.name,
-    `${obj.answerData.author}, ${obj.answerData.year}`,
-    `${rightAnsCount}/10`,
-  ]);
-
-  result.render();
-  setStageHandler(currentStage, isRight, result);
+function gameProgressHandler(answer) {
+  game.progress.push(answer);
+  let currStage;
+  const rightAnsCount = game.progress.filter(el => el === true).length;
+  if (game.data.length <= 9) currStage = stages.between;
+  else {
+    if (rightAnsCount === 0) currStage = stages.end[0];
+    if (rightAnsCount > 0 && rightAnsCount < 10) currStage = stages.end[1];
+    if (rightAnsCount === 10) currStage = stages.end[2];
+  }
+  return [currStage, rightAnsCount];
 }
 
-let startTime;
 function timer() {
   if (!startTime) startTime = new Date().getTime();
   const currentTime = new Date().getTime();
@@ -313,23 +212,68 @@ function timerHandler(timeValElement) {
   }
 }
 
-function categoryPlayHandler(obj) {
-  obj.event.stopImmediatePropagation();
-  const type = obj.element.getAttribute('data-category-type');
-  if (game.gameType !== type) game.gameType = type;
-  let num = +obj.element.getAttribute('data-category-num');
-  game.category = num / 10;
-  if (type === modes[1]) num += 120;
-
-  const question = new Question(type, prepareQuestion(type, num), [config.isTimerOn, config.time]);
-  game.isStarted = true;
+function startGame() {
+  const question = new Question(game.gameType, prepareQuestion(game.gameType, game.firstQuestionNum), [
+    config.isTimerOn,
+    config.time,
+  ]);
   game.playsound(stages.start, config.volume);
-  game.data.push(num);
+  game.data.push(game.firstQuestionNum);
 
   const timeValElement = question.render();
   timerHandler(timeValElement);
   if (config.isTimerOn) question.closeSeeker(homeHandler);
   question.answerSeeker(answerHandler);
+}
+
+function homeHandler(obj) {
+  obj.event.stopImmediatePropagation();
+  if (startTime) timerClearer();
+  dataClearing();
+  goHome();
+}
+
+function categoryHandler(obj) {
+  obj.event.stopImmediatePropagation();
+  let startPosition = +obj.element.getAttribute('data-category-num');
+  const categoryType = obj.element.getAttribute('data-category-type');
+  let categoryData = [];
+  if (categoryType === modes[0]) {
+    for (let i = 0; i < 10; i++) {
+      const element = quiz.data[startPosition + i];
+      categoryData.push(element);
+    }
+  }
+  if (categoryType === modes[1]) {
+    for (let i = 0; i < 10; i++) {
+      const element = quiz.data[startPosition + 120 + i];
+      categoryData.push(element);
+    }
+  }
+
+  const categoryDescription = {
+    type: categoryType === modes[0] ? 'Artists' : 'Paintings',
+    num: startPosition / 10 + 1,
+  };
+
+  let categoryProgress;
+  if (categoryType === modes[0]) categoryProgress = quiz.progress.artCategory[startPosition / 10];
+  if (categoryType === modes[1]) categoryProgress = quiz.progress.imgCategory[startPosition / 10];
+
+  const categoryImgs = new Category(categoryData, categoryProgress);
+  categoryImgs.render(categoryDescription);
+  categoryImgs.seeker(homeHandler);
+}
+
+function categoryPlayHandler(obj) {
+  obj.event.stopImmediatePropagation();
+  const type = obj.element.getAttribute('data-category-type');
+  if (game.gameType !== type) game.gameType = type;
+  game.firstQuestionNum = +obj.element.getAttribute('data-category-num');
+  game.category = game.firstQuestionNum / 10;
+
+  if (type === modes[1]) game.firstQuestionNum += 120;
+  startGame();
 }
 
 function categoryRenderer(obj) {
@@ -423,9 +367,71 @@ function settingsHandler(obj) {
   settings.seekerIcon(iconHandler);
 }
 
+function answerHandler(obj) {
+  timerClearer();
+
+  obj.event.stopImmediatePropagation();
+  const isRight = +obj.element.getAttribute('data-num') === obj.answer;
+  const [currentStage, rightAnsCount] = gameProgressHandler(isRight);
+
+  const result = new Result(currentStage, [
+    isRight,
+    obj.imgPath,
+    obj.answerData.name,
+    `${obj.answerData.author}, ${obj.answerData.year}`,
+    `${rightAnsCount}/10`,
+  ]);
+
+  result.render();
+  setStageHandler(currentStage, isRight, result);
+}
+
+function resultNextHandler(obj) {
+  obj.event.stopImmediatePropagation();
+  const element = document.querySelector('.game');
+  element.innerHTML = '';
+
+  const number = game.data[game.data.length - 1] + 1;
+  const question = new Question(game.gameType, prepareQuestion(game.gameType, number), [config.isTimerOn, config.time]);
+
+  const timeValElement = question.render();
+  timerHandler(timeValElement);
+  if (config.isTimerOn) question.closeSeeker(homeHandler);
+  question.answerSeeker(answerHandler);
+  game.data.push(number);
+}
+
+function resultHomeHandler(obj) {
+  obj.event.stopImmediatePropagation();
+  const element = document.querySelector('.game');
+  element.innerHTML = '';
+
+  goHome();
+  setNewGame();
+}
+
+function resultNewHandler(obj) {
+  obj.event.stopImmediatePropagation();
+  const element = document.querySelector('.game');
+  element.innerHTML = '';
+
+  if (game.gameType === modes[0]) category = categoryArtists;
+  if (game.gameType === modes[1]) category = categoryImgs;
+  setNewGame();
+  category.render();
+  category.seeker({ home: homeHandler, categoryPlay: categoryPlayHandler, category: categoryHandler });
+}
+
+function resultRepeatHandler(obj) {
+  obj.event.stopImmediatePropagation();
+  const element = document.querySelector('.game');
+  element.innerHTML = '';
+  setNewGame();
+  startGame();
+}
+
 home.render();
 home.seeker(categoryRenderer);
-
 settings.seeker(settingsHandler);
 
 const appDescription = {

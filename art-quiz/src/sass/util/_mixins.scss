@@ -19,9 +19,12 @@
       border-radius: 50%;
       width: $size * 9rem;
       height: $size * 9rem;
-      border: 1.5px solid $color-text-default;
+    }
+    &-c1 {
+      border: 1.5px solid rgb(255, 0, 255);
     }
     &-c2 {
+      border: 1.5px solid rgb(0, 247, 255);
       left: $size * 6rem;
     }
   }

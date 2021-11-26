@@ -44,8 +44,7 @@ if (!gameSettings) {
 
 const game = new Game(modes[0]);
 const quiz = new Quiz(data, gameProgress);
-game.progress = [];
-game.data = [];
+dataClearing();
 const config = new Config(gameSettings);
 const home = new Home();
 const settings = new Settings();
@@ -63,6 +62,23 @@ for (let i = 0, j = 0; i < quiz.data.length; i += 10, j++) {
 const categoryArtists = new Categories(dataCategories.slice(0, 12), gameProgress.artCategory, { type: 'Artists' });
 const categoryImgs = new Categories(dataCategories.slice(12, 24), gameProgress.imgCategory, { type: 'Paintings' });
 let category;
+
+// Helper functions
+
+function dataClearing() {
+  game.progress = [];
+  game.data = [];
+}
+
+function timerClearer() {
+  clearInterval(timerVal);
+  startTime = null;
+}
+
+function goHome() {
+  home.render();
+  home.seeker(categoryRenderer);
+}
 
 // for random numbers
 const getRandomBetween = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
@@ -121,16 +137,9 @@ const prepareQuestion = (type, num) => {
 
 function homeHandler(obj) {
   obj.event.stopImmediatePropagation();
-  home.render();
-  home.seeker(categoryRenderer);
-}
-
-function questionCloseHandler(obj) {
-  obj.event.stopImmediatePropagation();
-  clearInterval(timerVal);
-  startTime = null;
-  home.render();
-  home.seeker(categoryRenderer);
+  if (startTime) timerClearer();
+  dataClearing();
+  goHome();
 }
 
 function resultNextHandler(obj) {
@@ -143,7 +152,7 @@ function resultNextHandler(obj) {
 
   const timeValElement = question.render();
   timerHandler(timeValElement);
-  if (config.isTimerOn) question.closeSeeker(questionCloseHandler);
+  if (config.isTimerOn) question.closeSeeker(homeHandler);
   question.answerSeeker(answerHandler);
   game.data.push(number);
 }
@@ -152,8 +161,7 @@ const setNewGame = () => {
   if (game.gameType === modes[0]) quiz.progress.artCategory[game.category] = game.progress;
   if (game.gameType === modes[1]) quiz.progress.imgCategory[game.category] = game.progress;
   window.localStorage.setItem('progress', JSON.stringify(quiz.progress));
-  game.progress = [];
-  game.data = [];
+  dataClearing();
 };
 
 function resultHomeHandler(obj) {
@@ -161,8 +169,7 @@ function resultHomeHandler(obj) {
   const element = document.querySelector('.game');
   element.innerHTML = '';
 
-  home.render();
-  home.seeker(categoryRenderer);
+  goHome();
   setNewGame();
 }
 
@@ -252,8 +259,7 @@ function setStageHandler(currentStage, isRight, result) {
 }
 
 function answerHandler(obj) {
-  clearInterval(timerVal);
-  startTime = null;
+  timerClearer();
 
   obj.event.stopImmediatePropagation();
   const isRight = +obj.element.getAttribute('data-num') === obj.answer;
@@ -285,8 +291,7 @@ function timerHandler(timeValElement) {
       const hasTime = timer();
 
       if (hasTime <= 0) {
-        clearInterval(timerVal);
-        startTime = null;
+        timerClearer();
         timeValElement[0].textContent = '00:00';
         game.playsound(false, config.volume);
         const [currentStage, rightAnsCount] = gameProgressHandler(false);
@@ -323,7 +328,7 @@ function categoryPlayHandler(obj) {
 
   const timeValElement = question.render();
   timerHandler(timeValElement);
-  if (config.isTimerOn) question.closeSeeker(questionCloseHandler);
+  if (config.isTimerOn) question.closeSeeker(homeHandler);
   question.answerSeeker(answerHandler);
 }
 
@@ -337,8 +342,7 @@ function categoryRenderer(obj) {
 
 function closeSettingsHandler(obj) {
   obj.event.stopImmediatePropagation();
-  home.render();
-  home.seeker(categoryRenderer);
+  goHome();
 }
 
 function volumeHandler(obj) {

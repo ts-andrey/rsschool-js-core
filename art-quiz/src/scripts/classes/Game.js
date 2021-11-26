@@ -1,8 +1,8 @@
 class Game {
   constuctor(type) {
-    this.isStarted = false;
-    this.isEnded = false;
     this.gameType = type;
+    this.category = undefined;
+    this.firstQuestionNum = undefined;
     this.progress = [];
     this.data = [];
   }

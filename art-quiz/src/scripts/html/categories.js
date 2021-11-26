@@ -11,7 +11,7 @@ const content = (data, progress, type) => {
         <div class="circle-c1"></div>
         <div class="circle-c2"></div>
       </div>
-      <h1>Art Quiz</h1>
+      <h1 class="text-gradient">Art Quiz</h1>
     </div>
   </li>
   <li><p class="home">Home</p></li>
@@ -22,11 +22,11 @@ const content = (data, progress, type) => {
   data.forEach((el, index) => {
     const sum = progress[index].filter(el => el === true).length;
     result += `
-  <ul class="card ${sum ? '' : 'progress-filter'}" data-category-num="${index * 10}" data-category-type="${el.type}">
+  <ul class="card" data-category-num="${index * 10}" data-category-type="${el.type}">
     <li class="card-info"><span class="category-name">Category #${index + 1}</span>${
       sum !== 0 ? `<span class='category-progress'>${sum}/10</span>` : ''
     }</li>
-    <li><img class="img-category" src="${el.src}" alt="category image" /></li>
+    <li><img class="img-category ${sum ? '' : 'progress-filter'}" src="${el.src}" alt="category image" /></li>
     ${el.progress ? `<li class="offer">${iconAgain}<span>Play again?</span></li>` : ''}
     <div class="play-btn" data-category-num="${index * 10}" data-category-type="${el.type}">${
       sum !== 0 ? 'Play again?' : 'Play?'

@@ -7,7 +7,7 @@ const content = (data, progress, description) => {
       <div class="circle-c1"></div>
       <div class="circle-c2"></div>
     </div>
-    <h1>Art Quiz</h1>
+    <h1 class="text-gradient">Art Quiz</h1>
   </div>
 </li>
 <li><p class="home">Home</p></li>
@@ -15,7 +15,6 @@ const content = (data, progress, description) => {
 <h3 class="category-title">${description.type} category #${description.num}</h3>
 <div class="category-gallery">
 `;
-  // {this.progress[index] ? '' : 'progress-filter'}
   data.forEach((el, index) => {
     result += `
   <ul class="card">
@@ -25,8 +24,8 @@ const content = (data, progress, description) => {
     }.webp" alt="category image" />
     </li>
     <li class="card-description">
-    <div class="img-name">${data[index].name}</div>
-    <div class="img-description"><i>${data[index].author}, ${data[index].year}</i></div>
+    <div class="card-data img-name">${data[index].name}</div>
+    <div class="card-data img-description"><i>${data[index].author}, ${data[index].year}</i></div>
     </li>
     <li class="card-cover"></li>
   </ul>

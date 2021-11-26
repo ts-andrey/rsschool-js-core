@@ -32,6 +32,7 @@
   text-align: center;
   transition: all 0.4s;
   user-select: none;
+  font-weight: bolder;
 
   &:hover,
   &:active {
@@ -59,4 +60,25 @@
   border-radius: 1rem;
   background: linear-gradient(to right, #ff4901 0%, #ff4901 50%, #c4c4c4 50.1%, #c4c4c4 100%);
   height: 0.7rem;
+}
+
+.text-gradient {
+  background: linear-gradient(
+    45deg,
+    rgb(224, 0, 224) 10%,
+    rgb(2, 247, 255) 25%,
+    rgb(231, 235, 1) 35%,
+    rgb(255, 51, 0) 45%,
+    rgb(0, 45, 247) 50%,
+    rgb(224, 0, 224) 60%,
+    rgb(231, 235, 1) 65%,
+    rgb(255, 51, 0) 70%,
+    rgb(0, 45, 247) 75%,
+    rgb(0, 233, 0) 80%,
+    rgb(2, 247, 255) 85%,
+    rgb(231, 235, 1) 90%,
+    rgb(224, 0, 224) 95%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

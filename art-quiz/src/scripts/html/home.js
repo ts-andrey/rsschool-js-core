@@ -3,10 +3,10 @@ const content = `
   <div class="art-logo-wrapper">
     <div class="art-logo">
       <div class="circle">
-        <div class="circle-c1"></div>
-        <div class="circle-c2"></div>
+        <div class="circle-c1 border-gradient"></div>
+        <div class="circle-c2 border-gradient"></div>
       </div>
-      <h1>Art Quiz</h1>
+      <h1 class="text-gradient">Art Quiz</h1>
     </div>
   </div>
   <ul class="menu-list">

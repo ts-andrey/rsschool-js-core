@@ -1,11 +1,44 @@
+::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #30c5ff; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #3fcc59; 
+    height: 10%;
+    width: 10px;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #288d3b; 
+  }
+
+.wrapper {
+    margin: 0 auto;
+    width: 70%;
+    padding: 10px 0 40px 0;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid #fff;
+}
+
 .sources {
+    margin: 0 auto;
     display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    height: 120px;
+    flex-wrap: wrap;
+    height: 11rem;
     overflow: auto;
+    justify-content: center;
     align-items: center;
     font: 300 1em 'Fira Sans', sans-serif;
+    position: relative;
 }
 
 .source__item {
@@ -14,7 +47,7 @@
     font: inherit;
     line-height: 1;
     margin: 0.5em;
-    padding: 1em 2em;
+    padding: 0.7em 1.3em;
     color: #70d6ff;
     transition: 0.25s;
     cursor: pointer;
@@ -31,4 +64,21 @@
 .source__item-name {
     font-weight: 400;
     white-space: nowrap;
+}
+
+@media (max-width: 460px) {
+    .wrapper {
+        margin: 0 auto;
+        width: 90%;
+        padding: 10px 0 40px 0;
+        margin-bottom: 3rem;
+        border-bottom: 2px solid #fff;
+    }
+    .source__item {
+        margin: 5px;
+        padding: 5px;
+        color: #70d6ff;
+        transition: 0.25s;
+        cursor: pointer;
+    }
 }

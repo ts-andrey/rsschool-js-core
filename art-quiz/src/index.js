@@ -26,22 +26,22 @@ const defaultConfig = {
   volume: 1,
 };
 
-let gameProgress = JSON.parse(window.localStorage.getItem('progress'));
+let gameProgress = JSON.parse(localStorage.getItem('progress'));
 if (!gameProgress) {
-  window.localStorage.setItem(
+  localStorage.setItem(
     'progress',
     JSON.stringify({
       artCategory: { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [] },
       imgCategory: { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [] },
     })
   );
-  gameProgress = JSON.parse(window.localStorage.getItem('progress'));
+  gameProgress = JSON.parse(localStorage.getItem('progress'));
 }
 
-let gameSettings = JSON.parse(window.localStorage.getItem('settings'));
+let gameSettings = JSON.parse(localStorage.getItem('settings'));
 if (!gameSettings) {
-  window.localStorage.setItem('settings', JSON.stringify(defaultConfig));
-  gameSettings = JSON.parse(window.localStorage.getItem('settings'));
+  localStorage.setItem('settings', JSON.stringify(defaultConfig));
+  gameSettings = JSON.parse(localStorage.getItem('settings'));
 }
 
 const game = new Game(modes[0]);
@@ -55,8 +55,11 @@ const dataCategories = [];
 for (let i = 0, j = 0; i < quiz.data.length; i += 10, j++) {
   const tempObj = {};
   tempObj.src = `./assets/data/img/${quiz.data[i].imageNum}.webp`;
-  if (j >= 12) tempObj.type = modes[1];
-  else tempObj.type = modes[0];
+  if (j >= 12) {
+    tempObj.type = modes[1];
+  } else {
+    tempObj.type = modes[0];
+  }
   dataCategories.push(tempObj);
 }
 
@@ -88,21 +91,31 @@ const getRandomBetween = (min, max) => Math.floor(Math.random() * (max - min + 1
 const createAnswer = (arr, type, num) => {
   if (type === modes[0]) {
     let author = data[num].author;
-    if (arr.includes(author)) createAnswer(arr, type, num + 1);
-    else arr.push(author);
+    if (arr.includes(author)) {
+      createAnswer(arr, type, num + 1);
+    } else {
+      arr.push(author);
+    }
   }
   if (type === modes[1]) {
     let picture = `./assets/data/img/${data[num].imageNum}.webp`;
-    if (arr.includes(picture)) createAnswer(arr, type, num + 1);
-    else arr.push(picture);
+    if (arr.includes(picture)) {
+      createAnswer(arr, type, num + 1);
+    } else {
+      arr.push(picture);
+    }
   }
 };
 
 const prepareAnswer = (type, num) => {
   const result = [];
   for (let i = 0; i < 4; i++) {
-    if (type === modes[0]) result.push(getRandomBetween(0, 119));
-    if (type === modes[1]) result.push(getRandomBetween(120, 239));
+    if (type === modes[0]) {
+      result.push(getRandomBetween(0, 119));
+    }
+    if (type === modes[1]) {
+      result.push(getRandomBetween(120, 239));
+    }
   }
   const answerNumber = getRandomBetween(0, 3);
   result[answerNumber] = num;
@@ -126,9 +139,11 @@ const prepareQuestion = (type, num) => {
   let progress;
   try {
     progress = game.progress;
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
   questionData.push(`./assets/data/img/${num}.webp`);
-  questionData.push(progress ? progress : 0);
+  questionData.push(progress || 0);
   const answers = prepareAnswer(type, num);
   questionData.push(answers[0]);
   questionData.push(answers[1]);
@@ -137,9 +152,13 @@ const prepareQuestion = (type, num) => {
 };
 
 function setNewGame() {
-  if (game.gameType === modes[0]) quiz.progress.artCategory[game.category] = game.progress;
-  if (game.gameType === modes[1]) quiz.progress.imgCategory[game.category] = game.progress;
-  window.localStorage.setItem('progress', JSON.stringify(quiz.progress));
+  if (game.gameType === modes[0]) {
+    quiz.progress.artCategory[game.category] = game.progress;
+  }
+  if (game.gameType === modes[1]) {
+    quiz.progress.imgCategory[game.category] = game.progress;
+  }
+  localStorage.setItem('progress', JSON.stringify(quiz.progress));
   dataClearing();
 }
 
@@ -168,17 +187,26 @@ function gameProgressHandler(answer) {
   game.progress.push(answer);
   let currStage;
   const rightAnsCount = game.progress.filter(el => el === true).length;
-  if (game.data.length <= 9) currStage = stages.between;
-  else {
-    if (rightAnsCount === 0) currStage = stages.end[0];
-    if (rightAnsCount > 0 && rightAnsCount < 10) currStage = stages.end[1];
-    if (rightAnsCount === 10) currStage = stages.end[2];
+  if (game.data.length <= 9) {
+    currStage = stages.between;
+  } else {
+    if (rightAnsCount === 0) {
+      currStage = stages.end[0];
+    }
+    if (rightAnsCount > 0 && rightAnsCount < 10) {
+      currStage = stages.end[1];
+    }
+    if (rightAnsCount === 10) {
+      currStage = stages.end[2];
+    }
   }
   return [currStage, rightAnsCount];
 }
 
 function timer() {
-  if (!startTime) startTime = new Date().getTime();
+  if (!startTime) {
+    startTime = new Date().getTime();
+  }
   const currentTime = new Date().getTime();
   const result = (config.time - (currentTime - startTime) / 1000).toFixed(2);
   return result;
@@ -222,20 +250,24 @@ function startGame() {
 
   const timeValElement = question.render();
   timerHandler(timeValElement);
-  if (config.isTimerOn) question.closeSeeker(homeHandler);
+  if (config.isTimerOn) {
+    question.closeSeeker(homeHandler);
+  }
   question.answerSeeker(answerHandler);
 }
 
 function homeHandler(obj) {
   obj.event.stopImmediatePropagation();
-  if (startTime) timerClearer();
+  if (startTime) {
+    timerClearer();
+  }
   dataClearing();
   goHome();
 }
 
 function categoryHandler(obj) {
   obj.event.stopImmediatePropagation();
-  let startPosition = +obj.element.getAttribute('data-category-num');
+  let startPosition = Number(obj.element.getAttribute('data-category-num'));
   const categoryType = obj.element.getAttribute('data-category-type');
   let categoryData = [];
   if (categoryType === modes[0]) {
@@ -257,8 +289,12 @@ function categoryHandler(obj) {
   };
 
   let categoryProgress;
-  if (categoryType === modes[0]) categoryProgress = quiz.progress.artCategory[startPosition / 10];
-  if (categoryType === modes[1]) categoryProgress = quiz.progress.imgCategory[startPosition / 10];
+  if (categoryType === modes[0]) {
+    categoryProgress = quiz.progress.artCategory[startPosition / 10];
+  }
+  if (categoryType === modes[1]) {
+    categoryProgress = quiz.progress.imgCategory[startPosition / 10];
+  }
 
   const categoryImgs = new Category(categoryData, categoryProgress);
   categoryImgs.render(categoryDescription);
@@ -268,18 +304,25 @@ function categoryHandler(obj) {
 function categoryPlayHandler(obj) {
   obj.event.stopImmediatePropagation();
   const type = obj.element.getAttribute('data-category-type');
-  if (game.gameType !== type) game.gameType = type;
-  game.firstQuestionNum = +obj.element.getAttribute('data-category-num');
+  if (game.gameType !== type) {
+    game.gameType = type;
+  }
+  game.firstQuestionNum = Number(obj.element.getAttribute('data-category-num'));
   game.category = game.firstQuestionNum / 10;
 
-  if (type === modes[1]) game.firstQuestionNum += 120;
+  if (type === modes[1]) {
+    game.firstQuestionNum += 120;
+  }
   startGame();
 }
 
 function categoryRenderer(obj) {
   obj.event.stopImmediatePropagation();
-  if (obj.element.getAttribute('data-type') === modes[0]) category = categoryArtists;
-  else if (obj.element.getAttribute('data-type') === modes[1]) category = categoryImgs;
+  if (obj.element.getAttribute('data-type') === modes[0]) {
+    category = categoryArtists;
+  } else if (obj.element.getAttribute('data-type') === modes[1]) {
+    category = categoryImgs;
+  }
   category.render();
   category.seeker({ home: homeHandler, categoryPlay: categoryPlayHandler, category: categoryHandler });
 }
@@ -300,19 +343,24 @@ function timeSwitchHandler(obj) {
   obj.switcher.classList.toggle('time-switcher-content');
   const switcherState = obj.switcher.classList.contains('time-switcher-content');
 
-  if (switcherState === true) obj.state.textContent = 'On';
-  if (switcherState === false) obj.state.textContent = 'Off';
+  if (switcherState) {
+    obj.state.textContent = 'On';
+  } else {
+    obj.state.textContent = 'Off';
+  }
 }
 
 function timeHandler(obj) {
-  const timeAmount = +obj.time.textContent;
+  const timeAmount = Number(obj.time.textContent);
   if (obj.element.classList.contains('increase')) {
-    if (timeAmount >= 30) '';
-    else obj.time.textContent = timeAmount + 5;
+    if (timeAmount < 30) {
+      obj.time.textContent = timeAmount + 5;
+    }
   }
   if (obj.element.classList.contains('decrease')) {
-    if (timeAmount <= 5) '';
-    else obj.time.textContent = timeAmount - 5;
+    if (timeAmount > 5) {
+      obj.time.textContent = timeAmount - 5;
+    }
   }
 }
 
@@ -325,12 +373,13 @@ function settingsOptionHandler(obj) {
     config.time = defaultConfig.time;
     config.isMute = defaultConfig.isMute;
 
-    window.localStorage.setItem('settings', JSON.stringify(config));
+    localStorage.setItem('settings', JSON.stringify(config));
 
     elements.volume.value = config.volume;
     elements.volume.style.background = `linear-gradient(to right, #ff4901 0%, #ff4901 100%, #c4c4c4 100%, #c4c4c4 100%)`;
-    if (elements.switcher.classList.contains('time-switcher-content'))
+    if (elements.switcher.classList.contains('time-switcher-content')) {
       elements.switcher.classList.remove('time-switcher-content');
+    }
     document.querySelector('.timer').textContent = 'Off';
     elements.time.textContent = '30';
   }
@@ -339,8 +388,8 @@ function settingsOptionHandler(obj) {
 
     config.volume = elements.volume.value;
     config.isTimerOn = elements.switcher.classList.contains('time-switcher-content');
-    config.time = +elements.time.textContent;
-    window.localStorage.setItem('settings', JSON.stringify(config));
+    config.time = Number(elements.time.textContent);
+    localStorage.setItem('settings', JSON.stringify(config));
   }
 }
 
@@ -371,7 +420,7 @@ function answerHandler(obj) {
   timerClearer();
 
   obj.event.stopImmediatePropagation();
-  const isRight = +obj.element.getAttribute('data-num') === obj.answer;
+  const isRight = Number(obj.element.getAttribute('data-num')) === obj.answer;
   const [currentStage, rightAnsCount] = gameProgressHandler(isRight);
 
   const result = new Result(currentStage, [
@@ -396,7 +445,9 @@ function resultNextHandler(obj) {
 
   const timeValElement = question.render();
   timerHandler(timeValElement);
-  if (config.isTimerOn) question.closeSeeker(homeHandler);
+  if (config.isTimerOn) {
+    question.closeSeeker(homeHandler);
+  }
   question.answerSeeker(answerHandler);
   game.data.push(number);
 }
@@ -415,8 +466,12 @@ function resultNewHandler(obj) {
   const element = document.querySelector('.game');
   element.innerHTML = '';
 
-  if (game.gameType === modes[0]) category = categoryArtists;
-  if (game.gameType === modes[1]) category = categoryImgs;
+  if (game.gameType === modes[0]) {
+    category = categoryArtists;
+  }
+  if (game.gameType === modes[1]) {
+    category = categoryImgs;
+  }
   setNewGame();
   category.render();
   category.seeker({ home: homeHandler, categoryPlay: categoryPlayHandler, category: categoryHandler });

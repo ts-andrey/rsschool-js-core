@@ -81,7 +81,7 @@ class Question {
     this.el.innerHTML = content(this.type, this.data, this.timeObj);
     const progress = this.data[2];
     const elements = document.querySelectorAll('.question-number');
-    if (this.type === 'artists')
+    if (this.type === 'artists') {
       for (let i = 0; i < progress.length; i++) {
         if (progress[i] === true) {
           elements[i].style.background = `#ff4901`;
@@ -92,7 +92,8 @@ class Question {
           elements[i].style.border = `.1rem solid #fff`;
         }
       }
-    if (this.type === 'imgs')
+    }
+    if (this.type === 'imgs') {
       for (let i = 0; i < progress.length; i++) {
         if (progress[i] === true) {
           elements[i].style.background = `#ff4901`;
@@ -103,6 +104,7 @@ class Question {
           elements[i].style.border = `.1rem solid #fff`;
         }
       }
+    }
     const timeValEl = document.querySelector('.time-amount');
     return [timeValEl, this.data];
   }

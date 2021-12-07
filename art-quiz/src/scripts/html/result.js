@@ -89,8 +89,12 @@ class Result {
     this.el.innerHTML = content(this.type, this.data);
     if (this.type === 'between') {
       const iconWrapper = document.querySelector('.result-icon');
-      if (this.data[0] === true) iconWrapper.style.background = '#1fbb00';
-      if (this.data[0] === false) iconWrapper.style.background = '#ff0000';
+      if (this.data[0] === true) {
+        iconWrapper.style.background = '#1fbb00';
+      }
+      if (this.data[0] === false) {
+        iconWrapper.style.background = '#ff0000';
+      }
     }
   }
   seekerNext(nextHandler) {

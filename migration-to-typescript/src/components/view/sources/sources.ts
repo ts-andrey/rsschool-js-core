@@ -1,10 +1,10 @@
 import './sources.css';
-import { dataSource } from './../../interface/interface';
+import { IDataSource } from './../../interface/interface';
 
 class Sources {
-    draw(data: Array<dataSource>) {
+    draw(data: IDataSource[]) {
         const fragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
+        const sourceItemTemp: HTMLTemplateElement = document.querySelector('#sourceItemTemp');
 
         data.forEach((item) => {
             const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;

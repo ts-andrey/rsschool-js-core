@@ -1,4 +1,4 @@
-export type dataArticle = {
+export interface IDataArticle {
     source: {
         id: null | string;
         name: string;
@@ -10,16 +10,16 @@ export type dataArticle = {
     urlToImage: string;
     publishedAt: string;
     content: string;
-};
+}
 
-export type dataSource = {
+export interface IDataSource {
     id: null | string;
     name: string;
-};
+}
 
 export interface IData {
-    articles: Array<dataArticle>;
-    sources: Array<dataSource>;
+    articles: IDataArticle[];
+    sources: IDataSource[];
 }
 
 export type callbackType<T> = (data: T) => void;

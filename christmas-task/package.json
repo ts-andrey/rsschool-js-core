@@ -4,8 +4,32 @@
   "description": "christmas task",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
+    "build": "cross-env NODE_ENV=production webpack --mode production --config webpack.config.js"
   },
+  "browserslist": "> 0.25%, not dead",
   "author": "Andrei Tsakunou",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "copy-webpack-plugin": "^10.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.5.1",
+    "css-minimizer-webpack-plugin": "^3.2.0",
+    "eslint": "^8.4.1",
+    "eslint-plugin-import": "^2.25.3",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "node-sass": "^7.0.0",
+    "sass-loader": "^12.4.0",
+    "terser-webpack-plugin": "^5.2.5",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.2",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  }
 }

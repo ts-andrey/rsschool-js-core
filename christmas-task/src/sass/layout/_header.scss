@@ -1,0 +1,64 @@
+@import '../util/mixins';
+@import '../util/variables';
+
+.header {
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+  &__nav-list {
+    color: #fff;
+    display: flex;
+  }
+}
+.nav-list {
+  &__item {
+    margin-right: 3rem;
+    text-transform: uppercase;
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &_state_active {
+    }
+  }
+}
+
+.header-box {
+  &__icon-box {
+    svg {
+      @include size(min-content, 4rem);
+    }
+    margin-right: 3rem;
+  }
+
+  &__toy-count-box {
+    @include size(3rem, 4rem);
+    background-image: url(../assets/svg/ball-2.svg);
+    background-size: 3rem;
+    background-repeat: no-repeat;
+    background-position: top center;
+    margin-left: 3rem;
+  }
+
+  &__side {
+    &-left,
+    &-right {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.search-box__field {
+  border-radius: 5rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.toy-count-box__counter {
+  @include equalSize(3rem);
+  background: rgba(0, 225, 255, 0.253);
+}

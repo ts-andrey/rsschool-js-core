@@ -1,0 +1,14 @@
+@mixin equalSize($size: 0) {
+  width: $size;
+  height: $size;
+}
+
+@mixin size($size-width: 0, $size-height: 0) {
+  width: $size-width;
+  height: $size-height;
+}
+
+@mixin size-n-pad($size-width: 0, $size-height: 0, $size-padding: 0) {
+  @include size($size-width, $size-width);
+  padding: $size-padding;
+}

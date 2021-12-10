@@ -1,0 +1,134 @@
+@import '../util/mixins';
+@import '../util/variables';
+
+.main__box {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-box__filters {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters {
+  &__header {
+    color: #fff;
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+
+  &__property-filter,
+  &__range-filter,
+  &__sorter {
+    display: grid;
+    grid-gap: 1.5rem;
+    padding: 2rem;
+    background: rgba(0, 225, 255, 0.253);
+    border-radius: 1rem;
+  }
+  &__property-filter {
+    flex-grow: 1;
+    margin-right: 5rem;
+  }
+  &__range-filter {
+    flex-grow: 2;
+  }
+  &__sorter {
+    margin-left: 5rem;
+    flex-grow: 1;
+  }
+}
+
+.shape-list,
+.color-list,
+.size-list,
+.favourite-list {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.5rem;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+.list {
+  &__info {
+    color: #fff;
+    margin-right: 1.5rem;
+  }
+
+  &__check {
+    @include size-n-pad(2.2rem, 2.2rem, 0.2rem);
+    border-radius: 0.3rem;
+
+    color: #000;
+    font-size: 1.4rem;
+    font-weight: bolder;
+  }
+}
+
+.shape-list {
+  &__item {
+    svg {
+      @include size(min-content, 3rem);
+    }
+  }
+}
+
+.color-list {
+  &__item {
+    &_color {
+      &_white {
+        background: rgb(255, 255, 255);
+      }
+      &_yellow {
+        background: rgb(255, 255, 0);
+      }
+      &_red {
+        background: rgb(255, 0, 0);
+      }
+      &_blue {
+        color: white;
+        background: rgb(0, 0, 255);
+      }
+      &_green {
+        background: rgb(0, 255, 0);
+      }
+    }
+  }
+}
+
+.size-list {
+  &__item {
+    &_size {
+      &_big {
+        svg {
+          @include equalSize(4rem);
+        }
+      }
+      &_medium {
+        svg {
+          @include equalSize(3.2rem);
+        }
+      }
+      &_small {
+        svg {
+          @include equalSize(2.6rem);
+        }
+      }
+    }
+  }
+}
+
+.favourite-list {
+  &__item {
+    background: #fff;
+  }
+}

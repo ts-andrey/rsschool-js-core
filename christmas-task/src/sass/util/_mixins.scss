@@ -1,3 +1,5 @@
+@import './variables';
+
 @mixin equalSize($size: 0) {
   width: $size;
   height: $size;
@@ -11,4 +13,36 @@
 @mixin size-n-pad($size-width: 0, $size-height: 0, $size-padding: 0) {
   @include size($size-width, $size-width);
   padding: $size-padding;
+}
+
+@mixin hover-scale() {
+  transition: all 0.35s;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+}
+@mixin hover-rotate() {
+  transition: all 0.35s;
+  &:hover {
+    cursor: pointer;
+    transform: rotate(0.01turn);
+  }
+}
+@mixin hover() {
+  transition: all 0.35s;
+  &:hover {
+    cursor: pointer;
+    color: $color-mark-favourite;
+    path {
+      fill: $color-mark-favourite;
+    }
+  }
+}
+@mixin hover-translate() {
+  transition: all 0.35s;
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.2rem);
+  }
 }

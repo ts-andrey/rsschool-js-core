@@ -1,6 +1,13 @@
 @import '../util/mixins';
 @import '../util/variables';
 
+main{
+  background-image: url(../assets/bg-1.webp);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .main__box {
   display: flex;
   flex-direction: column;
@@ -9,13 +16,16 @@
 .main-box__filters {
   display: flex;
   justify-content: space-between;
+  margin-top: 2rem;
 }
 
 .filters {
   &__header {
-    color: #fff;
+    color: $color-text-main;
     font-size: 2rem;
     text-transform: uppercase;
+    text-align: center;
+    height: min-content;
   }
 
   &__property-filter,
@@ -23,20 +33,21 @@
   &__sorter {
     display: grid;
     grid-gap: 1.5rem;
+    grid-template-rows: min-content;
     padding: 2rem;
-    background: rgba(0, 225, 255, 0.253);
+    background: $color-background-main;
     border-radius: 1rem;
   }
   &__property-filter {
-    flex-grow: 1;
+    flex-basis: 30%;
     margin-right: 5rem;
   }
   &__range-filter {
-    flex-grow: 2;
+    flex-basis: 40%;
   }
   &__sorter {
     margin-left: 5rem;
-    flex-grow: 1;
+    flex-basis: 30%;
   }
 }
 
@@ -60,22 +71,16 @@
 
 .list {
   &__info {
-    color: #fff;
+    color: $color-text-main;
     margin-right: 1.5rem;
-  }
-
-  &__check {
-    @include size-n-pad(2.2rem, 2.2rem, 0.2rem);
-    border-radius: 0.3rem;
-
-    color: #000;
-    font-size: 1.4rem;
-    font-weight: bolder;
   }
 }
 
 .shape-list {
   &__item {
+    @include hover;
+    @include hover-rotate;
+
     svg {
       @include size(min-content, 3rem);
     }
@@ -84,6 +89,14 @@
 
 .color-list {
   &__item {
+    @include size-n-pad(2.2rem, 2.2rem, 0.2rem);
+    @include hover-scale;
+
+    border-radius: 0.3rem;
+    color: #000;
+    font-size: 1.4rem;
+    font-weight: bolder;
+
     &_color {
       &_white {
         background: rgb(255, 255, 255);
@@ -95,7 +108,7 @@
         background: rgb(255, 0, 0);
       }
       &_blue {
-        color: white;
+        color: $color-text-main;
         background: rgb(0, 0, 255);
       }
       &_green {
@@ -107,6 +120,9 @@
 
 .size-list {
   &__item {
+    @include hover;
+    @include hover-rotate;
+
     &_size {
       &_big {
         svg {
@@ -131,4 +147,216 @@
   &__item {
     background: #fff;
   }
+}
+
+.range-filter {
+  &__list {
+    display: grid;
+    grid-row-gap: 2rem;
+  }
+  &__header {
+    color: $color-text-main;
+    font-size: 1.8rem;
+  }
+  &__item {
+    display: grid;
+    &-wrapper {
+      align-items: center;
+      display: flex;
+    }
+  }
+  &__value {
+    width: 7rem;
+    background-color: $color-background-option;
+    padding: 0.5rem;
+    border-radius: 20rem;
+    text-align: center;
+    font-weight: bolder;
+    &_num,
+    &_year {
+      &_min {
+        margin-right: 3rem;
+      }
+      &_max {
+        margin-left: 3rem;
+      }
+    }
+  }
+  &__input {
+    position: absolute;
+    width: 100%;
+    -webkit-appearance: none;
+    background-color: transparent;
+
+    &-wrapper {
+      position: relative;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    &::-webkit-slider-runnable-track {
+      height: 0.5rem;
+      background-color: $color-mark-favourite;
+      border-radius: 2rem;
+      &:first-of-type {
+        opacity: 0;
+      }
+    }
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      position: relative;
+      z-index: 1;
+      width: 1rem;
+      height: 2rem;
+      border-radius: 0 2rem;
+      background: #fff;
+      margin-top: -0.8rem;
+      cursor: pointer;
+    }
+  }
+}
+
+.filters__sorter {
+  position: relative;
+}
+
+.sorter {
+  &__list-wrapper {
+    height: 18rem;
+    color: $color-text-main;
+    position: relative;
+    overflow: hidden;
+  }
+  &__sort-list {
+    display: grid;
+    grid-row-gap: 0.5rem;
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: max-content;
+    align-items: center;
+    background: #000;
+    padding: 1.2rem 2.2rem;
+    border-radius: 1.5rem;
+    width: fit-content;
+    margin-top: -20rem;
+    transition: all 0.35s;
+    z-index: 5;
+
+    &_state_reveal {
+      margin-top: 0;
+      position: absolute;
+      top: 3rem;
+      left: 0;
+    }
+  }
+  &__sort-value-wrapper {
+    display: flex;
+    align-items: center;
+    background: $color-background-option;
+    width: fit-content;
+    border-radius: 1.5rem;
+    margin-left: 2rem;
+    padding: 0 1rem;
+    svg {
+      @include equalSize(2.5rem);
+      fill: $color-text-main;
+      pointer-events: visible;
+    }
+  }
+  &__sort-value,
+  &__sort-value-icon {
+    cursor: pointer;
+  }
+
+  &__reset {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 1rem 4rem;
+    background: $color-background-option;
+    border-radius: 1.5rem;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+}
+.sort-list {
+  &__item {
+    padding: 0.25rem 2rem;
+    border: 1px solid $color-text-main;
+    border-radius: 5rem;
+    padding-left: 2rem;
+    background: $color-background-option;
+    transition: all 0.35s;
+    &:hover {
+      cursor: pointer;
+      transform: translateX(1rem);
+    }
+  }
+}
+
+.toys {
+  &__list {
+    margin-top: 3rem;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fit, 28rem);
+    grid-gap: 3rem;
+    justify-content: center;
+  }
+  &-list__item {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    background: $color-background-main;
+    color: $color-text-main;
+  }
+}
+.toy-card {
+  &__header {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  &__img {
+    width: 9rem;
+
+    &-wrapper {
+      height: min-content;
+    }
+  }
+  &__mark {
+    @include size(110%, 4rem);
+    margin-top: 1rem;
+    margin-left: -1.6rem;
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+    &_state {
+      &_normal {
+        background-color: $color-mark-normal;
+      }
+      &_favourite {
+        background-color: $color-mark-favourite;
+      }
+    }
+  }
+  &__content {
+    &-wrapper {
+      display: flex;
+    }
+    &_left {
+      display: grid;
+    }
+    &_right {
+      margin-left: 1rem;
+    }
+  }
+  &__description-list {
+    font-size: 1.6rem;
+    display: grid;
+    grid-row-gap: 1rem;
+  }
+}
+.description-list {
 }

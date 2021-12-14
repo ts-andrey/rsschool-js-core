@@ -37,8 +37,8 @@
           <div class="search-box header-box__search">
             <input class="search-box__field" type="text" />
           </div>
-          <div class="toy-count-box header-box__toy-count-box">
-            <span class="toy-count-box__counter"></span>
+          <div class="header-box__toy-count-box">
+            <span class="header-box__toy-counter">0</span>
           </div>
         </div>
       </div>
@@ -123,38 +123,20 @@
                 <li
                   data-isChecked="false"
                   data-color="white"
-                  class="color-list__item color-list__item_color_white list__check"
-                >
-                  ✔
-                </li>
+                  class="color-list__item color-list__item_color_white color-list__item_state_checked"
+                ></li>
                 <li
                   data-isChecked="false"
                   data-color="yellow"
-                  class="color-list__item color-list__item_color_yellow list__check"
-                >
-                  ✔
-                </li>
-                <li
-                  data-isChecked="false"
-                  data-color="red"
-                  class="color-list__item color-list__item_color_red list__check"
-                >
-                  ✔
-                </li>
-                <li
-                  data-isChecked="false"
-                  data-color="blue"
-                  class="color-list__item color-list__item_color_blue list__check"
-                >
-                  ✔
-                </li>
+                  class="color-list__item color-list__item_color_yellow"
+                ></li>
+                <li data-isChecked="false" data-color="red" class="color-list__item color-list__item_color_red"></li>
+                <li data-isChecked="false" data-color="blue" class="color-list__item color-list__item_color_blue"></li>
                 <li
                   data-isChecked="false"
                   data-color="green"
-                  class="color-list__item color-list__item_color_green list__check"
-                >
-                  ✔
-                </li>
+                  class="color-list__item color-list__item_color_green"
+                ></li>
               </ul>
             </div>
             <div class="property-filter__size">
@@ -200,19 +182,123 @@
             <h2 class="filters__header">Фильтры по диапазону</h2>
             <ul class="range-filter__list">
               <li class="range-filter__item">
-                <input type="range" name="number" multiple min="1" max="12" step="1" />
+                <h4 class="range-filter__header">Количество экземпляров:</h4>
+                <div class="range-filter__item-wrapper">
+                  <span class="range-filter__value range-filter__value_num_min">1</span>
+                  <div class="range-filter__input-wrapper">
+                    <input
+                      class="range-filter__input range-filter__input_type_num"
+                      type="range"
+                      name="number"
+                      min="1"
+                      max="12"
+                      value="1"
+                      step="1"
+                    />
+                    <input
+                      class="range-filter__input range-filter__input_type_num"
+                      type="range"
+                      name="number"
+                      min="1"
+                      max="12"
+                      value="12"
+                      step="1"
+                    />
+                  </div>
+                  <span class="range-filter__value range-filter__value_num_max">12</span>
+                </div>
               </li>
               <li class="range-filter__item">
-                <input type="range" name="year" multiple min="1940" max="2020" step="10" />
+                <h4 class="range-filter__header">Год приобретения:</h4>
+                <div class="range-filter__item-wrapper">
+                  <span class="range-filter__value range-filter__value_year_min">1940</span>
+                  <div class="range-filter__input-wrapper">
+                    <input
+                      class="range-filter__input range-filter__input_type_year"
+                      type="range"
+                      name="year"
+                      min="1940"
+                      max="2020"
+                      value="1940"
+                      step="10"
+                    />
+                    <input
+                      class="range-filter__input range-filter__input_type_year"
+                      type="range"
+                      name="year"
+                      min="1940"
+                      max="2020"
+                      value="2020"
+                      step="10"
+                    />
+                  </div>
+                  <span class="range-filter__value range-filter__value_year_max">2020</span>
+                </div>
               </li>
             </ul>
           </div>
           <div class="sorter filters__sorter">
             <h2 class="filters__header">Сортировка</h2>
+            <div class="sorter__list-wrapper">
+              <div class="sorter__sort-value-wrapper">
+                <span class="sorter__sort-value">Сортировать по имени А→Я</span
+                ><svg class="sorter__sort-value-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M33.17 17.17l-9.17 9.17-9.17-9.17-2.83 2.83 12 12 12-12z" />
+                  <path d="M0 0h48v48h-48z" fill="none" />
+                </svg>
+              </div>
+              <ul class="sort-list sorter__sort-list sorter__sort-list_state_reveal">
+                <li data-sort-option="name" class="sort-list__item">Сортировать по имени А→Я</li>
+                <li data-sort-option="name-reversed" class="sort-list__item">Сортировать по имени Я→А</li>
+                <li data-sort-option="number" class="sort-list__item">Сортировать по количеству ↥</li>
+                <li data-sort-option="number-reversed" class="sort-list__item">Сортировать по количеству ↧</li>
+              </ul>
+            </div>
+            <span class="sorter__reset">Reset filters</span>
           </div>
         </div>
         <div class="toys">
-          <ul class="toys-list"></ul>
+          <ul class="toys-list toys__list">
+            <li class="toy-card toys-list__item">
+              <h3 class="toy-card__header">Some card</h3>
+              <div class="toy-card__content-wrapper">
+                <div class="toy-card__content_left">
+                  <div class="toy-card__img-wrapper">
+                    <img class="toy-card__img" src="./assets/toys/1.webp" alt="toy image" />
+                  </div>
+                  <span class="toy-card__mark toy-card__mark_state_favourite"></span>
+                </div>
+                <div class="toy-card__content_right">
+                  <ul class="description-list toy-card__description-list">
+                    <li class="description-list__item">
+                      <span data-card-info="num" class="description-list__info">Количество:</span>
+                      <span data-card-data="num" class="description-list__data">2</span>
+                    </li>
+                    <li class="description-list__item">
+                      <span data-card-info="year" class="description-list__info">Год покупки:</span>
+                      <span data-card-data="year" class="description-list__data">1960</span>
+                    </li>
+                    <li class="description-list__item">
+                      <span data-card-info="shape" class="description-list__info">Форма:</span>
+                      <span data-card-data="shape" class="description-list__data">шар</span>
+                    </li>
+                    <li class="description-list__item">
+                      <span data-card-info="color" class="description-list__info">Цвет:</span>
+                      <span data-card-data="color" class="description-list__data">желтый</span>
+                    </li>
+                    <li class="description-list__item">
+                      <span data-card-info="size" class="description-list__info">Размер:</span>
+                      <span data-card-data="size" class="description-list__data">большой</span>
+                    </li>
+                    <li class="description-list__item">
+                      <span data-card-info="favourite" class="description-list__info">Любимая:</span>
+                      <span data-card-data="favourite" class="description-list__data">нет</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </main>

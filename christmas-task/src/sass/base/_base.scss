@@ -22,7 +22,6 @@ button {
 }
 svg {
   transition: all 0.3s;
-  pointer-events: none;
   path {
     transition: all 0.3s;
     pointer-events: none;
@@ -51,6 +50,16 @@ body {
 
 header,
 main,
-footer{
+footer {
+  width: 100%;
+}
+main{
+  flex-grow: 1;
+}
+
+.header-box,
+.main-box,
+.footer-box {
   width: 90%;
+  margin: 0 auto;
 }

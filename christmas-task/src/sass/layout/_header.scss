@@ -16,6 +16,7 @@
 }
 .nav-list {
   &__item {
+    @include hover;
     margin-right: 3rem;
     text-transform: uppercase;
     &:last-of-type {
@@ -23,6 +24,7 @@
     }
 
     &_state_active {
+      border-bottom: 1px solid $color-mark-favourite;
     }
   }
 }
@@ -31,17 +33,32 @@
   &__icon-box {
     svg {
       @include size(min-content, 4rem);
+      @include hover;
+      @include hover-rotate;
     }
     margin-right: 3rem;
   }
 
   &__toy-count-box {
-    @include size(3rem, 4rem);
+    @include size(3rem, 3.9rem);
+    display: flex;
+    align-items: flex-end;
     background-image: url(../assets/svg/ball-2.svg);
     background-size: 3rem;
     background-repeat: no-repeat;
-    background-position: top center;
+    background-position: bottom 0.1rem center;
     margin-left: 3rem;
+  }
+
+  &__toy-counter {
+    @include equalSize(3.1rem);
+    color: $color-text-main;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 50%;
+    background-color: rgb(0, 132, 141);
   }
 
   &__side {
@@ -53,12 +70,25 @@
   }
 }
 
-.search-box__field {
-  border-radius: 5rem;
-  padding: 0.2rem 0.5rem;
-}
+.search-box {
+  &__field {
+    border-radius: 5rem;
+    padding: 0.5rem 1rem;
+    width: 30rem;
+    border: 1px solid $color-background-option;
+    color: $color-text-main;
 
-.toy-count-box__counter {
-  @include equalSize(3rem);
-  background: rgba(0, 225, 255, 0.253);
+    background-color: $color-background-main;
+    background-image: url(../assets/svg/search.svg);
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+    background-size: 1.3rem;
+    transition: all 0.35s;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      background-size: 1.5rem;
+    }
+  }
 }

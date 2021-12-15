@@ -1,11 +1,12 @@
 @import '../util/mixins';
 @import '../util/variables';
 
-main{
+main {
   background-image: url(../assets/bg-1.webp);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 
 .main__box {
@@ -13,10 +14,54 @@ main{
   flex-direction: column;
 }
 
-.main-box__filters {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
+.main-box {
+  &__home-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: $color-text-main;
+    text-align: center;
+    transform: translate(-50%, -35%);
+  }
+
+  &__filters {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+}
+
+.home-wrapper {
+  &__greeting {
+    margin-bottom: 4rem;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &-wrapper {
+      background: $color-background-main;
+      margin-bottom: 5rem;
+      border-radius: 1.5rem;
+      padding: 2rem 4rem;
+      font-size: 3rem;
+    }
+  }
+  &__link {
+    width: fit-content;
+    background: $color-background-main;
+    padding: 1rem 6rem;
+    border-radius: 50rem;
+    font-size: 2.3rem;
+    transition: all 0.35s;
+    &:hover {
+      cursor: pointer;
+      @include hover-scale;
+    }
+  }
 }
 
 .filters {

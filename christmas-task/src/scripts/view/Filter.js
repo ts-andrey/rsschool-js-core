@@ -74,15 +74,11 @@ const content = `
   <div class="property-filter__color">
     <ul class="list color-list">
       <li class="list__info">Цвет:</li>
-      <li
-        data-isChecked="false"
-        data-color="белый"
-        class="color-list__item color-list__item_color_white
-      ></li>
-      <li data-isChecked="false" data-color="желтый" class="color-list__item color-list__item_color_yellow"></li>
-      <li data-isChecked="false" data-color="красный" class="color-list__item color-list__item_color_red"></li>
-      <li data-isChecked="false" data-color="синий" class="color-list__item color-list__item_color_blue"></li>
-      <li data-isChecked="false" data-color="зелёный" class="color-list__item color-list__item_color_green"></li>
+      <li data-color="белый" class="color-list__item color-list__item_color_white"></li>
+      <li data-color="желтый" class="color-list__item color-list__item_color_yellow"></li>
+      <li data-color="красный" class="color-list__item color-list__item_color_red"></li>
+      <li data-color="синий" class="color-list__item color-list__item_color_blue"></li>
+      <li data-color="зелёный" class="color-list__item color-list__item_color_green"></li>
     </ul>
   </div>
   <div class="property-filter__size">
@@ -120,7 +116,7 @@ const content = `
   <div class="property-filter__favourite">
     <ul class="list favourite-list">
       <li class="list__info">Только любимые:</li>
-      <li class="favourite-list__item list__check"></li>
+      <li class="favourite-list__item"></li>
     </ul>
   </div>
 </div>
@@ -132,6 +128,7 @@ const content = `
       <div class="range-filter__item-wrapper">
         <span class="range-filter__value range-filter__value_num_min">1</span>
         <div class="range-filter__input-wrapper">
+          <div class="range-filter__range-background range-filter__range-background_type_num"></div>
           <input
             class="range-filter__input range-filter__input_type_num"
             type="range"
@@ -159,6 +156,7 @@ const content = `
       <div class="range-filter__item-wrapper">
         <span class="range-filter__value range-filter__value_year_min">1940</span>
         <div class="range-filter__input-wrapper">
+          <div class="range-filter__range-background range-filter__range-background_type_year"></div>
           <input
             class="range-filter__input range-filter__input_type_year"
             type="range"

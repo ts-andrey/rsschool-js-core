@@ -6,12 +6,14 @@ export class Filter {
     this.favouriteFilter = document.querySelector('.favourite-list__item');
 
     this.amountFilters = document.querySelectorAll('.range-filter__input_type_num');
-    this.minAmount = document.querySelector('.range-filter__value_num_min');
-    this.maxAmount = document.querySelector('.range-filter__value_num_max');
+    this.minAmountBox = document.querySelector('.range-filter__value_num_min');
+    this.maxAmountBox = document.querySelector('.range-filter__value_num_max');
+    this.amountBackEl = document.querySelector('.range-filter__range-background_type_num');
 
     this.yearFilters = document.querySelectorAll('.range-filter__input_type_year');
-    this.minYear = document.querySelector('.range-filter__value_year_min');
-    this.maxYear = document.querySelector('.range-filter__value_year_max');
+    this.minYearBox = document.querySelector('.range-filter__value_year_min');
+    this.maxYearBox = document.querySelector('.range-filter__value_year_max');
+    this.yearBackEl = document.querySelector('.range-filter__range-background_type_year');
 
     this.sortOptionList = document.querySelector('.sorter__sort-list');
     this.sortOptions = document.querySelectorAll('.sort-list__item');
@@ -32,7 +34,7 @@ export class Filter {
   colorFilterSeeker(colorHandler) {
     this.colorFilters.forEach(el => {
       el.addEventListener('click', () => {
-        return colorHandler(el.getAttribute('data-color'), this.colorFilters);
+        return colorHandler(el.getAttribute('data-color'), el, this.colorFilters);
       });
     });
   }
@@ -46,21 +48,21 @@ export class Filter {
 
   favouriteFilterSeeker(favouriteHandler) {
     this.favouriteFilter.addEventListener('click', () => {
-      favouriteHandler();
+      favouriteHandler(this.favouriteFilter);
     });
   }
 
   amountFilterSeeker(amountSeeker) {
     this.amountFilters.forEach(el => {
       el.addEventListener('change', () => {
-        amountSeeker(this.minAmount, this.maxAmount);
+        amountSeeker(this.minAmountBox, this.maxAmountBox, this.amountFilters, this.amountBackEl);
       });
     });
   }
   yearFilterSeeker(amountSeeker) {
     this.yearFilters.forEach(el => {
       el.addEventListener('change', () => {
-        amountSeeker(this.minYear, this.maxYear);
+        amountSeeker(this.minYearBox, this.maxYearBox, this.yearFilters, this.yearBackEl);
       });
     });
   }

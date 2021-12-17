@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
     <title>Christmas Task</title>
   </head>
   <body>
@@ -28,7 +29,7 @@
           </div>
           <nav class="header-box__nav">
             <ul class="nav-list header__nav-list">
-              <li data-type="filter" class="nav-list__item nav-list__item_state_active">Игрушки</li>
+              <li data-type="filter" class="nav-list__item">Игрушки</li>
               <li data-type="decorator" class="nav-list__item">Ёлка</li>
             </ul>
           </nav>
@@ -406,6 +407,7 @@
           <div class="range-filter__item-wrapper">
             <span class="range-filter__value range-filter__value_num_min">1</span>
             <div class="range-filter__input-wrapper">
+              <div class="range-filter__range-background range-filter__range-background_type_num"></div>
               <input
                 class="range-filter__input range-filter__input_type_num"
                 type="range"
@@ -433,6 +435,7 @@
           <div class="range-filter__item-wrapper">
             <span class="range-filter__value range-filter__value_year_min">1940</span>
             <div class="range-filter__input-wrapper">
+              <div class="range-filter__range-background range-filter__range-background_type_year"></div>
               <input
                 class="range-filter__input range-filter__input_type_year"
                 type="range"
@@ -489,7 +492,7 @@
         <div class="toy-card__img-wrapper">
           <img class="toy-card__img" src="./assets/toys/1.webp" alt="toy image" />
         </div>
-        <span class="toy-card__mark toy-card__mark_state_favourite"></span>
+        <span class="toy-card__mark"></span>
       </div>
       <div class="toy-card__content_right">
         <ul class="description-list toy-card__description-list">

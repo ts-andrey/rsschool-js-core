@@ -1,11 +1,13 @@
 export class Card {
   constructor() {
-    this.cards = document.querySelectorAll('.card');
+    this.toyCards = document.querySelectorAll('.toy-card');
+    this.toyPickAmount = document.querySelector('.header-box__toy-counter');
+    this.toyMarks = document.querySelectorAll('.toy-card__mark');
   }
-  cardsSeeker(cardHandler) {
-    this.cards.forEach(el => {
+  cardsSeeker(toyCardHandler) {
+    this.toyCards.forEach(el => {
       el.addEventListener('click', () => {
-        cardHandler(el);
+        toyCardHandler(el.querySelector('.toy-card__mark'), this.toyMarks, this.toyPickAmount);
       });
     });
   }

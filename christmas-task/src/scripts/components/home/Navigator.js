@@ -6,24 +6,24 @@ export class Navigator {
   }
   listenIcon(homeHandler) {
     this.iconLink.addEventListener('click', () => {
-      homeHandler();
+      homeHandler(this.filterLinks);
     });
   }
   listenLinks(filterView, decoratorView) {
     this.filterLinks.forEach(el => {
       el.addEventListener('click', () => {
         if (el.getAttribute('data-type') === 'filter') {
-          filterView();
+          filterView(el, this.filterLinks);
         }
         if (el.getAttribute('data-type') === 'decorator') {
-          decoratorView();
+          decoratorView(el, this.filterLinks);
         }
       });
     });
   }
   listenFilter(filterView) {
     this.homeLink.addEventListener('click', () => {
-      filterView();
+      filterView(this.filterLinks[0], this.filterLinks);
     });
   }
 }

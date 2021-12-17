@@ -197,6 +197,7 @@ main {
 
 .favourite-list {
   &__item {
+    @include hover-scale;
     @include equalSize(2.5rem);
     border: 1px solid $color-background-option;
     border-radius: 0.3rem;
@@ -237,6 +238,11 @@ main {
       }
     }
   }
+  &__range-background {
+    @include size(100%, .6rem);
+    border-radius: .5rem;
+    background: $color-mark-favourite;
+  }
   &__input {
     position: absolute;
     width: 100%;
@@ -251,22 +257,17 @@ main {
     }
 
     &::-webkit-slider-runnable-track {
-      height: 0.5rem;
-      background-color: $color-mark-favourite;
-      border-radius: 2rem;
-      &:first-of-type {
-        opacity: 0;
-      }
+      height: 1rem;
     }
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       position: relative;
-      z-index: 1;
+      z-index: 5;
       width: 1rem;
       height: 2rem;
       border-radius: 0 2rem;
       background: #fff;
-      margin-top: -0.8rem;
+      margin-top: -0.6rem;
       cursor: pointer;
     }
   }
@@ -370,6 +371,10 @@ main {
     border-radius: 1.5rem;
     background: $color-background-main;
     color: $color-text-main;
+    transition: all 0.35s;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 .toy-card {
@@ -390,10 +395,8 @@ main {
     margin-top: 1rem;
     margin-left: -1.6rem;
     clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+    background-color: $color-mark-normal;
     &_state {
-      &_normal {
-        background-color: $color-mark-normal;
-      }
       &_favourite {
         background-color: $color-mark-favourite;
       }

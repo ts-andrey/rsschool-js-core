@@ -7,7 +7,7 @@ const content = data =>
     <div class="toy-card__img-wrapper">
       <img class="toy-card__img" src="./assets/toys/${data.num}.webp" alt="toy image ${data.num}" />
     </div>
-    <span class="toy-card__mark toy-card__mark_state_favourite"></span>
+    <span class="toy-card__mark"></span>
   </div>
   <div class="toy-card__content_right">
     <ul class="description-list toy-card__description-list">
@@ -33,7 +33,7 @@ const content = data =>
       </li>
       <li class="description-list__item">
         <span data-card-info="favourite" class="description-list__info">Любимая:</span>
-        <span data-card-data="favourite" class="description-list__data">${data.favourite ? 'да' : 'нет'}</span>
+        <span data-card-data="favourite" class="description-list__data">${data.favorite ? 'да' : 'нет'}</span>
       </li>
     </ul>
   </div>
@@ -41,7 +41,7 @@ const content = data =>
 </li>
 `;
 
-export class Card {
+export class CardView {
   constructor(data) {
     this.data = data;
     this.targetElement = document.querySelector('.toys__list');

@@ -32,6 +32,13 @@ main {
     justify-content: space-between;
     margin-top: 2rem;
   }
+  &__toys {
+    flex-grow: 2;
+    margin: 2rem 0;
+    padding: 3rem 1.5rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.3);
+  }
 }
 
 .home-wrapper {
@@ -190,7 +197,10 @@ main {
 
 .favourite-list {
   &__item {
-    background: #fff;
+    @include equalSize(2.5rem);
+    border: 1px solid $color-background-option;
+    border-radius: 0.3rem;
+    color: $color-text-main;
   }
 }
 
@@ -302,15 +312,17 @@ main {
     border-radius: 1.5rem;
     margin-left: 2rem;
     padding: 0 1rem;
+
+    &:hover {
+      cursor: pointer;
+    }
     svg {
       @include equalSize(2.5rem);
       fill: $color-text-main;
-      pointer-events: visible;
     }
   }
-  &__sort-value,
-  &__sort-value-icon {
-    cursor: pointer;
+  &__sort-value {
+    pointer-events: none;
   }
 
   &__reset {
@@ -343,7 +355,8 @@ main {
 
 .toys {
   &__list {
-    margin-top: 3rem;
+    max-height: 50rem;
+    overflow-y: scroll;
     display: grid;
     grid-auto-flow: row;
     grid-template-columns: repeat(auto-fit, 28rem);

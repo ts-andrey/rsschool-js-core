@@ -31,10 +31,10 @@
 
 .header-box {
   &__icon-box {
+    @include hover;
+    @include hover-rotate;
     svg {
       @include size(min-content, 4rem);
-      @include hover;
-      @include hover-rotate;
     }
     margin-right: 3rem;
   }

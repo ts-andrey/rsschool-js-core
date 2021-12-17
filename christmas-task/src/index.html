@@ -28,8 +28,8 @@
           </div>
           <nav class="header-box__nav">
             <ul class="nav-list header__nav-list">
-              <li class="nav-list__item nav-list__item_state_active">Игрушки</li>
-              <li class="nav-list__item">Ёлка</li>
+              <li data-type="filter" class="nav-list__item nav-list__item_state_active">Игрушки</li>
+              <li data-type="decorator" class="nav-list__item">Ёлка</li>
             </ul>
           </nav>
         </div>
@@ -44,9 +44,7 @@
       </div>
     </header>
     <main class="main">
-      <div class="main-box main__box">
-        
-      </div>
+      <div class="main-box main__box"></div>
     </main>
     <footer class="footer">
       <div class="footer-box footer__box">
@@ -265,6 +263,7 @@
 </html>
 
 <template>
+  <!-- home page template -->
   <div class="home-wrapper main-box__home-wrapper">
     <div class="home-wrapper__greeting-wrapper">
       <p class="home-wrapper__greeting">Новогодняя игра</p>
@@ -273,7 +272,7 @@
     <p class="home-wrapper__link">Начать</p>
   </div>
 
-
+  <!-- filters page template -->
   <div class="filters main-box__filters">
     <div class="property-filter filters__property-filter">
       <h2 class="filters__header">Фильтры по значению</h2>
@@ -479,49 +478,10 @@
     </div>
   </div>
   <div class="toys">
-    <ul class="toys-list toys__list">
-      <li class="toy-card toys-list__item">
-        <h3 class="toy-card__header">Some card</h3>
-        <div class="toy-card__content-wrapper">
-          <div class="toy-card__content_left">
-            <div class="toy-card__img-wrapper">
-              <img class="toy-card__img" src="./assets/toys/1.webp" alt="toy image" />
-            </div>
-            <span class="toy-card__mark toy-card__mark_state_favourite"></span>
-          </div>
-          <div class="toy-card__content_right">
-            <ul class="description-list toy-card__description-list">
-              <li class="description-list__item">
-                <span data-card-info="num" class="description-list__info">Количество:</span>
-                <span data-card-data="num" class="description-list__data">2</span>
-              </li>
-              <li class="description-list__item">
-                <span data-card-info="year" class="description-list__info">Год покупки:</span>
-                <span data-card-data="year" class="description-list__data">1960</span>
-              </li>
-              <li class="description-list__item">
-                <span data-card-info="shape" class="description-list__info">Форма:</span>
-                <span data-card-data="shape" class="description-list__data">шар</span>
-              </li>
-              <li class="description-list__item">
-                <span data-card-info="color" class="description-list__info">Цвет:</span>
-                <span data-card-data="color" class="description-list__data">желтый</span>
-              </li>
-              <li class="description-list__item">
-                <span data-card-info="size" class="description-list__info">Размер:</span>
-                <span data-card-data="size" class="description-list__data">большой</span>
-              </li>
-              <li class="description-list__item">
-                <span data-card-info="favourite" class="description-list__info">Любимая:</span>
-                <span data-card-data="favourite" class="description-list__data">нет</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </li>
-    </ul>
+    <ul class="toys-list toys__list"></ul>
   </div>
 
+  <!-- single toy card template -->
   <li class="toy-card toys-list__item">
     <h3 class="toy-card__header">Some card</h3>
     <div class="toy-card__content-wrapper">

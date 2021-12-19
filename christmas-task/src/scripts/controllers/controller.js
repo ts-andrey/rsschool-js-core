@@ -77,7 +77,6 @@ function getPickedColors() {
 }
 
 function sortHelper(option, items) {
-  console.log({ option, items });
   switch (option) {
     case 'name': {
       const array = data.sortByName(items);
@@ -102,7 +101,7 @@ function sortHelper(option, items) {
   }
 }
 
-function getFilteredToys() {
+function getFilteredToys(str) {
   let result = data.data;
 
   // step#1: filter by shape
@@ -128,6 +127,12 @@ function getFilteredToys() {
   // step#6: show toys of selected year range
   result = data.filterByYear(state.filterState.year[0], state.filterState.year[1], result);
   // last_step: sort final pick by chosen option
+
+  // search filtering if there any
+  if (str) {
+    result = result.filter(el => el.name.toLowerCase().includes(str.toLowerCase()));
+  }
+
   return sortHelper(state.filterState.sortType, result);
 }
 
@@ -377,11 +382,16 @@ function sortOptionHandler(curOptionElement, eventElement, sortList) {
   updateLocalStorage('filterState', state);
 }
 
+function searchHandler(el) {
+  getFilteredToys(el.value);
+}
+
 function filterResetHandler() {
   const allFilters = new Filter().getAllElements();
 
   /*  reset filters */
   state.resetFilterState();
+  updateLocalStorage('filterState', state);
 
   /* reset filter styles */
   stylesReset(allFilters);
@@ -407,29 +417,29 @@ function filterHandler() {
   filter.sortListSeeker(sortListAppearanceHandler);
   filter.sortOptionSeeker(sortOptionHandler);
 
+  // searching
+  filter.searchSeeker(searchHandler);
+
   // filter reset
   filter.resetFilterSeeker(filterResetHandler);
   return allFilters;
 }
 
 /* card handler */
-function cardHandler(mark, toyList, toyPickCounter, element) {
+function cardHandler(mark, toyPickCounter, element) {
   const cardNumber = element.getAttribute('data-num');
-  if (mark.classList.contains(CARD_CHOSEN_CLASS)) {
-    state.filterState.toysPick = state.filterState.toysPick.filter(el => el !== cardNumber);
+  if (state.filterState.toysPick.length === 20 && !mark.classList.contains(CARD_CHOSEN_CLASS)) {
+    return alert('Можно выбрать лишь не более 20 игрушек');
   } else {
-    state.filterState.toysPick.push(cardNumber);
-  }
-  mark.classList.toggle(CARD_CHOSEN_CLASS);
-  let counter = 0;
-  toyList.forEach(el => {
-    if (el.classList.contains(CARD_CHOSEN_CLASS)) {
-      counter++;
+    if (mark.classList.contains(CARD_CHOSEN_CLASS)) {
+      state.filterState.toysPick = state.filterState.toysPick.filter(el => el !== cardNumber);
+    } else {
+      state.filterState.toysPick.push(cardNumber);
     }
-  });
-  console.log(state);
-  toyPickCounter.innerText = counter;
-  updateLocalStorage('filterState', state);
+    mark.classList.toggle(CARD_CHOSEN_CLASS);
+    toyPickCounter.innerText = state.filterState.toysPick.length;
+    updateLocalStorage('filterState', state);
+  }
 }
 
 /* seekers for filter page */

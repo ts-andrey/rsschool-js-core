@@ -22,6 +22,8 @@ export class Filter {
     this.sortValue = document.querySelector('.sorter__sort-value');
 
     this.filterReset = document.querySelector('.sorter__reset');
+
+    this.searchElement = document.querySelector('.search-box__field');
   }
 
   filterShapeSeeker(shapeHandler) {
@@ -109,6 +111,12 @@ export class Filter {
   resetFilterSeeker(resetHandler) {
     this.filterReset.addEventListener('click', () => {
       return resetHandler(this.getAllElements);
+    });
+  }
+
+  searchSeeker(searchHandler) {
+    this.searchElement.addEventListener('input', () => {
+      searchHandler(this.searchElement);
     });
   }
 }

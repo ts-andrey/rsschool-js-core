@@ -198,7 +198,7 @@ const content = `
       <li data-sort-option="number-reversed" class="sort-list__item">Сортировать по количеству ↓</li>
     </ul>
   </div>
-  <span class="sorter__reset">Reset filters</span>
+  <span class="sorter__reset">Сбросить фильтры</span>
 </div>
 </div>
 <div class="toys main-box__toys">

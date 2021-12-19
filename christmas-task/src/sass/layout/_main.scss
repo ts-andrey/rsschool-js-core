@@ -101,6 +101,11 @@ main {
     margin-left: 5rem;
     flex-basis: 30%;
   }
+  &__filter-type_state_active {
+    path {
+      fill: $color-mark-favourite;
+    }
+  }
 }
 
 .shape-list,
@@ -239,8 +244,8 @@ main {
     }
   }
   &__range-background {
-    @include size(100%, .6rem);
-    border-radius: .5rem;
+    @include size(100%, 0.6rem);
+    border-radius: 0.5rem;
     background: $color-mark-favourite;
   }
   &__input {

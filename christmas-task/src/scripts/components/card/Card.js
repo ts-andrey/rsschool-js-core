@@ -7,7 +7,7 @@ export class Card {
   cardsSeeker(toyCardHandler) {
     this.toyCards.forEach(el => {
       el.addEventListener('click', () => {
-        toyCardHandler(el.querySelector('.toy-card__mark'), this.toyMarks, this.toyPickAmount);
+        toyCardHandler(el.querySelector('.toy-card__mark'), this.toyMarks, this.toyPickAmount, el);
       });
     });
   }

@@ -24,45 +24,45 @@ export class Filter {
     this.filterReset = document.querySelector('.sorter__reset');
   }
 
-  shapeFilterSeeker(shapeHandler) {
+  filterShapeSeeker(shapeHandler) {
     this.shapeFilters.forEach(el => {
       el.addEventListener('click', () => {
-        return shapeHandler(el.getAttribute('data-shape'));
+        return shapeHandler(el, this.shapeFilters);
       });
     });
   }
-  colorFilterSeeker(colorHandler) {
+  filterColorSeeker(colorHandler) {
     this.colorFilters.forEach(el => {
       el.addEventListener('click', () => {
         return colorHandler(el.getAttribute('data-color'), el, this.colorFilters);
       });
     });
   }
-  sizeFilterSeeker(sizeHandler) {
+  filterSizeSeeker(sizeHandler) {
     this.sizeFilters.forEach(el => {
       el.addEventListener('click', () => {
-        return sizeHandler(el.getAttribute('data-size'));
+        return sizeHandler(el, this.sizeFilters);
       });
     });
   }
 
-  favouriteFilterSeeker(favouriteHandler) {
+  filterFavouriteSeeker(favouriteHandler) {
     this.favouriteFilter.addEventListener('click', () => {
-      favouriteHandler(this.favouriteFilter);
+      return favouriteHandler(this.favouriteFilter);
     });
   }
 
-  amountFilterSeeker(amountSeeker) {
+  filterAmountSeeker(amountSeeker) {
     this.amountFilters.forEach(el => {
       el.addEventListener('change', () => {
-        amountSeeker(this.minAmountBox, this.maxAmountBox, this.amountFilters, this.amountBackEl);
+        return amountSeeker(this.minAmountBox, this.maxAmountBox, this.amountFilters, this.amountBackEl);
       });
     });
   }
-  yearFilterSeeker(amountSeeker) {
+  filterYearSeeker(amountSeeker) {
     this.yearFilters.forEach(el => {
       el.addEventListener('change', () => {
-        amountSeeker(this.minYearBox, this.maxYearBox, this.yearFilters, this.yearBackEl);
+        return amountSeeker(this.minYearBox, this.maxYearBox, this.yearFilters, this.yearBackEl);
       });
     });
   }
@@ -76,14 +76,39 @@ export class Filter {
   sortOptionSeeker(sortOptionHandler) {
     this.sortOptions.forEach(el => {
       el.addEventListener('click', () => {
-        sortOptionHandler(this.sortValue, el);
+        return sortOptionHandler(this.sortValue, el, this.sortOptionList);
       });
     });
   }
 
-  filterResetSeeker(resetHandler) {
+  getAllElements() {
+    return {
+      shape: this.shapeFilters,
+      color: this.colorFilters,
+      size: this.sizeFilters,
+      favourite: this.favouriteFilter,
+      amount: {
+        minBox: this.minAmountBox,
+        maxBox: this.maxAmountBox,
+        background: this.amountBackEl,
+        filters: this.amountFilters,
+      },
+      year: {
+        minBox: this.minYearBox,
+        maxBox: this.maxYearBox,
+        background: this.yearBackEl,
+        filters: this.yearFilters,
+      },
+      sorting: {
+        curOption: this.sortValue,
+        allOptions: this.sortOptions,
+      },
+    };
+  }
+
+  resetFilterSeeker(resetHandler) {
     this.filterReset.addEventListener('click', () => {
-      return resetHandler;
+      return resetHandler(this.getAllElements);
     });
   }
 }

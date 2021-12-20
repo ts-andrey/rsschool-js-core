@@ -1,31 +1,36 @@
+import { IData } from './IData';
 export class Data {
-  constructor(data) {
+  data: IData[];
+
+  constructor(data: IData[]) {
     this.data = data;
   }
 
-  filterByShape(type, toysArr) {
+  filterByShape(type: string[], toysArr: IData[]) {
     if (!toysArr) {
-      return this.data.filter(el => el.shape === type);
+      return this.data.filter(el => type.includes(el.shape));
     } else {
-      return toysArr.filter(el => el.shape === type);
+      if (type.length < 1) return toysArr;
+      return toysArr.filter(el => type.includes(el.shape));
     }
   }
-  filterByColor(colors, toysArr) {
+  filterByColor(colors: string[], toysArr: IData[]) {
     if (!toysArr) {
       return this.data.filter(el => colors.includes(el.color));
     } else {
-      if (colors.length === 0) return toysArr;
+      if (colors.length < 1) return toysArr;
       return toysArr.filter(el => colors.includes(el.color));
     }
   }
-  filterBySize(size, toysArr) {
+  filterBySize(size: string[], toysArr: IData[]) {
     if (!toysArr) {
-      return this.data.filter(el => el.size === size);
+      return this.data.filter(el => size.includes(el.size));
     } else {
-      return toysArr.filter(el => el.size === size);
+      if (size.length < 1) return toysArr;
+      return toysArr.filter(el => size.includes(el.size));
     }
   }
-  filterFavourite(toysArr) {
+  filterFavourite(toysArr: IData[]) {
     if (!toysArr) {
       return this.data.filter(el => el.favorite === true);
     } else {
@@ -33,14 +38,14 @@ export class Data {
     }
   }
 
-  filterByAmount(minNumber, maxNumber, toysArr) {
+  filterByAmount(minNumber: string, maxNumber: string, toysArr: IData[]) {
     if (!toysArr) {
       return this.data.filter(el => Number(el.count) >= Number(minNumber) && Number(el.count) <= Number(maxNumber));
     } else {
       return toysArr.filter(el => Number(el.count) >= Number(minNumber) && Number(el.count) <= Number(maxNumber));
     }
   }
-  filterByYear(minYear, maxYear, toysArr) {
+  filterByYear(minYear: string, maxYear: string, toysArr: IData[]) {
     if (!toysArr) {
       return this.data.filter(el => Number(el.year) >= Number(minYear) && Number(el.year) <= Number(maxYear));
     } else {
@@ -48,32 +53,32 @@ export class Data {
     }
   }
 
-  sortByName(toysArr) {
+  sortByName(toysArr: IData[]) {
     if (!toysArr) {
       return this.data.sort((a, b) => a.name.localeCompare(b.name));
     } else {
       return toysArr.sort((a, b) => a.name.localeCompare(b.name));
     }
   }
-  sortByNameReversed(toysArr) {
+  sortByNameReversed(toysArr: IData[]) {
     if (!toysArr) {
       return this.data.sort((a, b) => a.name.localeCompare(b.name)).reverse();
     } else {
       return toysArr.sort((a, b) => a.name.localeCompare(b.name)).reverse();
     }
   }
-  sortByNumber(toysArr) {
+  sortByNumber(toysArr: IData[]) {
     if (!toysArr) {
-      return this.data.sort((a, b) => a.count - b.count);
+      return this.data.sort((a, b) => Number(a.count) - Number(b.count));
     } else {
-      return toysArr.sort((a, b) => a.count - b.count);
+      return toysArr.sort((a, b) => Number(a.count) - Number(b.count));
     }
   }
-  sortByNumberReversed(toysArr) {
+  sortByNumberReversed(toysArr: IData[]) {
     if (!toysArr) {
-      return this.data.sort((a, b) => a.count - b.count).reverse();
+      return this.data.sort((a, b) => Number(a.count) - Number(b.count)).reverse();
     } else {
-      return toysArr.sort((a, b) => a.count - b.count).reverse();
+      return toysArr.sort((a, b) => Number(a.count) - Number(b.count)).reverse();
     }
   }
 }

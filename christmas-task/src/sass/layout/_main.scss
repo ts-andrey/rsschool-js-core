@@ -10,8 +10,9 @@ main {
 }
 
 .main__box {
+  height: 100%;
   display: flex;
-  flex-direction: column;
+  grid-auto-flow: column;
 }
 
 .main-box {
@@ -28,16 +29,43 @@ main {
   }
 
   &__filters {
-    display: flex;
+    overflow: hidden;
+    display: grid;
+    grid-gap: 2rem;
     justify-content: space-between;
-    margin-top: 2rem;
+    justify-items: center;
+    padding: 1rem 2rem;
+    background: $color-background-filters;
+
+    &_state_hidden {
+      width: 0;
+      height: 0;
+      padding: 0;
+    }
   }
   &__toys {
+    height: 100%;
     flex-grow: 2;
-    margin: 2rem 0;
-    padding: 3rem 1.5rem;
-    border-radius: 1.5rem;
-    background: rgba(255, 255, 255, 0.3);
+    padding: 2rem 1rem 2rem 3rem;
+    background: $color-background-toy_list;
+    position: relative;
+  }
+  &__pinner {
+    @include size(11rem, 4rem);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-38%, -50%) rotate(-90deg);
+    background: $color-background-filters;
+    color: $color-text-main;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 0 0 1.5rem 1.5rem;
+    z-index: 10;
+
+    &:hover {
+      @include hover;
+    }
   }
 }
 
@@ -84,24 +112,16 @@ main {
   &__range-filter,
   &__sorter {
     display: grid;
-    grid-gap: 1.5rem;
+    grid-gap: 1rem;
     grid-template-rows: min-content;
-    padding: 2rem;
+    padding: 1rem 2rem;
     background: $color-background-main;
     border-radius: 1rem;
   }
-  &__property-filter {
-    flex-basis: 30%;
-    margin-right: 5rem;
-  }
-  &__range-filter {
-    flex-basis: 40%;
-  }
-  &__sorter {
-    margin-left: 5rem;
-    flex-basis: 30%;
-  }
+
   &__filter-type_state_active {
+    border: 1px solid $color-background-option; 
+    border-radius: 2px;
     path {
       fill: $color-mark-favourite;
     }
@@ -119,7 +139,8 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 1.5rem;
+    margin-right: 1rem;
+    padding: 0.2rem;
     &:last-of-type {
       margin-right: 0;
     }
@@ -146,6 +167,7 @@ main {
 
 .color-list {
   &__item {
+    margin-right: 1.5rem;
     @include size-n-pad(2.2rem, 2.2rem, 0.2rem);
     @include hover-scale;
 
@@ -213,7 +235,7 @@ main {
 .range-filter {
   &__list {
     display: grid;
-    grid-row-gap: 2rem;
+    grid-row-gap: 1rem;
   }
   &__header {
     color: $color-text-main;
@@ -227,7 +249,7 @@ main {
     }
   }
   &__value {
-    width: 7rem;
+    width: 5.5rem;
     background-color: $color-background-option;
     padding: 0.5rem;
     border-radius: 20rem;
@@ -236,10 +258,10 @@ main {
     &_num,
     &_year {
       &_min {
-        margin-right: 3rem;
+        margin-right: 1.5rem;
       }
       &_max {
-        margin-left: 3rem;
+        margin-left: 1.5rem;
       }
     }
   }
@@ -284,10 +306,13 @@ main {
 
 .sorter {
   &__list-wrapper {
-    height: 18rem;
+    @include size(32rem, 18rem);
     color: $color-text-main;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   &__sort-list {
     display: grid;
@@ -311,12 +336,12 @@ main {
     }
   }
   &__sort-value-wrapper {
+    width: fit-content;
     display: flex;
     align-items: center;
+    text-align: center;
     background: $color-background-option;
-    width: fit-content;
     border-radius: 1.5rem;
-    margin-left: 2rem;
     padding: 0 1rem;
 
     &:hover {
@@ -332,12 +357,13 @@ main {
   }
 
   &__reset {
+    width: fit-content;
     position: absolute;
     bottom: 3rem;
     left: 50%;
     transform: translateX(-50%);
 
-    padding: 1rem 4rem;
+    padding: 1rem 2rem;
     background: $color-background-option;
     border-radius: 1.5rem;
     font-weight: bolder;
@@ -361,15 +387,19 @@ main {
 
 .toys {
   &__list {
-    max-height: 50rem;
+    height: 85vh;
     overflow-y: scroll;
     display: grid;
     grid-auto-flow: row;
-    grid-template-columns: repeat(auto-fit, 28rem);
+    grid-template-columns: repeat(auto-fit, $size-widht-card);
+    grid-template-rows: repeat(auto-fit, $size-height-card);
     grid-gap: 3rem;
     justify-content: center;
+    justify-items: center;
+    align-items: center;
   }
   &-list__item {
+    @include size($size-widht-card, $size-height-card);
     display: flex;
     flex-direction: column;
     padding: 1rem;

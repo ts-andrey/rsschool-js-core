@@ -13,18 +13,20 @@ import { Navigator } from '../components/home/Navigator';
 import { State } from '../components/state/State';
 
 import toysArray from '../../assets/data';
+import { IFilterStateStorage } from '../components/state/IFilterState';
+import { IData } from '../components/data/IData';
+import { IFilters } from '../components/filter/IFilters';
 
 const LINK_ACTIVE_CLASS = 'nav-list__item_state_active';
 const CARD_CHOSEN_CLASS = 'toy-card__mark_state_favourite';
 const FILTER_SOLE_ACTIVE_CLASS = 'filters__filter-type_state_active';
 const FILTER_MULTIPLE_CHECKED_CLASS = 'itemIsChecked';
+const FILTER_LIST_HIDE = 'main-box__filters_state_hidden';
 const TOY_AMOUN_MIN = 1;
 const TOY_AMOUNT_MAX = 12;
 const TOY_YEAR_VALUE_MIN = 1940;
 const TOY_YEAR_VALUE_MAX = 2020;
 const SORT_LIST_SHOW_CLASS = 'sorter__sort-list_state_reveal';
-
-const FILTER_COLORS = ['белый', 'желтый', 'красный', 'синий', 'зелёный'];
 
 // data - array with toys and info about them + filter/sort methods
 const data = new Data(toysArray);
@@ -35,9 +37,9 @@ const homeView = new HomeView();
 
 // let decorator = new Decorator();
 
-let navigator = new Navigator();
+const navigator = new Navigator();
 
-const state = new State();
+const state: IFilterStateStorage = new State();
 if (!localStorage.getItem('filterState')) {
   updateLocalStorage('filterState', state);
 } else {
@@ -47,36 +49,26 @@ if (!localStorage.getItem('filterState')) {
 // default handler
 function navigatorLinkUpdate() {
   navigator.homeLink = new Navigator().homeLink;
-  navigator.listenFilter(filterViewHandler);
+  navigator.listenHomeFilterLink(filterViewHandler);
 }
 
 // init function
-function init(array) {
+function init(array: NodeListOf<HTMLElement>) {
   linkIdleHandler(array, LINK_ACTIVE_CLASS);
   homeView.render();
   navigatorLinkUpdate();
   // set amount of picked toys
-  const toyPickAmount = document.querySelector('.header-box__toy-counter');
-  toyPickAmount.innerText = state.filterState.toysPick.length;
+  const toyPickAmount: HTMLElement = document.querySelector('.header-box__toy-counter');
+  toyPickAmount.innerText = String(state.filterState.toysPick.length);
 }
 
 /*  helperFunctions */
 
-function updateLocalStorage(key, value) {
+function updateLocalStorage(key: string, value: IFilterStateStorage) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
-function getPickedColors() {
-  const result = [];
-  state.filterState.color.forEach((el, index) => {
-    if (el) {
-      result.push(FILTER_COLORS[index]);
-    }
-  });
-  return result;
-}
-
-function sortHelper(option, items) {
+function sortHelper(option: string, items: IData[]) {
   switch (option) {
     case 'name': {
       const array = data.sortByName(items);
@@ -101,21 +93,15 @@ function sortHelper(option, items) {
   }
 }
 
-function getFilteredToys(str) {
+function getFilteredToys(str?: string) {
   let result = data.data;
 
   // step#1: filter by shape
-  if (state.filterState.shape[0]) {
-    result = data.filterByShape(state.filterState.shape[1], result);
-  }
-
+  result = data.filterByShape(state.filterState.shape, result);
   // step#2: if there is any color filters -> filter toys by them
-  const pickedColors = getPickedColors();
-  result = data.filterByColor(pickedColors, result);
+  result = data.filterByColor(state.filterState.color, result);
   // step#3: filter by size
-  if (state.filterState.size[0]) {
-    result = data.filterBySize(state.filterState.size[1], result);
-  }
+  result = data.filterBySize(state.filterState.size, result);
   // step#4: show only favourite if checked
   if (state.filterState.favourite) {
     result = data.filterFavourite(result);
@@ -136,7 +122,7 @@ function getFilteredToys(str) {
   return sortHelper(state.filterState.sortType, result);
 }
 
-function getPercents(val) {
+function getPercents(val: number) {
   let result;
   if (val < 13) {
     const diff = TOY_AMOUNT_MAX - TOY_AMOUN_MIN;
@@ -150,7 +136,12 @@ function getPercents(val) {
   return result;
 }
 
-function rangeHandler(minBox, maxBox, [minVal, maxVal], backgroundEl) {
+function rangeHandler(
+  minBox: HTMLElement,
+  maxBox: HTMLElement,
+  [minVal, maxVal]: HTMLInputElement[],
+  backgroundEl: HTMLElement
+) {
   if (Number(minVal.value) < Number(maxVal.value)) {
     minBox.innerText = minVal.value;
     maxBox.innerText = maxVal.value;
@@ -166,16 +157,16 @@ function rangeHandler(minBox, maxBox, [minVal, maxVal], backgroundEl) {
   )}%, rgb(19, 228, 0) ${getPercents(min)}%, rgb(19, 228, 0) ${getPercents(max)}%, rgba(0, 65, 95, 0.851) ${getPercents(
     max
   )}%, rgba(0, 65, 95, 0.851) 100%)`;
-  return [min, max];
+  return [String(min), String(max)];
 }
 
-function linkIdleHandler(array, removeClass) {
+function linkIdleHandler(array: NodeListOf<HTMLElement>, removeClass: string) {
   array.forEach(el => {
     el.classList.remove(removeClass);
   });
 }
 
-function toyCardsRenderer(array) {
+function toyCardsRenderer(array: IData[]) {
   const cardView = new CardView();
   cardView.targetElement.innerHTML = '';
   if (array) {
@@ -191,29 +182,19 @@ function toyCardsRenderer(array) {
   card.cardsSeeker(cardHandler);
 }
 
-function classRemover(itemArray, className) {
+function classRemover(itemArray: NodeListOf<HTMLElement> | HTMLElement[], className: string) {
   itemArray.forEach(el => {
     el.classList.remove(className);
   });
 }
 
-function textRemover(itemArray) {
+function textRemover(itemArray: NodeListOf<HTMLElement> | HTMLElement[]) {
   itemArray.forEach(el => {
     el.innerText = '';
   });
 }
 
-function soleFilterHandler(item, allItems, className) {
-  const hasClass = item.classList.contains(className);
-  classRemover(allItems, className);
-  if (!hasClass) {
-    item.classList.add(className);
-    return true;
-  }
-  return false;
-}
-
-function setRangeStyle(allFilters, type) {
+function setRangeStyle(allFilters: IFilters, type: string) {
   let currTarget;
   let currStateValues;
   if (type === 'amount') {
@@ -225,10 +206,10 @@ function setRangeStyle(allFilters, type) {
   }
   currTarget.filters[0].value = currStateValues[0];
   currTarget.filters[1].value = currStateValues[1];
-  rangeHandler(currTarget.minBox, currTarget.maxBox, currTarget.filters, currTarget.background);
+  rangeHandler(currTarget.minBox, currTarget.maxBox, <HTMLInputElement[]>currTarget.filters, currTarget.background);
 }
 
-function stylesReset(filters) {
+function stylesReset(filters: IFilters) {
   // reset shape styles
   classRemover(filters.shape, FILTER_SOLE_ACTIVE_CLASS);
   // reset color styles
@@ -245,42 +226,20 @@ function stylesReset(filters) {
   setRangeStyle(filters, 'year');
 }
 
-/* shape: this.shapeFilters,
-color: this.colorFilters,
-size: this.sizeFilters,
-favourite: this.favouriteFilter,
-amount: {
-  minBox: this.minAmountBox,
-  maxBox: this.maxAmountBox,
-  background: this.amountBackEl,
-  filters: this.amountFilters,
-},
-year: {
-  minBox: this.minYearBox,
-  maxBox: this.maxYearBox,
-  background: this.yearBackEl,
-  filters: this.yearFilters,
-},
-sort: {
-  curOption: this.sortValue,
-  allOptions: this.sortOptions,
-},
-*/
-
-function stylesInit(filters) {
+function stylesInit(filters: IFilters) {
   // set shape styles
-  if (state.filterState.shape[0]) {
+  if (state.filterState.shape.length > 0) {
     filters.shape.forEach(el => {
-      if (el.getAttribute('data-shape') === state.filterState.shape[1]) {
+      if (state.filterState.shape.includes(el.getAttribute('data-shape'))) {
         el.classList.add(FILTER_SOLE_ACTIVE_CLASS);
       }
     });
   }
 
   // set color styles
-  if (state.filterState.color.includes(true)) {
-    filters.color.forEach((el, index) => {
-      if (state.filterState.color[index]) {
+  if (state.filterState.color.length > 0) {
+    filters.color.forEach(el => {
+      if (state.filterState.color.includes(el.getAttribute('data-color'))) {
         el.classList.add(FILTER_MULTIPLE_CHECKED_CLASS);
         el.innerText = '✓';
       }
@@ -288,9 +247,9 @@ function stylesInit(filters) {
   }
 
   // set size styles
-  if (state.filterState.size[0]) {
+  if (state.filterState.size.length > 0) {
     filters.size.forEach(el => {
-      if (el.getAttribute('data-size') === state.filterState.size[1]) {
+      if (state.filterState.size.includes(el.getAttribute('data-size'))) {
         el.classList.add(FILTER_SOLE_ACTIVE_CLASS);
       }
     });
@@ -316,33 +275,45 @@ function stylesInit(filters) {
 /* FILTER PAGE */
 /*  handlers for filter seekers */
 
-function toyShapeHandler(item, allItems) {
-  const hasFilter = soleFilterHandler(item, allItems, FILTER_SOLE_ACTIVE_CLASS);
-  state.filterState.shape = [hasFilter, item.getAttribute('data-shape')];
+function toyShapeHandler(item: HTMLElement) {
+  const hasFilter = item.classList.contains(FILTER_SOLE_ACTIVE_CLASS);
+  if (!hasFilter) {
+    state.filterState.shape.push(item.getAttribute('data-shape'));
+  } else {
+    state.filterState.shape = state.filterState.shape.filter(el => el !== item.getAttribute('data-shape'));
+  }
+  item.classList.toggle(FILTER_SOLE_ACTIVE_CLASS);
   getFilteredToys();
   updateLocalStorage('filterState', state);
 }
 
-function toyColorHandler(color, item) {
-  const colorNum = FILTER_COLORS.indexOf(color);
-  if (!item.classList.contains(FILTER_MULTIPLE_CHECKED_CLASS)) {
+function toyColorHandler(item: HTMLElement) {
+  const hasFilter = item.classList.contains(FILTER_MULTIPLE_CHECKED_CLASS);
+  if (!hasFilter) {
     item.innerText = '✓';
-    state.filterState.color[colorNum] = true;
+    state.filterState.color.push(item.getAttribute('data-color'));
   } else {
     item.innerText = '';
-    state.filterState.color[colorNum] = false;
+    state.filterState.color = state.filterState.color.filter(el => el !== item.getAttribute('data-color'));
   }
   item.classList.toggle(FILTER_MULTIPLE_CHECKED_CLASS);
   getFilteredToys();
   updateLocalStorage('filterState', state);
 }
-function toySizeHandler(item, allItems) {
-  const hasFilter = soleFilterHandler(item, allItems, FILTER_SOLE_ACTIVE_CLASS);
-  state.filterState.size = [hasFilter, item.getAttribute('data-size')];
+
+function toySizeHandler(item: HTMLElement) {
+  const hasFilter = item.classList.contains(FILTER_SOLE_ACTIVE_CLASS);
+  if (!hasFilter) {
+    state.filterState.size.push(item.getAttribute('data-size'));
+  } else {
+    state.filterState.size = state.filterState.size.filter(el => el !== item.getAttribute('data-size'));
+  }
+  item.classList.toggle(FILTER_SOLE_ACTIVE_CLASS);
   getFilteredToys();
   updateLocalStorage('filterState', state);
 }
-function toyFavouriteHandler(item) {
+
+function toyFavouriteHandler(item: HTMLElement) {
   if (!item.classList.contains(FILTER_MULTIPLE_CHECKED_CLASS)) {
     item.innerText = '✓';
     state.filterState.favourite = true;
@@ -355,24 +326,34 @@ function toyFavouriteHandler(item) {
   updateLocalStorage('filterState', state);
 }
 
-function toyAmountHandler(minBox, maxBox, [minVal, maxVal], backgroundEl) {
+function toyAmountHandler(
+  minBox: HTMLElement,
+  maxBox: HTMLElement,
+  [minVal, maxVal]: HTMLInputElement[],
+  backgroundEl: HTMLElement
+) {
   const result = rangeHandler(minBox, maxBox, [minVal, maxVal], backgroundEl);
   state.filterState.amount = result;
   getFilteredToys();
   updateLocalStorage('filterState', state);
 }
-function toyYearHandler(minBox, maxBox, [minVal, maxVal], backgroundEl) {
+function toyYearHandler(
+  minBox: HTMLElement,
+  maxBox: HTMLElement,
+  [minVal, maxVal]: HTMLInputElement[],
+  backgroundEl: HTMLElement
+) {
   const result = rangeHandler(minBox, maxBox, [minVal, maxVal], backgroundEl);
   state.filterState.year = result;
   getFilteredToys();
   updateLocalStorage('filterState', state);
 }
 
-function sortListAppearanceHandler(element) {
+function sortListAppearanceHandler(element: HTMLElement) {
   element.classList.toggle(SORT_LIST_SHOW_CLASS);
 }
 
-function sortOptionHandler(curOptionElement, eventElement, sortList) {
+function sortOptionHandler(curOptionElement: HTMLElement, eventElement: HTMLElement, sortList: HTMLElement) {
   curOptionElement.innerText = eventElement.innerText;
   const sortOption = eventElement.getAttribute('data-sort-option');
 
@@ -382,7 +363,7 @@ function sortOptionHandler(curOptionElement, eventElement, sortList) {
   updateLocalStorage('filterState', state);
 }
 
-function searchHandler(el) {
+function searchHandler(el: HTMLInputElement) {
   getFilteredToys(el.value);
 }
 
@@ -398,6 +379,11 @@ function filterResetHandler() {
 
   /* rerender toy cards */
   getFilteredToys();
+}
+
+function pinnerHandler(pinner: HTMLElement, filterList: HTMLElement) {
+  pinner.innerText = pinner.innerText === 'скрыть' ? 'развернуть' : 'скрыть';
+  filterList.classList.toggle(FILTER_LIST_HIDE);
 }
 
 function filterHandler() {
@@ -422,11 +408,15 @@ function filterHandler() {
 
   // filter reset
   filter.resetFilterSeeker(filterResetHandler);
+
+  // pinner
+  filter.pinnerSeeker(pinnerHandler);
+
   return allFilters;
 }
 
 /* card handler */
-function cardHandler(mark, toyPickCounter, element) {
+function cardHandler(mark: HTMLElement, toyPickCounter: HTMLElement, element: HTMLElement) {
   const cardNumber = element.getAttribute('data-num');
   if (state.filterState.toysPick.length === 20 && !mark.classList.contains(CARD_CHOSEN_CLASS)) {
     return alert('Можно выбрать лишь не более 20 игрушек');
@@ -437,23 +427,31 @@ function cardHandler(mark, toyPickCounter, element) {
       state.filterState.toysPick.push(cardNumber);
     }
     mark.classList.toggle(CARD_CHOSEN_CLASS);
-    toyPickCounter.innerText = state.filterState.toysPick.length;
+    toyPickCounter.innerText = String(state.filterState.toysPick.length);
     updateLocalStorage('filterState', state);
   }
 }
 
+function selectSearchFieldHandler() {
+  const searchField: HTMLInputElement = document.querySelector('.search-box__field');
+  searchField.focus();
+  searchField.select();
+}
+
 /* seekers for filter page */
-function filterViewHandler(el, array) {
+function filterViewHandler(el: HTMLElement, array: NodeListOf<HTMLElement>) {
   linkIdleHandler(array, LINK_ACTIVE_CLASS);
   el.classList.add(LINK_ACTIVE_CLASS);
   filterView.render();
   const allFilters = filterHandler();
   stylesInit(allFilters);
   getFilteredToys();
+
+  selectSearchFieldHandler();
 }
 
 /* seekers for decorator page */
-function decoratorViewHandler(el, array) {
+function decoratorViewHandler(el: HTMLElement, array: NodeListOf<HTMLElement>) {
   linkIdleHandler(array, LINK_ACTIVE_CLASS);
   el.classList.add(LINK_ACTIVE_CLASS);
   decoratorView.render();
@@ -461,5 +459,5 @@ function decoratorViewHandler(el, array) {
 
 /* initialization and navigation seekers */
 init(navigator.filterLinks);
-navigator.listenIcon(init);
-navigator.listenLinks(filterViewHandler, decoratorViewHandler);
+navigator.listenHeaderIcon(init);
+navigator.listenHeaderLinks(filterViewHandler, decoratorViewHandler);

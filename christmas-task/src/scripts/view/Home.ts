@@ -9,6 +9,8 @@ const content = `
 `;
 
 export class HomeView {
+  targetElement: HTMLElement;
+
   constructor() {
     this.targetElement = document.querySelector('.main-box');
   }

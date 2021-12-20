@@ -1,5 +1,5 @@
 const content = `
-<div class="filters main-box__filters">
+<aside class="filters main-box__filters">
 <div class="property-filter filters__property-filter">
   <h2 class="filters__header">Фильтры по значению</h2>
   <div class="property-filter__shape">
@@ -200,14 +200,17 @@ const content = `
   </div>
   <span class="sorter__reset">Сбросить фильтры</span>
 </div>
-</div>
+</aside>
 <div class="toys main-box__toys">
+<div class="main-box__pinner">скрыть</div>
 <ul class="toys-list toys__list">
 </ul>
 </div>
 `;
 
 export class FilterView {
+  targetElement: HTMLElement;
+
   constructor() {
     this.targetElement = document.querySelector('.main-box');
   }

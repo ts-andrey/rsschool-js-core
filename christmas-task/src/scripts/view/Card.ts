@@ -1,4 +1,6 @@
-const content = (data, pickList) =>
+import { IData } from './../components/data/IData';
+
+const content = (data: IData, pickList: string[]) =>
   `
 <li data-num="${data.num}" class="toy-card toys-list__item">
 <h3 class="toy-card__header">${data.name}</h3>
@@ -42,12 +44,15 @@ const content = (data, pickList) =>
 `;
 
 export class CardView {
-  constructor(data) {
+  data: IData;
+  targetElement: HTMLElement;
+
+  constructor(data?: IData) {
     this.data = data;
     this.targetElement = document.querySelector('.toys__list');
   }
 
-  render(pickList) {
+  render(pickList: string[]) {
     this.targetElement.insertAdjacentHTML('beforeend', content(this.data, pickList));
   }
 }

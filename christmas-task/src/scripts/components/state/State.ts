@@ -1,30 +1,33 @@
+import { IFilterState, IFilterStateStorage } from './IFilterState';
+
 export class State {
+  filterState: IFilterState;
   constructor() {
     this.filterState = {
-      shape: [false, ''],
-      color: [false, false, false, false, false],
-      size: [false, ''],
+      shape: [],
+      color: [],
+      size: [],
       favourite: false,
-      amount: [1, 12],
-      year: [1940, 2020],
+      amount: ['1', '12'],
+      year: ['1940', '2020'],
       sortType: 'name',
       toysPick: [],
     };
   }
 
   resetFilterState() {
-    this.filterState.shape = [false, ''];
-    this.filterState.color = [false, false, false, false, false];
-    this.filterState.size = [false, ''];
+    this.filterState.shape = [];
+    this.filterState.color = [];
+    this.filterState.size = [];
     this.filterState.favourite = false;
-    this.filterState.amount = [1, 12];
-    this.filterState.year = [1940, 2020];
+    this.filterState.amount = ['1', '12'];
+    this.filterState.year = ['1940', '2020'];
   }
 
-  setFilterState(obj) {
+  setFilterState(obj: IFilterStateStorage) {
     this.filterState.shape = obj.filterState.shape;
     this.filterState.color = obj.filterState.color;
-    this.filterState.size =  obj.filterState.size;
+    this.filterState.size = obj.filterState.size;
     this.filterState.favourite = obj.filterState.favourite;
     this.filterState.amount = obj.filterState.amount;
     this.filterState.year = obj.filterState.year;

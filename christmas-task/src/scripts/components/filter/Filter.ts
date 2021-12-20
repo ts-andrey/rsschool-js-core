@@ -1,4 +1,32 @@
+import { IFilters } from './IFilters';
 export class Filter {
+  shapeFilters: NodeListOf<HTMLElement>;
+  colorFilters: NodeListOf<HTMLElement>;
+  sizeFilters: NodeListOf<HTMLElement>;
+  favouriteFilter: HTMLElement;
+
+  amountFilters: NodeListOf<HTMLInputElement>;
+  minAmountBox: HTMLElement;
+  maxAmountBox: HTMLElement;
+  amountBackEl: HTMLElement;
+
+  yearFilters: NodeListOf<HTMLInputElement>;
+  minYearBox: HTMLElement;
+  maxYearBox: HTMLElement;
+  yearBackEl: HTMLElement;
+
+  sortOptionList: HTMLElement;
+  sortOptions: NodeListOf<HTMLElement>;
+  sortValueWrapper: HTMLElement;
+  sortValue: HTMLElement;
+
+  searchElement: HTMLInputElement;
+
+  filterReset: HTMLElement;
+
+  pinner: HTMLElement;
+  filterMenu: HTMLElement;
+
   constructor() {
     this.shapeFilters = document.querySelectorAll('.shape-list__item');
     this.colorFilters = document.querySelectorAll('.color-list__item');
@@ -21,47 +49,64 @@ export class Filter {
     this.sortValueWrapper = document.querySelector('.sorter__sort-value-wrapper');
     this.sortValue = document.querySelector('.sorter__sort-value');
 
+    this.searchElement = document.querySelector('.search-box__field');
+
     this.filterReset = document.querySelector('.sorter__reset');
 
-    this.searchElement = document.querySelector('.search-box__field');
+    this.pinner = document.querySelector('.main-box__pinner');
+    this.filterMenu = document.querySelector('.main-box__filters');
   }
 
-  filterShapeSeeker(shapeHandler) {
+  filterShapeSeeker(shapeHandler: (shapeFilter: HTMLElement) => void) {
     this.shapeFilters.forEach(el => {
       el.addEventListener('click', () => {
-        return shapeHandler(el, this.shapeFilters);
+        return shapeHandler(el);
       });
     });
   }
-  filterColorSeeker(colorHandler) {
+  filterColorSeeker(colorHandler: (colorFilter: HTMLElement) => void) {
     this.colorFilters.forEach(el => {
       el.addEventListener('click', () => {
-        return colorHandler(el.getAttribute('data-color'), el, this.colorFilters);
+        return colorHandler(el);
       });
     });
   }
-  filterSizeSeeker(sizeHandler) {
+  filterSizeSeeker(sizeHandler: (sizeFilter: HTMLElement) => void) {
     this.sizeFilters.forEach(el => {
       el.addEventListener('click', () => {
-        return sizeHandler(el, this.sizeFilters);
+        return sizeHandler(el);
       });
     });
   }
 
-  filterFavouriteSeeker(favouriteHandler) {
+  filterFavouriteSeeker(favouriteHandler: (favouriteFilter: HTMLElement) => void) {
     this.favouriteFilter.addEventListener('click', () => {
       return favouriteHandler(this.favouriteFilter);
     });
   }
 
-  filterAmountSeeker(amountSeeker) {
+  filterAmountSeeker(
+    amountSeeker: (
+      minValueBoxEl: HTMLElement,
+      maxValueBoxEl: HTMLElement,
+      amountFilters: NodeListOf<HTMLInputElement> | HTMLInputElement[],
+      backgroundEl: HTMLElement
+    ) => void
+  ) {
     this.amountFilters.forEach(el => {
       el.addEventListener('change', () => {
         return amountSeeker(this.minAmountBox, this.maxAmountBox, this.amountFilters, this.amountBackEl);
       });
     });
   }
-  filterYearSeeker(amountSeeker) {
+  filterYearSeeker(
+    amountSeeker: (
+      minValueBoxEl: HTMLElement,
+      maxValueBoxEl: HTMLElement,
+      yearFilters: NodeListOf<HTMLInputElement> | HTMLInputElement[],
+      backgroundEl: HTMLElement
+    ) => void
+  ) {
     this.yearFilters.forEach(el => {
       el.addEventListener('change', () => {
         return amountSeeker(this.minYearBox, this.maxYearBox, this.yearFilters, this.yearBackEl);
@@ -69,13 +114,15 @@ export class Filter {
     });
   }
 
-  sortListSeeker(sortValHandler) {
+  sortListSeeker(sortValHandler: (sortListEL: HTMLElement) => void) {
     this.sortValueWrapper.addEventListener('click', () => {
       return sortValHandler(this.sortOptionList);
     });
   }
 
-  sortOptionSeeker(sortOptionHandler) {
+  sortOptionSeeker(
+    sortOptionHandler: (shownSortOption: HTMLElement, sortOption: HTMLElement, sortOptions: HTMLElement) => void
+  ) {
     this.sortOptions.forEach(el => {
       el.addEventListener('click', () => {
         return sortOptionHandler(this.sortValue, el, this.sortOptionList);
@@ -108,15 +155,21 @@ export class Filter {
     };
   }
 
-  resetFilterSeeker(resetHandler) {
+  resetFilterSeeker(resetHandler: (allElements: IFilters) => void) {
     this.filterReset.addEventListener('click', () => {
-      return resetHandler(this.getAllElements);
+      return resetHandler(this.getAllElements());
     });
   }
 
-  searchSeeker(searchHandler) {
+  searchSeeker(searchHandler: (searchField: HTMLElement) => void) {
     this.searchElement.addEventListener('input', () => {
-      searchHandler(this.searchElement);
+      return searchHandler(this.searchElement);
+    });
+  }
+
+  pinnerSeeker(pinnerHandler: (pinner: HTMLElement, filtersMenu: HTMLElement) => void) {
+    this.pinner.addEventListener('click', () => {
+      return pinnerHandler(this.pinner, this.filterMenu);
     });
   }
 }

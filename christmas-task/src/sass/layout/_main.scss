@@ -405,7 +405,7 @@ main {
 .toys {
   &__list {
     height: 85vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     display: grid;
     grid-auto-flow: row;
     grid-template-columns: repeat(auto-fit, $size-widht-card);

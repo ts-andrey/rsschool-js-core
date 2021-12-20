@@ -67,6 +67,23 @@ main {
       @include hover;
     }
   }
+  &__empty-result {
+    display: none;
+    &_state_visible {
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: $color-background-filters;
+      color: $color-text-main;
+      width: 40rem;
+      padding: 2rem 4rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      font-size: 2rem;
+    }
+  }
 }
 
 .home-wrapper {
@@ -120,7 +137,7 @@ main {
   }
 
   &__filter-type_state_active {
-    border: 1px solid $color-background-option; 
+    border: 1px solid $color-background-option;
     border-radius: 2px;
     path {
       fill: $color-mark-favourite;

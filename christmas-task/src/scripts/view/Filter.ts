@@ -203,6 +203,7 @@ const content = `
 </aside>
 <div class="toys main-box__toys">
 <div class="main-box__pinner">скрыть</div>
+<div class="main-box__empty-result"> К сожалению, не было найдено результатов, подходящих под выбранные критерии ☹</div>
 <ul class="toys-list toys__list">
 </ul>
 </div>

@@ -22,6 +22,7 @@ const CARD_CHOSEN_CLASS = 'toy-card__mark_state_favourite';
 const FILTER_SOLE_ACTIVE_CLASS = 'filters__filter-type_state_active';
 const FILTER_MULTIPLE_CHECKED_CLASS = 'itemIsChecked';
 const FILTER_LIST_HIDE = 'main-box__filters_state_hidden';
+const FILTER_NO_RESULT_CLASS = 'main-box__empty-result_state_visible';
 const TOY_AMOUN_MIN = 1;
 const TOY_AMOUNT_MAX = 12;
 const TOY_YEAR_VALUE_MIN = 1940;
@@ -95,6 +96,7 @@ function sortHelper(option: string, items: IData[]) {
 
 function getFilteredToys(str?: string) {
   let result = data.data;
+  const message = document.querySelector('.main-box__empty-result');
 
   // step#1: filter by shape
   result = data.filterByShape(state.filterState.shape, result);
@@ -112,13 +114,19 @@ function getFilteredToys(str?: string) {
   result = data.filterByAmount(state.filterState.amount[0], state.filterState.amount[1], result);
   // step#6: show toys of selected year range
   result = data.filterByYear(state.filterState.year[0], state.filterState.year[1], result);
-  // last_step: sort final pick by chosen option
 
-  // search filtering if there any
+  // step#7? (optional): search filtering if there any
   if (str) {
     result = result.filter(el => el.name.toLowerCase().includes(str.toLowerCase()));
   }
-
+  if (result.length < 1) {
+    message.classList.add(FILTER_NO_RESULT_CLASS);
+  } else {
+    if (message.classList.contains(FILTER_NO_RESULT_CLASS)) {
+      message.classList.remove(FILTER_NO_RESULT_CLASS);
+    }
+  }
+  // last_step: sort final pick by chosen option
   return sortHelper(state.filterState.sortType, result);
 }
 

@@ -400,7 +400,7 @@ function filterResetHandler() {
 }
 
 function pinnerHandler(pinner: HTMLElement, filterList: HTMLElement) {
-  pinner.innerText = pinner.innerText === 'скрыть' ? 'развернуть' : 'скрыть';
+  pinner.innerText = pinner.innerText === 'скрыть' ? 'показать' : 'скрыть';
   filterList.classList.toggle(FILTER_LIST_HIDE);
 }
 

@@ -12,7 +12,6 @@ main {
 .main__box {
   height: 100%;
   display: flex;
-  grid-auto-flow: column;
 }
 
 .main-box {
@@ -51,7 +50,7 @@ main {
     position: relative;
   }
   &__pinner {
-    @include size(11rem, 4rem);
+    @include size(12rem, 4rem);
     position: absolute;
     left: 0;
     top: 50%;
@@ -59,6 +58,7 @@ main {
     background: $color-background-filters;
     color: $color-text-main;
     text-align: center;
+    font-size: 1.7rem;
     padding: 1rem;
     border-radius: 0 0 1.5rem 1.5rem;
     z-index: 10;
@@ -470,5 +470,115 @@ main {
     font-size: 1.6rem;
     display: grid;
     grid-row-gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    &__box {
+      flex-direction: column;
+    }
+    .main-box {
+      &__filters {
+        display: flex;
+        flex-wrap: wrap;
+        overflow: auto;
+        justify-content: center;
+      }
+    }
+  }
+  .shape-list,
+  .color-list {
+    display: grid;
+    align-items: center;
+    justify-content: start;
+    grid-template-columns: repeat(5, auto);
+    li:nth-of-type(1) {
+      grid-column-start: 1;
+      grid-column-end: 6;
+      margin-bottom: 0.5rem;
+      margin-right: 0;
+    }
+  }
+  .size-list {
+    display: grid;
+    align-items: center;
+    justify-content: start;
+    grid-template-columns: repeat(3, auto);
+    li:nth-of-type(1) {
+      grid-column-start: 1;
+      grid-column-end: 4;
+      margin-bottom: 0.5rem;
+      margin-right: 0;
+    }
+  }
+  .main-box {
+    &__pinner {
+      top: 0;
+      left: 0;
+      transform: translate(0, 0) rotate(0);
+    }
+    &__toys {
+      padding: 4rem 1rem 2rem 1rem;
+    }
+  }
+  .filters {
+    &__property-filter,
+    &__range-filter,
+    &__sorter {
+      padding: 1rem;
+    }
+
+    &__header {
+      font-size: 90%;
+      word-wrap: normal;
+    }
+  }
+  .range-filter {
+    &__item-wrapper {
+      display: grid;
+    }
+    &__value {
+      grid-row: 2;
+      &:nth-of-type(1) {
+        justify-self: start;
+      }
+      &:nth-of-type(2) {
+        justify-self: end;
+      }
+    }
+    &__input-wrapper {
+      grid-row: 1;
+      grid-column: span 2;
+    }
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .toy-card {
+    &__img {
+      width: 6rem;
+    }
+    &__header {
+      word-wrap: normal;
+      height: 36px;
+    }
+  }
+  .toys {
+    &__list {
+      grid-auto-flow: dense;
+      grid-template-columns: repeat(auto-fit, 23.2rem);
+      grid-template-rows: auto;
+      grid-gap: 1rem;
+    }
+  }
+  .toys-list {
+    &__item {
+      width: 23.2rem;
+      height: min-content;
+      transform: scale(0.9);
+    }
   }
 }

@@ -194,6 +194,8 @@ const content = `
     <ul class="sort-list sorter__sort-list">
       <li data-sort-option="name" class="sort-list__item">Сортировать по имени А→Я</li>
       <li data-sort-option="name-reversed" class="sort-list__item">Сортировать по имени Я→А</li>
+      <li data-sort-option="year" class="sort-list__item">Сортировать по году ↑</li>
+      <li data-sort-option="year-reversed" class="sort-list__item">Сортировать по году ↓</li>
       <li data-sort-option="number" class="sort-list__item">Сортировать по количеству ↑</li>
       <li data-sort-option="number-reversed" class="sort-list__item">Сортировать по количеству ↓</li>
     </ul>

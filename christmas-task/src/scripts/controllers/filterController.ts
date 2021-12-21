@@ -91,6 +91,16 @@ function sortHelper(option: string, items: IData[]) {
       toyCardsRenderer(array);
       break;
     }
+    case 'year': {
+      const array = data.sortByYear(items);
+      toyCardsRenderer(array);
+      break;
+    }
+    case 'year-reversed': {
+      const array = data.sortByYearReversed(items);
+      toyCardsRenderer(array);
+      break;
+    }
   }
 }
 

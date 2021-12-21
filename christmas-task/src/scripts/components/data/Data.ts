@@ -81,4 +81,18 @@ export class Data {
       return toysArr.sort((a, b) => Number(a.count) - Number(b.count)).reverse();
     }
   }
+  sortByYear(toysArr: IData[]) {
+    if (!toysArr) {
+      return this.data.sort((a, b) => Number(a.year) - Number(b.year));
+    } else {
+      return toysArr.sort((a, b) => Number(a.year) - Number(b.year));
+    }
+  }
+  sortByYearReversed(toysArr: IData[]) {
+    if (!toysArr) {
+      return this.data.sort((a, b) => Number(a.year) - Number(b.year)).reverse();
+    } else {
+      return toysArr.sort((a, b) => Number(a.year) - Number(b.year)).reverse();
+    }
+  }
 }

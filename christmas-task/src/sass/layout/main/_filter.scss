@@ -16,20 +16,25 @@
     transform: translate(-50%, -35%);
   }
 
-  &__filters {
-    overflow: hidden;
-    display: grid;
-    grid-gap: 2rem;
-    justify-content: space-between;
-    justify-items: center;
-    padding: 1rem 2rem;
+  &__filters-wrapper {
     background: $color-background-filters;
+
+    overflow: hidden;
+    padding: 1rem 2rem;
 
     &_state_hidden {
       width: 0;
       height: 0;
       padding: 0;
     }
+  }
+  &__filters {
+    overflow-y: scroll;
+    height: 100%;
+    display: grid;
+    grid-gap: 2rem;
+    justify-content: space-between;
+    justify-items: center;
   }
   &__toys {
     height: 100%;
@@ -478,6 +483,9 @@
       flex-direction: column;
     }
     .main-box {
+      &__filters-wrapper  {
+        height: 40rem;
+      }
       &__filters {
         display: flex;
         flex-wrap: wrap;

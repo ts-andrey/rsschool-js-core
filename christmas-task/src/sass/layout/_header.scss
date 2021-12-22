@@ -123,17 +123,9 @@
 }
 
 @media screen and (max-width: 550px) {
-  .header-box {
-    &__icon-box {
-      margin-right: 1rem;
-    }
-    &__toy-count-box {
-      margin-left: 1rem;
-    }
-  }
-  .nav-list {
-    &__item {
-      margin-right: 1rem;
+  .header{
+    &__box{
+      flex-direction: column;
     }
   }
 }

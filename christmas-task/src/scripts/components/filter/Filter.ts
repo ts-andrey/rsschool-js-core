@@ -56,7 +56,7 @@ export class Filter {
     this.storageReset = document.querySelector('.sorter__reset-storage');
 
     this.pinner = document.querySelector('.main-box__pinner');
-    this.filterMenu = document.querySelector('.main-box__filters');
+    this.filterMenu = document.querySelector('.main-box__filters-wrapper');
   }
 
   filterShapeSeeker(shapeHandler: (shapeFilter: HTMLElement) => void) {

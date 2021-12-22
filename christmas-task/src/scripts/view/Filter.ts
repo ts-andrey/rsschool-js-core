@@ -200,7 +200,10 @@ const content = `
       <li data-sort-option="number-reversed" class="sort-list__item">Сортировать по количеству ↓</li>
     </ul>
   </div>
-  <span class="sorter__reset">Сбросить фильтры</span>
+  <div class="sorter__resetters">
+  <span class="sorter__reset-filters">Сбросить фильтры</span>
+  <span class="sorter__reset-storage">Очистить хранилище</span>
+  </div>
 </div>
 </aside>
 <div class="toys main-box__toys">

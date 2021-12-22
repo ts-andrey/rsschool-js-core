@@ -23,6 +23,11 @@ export class State {
     this.filterState.amount = ['1', '12'];
     this.filterState.year = ['1940', '2020'];
   }
+  resetFilterStateAll() {
+    this.resetFilterState();
+    this.filterState.sortType = 'name';
+    this.filterState.toysPick = [];
+  }
 
   setFilterState(obj: IFilterStateStorage) {
     this.filterState.shape = obj.filterState.shape;

@@ -439,6 +439,18 @@ function filterResetHandler() {
   getFilteredToys();
 }
 
+function storageResetHandler() {
+  const allFilters = new Filter().getAllElements();
+  const toyPickCounter: HTMLElement = document.querySelector('.header-box__toy-counter');
+  localStorage.clear();
+  state.resetFilterStateAll();
+  toyPickCounter.innerText = String(state.filterState.toysPick.length);
+  stylesReset(allFilters);
+  const sortValue: HTMLElement = document.querySelector('.sorter__sort-value');
+  sortValue.innerText = 'Сортировать по имени А→Я';
+  getFilteredToys();
+}
+
 function pinnerHandler(pinner: HTMLElement, filterList: HTMLElement) {
   pinner.innerText = pinner.innerText === 'скрыть' ? 'показать' : 'скрыть';
   filterList.classList.toggle(FILTER_LIST_HIDE);
@@ -466,6 +478,7 @@ function filterHandler() {
 
   // filter reset
   filter.resetFilterSeeker(filterResetHandler);
+  filter.resetStorageSeeker(storageResetHandler);
 
   // pinner
   filter.pinnerSeeker(pinnerHandler);

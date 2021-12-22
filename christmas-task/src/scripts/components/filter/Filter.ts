@@ -23,6 +23,7 @@ export class Filter {
   searchElement: HTMLInputElement;
 
   filterReset: HTMLElement;
+  storageReset: HTMLElement;
 
   pinner: HTMLElement;
   filterMenu: HTMLElement;
@@ -51,7 +52,8 @@ export class Filter {
 
     this.searchElement = document.querySelector('.search-box__field');
 
-    this.filterReset = document.querySelector('.sorter__reset');
+    this.filterReset = document.querySelector('.sorter__reset-filters');
+    this.storageReset = document.querySelector('.sorter__reset-storage');
 
     this.pinner = document.querySelector('.main-box__pinner');
     this.filterMenu = document.querySelector('.main-box__filters');
@@ -161,6 +163,11 @@ export class Filter {
     });
   }
 
+  resetStorageSeeker(resetHandler: () => void) {
+    this.storageReset.addEventListener('click', () => {
+      return resetHandler();
+    });
+  }
   searchSeeker(searchHandler: (searchField: HTMLElement) => void) {
     this.searchElement.addEventListener('input', () => {
       return searchHandler(this.searchElement);

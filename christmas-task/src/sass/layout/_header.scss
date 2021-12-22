@@ -68,6 +68,9 @@
       align-items: center;
     }
   }
+  &__search {
+    position: relative;
+  }
 }
 
 .search-box {
@@ -83,12 +86,38 @@
     background-position: right 1rem center;
     background-repeat: no-repeat;
     background-size: 1.3rem;
+    display: none;
     transition: all 0.35s;
     &:focus {
       outline: none;
     }
     &:hover {
       background-size: 1.5rem;
+    }
+    &_state_visible {
+      display: inline;
+    }
+  }
+  &__value-clearer {
+    @include equalSize(2rem);
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: visible;
+    z-index: 10;
+    display: none;
+    path {
+      fill: $color-mark-normal;
+    }
+    &:hover {
+      cursor: pointer;
+      path {
+        fill: $color-mark-favourite;
+      }
+    }
+    &_state_visible {
+      display: inline;
     }
   }
 }
@@ -98,7 +127,7 @@
     &__icon-box {
       margin-right: 1rem;
     }
-    &__toy-count-box{
+    &__toy-count-box {
       margin-left: 1rem;
     }
   }

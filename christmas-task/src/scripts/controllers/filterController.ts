@@ -28,6 +28,8 @@ const TOY_AMOUNT_MAX = 12;
 const TOY_YEAR_VALUE_MIN = 1940;
 const TOY_YEAR_VALUE_MAX = 2020;
 const SORT_LIST_SHOW_CLASS = 'sorter__sort-list_state_reveal';
+const SEARCH_FIELD_SHOW_CLASS = 'search-box__field_state_visible';
+const SEARCH_FIELD_CLEARER_SHOW_CLASS = 'search-box__value-clearer_state_visible';
 
 // data - array with toys and info about them + filter/sort methods
 const data = new Data(toysArray);
@@ -55,6 +57,7 @@ function navigatorLinkUpdate() {
 
 // init function
 function init(array: NodeListOf<HTMLElement>) {
+  hideSearchField();
   linkIdleHandler(array, LINK_ACTIVE_CLASS);
   homeView.render();
   navigatorLinkUpdate();
@@ -290,6 +293,17 @@ function stylesInit(filters: IFilters) {
   });
 }
 
+function hideSearchField() {
+  const searchField: HTMLInputElement = document.querySelector('.search-box__field');
+  const searchFielClearer: HTMLElement = document.querySelector('.search-box__value-clearer');
+  if (searchField.classList.contains(SEARCH_FIELD_SHOW_CLASS)) {
+    searchField.classList.remove(SEARCH_FIELD_SHOW_CLASS);
+  }
+  if (searchFielClearer.classList.contains(SEARCH_FIELD_CLEARER_SHOW_CLASS)) {
+    searchFielClearer.classList.remove(SEARCH_FIELD_CLEARER_SHOW_CLASS);
+  }
+}
+
 /* FILTER PAGE */
 /*  handlers for filter seekers */
 
@@ -381,8 +395,34 @@ function sortOptionHandler(curOptionElement: HTMLElement, eventElement: HTMLElem
   updateLocalStorage('filterState', state);
 }
 
+function searchStyleIconHandler(field: HTMLInputElement, clearer: HTMLElement) {
+  clearer.classList.remove(SEARCH_FIELD_CLEARER_SHOW_CLASS);
+  field.style.backgroundImage = 'url(./assets/svg/search.svg)';
+}
+
+function searchClearer(field: HTMLInputElement, clearer: HTMLElement) {
+  clearer.addEventListener('click', () => {
+    searchStyleIconHandler(field, clearer);
+    field.value = '';
+    getFilteredToys(field.value);
+  });
+}
+
+function searchStyleHandler(field: HTMLInputElement, clearer: HTMLElement) {
+  if (field.value.length > 0) {
+    field.style.backgroundImage = 'none';
+    clearer.classList.add(SEARCH_FIELD_CLEARER_SHOW_CLASS);
+  } else {
+    searchStyleIconHandler(field, clearer);
+  }
+}
+
 function searchHandler(el: HTMLInputElement) {
   getFilteredToys(el.value);
+  const searchFieldClearer: HTMLElement = document.querySelector('.search-box__value-clearer');
+  searchStyleHandler(el, searchFieldClearer);
+  searchClearer(el, searchFieldClearer);
+  searchStyleHandler(el, searchFieldClearer);
 }
 
 function filterResetHandler() {
@@ -452,12 +492,14 @@ function cardHandler(mark: HTMLElement, toyPickCounter: HTMLElement, element: HT
 
 function selectSearchFieldHandler() {
   const searchField: HTMLInputElement = document.querySelector('.search-box__field');
+  searchField.classList.add(SEARCH_FIELD_SHOW_CLASS);
   searchField.focus();
   searchField.select();
 }
 
 /* seekers for filter page */
 function filterViewHandler(el: HTMLElement, array: NodeListOf<HTMLElement>) {
+  hideSearchField();
   linkIdleHandler(array, LINK_ACTIVE_CLASS);
   el.classList.add(LINK_ACTIVE_CLASS);
   filterView.render();
@@ -470,6 +512,7 @@ function filterViewHandler(el: HTMLElement, array: NodeListOf<HTMLElement>) {
 
 /* seekers for decorator page */
 function decoratorViewHandler(el: HTMLElement, array: NodeListOf<HTMLElement>) {
+  hideSearchField();
   linkIdleHandler(array, LINK_ACTIVE_CLASS);
   el.classList.add(LINK_ACTIVE_CLASS);
   decoratorView.render();

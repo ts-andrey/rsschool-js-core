@@ -1,3 +1,3 @@
-// import './controllers/filterController';
+import './controllers/filterController';
 import './controllers/dresserController';
 

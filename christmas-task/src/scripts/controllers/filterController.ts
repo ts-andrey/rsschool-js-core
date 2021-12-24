@@ -5,7 +5,6 @@ import { FilterView } from '../view/Filter';
 import { CardView } from '../view/Card';
 import { DecoratorView } from '../view/Decorator';
 
-// import { Decorator } from '../components/dresser/Decorator';
 import { Filter } from '../components/filter/Filter';
 import { Card } from '../components/card/Card';
 import { Navigator } from '../components/home/Navigator';

@@ -10,13 +10,13 @@
   }
 
   &__nav-list {
-    color: #fff;
+    color: $color-text-main;
     display: flex;
   }
 }
 .nav-list {
   &__item {
-    @include hover;
+    @include hover-color;
     margin-right: 3rem;
     text-transform: uppercase;
     &:last-of-type {
@@ -31,12 +31,15 @@
 
 .header-box {
   &__icon-box {
-    @include hover;
+    @include hover-fill;
     @include hover-rotate;
-    svg {
-      @include size(min-content, 4rem);
-    }
     margin-right: 3rem;
+  }
+  &__icon {
+    @include size(min-content, 4rem);
+    path{
+      fill: $color-text-main;
+    }
   }
 
   &__toy-count-box {
@@ -123,8 +126,8 @@
 }
 
 @media screen and (max-width: 550px) {
-  .header{
-    &__box{
+  .header {
+    &__box {
       flex-direction: column;
     }
   }

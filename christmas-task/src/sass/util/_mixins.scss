@@ -29,7 +29,7 @@
     transform: rotate(0.01turn);
   }
 }
-@mixin hover() {
+@mixin hover-fill() {
   transition: all 0.35s;
   &:hover {
     cursor: pointer;
@@ -39,10 +39,36 @@
     }
   }
 }
+
+@mixin hover-color() {
+  transition: all 0.35s;
+  &:hover {
+    cursor: pointer;
+    color: $color-mark-favourite;
+  }
+}
+@mixin hover-bright() {
+  transition: all 0.35s;
+  &:hover {
+    cursor: pointer;
+    filter: contrast(150%) brightness(110%) saturate(120%);
+  }
+}
+
 @mixin hover-translate() {
   transition: all 0.35s;
   &:hover {
     cursor: pointer;
     transform: translateY(-0.2rem);
   }
+}
+
+@mixin hover-scale-lighten{
+
+}
+
+@mixin img-align-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

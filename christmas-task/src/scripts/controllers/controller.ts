@@ -15,6 +15,9 @@ import toysArray from '../../assets/data';
 import { IFilterStateStorage } from '../components/state/IFilterState';
 import { IData } from '../components/data/IData';
 import { IFilters } from '../components/filter/IFilters';
+import { Decorator } from '../components/dresser/Decorator';
+
+import { DresserController } from './dresserController';
 
 const LINK_ACTIVE_CLASS = 'nav-list__item_state_active';
 const CARD_CHOSEN_CLASS = 'toy-card__mark_state_favourite';
@@ -40,6 +43,8 @@ const homeView = new HomeView();
 // let decorator = new Decorator();
 
 const navigator = new Navigator();
+
+const dresserController = new DresserController();
 
 const state: IFilterStateStorage = new State();
 if (!localStorage.getItem('filterState')) {
@@ -455,6 +460,32 @@ function pinnerHandler(pinner: HTMLElement, filterList: HTMLElement) {
   filterList.classList.toggle(FILTER_LIST_HIDE);
 }
 
+/* card handler */
+function cardHandler(mark: HTMLElement, toyPickCounter: HTMLElement, element: HTMLElement) {
+  const cardNumber = element.getAttribute('data-num');
+  if (state.filterState.toysPick.length === 20 && !mark.classList.contains(CARD_CHOSEN_CLASS)) {
+    return alert('Можно выбрать лишь не более 20 игрушек');
+  } else {
+    if (mark.classList.contains(CARD_CHOSEN_CLASS)) {
+      state.filterState.toysPick = state.filterState.toysPick.filter(el => el !== cardNumber);
+    } else {
+      state.filterState.toysPick.push(cardNumber);
+    }
+    mark.classList.toggle(CARD_CHOSEN_CLASS);
+    toyPickCounter.innerText = String(state.filterState.toysPick.length);
+    updateLocalStorage('filterState', state);
+  }
+}
+
+function selectSearchFieldHandler() {
+  const searchField: HTMLInputElement = document.querySelector('.search-box__field');
+  searchField.classList.add(SEARCH_FIELD_SHOW_CLASS);
+  searchField.focus();
+  searchField.select();
+}
+
+/* ********* DECORATOR HANDLERS ****************************************** */
+
 function filterHandler() {
   const filter = new Filter();
   const allFilters = filter.getAllElements();
@@ -485,28 +516,26 @@ function filterHandler() {
   return allFilters;
 }
 
-/* card handler */
-function cardHandler(mark: HTMLElement, toyPickCounter: HTMLElement, element: HTMLElement) {
-  const cardNumber = element.getAttribute('data-num');
-  if (state.filterState.toysPick.length === 20 && !mark.classList.contains(CARD_CHOSEN_CLASS)) {
-    return alert('Можно выбрать лишь не более 20 игрушек');
-  } else {
-    if (mark.classList.contains(CARD_CHOSEN_CLASS)) {
-      state.filterState.toysPick = state.filterState.toysPick.filter(el => el !== cardNumber);
-    } else {
-      state.filterState.toysPick.push(cardNumber);
-    }
-    mark.classList.toggle(CARD_CHOSEN_CLASS);
-    toyPickCounter.innerText = String(state.filterState.toysPick.length);
-    updateLocalStorage('filterState', state);
-  }
-}
+function decoratorHandler() {
+  const decorator = new Decorator();
 
-function selectSearchFieldHandler() {
-  const searchField: HTMLInputElement = document.querySelector('.search-box__field');
-  searchField.classList.add(SEARCH_FIELD_SHOW_CLASS);
-  searchField.focus();
-  searchField.select();
+  decorator.featureSoundSeeker(dresserController.featureSoundHandler);
+  decorator.featureSnowSeeker(dresserController.featureSnowHandler);
+  decorator.treeTypeSeeker(dresserController.treeTypeHandler);
+  decorator.backgroundSeeker(dresserController.backgroundHandler);
+  decorator.lightSwitchSeeker(dresserController.lightSwitchHandler);
+  decorator.lightDefaultSeeker(dresserController.lightDefaultHandler);
+  decorator.lightCustomOneSeeker(dresserController.lightCustomOneHandler);
+  decorator.lightCustomManySeeker(dresserController.lightCustomManyHandler);
+  decorator.lightBrightnessSeeker(dresserController.lightBrightnessHandler);
+  decorator.lightSpeedSeeker(dresserController.lightSpeedHandler);
+  decorator.lightModeSeeker(dresserController.lightModeHandler);
+  decorator.lightBightnessOptionSeeker(dresserController.lightBrightnessOptionHandler);
+  decorator.lightSpeedOptionSeeker(dresserController.lightSpeedOptionHandler);
+  decorator.lightModeOptionSeeker(dresserController.lightModeOptionHandler);
+  decorator.dresserSaveSeeker(dresserController.dresserSaveHanlder);
+  // decorator.dresserToySeeker(dresserToyListHandler);
+  // decorator.dresserWorkListSeeker(dresserWorkListHandler);
 }
 
 /* seekers for filter page */
@@ -527,7 +556,12 @@ function decoratorViewHandler(el: HTMLElement, array: NodeListOf<HTMLElement>) {
   hideSearchField();
   linkIdleHandler(array, LINK_ACTIVE_CLASS);
   el.classList.add(LINK_ACTIVE_CLASS);
-  decoratorView.render();
+  decoratorView.renderContent();
+  decoratorView.renderToyList(() => {
+    dresserController.decorToyListRenderer(decoratorView);
+  });
+
+  decoratorHandler();
 }
 
 /* initialization and navigation seekers */

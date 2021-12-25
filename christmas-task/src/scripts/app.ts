@@ -1,3 +1,1 @@
-import './controllers/filterController';
-import './controllers/dresserController';
-
+import './controllers/controller';

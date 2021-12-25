@@ -24,6 +24,8 @@
   &__xmas-tree {
     position: relative;
     flex-grow: 3;
+    background: center / cover no-repeat url(../assets/bg/1.webp);
+    overflow: hidden;
   }
   &__decoration {
     position: relative;
@@ -60,6 +62,20 @@
     pointer-events: visible;
     &:hover {
       cursor: pointer;
+      path {
+        fill: $color-mark-favourite;
+      }
+    }
+  }
+  &__sound-icon {
+    &_state_active {
+      path {
+        fill: $color-mark-favourite;
+      }
+    }
+  }
+  &__snow-icon {
+    &_state_active {
       path {
         fill: $color-mark-favourite;
       }

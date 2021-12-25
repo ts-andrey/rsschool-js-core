@@ -1,0 +1,70 @@
+@import './mixins';
+
+$s1: '';
+$s2: '';
+$s3: '';
+
+@for $i from 1 through 250 {
+  $s1: $s1 + random(1000) * 0.1vw + ' ' + random(1000) * 0.1vh + ' ' + 0 + ' ' + random(50) * -0.01rem + #fff;
+  @if $i < 250 {
+    $s1: $s1 + ',';
+    $s2: $s2 + ',';
+    $s3: $s3 + ',';
+  }
+}
+.xmas-tree {
+  &__snow {
+    border-radius: 50%;
+    opacity: 0.8;
+    position: absolute;
+    top: -100vh;
+    transform: translateX(-2.5rem);
+    animation: fall linear infinite;
+
+    &_layer_1 {
+      @include equalSize(1rem);
+      filter: blur(0.15rem);
+      box-shadow: #{$s1};
+      animation-duration: 6s;
+      &-copy {
+        animation-delay: -3s;
+      }
+    }
+    &_layer_2 {
+      @include equalSize(0.7rem);
+      filter: blur(0.3rem);
+      box-shadow: #{$s1};
+      animation-duration: 8s;
+      &-copy {
+        animation-delay: -4s;
+      }
+    }
+    &_layer_3 {
+      @include equalSize(0.5rem);
+      filter: blur(0.5rem);
+      box-shadow: #{$s1};
+      animation-duration: 10s;
+      &-copy {
+        animation-delay: -5s;
+      }
+    }
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0vh) translateX(0);
+  }
+  25% {
+    transform: translateY(50vh) translateX(2.5rem);
+  }
+  50% {
+    transform: translateY(100vh) translateX(0);
+  }
+  75% {
+    transform: translateY(150vh) translateX(-2.5rem);
+  }
+  100% {
+    transform: translateY(200vh) translateX(0);
+  }
+}

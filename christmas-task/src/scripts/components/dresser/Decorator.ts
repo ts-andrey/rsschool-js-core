@@ -7,12 +7,16 @@ export class Decorator {
 
   choiseBackgroundImg: NodeListOf<HTMLElement>;
 
+  bulbs: NodeListOf<HTMLElement>;
+
   choiseColorLight: NodeListOf<HTMLElement>;
   choiseColorLightCustomOne: HTMLInputElement;
   choiseColorLightsCustomMany: NodeListOf<HTMLInputElement>;
 
   lightSwitcher: HTMLElement;
+  switchHandle: HTMLElement;
   lightSwitcherValue: HTMLElement;
+  lightRopeWrapper: HTMLElement;
 
   lightListBright: HTMLElement;
   lightValueBright: HTMLElement;
@@ -45,15 +49,21 @@ export class Decorator {
     this.choiseTreeImg = document.querySelectorAll('.config-tree__img');
 
     this.choiseBackgroundImg = document.querySelectorAll('.config-background__img');
-    this.choiseColorLight = document.querySelectorAll('.config-light__item');
+
+    // bulbs
+    this.bulbs = document.querySelectorAll('.xmas-tree__light-bulb');
 
     // color pickers
+    this.choiseColorLight = document.querySelectorAll('.config-light__item');
+
     this.choiseColorLightCustomOne = document.querySelector('.color-pick__single-picker');
     this.choiseColorLightsCustomMany = document.querySelectorAll('.color-pick__multiple-picker');
 
     // light switch
     this.lightSwitcher = document.querySelector('.light-options__switcher-box');
+    this.switchHandle = document.querySelector('.light-options__switcher');
     this.lightSwitcherValue = document.querySelector('.light-options__switcher-value');
+    this.lightRopeWrapper = document.querySelector('.xmas-tree__light-row-list');
 
     // light options
     // brightness
@@ -113,30 +123,44 @@ export class Decorator {
     });
   }
 
-  lightSwitchSeeker(lightSwitchHandler: (positionValue: HTMLElement, switcher: HTMLElement) => void) {
+  lightSwitchSeeker(
+    lightSwitchHandler: (
+      positionValue: HTMLElement,
+      switcher: HTMLElement,
+      switchHandler: HTMLElement,
+      lightRopeWrapper: HTMLElement,
+    ) => void
+  ) {
     this.lightSwitcher.addEventListener('click', () => {
-      return lightSwitchHandler(this.lightSwitcherValue, this.lightSwitcher);
+      return lightSwitchHandler(
+        this.lightSwitcherValue,
+        this.lightSwitcher,
+        this.switchHandle,
+        this.lightRopeWrapper,
+      );
     });
   }
 
-  lightDefaultSeeker(lightDefaultHandler: (colorElement: HTMLElement) => void) {
+  lightDefaultSeeker(lightDefaultHandler: (colorEl: HTMLElement, bulbs: NodeListOf<HTMLElement>) => void) {
     this.choiseColorLight.forEach(el => {
       el.addEventListener('click', () => {
-        return lightDefaultHandler(el);
+        return lightDefaultHandler(el, this.bulbs);
       });
     });
   }
 
-  lightCustomOneSeeker(lightCustomOneHandler: (colorInput: HTMLInputElement) => void) {
-    this.choiseColorLightCustomOne.addEventListener('click', () => {
-      return lightCustomOneHandler(this.choiseColorLightCustomOne);
+  lightCustomOneSeeker(lightCustomOneHandler: (colorInput: HTMLInputElement, bulbs: NodeListOf<HTMLElement>) => void) {
+    this.choiseColorLightCustomOne.addEventListener('change', () => {
+      return lightCustomOneHandler(this.choiseColorLightCustomOne, this.bulbs);
     });
   }
 
-  lightCustomManySeeker(lightCustomManyHandler: (colorInput: HTMLInputElement) => void) {
+  lightCustomManySeeker(
+    lightCustomManyHandler: (colorInput: HTMLInputElement, bulbs: NodeListOf<HTMLElement>) => void
+  ) {
     this.choiseColorLightsCustomMany.forEach(el => {
-      el.addEventListener('click', () => {
-        return lightCustomManyHandler(el);
+      el.addEventListener('change', () => {
+        return lightCustomManyHandler(el, this.bulbs);
       });
     });
   }
@@ -158,25 +182,44 @@ export class Decorator {
   }
 
   lightBightnessOptionSeeker(
-    lightBrightnessOptionHandler: (eventElement: HTMLElement, valueElement: HTMLElement) => void
+    lightBrightnessOptionHandler: (
+      eventElement: HTMLElement,
+      valueElement: HTMLElement,
+      list: HTMLElement,
+      bulbs: NodeListOf<HTMLElement>
+    ) => void
   ) {
     this.lightListBrightItems.forEach(el => {
       el.addEventListener('click', () => {
-        return lightBrightnessOptionHandler(el, this.lightValueBright);
+        return lightBrightnessOptionHandler(el, this.lightValueBright, this.lightListBright, this.bulbs);
       });
     });
   }
-  lightSpeedOptionSeeker(lightSpeedOptionHandler: (eventElement: HTMLElement, valueElement: HTMLElement) => void) {
+  lightSpeedOptionSeeker(
+    lightSpeedOptionHandler: (
+      eventElement: HTMLElement,
+      valueElement: HTMLElement,
+      list: HTMLElement,
+      bulbs: NodeListOf<HTMLElement>
+    ) => void
+  ) {
     this.lightListSpeedItems.forEach(el => {
       el.addEventListener('click', () => {
-        return lightSpeedOptionHandler(el, this.lightValueSpeed);
+        return lightSpeedOptionHandler(el, this.lightValueSpeed, this.lightListSpeed, this.bulbs);
       });
     });
   }
-  lightModeOptionSeeker(lightModeOptionHandler: (eventElement: HTMLElement, valueElement: HTMLElement) => void) {
+  lightModeOptionSeeker(
+    lightModeOptionHandler: (
+      eventElement: HTMLElement,
+      valueElement: HTMLElement,
+      list: HTMLElement,
+      bulbs: NodeListOf<HTMLElement>
+    ) => void
+  ) {
     this.lightListModeItems.forEach(el => {
       el.addEventListener('click', () => {
-        return lightModeOptionHandler(el, this.lightValueMode);
+        return lightModeOptionHandler(el, this.lightValueMode, this.lightListMode, this.bulbs);
       });
     });
   }

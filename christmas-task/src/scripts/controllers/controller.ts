@@ -9,7 +9,7 @@ import { Filter } from '../components/filter/Filter';
 import { Card } from '../components/card/Card';
 import { Navigator } from '../components/home/Navigator';
 
-import { State } from '../components/state/State';
+import { FilterState } from '../components/state/FilterState';
 
 import toysArray from '../../assets/data';
 import { IFilterStateStorage } from '../components/state/IFilterState';
@@ -46,7 +46,7 @@ const navigator = new Navigator();
 
 const dresserController = new DresserController();
 
-const state: IFilterStateStorage = new State();
+const state: IFilterStateStorage = new FilterState();
 if (!localStorage.getItem('filterState')) {
   updateLocalStorage('filterState', state);
 } else {
@@ -529,10 +529,10 @@ function decoratorHandler() {
   decorator.lightCustomManySeeker(dresserController.lightCustomManyHandler);
   decorator.lightBrightnessSeeker(dresserController.lightBrightnessHandler);
   decorator.lightSpeedSeeker(dresserController.lightSpeedHandler);
-  decorator.lightModeSeeker(dresserController.lightModeHandler);
+  // decorator.lightModeSeeker(dresserController.lightModeHandler);
   decorator.lightBightnessOptionSeeker(dresserController.lightBrightnessOptionHandler);
   decorator.lightSpeedOptionSeeker(dresserController.lightSpeedOptionHandler);
-  decorator.lightModeOptionSeeker(dresserController.lightModeOptionHandler);
+  // decorator.lightModeOptionSeeker(dresserController.lightModeOptionHandler);
   decorator.dresserSaveSeeker(dresserController.dresserSaveHanlder);
   // decorator.dresserToySeeker(dresserToyListHandler);
   // decorator.dresserWorkListSeeker(dresserWorkListHandler);

@@ -25,7 +25,7 @@
     position: relative;
     flex-grow: 3;
     background: center / cover no-repeat url(../assets/bg/1.webp);
-    overflow: hidden;
+    overflow-y: auto;
   }
   &__decoration {
     position: relative;
@@ -241,6 +241,7 @@
     &__option-mode {
       overflow: hidden;
       height: 6rem;
+      transition: all 0.35s;
 
       &_state_active {
         height: 21rem;
@@ -300,6 +301,11 @@
 
     &_state_active {
       flex-direction: row-reverse;
+      &:hover {
+        .light-options__switcher {
+          background: lighten($color-text-main, 10%);
+        }
+      }
     }
   }
   &__switcher {
@@ -333,6 +339,8 @@
   &__brightness-list,
   &__speed-list,
   &__mode-list {
+    overflow-y: auto;
+    height: 10rem;
     background: $color-background-option;
     display: grid;
     grid-gap: 0.5rem;
@@ -359,9 +367,9 @@
     &-wrapper {
       @include size(fit-content, fit-content);
       position: absolute;
-      top: 50%;
+      bottom: 2%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
     }
   }
 }

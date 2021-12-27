@@ -1,6 +1,6 @@
 import { IFilterState, IFilterStateStorage } from './IFilterState';
 
-export class State {
+export class FilterState {
   filterState: IFilterState;
   constructor() {
     this.filterState = {

@@ -82,26 +82,25 @@ const content = `
   <div class="config-light config__light">
     <h4 class="config-light__header config__header">Выбор гирлянды</h4>
     <ul class="config-light__list config__list">
-      <li data-color="#ffffff" class="config-light__item config-light__item_color_white"></li>
-      <li data-color="#ff0000" class="config-light__item config-light__item_color_red"></li>
-      <li data-color="#0000ff" class="config-light__item config-light__item_color_blue"></li>
-      <li data-color="#00ff00" class="config-light__item config-light__item_color_green"></li>
-      <li data-color="#ffff00" class="config-light__item config-light__item_color_yellow"></li>
-      <li data-color="#a200ff" class="config-light__item config-light__item_color_purple"></li>
-      <li data-color="#ff00c8" class="config-light__item config-light__item_color_pink"></li>
-      <li data-color="linear-gradient(120deg, red 0%, red 37%, #00ff00 37%, #00ff00 62%, blue 62%, blue 100%)" class="config-light__item config-light__item_color_multy"></li>
+      <li data-type="one" data-color="255, 255, 255" class="config-light__item config-light__item_color_white"></li>
+      <li data-type="one" data-color="255, 0, 0" class="config-light__item config-light__item_color_red"></li>
+      <li data-type="one" data-color="0, 255, 0" class="config-light__item config-light__item_color_green"></li>
+      <li data-type="one" data-color="0, 0, 255" class="config-light__item config-light__item_color_blue"></li>
+      <li data-type="one" data-color="255, 255, 0" class="config-light__item config-light__item_color_yellow"></li>
+      <li data-type="one" data-color="255, 0, 200" class="config-light__item config-light__item_color_pink"></li>
+      <li data-type="many-default" class="config-light__item config-light__item_color_multy"></li>
     </ul>
     <ul class="config-light__custom-list">
       <li class="color-pick config-light__custom-item">
         <p class="color-pick__description">Свой цвет</p>
-        <input type="color" name="color-pick-single" value="#ff0000" class="color-pick__single-picker" />
+        <input data-type="one" type="color" name="color-pick-single" value="#ff0000" class="color-pick__single-picker" />
       </li>
       <li class="color-pick config-light__custom-item">
         <p class="color-pick__description">Своя цветовая схема</p>
         <div class="color-pick__wrapper">
-          <input data-num="1" type="color" name="color-pick-multiple" value="#ff0000" class="color-pick__multiple-picker" />
-          <input data-num="2" type="color" name="color-pick-multiple-picker" value="#00ff00" class="color-pick__multiple-picker"/>
-          <input data-num="3" type="color" name="color-pick-multiple" value="#0000ff" class="color-pick__multiple-picker" />
+          <input data-type="many" data-num="0" type="color" name="color-pick-multiple" value="#ff0000" class="color-pick__multiple-picker" />
+          <input data-type="many" data-num="1" type="color" name="color-pick-multiple-picker" value="#00ff00" class="color-pick__multiple-picker"/>
+          <input data-type="many" data-num="2" type="color" name="color-pick-multiple" value="#0000ff" class="color-pick__multiple-picker" />
         </div>
       </li>
     </ul>
@@ -119,7 +118,7 @@ const content = `
         <h4 class="config-light__option-header">Выбор яркости</h4>
         <div class="light-options__brightness-wrapper light-options__value-wrapper">
           <p class="light-options__brightness-current">
-            Текущая яркость: <span class="light-options__brightness-value light-options__current-value">100%</span>
+            Текущая яркость: <span class="light-options__brightness-value light-options__current-value">100</span>%
           </p>
           <svg class="light-options__show-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
             <path d="M33.17 17.17l-9.17 9.17-9.17-9.17-2.83 2.83 12 12 12-12z" />
@@ -128,11 +127,13 @@ const content = `
         </div>
 
         <ul class="light-options__brightness-list">
-          <li class="light-options__brightness-item">100%</li>
-          <li class="light-options__brightness-item">90%</li>
-          <li class="light-options__brightness-item">80%</li>
-          <li class="light-options__brightness-item">70%</li>
-          <li class="light-options__brightness-item">60%</li>
+          <li class="light-options__brightness-item">180</li>
+          <li class="light-options__brightness-item">160</li>
+          <li class="light-options__brightness-item">140</li>
+          <li class="light-options__brightness-item">120</li>
+          <li class="light-options__brightness-item">100</li>
+          <li class="light-options__brightness-item">80</li>
+          <li class="light-options__brightness-item">70</li>
         </ul>
       </li>
 
@@ -140,7 +141,7 @@ const content = `
         <h4 class="config-light__option-header">Выбор скорости</h4>
         <div class="light-options__speed-wrapper light-options__value-wrapper">
           <p class="light-options__speed-current">
-            Текущая скорость: <span class="light-options__speed-value light-options__current-value">Быстро</span>
+            Текущая скорость: <span class="light-options__speed-value light-options__current-value">1</span>
           </p>
           <svg class="light-options__show-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
             <path d="M33.17 17.17l-9.17 9.17-9.17-9.17-2.83 2.83 12 12 12-12z" />
@@ -149,34 +150,18 @@ const content = `
         </div>
 
         <ul class="light-options__speed-list">
-          <li class="light-options__speed-item">Очень быстро</li>
-          <li class="light-options__speed-item">Быстро</li>
-          <li class="light-options__speed-item">Нормально</li>
-          <li class="light-options__speed-item">Медленно</li>
-          <li class="light-options__speed-item">Очень медленно</li>
+          <li class="light-options__speed-item">4</li>
+          <li class="light-options__speed-item">3.5</li>
+          <li class="light-options__speed-item">3</li>
+          <li class="light-options__speed-item">2.5</li>
+          <li class="light-options__speed-item">2</li>
+          <li class="light-options__speed-item">1.5</li>
+          <li class="light-options__speed-item">1</li>
+          <li class="light-options__speed-item">0.75</li>
+          <li class="light-options__speed-item">0.5</li>
         </ul>
       </li>
 
-      <li class="config-light__option-mode config-light__option-item">
-        <h4 class="config-light__option-header">Выбор режима</h4>
-        <div class="light-options__mode-wrapper light-options__value-wrapper">
-          <p class="light-options__mode-current">
-            Текущий режим: <span class="light-options__mode-value light-options__current-value">1</span>
-          </p>
-          <svg class="light-options__show-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <path d="M33.17 17.17l-9.17 9.17-9.17-9.17-2.83 2.83 12 12 12-12z" />
-            <path d="M0 0h48v48h-48z" fill="none" />
-          </svg>
-        </div>
-
-        <ul class="light-options__mode-list">
-          <li class="light-options__mode-item">Режим 1</li>
-          <li class="light-options__mode-item">Режим 2</li>
-          <li class="light-options__mode-item">Режим 3</li>
-          <li class="light-options__mode-item">Режим 4</li>
-          <li class="light-options__mode-item">Режим 5</li>
-        </ul>
-      </li>
     </ul>
   </div>
 </section>
@@ -184,13 +169,108 @@ const content = `
 <section class="xmas-tree dresser-wrapper__xmas-tree">
   <div class="xmas-tree__img-wrapper">
     <img class="xmas-tree__img" src="./assets/tree/1.webp" alt="xmas tree image" />
-    </div>
-    <div class="xmas-tree__snow"></div>
-    <div class="xmas-tree__snow"></div>
-    <div class="xmas-tree__snow"></div>
-    <div class="xmas-tree__snow"></div>
-    <div class="xmas-tree__snow"></div>
-    <div class="xmas-tree__snow"></div>
+    <ul class="xmas-tree__light-row-list">
+      <li class="xmas-tree__light-row xmas-tree__light-row_num_1">
+        <ul class="xmas-tree__light-rope">
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+        </ul>
+      </li>
+      <li class="xmas-tree__light-row xmas-tree__light-row_num_2">
+        <ul class="xmas-tree__light-rope">
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+        </ul>
+      </li>
+      <li class="xmas-tree__light-row xmas-tree__light-row_num_3">
+        <ul class="xmas-tree__light-rope">
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+        </ul>
+      </li>
+      <li class="xmas-tree__light-row xmas-tree__light-row_num_4">
+        <ul class="xmas-tree__light-rope">
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+        </ul>
+      </li>
+      <li class="xmas-tree__light-row xmas-tree__light-row_num_5">
+        <ul class="xmas-tree__light-rope">
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+        </ul>
+      </li>
+      <li class="xmas-tree__light-row xmas-tree__light-row_num_6">
+        <ul class="xmas-tree__light-rope">
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+        </ul>
+      </li>
+      <li class="xmas-tree__light-row xmas-tree__light-row_num_7">
+        <ul class="xmas-tree__light-rope">
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+          <li class="xmas-tree__light-bulb"></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <span class="xmas-tree__snow"></span>
+  <span class="xmas-tree__snow"></span>
+  <span class="xmas-tree__snow"></span>
+  <span class="xmas-tree__snow"></span>
+  <span class="xmas-tree__snow"></span>
+  <span class="xmas-tree__snow"></span>
 </section>
 
 <section class="decoration dresser-wrapper__decoration">

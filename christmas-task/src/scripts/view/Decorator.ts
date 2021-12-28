@@ -289,15 +289,10 @@ const content = `
     </ul>
   </div>
 
-  <div class="save dresser-wrapper__save">
-    <span class="save__btn">Сохранить</span>
+  <div class="clear dresser-wrapper__clear">
+    <span class="clear__btn">Очистить хранилище</span>
   </div>
 
-  <div class="work decoration__work">
-    <h4 class="decoration__header work__header">Вы нарядили:</h4>
-    <ul class="work-list work__list decoration__list">
-    </ul>
-  </div>
 </section>
 
 </div>

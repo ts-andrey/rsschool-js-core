@@ -1,13 +1,18 @@
+import { IDecoratorState } from './../components/state/IDecoratorState';
 import { IData } from './../components/data/IData';
 import data from '../../assets/data';
 import { IFilterStateStorage } from '../components/state/IFilterState';
 import { DecoratorView } from '../view/Decorator';
 import { DecoratorState } from '../components/state/DecoratorState';
+import { IDecorator } from '../components/dresser/IDecorator';
 
 const sound = new Audio('./assets/audio/audio.webm');
 sound.loop = true;
 const CLASS_AUDIO_ACTIVE = 'features__sound-icon_state_active';
 const CLASS_SNOW_ACTIVE = 'features__snow-icon_state_active';
+
+const CLASS_TREE_IMG_ACTIVE = 'config-tree__img_state_active';
+const CLASS_BG_IMG_ACTIVE = 'config-background__img_state_active';
 
 const CLASS_LIGHT_SWITCHER_ACTIVE = 'light-options__switcher-box_state_active';
 const CLASS_LIGHT_SWITCH_HANDLE_ACTIVE = 'light-options__switcher_state_active';
@@ -22,6 +27,15 @@ const SNOW_RUN_CLASS = (num: number) => `xmas-tree__snow_layer_${num}`;
 const SNOW_RUN_CLASS_COPY = (num: number) => `xmas-tree__snow_layer_${num}-copy`;
 
 const decoratorState = new DecoratorState();
+if (!localStorage.getItem('dresserState')) {
+  localStorage.setItem('dresserState', JSON.stringify(decoratorState));
+} else {
+  decoratorState.setState(JSON.parse(localStorage.getItem('dresserState')));
+}
+
+function updateLocalStorage(state: DecoratorState) {
+  localStorage.setItem('dresserState', JSON.stringify(state));
+}
 
 // helper Functions
 
@@ -44,7 +58,7 @@ function bulbAnimationHelper(bulb: HTMLElement, color: string, delay: boolean, d
     [
       {
         background: `rgb(${color})`,
-        filter: `contrast(150%) brightness(${bright}%) saturate(130%)`,
+        filter: `contrast(200%) brightness(${bright}%) saturate(130%)`,
         boxShadow: `0 0.5rem 2.4rem 0.3rem rgb(${color})`,
         offset: 0,
       },
@@ -56,7 +70,7 @@ function bulbAnimationHelper(bulb: HTMLElement, color: string, delay: boolean, d
       },
       {
         background: `rgb(${color})`,
-        filter: `contrast(150%) brightness(${bright}%) saturate(130%)`,
+        filter: `contrast(200%) brightness(${bright}%) saturate(130%)`,
         boxShadow: `0 0.5rem 2.4rem 0.3rem rgb(${color})`,
         offset: 1,
       },
@@ -143,13 +157,21 @@ export class DresserController {
     const bool = el.classList.contains(CLASS_AUDIO_ACTIVE);
     el.classList.toggle(CLASS_AUDIO_ACTIVE);
     if (bool) {
+      decoratorState.state.music = false;
       sound.pause();
     } else {
+      decoratorState.state.music = true;
       sound.play();
     }
+    updateLocalStorage(decoratorState);
   }
 
   featureSnowHandler(el: HTMLElement, snowList: NodeListOf<HTMLElement>) {
+    if (el.classList.contains(CLASS_SNOW_ACTIVE)) {
+      decoratorState.state.snow = false;
+    } else {
+      decoratorState.state.snow = true;
+    }
     el.classList.toggle(CLASS_SNOW_ACTIVE);
     snowList.forEach((el, index) => {
       const num = Math.floor(index / 2 + 1);
@@ -160,14 +182,26 @@ export class DresserController {
         el.classList.toggle(SNOW_RUN_CLASS_COPY(num));
       }
     });
+    updateLocalStorage(decoratorState);
   }
 
-  treeTypeHandler(treeNew: HTMLElement, treeOld: HTMLElement) {
-    treeOld.setAttribute('src', `./assets/tree/${treeNew.getAttribute('data-num')}.webp`);
+  treeTypeHandler(treeNew: HTMLElement, treeOld: HTMLElement, allTrees: NodeListOf<HTMLElement>) {
+    allTrees.forEach(el => el.classList.remove(CLASS_TREE_IMG_ACTIVE));
+    const treeImgNum = treeNew.getAttribute('data-num');
+    treeOld.setAttribute('src', `./assets/tree/${treeImgNum}.webp`);
+    treeNew.classList.add(CLASS_TREE_IMG_ACTIVE);
+    decoratorState.state.tree = Number(treeImgNum);
+    updateLocalStorage(decoratorState);
   }
 
-  backgroundHandler(backNew: HTMLElement, backOld: HTMLElement) {
-    backOld.style.background = `center / cover no-repeat url(./assets/bg/${backNew.getAttribute('data-num')}.webp)`;
+  backgroundHandler(backNew: HTMLElement, backOld: HTMLElement, allBgs: NodeListOf<HTMLElement>) {
+    allBgs.forEach(el => el.classList.remove(CLASS_BG_IMG_ACTIVE));
+    const backImgNum = backNew.getAttribute('data-num');
+    backOld.style.background = `center / cover no-repeat url(./assets/bg/${backImgNum}.webp)`;
+    backNew.classList.add(CLASS_BG_IMG_ACTIVE);
+    decoratorState.state.bg = Number(backImgNum);
+
+    updateLocalStorage(decoratorState);
   }
 
   // light rope switch handler
@@ -179,6 +213,7 @@ export class DresserController {
     bulbs: NodeListOf<HTMLElement>
   ) {
     decoratorState.state.lightState = !decoratorState.state.lightState;
+    updateLocalStorage(decoratorState);
     positionValue.innerText = positionValue.innerText === 'Выкл' ? 'Вкл' : 'Выкл';
     switcher.classList.toggle(CLASS_LIGHT_SWITCHER_ACTIVE);
     switchHandle.classList.toggle(CLASS_LIGHT_SWITCH_HANDLE_ACTIVE);
@@ -194,18 +229,21 @@ export class DresserController {
       decoratorState.state.colorSingle = colorEl.getAttribute('data-color');
     }
     bulbAnimation(bulbs);
+    updateLocalStorage(decoratorState);
   }
 
   // custom color handlers
   lightCustomOneHandler(eventElement: HTMLInputElement, bulbs: NodeListOf<HTMLElement>) {
     decoratorState.state.colorSingle = hexToRgb(eventElement.value);
     decoratorState.state.lightAmount = eventElement.getAttribute('data-type');
+    updateLocalStorage(decoratorState);
     bulbAnimation(bulbs);
   }
   lightCustomManyHandler(eventElement: HTMLInputElement, bulbs: NodeListOf<HTMLElement>) {
     const num = Number(eventElement.getAttribute('data-num'));
     decoratorState.state.colorMany[num] = hexToRgb(eventElement.value);
     decoratorState.state.lightAmount = eventElement.getAttribute('data-type');
+    updateLocalStorage(decoratorState);
 
     bulbAnimation(bulbs);
   }
@@ -235,6 +273,7 @@ export class DresserController {
     const option = eventElement.innerText;
     valueElement.innerText = option;
     decoratorState.state.lightBrightness = Number(option);
+    updateLocalStorage(decoratorState);
     optionList.classList.toggle(CLASS_LIGHT_BRIGHTNESS_ACTIVE);
     bulbAnimation(bulbs);
   }
@@ -248,6 +287,7 @@ export class DresserController {
     const option = eventElement.innerText;
     valueElement.innerText = option;
     decoratorState.state.lightSpeed = Number(option);
+    updateLocalStorage(decoratorState);
     optionList.classList.toggle(CLASS_LIGHT_SPEED_ACTIVE);
     bulbAnimation(bulbs);
   }
@@ -274,22 +314,32 @@ export class DresserController {
       ev.preventDefault();
       return;
     });
-    target.addEventListener('drop', (ev: DragEvent) => {
-      const copy = <HTMLElement>toy.cloneNode(true);
-
-      copy.style.position = 'absolute';
-      copy.style.zIndex = '10';
-      copy.style.left = `${Math.abs(ev.offsetX - eventGlobal.offsetX)}px`;
-      copy.style.top = `${Math.abs(ev.offsetY - eventGlobal.offsetY)}px`;
-
-      target.parentElement.append(copy);
-    });
     target.addEventListener('dragenter', (ev: DragEvent) => {
       ev.preventDefault();
       return;
     });
     target.addEventListener('dragleave', (ev: DragEvent) => {
       ev.preventDefault();
+      return;
+    });
+    target.addEventListener('drop', (ev: DragEvent) => {
+      ev.preventDefault();
+      const copy = <HTMLElement>toy.cloneNode(true);
+      target.parentElement.append(copy);
+
+      copy.style.position = 'absolute';
+      copy.style.zIndex = '10';
+      copy.style.left = `${Math.abs(ev.offsetX - eventGlobal.offsetX)}px`;
+      copy.style.top = `${Math.abs(ev.offsetY - eventGlobal.offsetY)}px`;
+
+      const num = Number(counter.textContent);
+      counter.textContent = num === 0 ? String(0) : String(num - 1);
+      return;
+    });
+
+    toy.addEventListener('dragend', (ev: DragEvent) => {
+      ev.preventDefault();
+
       return;
     });
   }
@@ -300,5 +350,58 @@ export class DresserController {
 
   dresserWorkListHandler() {
     ('');
+  }
+
+  styleSetter(items: IDecorator) {
+    /* handling saved progress */
+    // sound
+    if (decoratorState.state.music) {
+      sound.play();
+      items.soundIcon.classList.add(CLASS_AUDIO_ACTIVE);
+    }
+    // snow
+    if (decoratorState.state.snow) {
+      items.snowIcon.classList.toggle(CLASS_SNOW_ACTIVE);
+      items.snowElements.forEach((el, index) => {
+        const num = Math.floor(index / 2 + 1);
+        if (index % 2 === 0) {
+          el.classList.toggle(SNOW_RUN_CLASS(num));
+        } else {
+          el.classList.toggle(SNOW_RUN_CLASS(num));
+          el.classList.toggle(SNOW_RUN_CLASS_COPY(num));
+        }
+      });
+    }
+
+    // tree
+    items.dresserTreeImg.setAttribute('src', `./assets/tree/${decoratorState.state.tree}.webp`);
+    items.choiseTreeImg[decoratorState.state.tree - 1].classList.add(CLASS_TREE_IMG_ACTIVE);
+
+    // bg
+    items.dresserBackground.style.background = `center / cover no-repeat url(./assets/bg/${decoratorState.state.bg}.webp)`;
+    items.choiseBackgroundImg[decoratorState.state.bg - 1].classList.add(CLASS_BG_IMG_ACTIVE);
+
+    // color
+
+    // lightSwitcher
+    if (decoratorState.state.lightState) {
+      items.lightSwitcher.classList.add(CLASS_LIGHT_SWITCHER_ACTIVE);
+
+      items.lightSwitcherValue.innerText = items.lightSwitcherValue.innerText === 'Выкл' ? 'Вкл' : 'Выкл';
+      items.switchHandle.classList.toggle(CLASS_LIGHT_SWITCH_HANDLE_ACTIVE);
+      items.lightRopeWrapper.classList.toggle(CLASS_LIGHT_ROPE_WRAPPER_SHOW);
+      bulbAnimation(items.bulbs);
+    }
+
+    // bulbLightAmount
+    items.lightValueBright.innerText = String(decoratorState.state.lightBrightness);
+
+    // bulbSparkleSpeed
+    items.lightValueSpeed.innerText = String(decoratorState.state.lightSpeed);
+  }
+
+  storageReset() {
+    localStorage.clear();
+    location.reload();
   }
 }

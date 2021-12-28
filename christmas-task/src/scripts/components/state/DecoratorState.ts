@@ -32,17 +32,17 @@ export class DecoratorState {
     this.state.lightAmount = 'one';
   }
 
-  setState(obj: IDecoratorState) {
-    this.state.music = obj.music;
-    this.state.snow = obj.snow;
-    this.state.tree = obj.tree;
-    this.state.bg = obj.bg;
-    this.state.colorSingle = obj.colorSingle;
-    this.state.colorMany = obj.colorMany;
-    this.state.lightState = obj.lightState;
-    this.state.lightSpeed = obj.lightSpeed;
-    this.state.lightBrightness = obj.lightBrightness;
-    this.state.lightMode = obj.lightMode;
-    this.state.lightAmount = obj.lightAmount;
+  setState(obj: DecoratorState) {
+    this.state.music = obj.state.music;
+    this.state.snow = obj.state.snow;
+    this.state.tree = obj.state.tree;
+    this.state.bg = obj.state.bg;
+    this.state.colorSingle = obj.state.colorSingle;
+    this.state.colorMany = obj.state.colorMany;
+    this.state.lightState = obj.state.lightState;
+    this.state.lightSpeed = obj.state.lightSpeed;
+    this.state.lightBrightness = obj.state.lightBrightness;
+    this.state.lightMode = obj.state.lightMode;
+    this.state.lightAmount = obj.state.lightAmount;
   }
 }

@@ -519,23 +519,30 @@ function filterHandler() {
 function decoratorHandler() {
   const decorator = new Decorator();
 
+  decorator.setStyles(dresserController.styleSetter);
+
   decorator.featureSoundSeeker(dresserController.featureSoundHandler);
   decorator.featureSnowSeeker(dresserController.featureSnowHandler);
+
   decorator.treeTypeSeeker(dresserController.treeTypeHandler);
   decorator.backgroundSeeker(dresserController.backgroundHandler);
+
   decorator.lightSwitchSeeker(dresserController.lightSwitchHandler);
+
   decorator.lightDefaultSeeker(dresserController.lightDefaultHandler);
+
   decorator.lightCustomOneSeeker(dresserController.lightCustomOneHandler);
   decorator.lightCustomManySeeker(dresserController.lightCustomManyHandler);
+
   decorator.lightBrightnessSeeker(dresserController.lightBrightnessHandler);
   decorator.lightSpeedSeeker(dresserController.lightSpeedHandler);
-  // decorator.lightModeSeeker(dresserController.lightModeHandler);
+
   decorator.lightBightnessOptionSeeker(dresserController.lightBrightnessOptionHandler);
   decorator.lightSpeedOptionSeeker(dresserController.lightSpeedOptionHandler);
-  // decorator.lightModeOptionSeeker(dresserController.lightModeOptionHandler);
-  decorator.dresserSaveSeeker(dresserController.dresserSaveHanlder);
+
   decorator.dresserToySeeker(dresserController.dresserToyListDragStartHandler);
-  // decorator.dresserWorkListSeeker(dresserWorkListHandler);
+
+  decorator.dresserClearSeeker(dresserController.storageReset);
 }
 
 /* seekers for filter page */

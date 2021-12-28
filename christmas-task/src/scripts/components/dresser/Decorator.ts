@@ -1,3 +1,5 @@
+import { IDecorator } from './IDecorator';
+
 export class Decorator {
   soundIcon: HTMLElement;
   snowIcon: HTMLElement;
@@ -38,9 +40,8 @@ export class Decorator {
 
   toyList: NodeListOf<HTMLElement>;
 
-  saveWorkBtn: HTMLElement;
+  clearBtn: HTMLElement;
 
-  workList: HTMLElement;
   targetPlace: HTMLElement;
   outerDropChecker: HTMLElement;
 
@@ -98,10 +99,62 @@ export class Decorator {
     this.targetPlace = document.querySelector('.xmas-tree__img');
     this.outerDropChecker = document.querySelector('.xmas-tree dresser-wrapper__xmas-tree');
 
-    this.saveWorkBtn = document.querySelector('.save__btn');
+    this.clearBtn = document.querySelector('.clear__btn');
 
     /* decoration result elements */
-    this.workList = document.querySelector('.work-list');
+    // this.workList = document.querySelector('.work-list');
+  }
+
+  getAllElements() {
+    return {
+      soundIcon: this.soundIcon,
+      snowIcon: this.snowIcon,
+      snowElements: this.snowElements,
+
+      choiseTreeImg: this.choiseTreeImg,
+
+      choiseBackgroundImg: this.choiseBackgroundImg,
+
+      bulbs: this.bulbs,
+
+      choiseColorLight: this.choiseColorLight,
+      choiseColorLightCustomOne: this.choiseColorLightCustomOne,
+      choiseColorLightsCustomMany: this.choiseColorLightsCustomMany,
+
+      lightSwitcher: this.lightSwitcher,
+      switchHandle: this.switchHandle,
+      lightSwitcherValue: this.lightSwitcherValue,
+      lightRopeWrapper: this.lightRopeWrapper,
+
+      lightListBright: this.lightListBright,
+      lightValueBright: this.lightValueBright,
+      lightListBrightOpener: this.lightListBrightOpener,
+      lightListBrightItems: this.lightListBrightItems,
+
+      lightListSpeedOpener: this.lightListSpeedOpener,
+      lightValueSpeed: this.lightValueSpeed,
+      lightListSpeed: this.lightListSpeed,
+      lightListSpeedItems: this.lightListSpeedItems,
+
+      lightListModeOpener: this.lightListModeOpener,
+      lightValueMode: this.lightValueMode,
+      lightListMode: this.lightListMode,
+      lightListModeItems: this.lightListModeItems,
+
+      dresserBackground: this.dresserBackground,
+      dresserTreeImg: this.dresserTreeImg,
+
+      toyList: this.toyList,
+
+      clearBtn: this.clearBtn,
+
+      targetPlace: this.targetPlace,
+      outerDropChecker: this.outerDropChecker,
+    };
+  }
+
+  setStyles(styleSetter: (elements: IDecorator) => void) {
+    return styleSetter(this.getAllElements());
   }
 
   featureSoundSeeker(featureHandler: (el: HTMLElement) => void) {
@@ -115,18 +168,22 @@ export class Decorator {
     });
   }
 
-  treeTypeSeeker(treeTypeHandler: (treeNew: HTMLElement, treeOld: HTMLElement) => void) {
+  treeTypeSeeker(
+    treeTypeHandler: (treeNew: HTMLElement, treeOld: HTMLElement, allElems: NodeListOf<HTMLElement>) => void
+  ) {
     this.choiseTreeImg.forEach(el => {
       el.addEventListener('click', () => {
-        return treeTypeHandler(el, this.dresserTreeImg);
+        return treeTypeHandler(el, this.dresserTreeImg, this.choiseTreeImg);
       });
     });
   }
 
-  backgroundSeeker(backgroundHandler: (backNew: HTMLElement, backOld: HTMLElement) => void) {
+  backgroundSeeker(
+    backgroundHandler: (backNew: HTMLElement, backOld: HTMLElement, allElems: NodeListOf<HTMLElement>) => void
+  ) {
     this.choiseBackgroundImg.forEach(el => {
       el.addEventListener('click', () => {
-        return backgroundHandler(el, this.dresserBackground);
+        return backgroundHandler(el, this.dresserBackground, this.choiseBackgroundImg);
       });
     });
   }
@@ -244,21 +301,10 @@ export class Decorator {
       });
     });
   }
-  
 
-  dresserSaveSeeker(dresserSaveHandler: () => void) {
-    this.saveWorkBtn.addEventListener('click', () => {
-      return dresserSaveHandler();
+  dresserClearSeeker(dresserClearHandler: () => void) {
+    this.clearBtn.addEventListener('click', () => {
+      return dresserClearHandler();
     });
-  }
-
-  dresserWorkListSeeker(elements: NodeListOf<HTMLElement>, dresserWorkListHandler: (el: HTMLElement) => void) {
-    if (elements.length > 0) {
-      elements.forEach(el => {
-        el.addEventListener('click', () => {
-          return dresserWorkListHandler(el);
-        });
-      });
-    }
   }
 }

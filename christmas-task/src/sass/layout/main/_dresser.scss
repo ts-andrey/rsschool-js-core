@@ -33,7 +33,7 @@
     align-content: start;
     grid-gap: 4rem;
   }
-  &__save {
+  &__clear {
     @include hover-scale;
     display: flex;
     align-items: center;
@@ -102,6 +102,7 @@
     background: darken($color-background-filters, 5%);
     border-radius: 1.5rem;
     border-bottom: 1px solid $color-text-main;
+    border-left: 1px solid $color-text-main;
   }
 
   &__features {
@@ -125,6 +126,10 @@
     }
     &__img {
       width: $size-xmas_tree-img;
+      &_state_active {
+        border: 3px solid $color-xmas-light-yellow;
+        background: darken($color-text-main, 20%);
+      }
     }
   }
   &-background {
@@ -143,6 +148,9 @@
     }
     &__img {
       @include equalSize($size-xmas_background-img);
+      &_state_active {
+        border: 3px solid $color-xmas-light-yellow;
+      }
     }
   }
   &-light {
@@ -198,6 +206,7 @@
       padding: 1.5rem;
       border-radius: 0 1.5rem 0 0;
       border-bottom: 1px solid darken($color-xmas-light-white, 80%);
+      border-left: 1px solid $color-text-main;
     }
     &__custom-item {
       display: flex;
@@ -212,6 +221,7 @@
     }
 
     &__option-list {
+      border-radius: 0 0 1.5rem 1.5rem;
       width: 100%;
       grid-gap: 1rem;
       margin-bottom: 1.5rem;
@@ -399,7 +409,6 @@
   }
   &__list {
     width: $size-decoration-column - 2rem * 2;
-    height: 28rem;
     overflow-y: auto;
     padding: 1.5rem;
     grid-gap: 1.3rem;
@@ -407,6 +416,7 @@
     justify-content: center;
     border-radius: 1.5rem;
     border-bottom: 1px solid $color-text-main;
+    border-right: 1px solid $color-text-main;
     background: $color-text-dark;
   }
   &__item {
@@ -441,7 +451,7 @@
   }
 }
 
-.save {
+.clear {
   &__btn {
     width: fit-content;
     padding: 0.5rem 2rem;

@@ -61,30 +61,22 @@ export class Filter {
 
   filterShapeSeeker(shapeHandler: (shapeFilter: HTMLElement) => void) {
     this.shapeFilters.forEach(el => {
-      el.addEventListener('click', () => {
-        return shapeHandler(el);
-      });
+      el.addEventListener('click', () => shapeHandler(el));
     });
   }
   filterColorSeeker(colorHandler: (colorFilter: HTMLElement) => void) {
     this.colorFilters.forEach(el => {
-      el.addEventListener('click', () => {
-        return colorHandler(el);
-      });
+      el.addEventListener('click', () => colorHandler(el));
     });
   }
   filterSizeSeeker(sizeHandler: (sizeFilter: HTMLElement) => void) {
     this.sizeFilters.forEach(el => {
-      el.addEventListener('click', () => {
-        return sizeHandler(el);
-      });
+      el.addEventListener('click', () => sizeHandler(el));
     });
   }
 
   filterFavouriteSeeker(favouriteHandler: (favouriteFilter: HTMLElement) => void) {
-    this.favouriteFilter.addEventListener('click', () => {
-      return favouriteHandler(this.favouriteFilter);
-    });
+    this.favouriteFilter.addEventListener('click', () => favouriteHandler(this.favouriteFilter));
   }
 
   filterAmountSeeker(
@@ -96,9 +88,9 @@ export class Filter {
     ) => void
   ) {
     this.amountFilters.forEach(el => {
-      el.addEventListener('change', () => {
-        return amountSeeker(this.minAmountBox, this.maxAmountBox, this.amountFilters, this.amountBackEl);
-      });
+      el.addEventListener('change', () =>
+        amountSeeker(this.minAmountBox, this.maxAmountBox, this.amountFilters, this.amountBackEl)
+      );
     });
   }
   filterYearSeeker(
@@ -110,25 +102,21 @@ export class Filter {
     ) => void
   ) {
     this.yearFilters.forEach(el => {
-      el.addEventListener('change', () => {
-        return amountSeeker(this.minYearBox, this.maxYearBox, this.yearFilters, this.yearBackEl);
-      });
+      el.addEventListener('change', () =>
+        amountSeeker(this.minYearBox, this.maxYearBox, this.yearFilters, this.yearBackEl)
+      );
     });
   }
 
   sortListSeeker(sortValHandler: (sortListEL: HTMLElement) => void) {
-    this.sortValueWrapper.addEventListener('click', () => {
-      return sortValHandler(this.sortOptionList);
-    });
+    this.sortValueWrapper.addEventListener('click', () => sortValHandler(this.sortOptionList));
   }
 
   sortOptionSeeker(
     sortOptionHandler: (shownSortOption: HTMLElement, sortOption: HTMLElement, sortOptions: HTMLElement) => void
   ) {
     this.sortOptions.forEach(el => {
-      el.addEventListener('click', () => {
-        return sortOptionHandler(this.sortValue, el, this.sortOptionList);
-      });
+      el.addEventListener('click', () => sortOptionHandler(this.sortValue, el, this.sortOptionList));
     });
   }
 
@@ -158,25 +146,17 @@ export class Filter {
   }
 
   resetFilterSeeker(resetHandler: (allElements: IFilters) => void) {
-    this.filterReset.addEventListener('click', () => {
-      return resetHandler(this.getAllElements());
-    });
+    this.filterReset.addEventListener('click', () => resetHandler(this.getAllElements()));
   }
 
   resetStorageSeeker(resetHandler: () => void) {
-    this.storageReset.addEventListener('click', () => {
-      return resetHandler();
-    });
+    this.storageReset.addEventListener('click', () => resetHandler());
   }
   searchSeeker(searchHandler: (searchField: HTMLElement) => void) {
-    this.searchElement.addEventListener('input', () => {
-      return searchHandler(this.searchElement);
-    });
+    this.searchElement.addEventListener('input', () => searchHandler(this.searchElement));
   }
 
   pinnerSeeker(pinnerHandler: (pinner: HTMLElement, filtersMenu: HTMLElement) => void) {
-    this.pinner.addEventListener('click', () => {
-      return pinnerHandler(this.pinner, this.filterMenu);
-    });
+    this.pinner.addEventListener('click', () => pinnerHandler(this.pinner, this.filterMenu));
   }
 }

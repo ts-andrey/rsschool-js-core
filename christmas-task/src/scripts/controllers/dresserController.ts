@@ -1,4 +1,3 @@
-import { IDecoratorState } from './../components/state/IDecoratorState';
 import { IData } from './../components/data/IData';
 import data from '../../assets/data';
 import { IFilterStateStorage } from '../components/state/IFilterState';
@@ -257,12 +256,6 @@ export class DresserController {
     item.classList.toggle(CLASS_LIGHT_SPEED_ACTIVE);
   }
 
-  /*  
-  lightModeHandler(item: HTMLElement) {
-    item.classList.toggle(CLASS_LIGHT_MODE_ACTIVE);
-  } 
-  */
-
   // additional light rope option handlers
   lightBrightnessOptionHandler(
     eventElement: HTMLElement,
@@ -292,36 +285,11 @@ export class DresserController {
     bulbAnimation(bulbs);
   }
 
-  /* lightModeOptionHandler(
-    eventElement: HTMLElement,
-    valueElement: HTMLElement,
-    optionList: HTMLElement,
-    bulbs: NodeListOf<HTMLElement>
-  ) {
-    const option = eventElement.innerText;
-    valueElement.innerText = option;
-    decoratorState.state.lightMode = Number(option);
-    optionList.classList.toggle(CLASS_LIGHT_MODE_ACTIVE);
-    bulbAnimation(bulbs);
-  } */
-
-  dresserSaveHanlder() {
-    ('');
-  }
-
   dresserToyListDragStartHandler(eventGlobal: DragEvent, toy: HTMLElement, counter: HTMLElement, target: HTMLElement) {
-    target.addEventListener('dragover', (ev: DragEvent) => {
-      ev.preventDefault();
-      return;
-    });
-    target.addEventListener('dragenter', (ev: DragEvent) => {
-      ev.preventDefault();
-      return;
-    });
-    target.addEventListener('dragleave', (ev: DragEvent) => {
-      ev.preventDefault();
-      return;
-    });
+    target.addEventListener('dragover', (ev: DragEvent) => ev.preventDefault());
+    target.addEventListener('dragenter', (ev: DragEvent) => ev.preventDefault());
+    target.addEventListener('dragleave', (ev: DragEvent) => ev.preventDefault());
+
     target.addEventListener('drop', (ev: DragEvent) => {
       ev.preventDefault();
       const copy = <HTMLElement>toy.cloneNode(true);
@@ -346,10 +314,6 @@ export class DresserController {
 
   dresserDragTargetHandler(ev: Event, target: HTMLElement) {
     ev.preventDefault();
-  }
-
-  dresserWorkListHandler() {
-    ('');
   }
 
   styleSetter(items: IDecorator) {

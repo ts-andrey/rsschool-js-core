@@ -9,9 +9,7 @@ export class Navigator {
     this.filterLinks = document.querySelectorAll('.nav-list__item');
   }
   listenHeaderIcon(homeHandler: (links: NodeListOf<HTMLElement>) => void) {
-    this.iconLink.addEventListener('click', () => {
-      homeHandler(this.filterLinks);
-    });
+    this.iconLink.addEventListener('click', () => homeHandler(this.filterLinks));
   }
   listenHeaderLinks(
     filterView: (link: HTMLElement, links: NodeListOf<HTMLElement>) => void,
@@ -29,8 +27,6 @@ export class Navigator {
     });
   }
   listenHomeFilterLink(filterView: (link: HTMLElement, links: NodeListOf<HTMLElement>) => void) {
-    this.homeLink.addEventListener('click', () => {
-      filterView(this.filterLinks[0], this.filterLinks);
-    });
+    this.homeLink.addEventListener('click', () => filterView(this.filterLinks[0], this.filterLinks));
   }
 }

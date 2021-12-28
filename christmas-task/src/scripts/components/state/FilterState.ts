@@ -30,13 +30,10 @@ export class FilterState {
   }
 
   setFilterState(obj: IFilterStateStorage) {
-    this.filterState.shape = obj.filterState.shape;
-    this.filterState.color = obj.filterState.color;
-    this.filterState.size = obj.filterState.size;
-    this.filterState.favourite = obj.filterState.favourite;
-    this.filterState.amount = obj.filterState.amount;
-    this.filterState.year = obj.filterState.year;
-    this.filterState.sortType = obj.filterState.sortType;
-    this.filterState.toysPick = obj.filterState.toysPick;
+    const newState = obj.filterState;
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    /* @ts-ignore */
+    Object.keys(newState).forEach(state => (this.filterState[state] = newState[state]));
   }
 }

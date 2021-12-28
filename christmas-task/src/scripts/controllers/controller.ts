@@ -564,9 +564,7 @@ function decoratorViewHandler(el: HTMLElement, array: NodeListOf<HTMLElement>) {
   linkIdleHandler(array, LINK_ACTIVE_CLASS);
   el.classList.add(LINK_ACTIVE_CLASS);
   decoratorView.renderContent();
-  decoratorView.renderToyList(() => {
-    dresserController.decorToyListRenderer(decoratorView);
-  });
+  decoratorView.renderToyList(() => dresserController.decorToyListRenderer(decoratorView));
 
   decoratorHandler();
 }

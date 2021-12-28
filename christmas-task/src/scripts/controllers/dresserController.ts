@@ -18,7 +18,6 @@ const CLASS_LIGHT_SWITCH_HANDLE_ACTIVE = 'light-options__switcher_state_active';
 
 const CLASS_LIGHT_BRIGHTNESS_ACTIVE = 'config-light__option-brightness_state_active';
 const CLASS_LIGHT_SPEED_ACTIVE = 'config-light__option-speed_state_active';
-// const CLASS_LIGHT_MODE_ACTIVE = 'config-light__option-mode_state_active';
 
 const CLASS_LIGHT_ROPE_WRAPPER_SHOW = 'xmas-tree__light-row-list_state_active';
 
@@ -312,7 +311,7 @@ export class DresserController {
     });
   }
 
-  dresserDragTargetHandler(ev: Event, target: HTMLElement) {
+  dresserDragTargetHandler(ev: Event) {
     ev.preventDefault();
   }
 

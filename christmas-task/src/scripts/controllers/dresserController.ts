@@ -175,13 +175,15 @@ export class DresserController {
     positionValue: HTMLElement,
     switcher: HTMLElement,
     switchHandle: HTMLElement,
-    lightRopeWrapper: HTMLElement
+    lightRopeWrapper: HTMLElement,
+    bulbs: NodeListOf<HTMLElement>
   ) {
     decoratorState.state.lightState = !decoratorState.state.lightState;
     positionValue.innerText = positionValue.innerText === 'Выкл' ? 'Вкл' : 'Выкл';
     switcher.classList.toggle(CLASS_LIGHT_SWITCHER_ACTIVE);
     switchHandle.classList.toggle(CLASS_LIGHT_SWITCH_HANDLE_ACTIVE);
     lightRopeWrapper.classList.toggle(CLASS_LIGHT_ROPE_WRAPPER_SHOW);
+    bulbAnimation(bulbs);
   }
 
   // default colors light rope handler
@@ -267,9 +269,35 @@ export class DresserController {
     ('');
   }
 
-  dresserToyListHandler() {
-    ('');
+  dresserToyListDragStartHandler(eventGlobal: DragEvent, toy: HTMLElement, counter: HTMLElement, target: HTMLElement) {
+    target.addEventListener('dragover', (ev: DragEvent) => {
+      ev.preventDefault();
+      return;
+    });
+    target.addEventListener('drop', (ev: DragEvent) => {
+      const copy = <HTMLElement>toy.cloneNode(true);
+
+      copy.style.position = 'absolute';
+      copy.style.zIndex = '10';
+      copy.style.left = `${Math.abs(ev.offsetX - eventGlobal.offsetX)}px`;
+      copy.style.top = `${Math.abs(ev.offsetY - eventGlobal.offsetY)}px`;
+
+      target.parentElement.append(copy);
+    });
+    target.addEventListener('dragenter', (ev: DragEvent) => {
+      ev.preventDefault();
+      return;
+    });
+    target.addEventListener('dragleave', (ev: DragEvent) => {
+      ev.preventDefault();
+      return;
+    });
   }
+
+  dresserDragTargetHandler(ev: Event, target: HTMLElement) {
+    ev.preventDefault();
+  }
+
   dresserWorkListHandler() {
     ('');
   }

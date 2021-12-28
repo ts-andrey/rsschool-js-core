@@ -36,9 +36,13 @@ export class Decorator {
   dresserBackground: HTMLElement;
   dresserTreeImg: HTMLElement;
 
+  toyList: NodeListOf<HTMLElement>;
+
   saveWorkBtn: HTMLElement;
 
   workList: HTMLElement;
+  targetPlace: HTMLElement;
+  outerDropChecker: HTMLElement;
 
   constructor() {
     /* config element */
@@ -89,6 +93,10 @@ export class Decorator {
     this.dresserTreeImg = document.querySelector('.xmas-tree__img');
 
     /* decoration-tools elements */
+    // toy drag'n'drop
+    this.toyList = document.querySelectorAll('.decor-toys__img');
+    this.targetPlace = document.querySelector('.xmas-tree__img');
+    this.outerDropChecker = document.querySelector('.xmas-tree dresser-wrapper__xmas-tree');
 
     this.saveWorkBtn = document.querySelector('.save__btn');
 
@@ -129,6 +137,7 @@ export class Decorator {
       switcher: HTMLElement,
       switchHandler: HTMLElement,
       lightRopeWrapper: HTMLElement,
+      bulbs: NodeListOf<HTMLElement>
     ) => void
   ) {
     this.lightSwitcher.addEventListener('click', () => {
@@ -137,6 +146,7 @@ export class Decorator {
         this.lightSwitcher,
         this.switchHandle,
         this.lightRopeWrapper,
+        this.bulbs
       );
     });
   }
@@ -224,13 +234,17 @@ export class Decorator {
     });
   }
 
-  dresserToySeeker(toyList: NodeListOf<HTMLElement>, dresserToyHandler: (ev: Event, toy: HTMLElement) => void) {
-    toyList.forEach(el => {
-      el.addEventListener('click', ev => {
-        return dresserToyHandler(ev, el);
+  dresserToySeeker(
+    dresserToyDragStartHandler: (ev: Event, toy: HTMLElement, counter: HTMLElement, target: HTMLElement) => void
+  ) {
+    this.toyList.forEach(el => {
+      const counter: HTMLElement = el.parentNode.querySelector('.decor-toys__counter');
+      el.addEventListener('dragstart', ev => {
+        return dresserToyDragStartHandler(ev, el, counter, this.targetPlace);
       });
     });
   }
+  
 
   dresserSaveSeeker(dresserSaveHandler: () => void) {
     this.saveWorkBtn.addEventListener('click', () => {

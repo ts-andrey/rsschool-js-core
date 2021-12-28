@@ -168,7 +168,16 @@ const content = `
 
 <section class="xmas-tree dresser-wrapper__xmas-tree">
   <div class="xmas-tree__img-wrapper">
-    <img class="xmas-tree__img" src="./assets/tree/1.webp" alt="xmas tree image" />
+
+    <img class="xmas-tree__img" src="./assets/tree/1.webp"" usemap="#image-map">
+
+    <map name="image-map">
+    <area  alt="" title="" coords="236,0,1,0,0,590,69,533,87,513,16,442,104,430,106,390,69,361,93,338,137,354,102,314,150,297,113,265,128,249,100,222,128,207,178,214,168,175,156,130,172,115,204,144,191,96,232,36" shape="poly">
+    <area  alt="" title="" coords="500,1,265,0,301,65,315,76,282,111,282,122,310,110,306,161,352,132,363,157,339,179,359,225,391,207,405,218,411,238,369,264,400,286,401,304,370,317,389,342,432,340,435,371,373,390,371,406,414,403,415,431,454,441,463,469,426,482,441,523,500,529" shape="poly">
+    <area  alt="" title="" coords="184,712,26,568,1,592,0,708,3,713" shape="poly">
+    <area  alt="" title="" coords="498,541,441,670,387,666,373,696,156,658,137,713,498,713" shape="poly">
+    </map>
+
     <ul class="xmas-tree__light-row-list">
       <li class="xmas-tree__light-row xmas-tree__light-row_num_1">
         <ul class="xmas-tree__light-rope">
@@ -296,7 +305,7 @@ const content = `
 
 const toyContent = (imgNum: string, toyCount: string) => `
 <li class="decor-toys__item">
-<img src="./assets/toys/${imgNum}.webp" alt="toy for xmas tree" class="decor-toys__img" />
+<img src="./assets/toys/${imgNum}.webp" alt="toy for xmas tree" class="decor-toys__img" draggable="true"/>
 <span class="decor-toys__counter">${toyCount}</span>
 </li>
 `;

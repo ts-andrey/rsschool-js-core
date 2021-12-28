@@ -534,7 +534,7 @@ function decoratorHandler() {
   decorator.lightSpeedOptionSeeker(dresserController.lightSpeedOptionHandler);
   // decorator.lightModeOptionSeeker(dresserController.lightModeOptionHandler);
   decorator.dresserSaveSeeker(dresserController.dresserSaveHanlder);
-  // decorator.dresserToySeeker(dresserToyListHandler);
+  decorator.dresserToySeeker(dresserController.dresserToyListDragStartHandler);
   // decorator.dresserWorkListSeeker(dresserWorkListHandler);
 }
 

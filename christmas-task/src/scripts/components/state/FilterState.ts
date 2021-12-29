@@ -32,7 +32,7 @@ export class FilterState {
   setFilterState(obj: IFilterStateStorage) {
     const newState = obj.filterState;
     (Object.keys(newState) as (keyof IFilterState)[]).forEach(key =>
-      Object.assign(this.filterState, { [`${key}`]: newState[`${key}`] })
+      Object.assign(this.filterState, { [`${key}`]: newState[key] })
     );
   }
 }

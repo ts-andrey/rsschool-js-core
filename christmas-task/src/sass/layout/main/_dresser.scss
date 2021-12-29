@@ -588,10 +588,6 @@
       grid-template-rows: repeat(4, auto);
     }
     &-light {
-      &__header{
-      }
-      &__list{
-      }
       &__custom-list {
         flex-direction: row;
       }
@@ -665,30 +661,10 @@
   }
 }
 @media screen and (max-width: 750px) {
- 
-  .dresser-wrapper {
-    &__config,
-    &__decoration {
- 
-    }
-    &__config {
-
-    }
-    &__decoration {
-
-    }
-  }
   .config {
-    &__list {
-    }
     &-tree {
-      &__header {
-      }
       &__list {
         grid-template-columns: repeat(3, 4rem);
-        grid-template-rows: auto;
-        height: fit-content;
-        overflow-y: scroll;
       }
       &__img {
         width: 4rem;
@@ -698,96 +674,12 @@
       &__list {
         grid-template-columns: repeat(4, 3rem);
       }
-      &__img{
+      &__img {
         @include equalSize(3rem);
       }
     }
     &__light {
-      display: grid;
       grid-template-rows: repeat(4, auto);
     }
-    &-light {
-      &__header{
-      }
-      &__list{
-      }
-      &__custom-list {
-        flex-direction: row;
-      }
-      &__option-list {
-        height: 12rem;
-        overflow-y: scroll;
-      }
-    }
-    &__features,
-    &__trees,
-    &__background,
-    &__light {
-      width: fit-content;
-    }
-    &__features {
-      grid-row: 1;
-      grid-column: 1;
-    }
-    &__trees {
-      grid-row: 1;
-      grid-column: 2;
-    }
-    &__background {
-      grid-row: 1;
-      grid-column: 3;
-    }
-    &__light {
-      grid-row: 2;
-      grid-column: span 3;
-    }
   }
-
-  .features__list {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .xmas-tree {
-    &__img-wrapper {
-      transform: translateX(-50%) scale(0.7) translateY(20%);
-    }
-  }
-
-  .decoration__toys {
-    margin-top: 0;
-  }
-
-  .decor-toys {
-    &__list {
-      grid-template-columns: repeat(auto-fill, 6rem);
-      grid-gap: 0.3rem;
-      height: 7rem;
-      width: 97vw;
-      overflow-x: scroll;
-      padding: 0.2rem 0.2rem 0 0.2rem;
-    }
-    &__item {
-      @include equalSize(5rem);
-
-      padding: 0.5rem;
-    }
-    &__img {
-      @include equalSize(4rem);
-    }
-    &__counter {
-      @include equalSize(2rem);
-    }
-  }
-  .clear__btn {
-    @include hover-scale(0.9);
-  }
-}
-@media screen and (max-width: 1600px) {
-}
-@media screen and (max-width: 1600px) {
-}
-@media screen and (max-width: 1600px) {
-}
-@media screen and (max-width: 1600px) {
 }

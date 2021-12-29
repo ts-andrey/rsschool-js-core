@@ -33,16 +33,7 @@ export class DecoratorState {
   }
 
   setState(obj: DecoratorState) {
-    this.state.music = obj.state.music;
-    this.state.snow = obj.state.snow;
-    this.state.tree = obj.state.tree;
-    this.state.bg = obj.state.bg;
-    this.state.colorSingle = obj.state.colorSingle;
-    this.state.colorMany = obj.state.colorMany;
-    this.state.lightState = obj.state.lightState;
-    this.state.lightSpeed = obj.state.lightSpeed;
-    this.state.lightBrightness = obj.state.lightBrightness;
-    this.state.lightMode = obj.state.lightMode;
-    this.state.lightAmount = obj.state.lightAmount;
+    const newState = obj.state;
+    Object.keys(newState).forEach(key => (this.state[key] = newState[key]));
   }
 }

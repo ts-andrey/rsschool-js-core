@@ -31,9 +31,6 @@ export class FilterState {
 
   setFilterState(obj: IFilterStateStorage) {
     const newState = obj.filterState;
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    /* @ts-ignore */
     Object.keys(newState).forEach(state => (this.filterState[state] = newState[state]));
   }
 }

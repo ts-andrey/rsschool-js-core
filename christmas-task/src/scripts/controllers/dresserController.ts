@@ -284,6 +284,79 @@ export class DresserController {
     bulbAnimation(bulbs);
   }
 
+  /* Drag and Drop functionality */
+
+  dragNDropHandler(toys: NodeListOf<HTMLElement>, tree: HTMLElement) {
+    let toyActive: HTMLElement = null;
+    let currentEvent: DragEvent = null;
+
+    const treeWrapper = tree.parentElement;
+    const outerElement = treeWrapper.parentElement;
+
+    tree.addEventListener('drop', ev => {
+      ev.stopPropagation();
+      const toyNum = Number(toyActive.getAttribute('data-num')) - 1;
+      const toy = toys[toyNum];
+      const toyCounter: HTMLElement = toy.parentElement.querySelector('.decor-toys__counter');
+      if (toyCounter.innerText === '0') {
+        return;
+      } else {
+        toyActive = <HTMLElement>toyActive.cloneNode(true);
+
+        if (!toyActive.getAttribute('data-dragstart')) {
+          toyCounter.innerText = String(Number(toyCounter.innerText) - 1);
+          if (toyCounter.innerText === '0') {
+            toy.style.display = 'none';
+          }
+          toyActive.setAttribute('data-dragstart', 'true');
+          toyActive.addEventListener('dragstart', ev => {
+            currentEvent = ev;
+            toyActive = <HTMLElement>ev.target;
+          });
+          toyActive.addEventListener('dragend', ev => {
+            ev.stopPropagation();
+            const element = document.elementFromPoint(ev.x, ev.y);
+            if (element === outerElement) {
+              const toyNum = Number(toyActive.getAttribute('data-num')) - 1;
+              const toy = toys[toyNum];
+              const toyCounter: HTMLElement = toy.parentElement.querySelector('.decor-toys__counter');
+
+              toyCounter.innerText = String(Number(toyCounter.innerText) + 1);
+              toy.style.display = 'inline';
+              treeWrapper.removeChild(toyActive);
+            }
+          });
+
+          treeWrapper.append(toyActive);
+          toyActive.style.position = 'absolute';
+          toyActive.style.zIndex = '100';
+          toyActive.style.left = `${Math.abs(ev.offsetX - currentEvent.offsetX)}px`;
+          toyActive.style.top = `${Math.abs(ev.offsetY - currentEvent.offsetY)}px`;
+        }
+      }
+    });
+
+    tree.addEventListener('dragover', ev => {
+      ev.preventDefault();
+      toyActive.style.cursor = 'grab';
+      toyActive.style.left = `${Math.abs(ev.offsetX - currentEvent.offsetX)}px`;
+      toyActive.style.top = `${Math.abs(ev.offsetY - currentEvent.offsetY)}px`;
+    });
+    tree.addEventListener('dragenter', ev => ev.preventDefault());
+    tree.addEventListener('dragleave', ev => ev.preventDefault());
+
+    toys.forEach(el => {
+      el.addEventListener('dragstart', ev => {
+        currentEvent = ev;
+        toyActive = el;
+      });
+      el.addEventListener('dragend', () => {
+        currentEvent = null;
+      });
+    });
+  }
+
+  /* 
   dresserToyListDragStartHandler(eventGlobal: DragEvent, toy: HTMLElement, counter: HTMLElement, target: HTMLElement) {
     target.addEventListener('dragover', (ev: DragEvent) => ev.preventDefault());
     target.addEventListener('dragenter', (ev: DragEvent) => ev.preventDefault());
@@ -310,10 +383,7 @@ export class DresserController {
       return;
     });
   }
-
-  dresserDragTargetHandler(ev: Event) {
-    ev.preventDefault();
-  }
+ */
 
   styleSetter(items: IDecorator) {
     /* handling saved progress */

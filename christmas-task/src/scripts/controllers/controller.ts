@@ -540,7 +540,7 @@ function decoratorHandler() {
   decorator.lightBightnessOptionSeeker(dresserController.lightBrightnessOptionHandler);
   decorator.lightSpeedOptionSeeker(dresserController.lightSpeedOptionHandler);
 
-  decorator.dresserToySeeker(dresserController.dresserToyListDragStartHandler);
+  decorator.dragNDropSeeker(dresserController.dragNDropHandler);
 
   decorator.dresserClearSeeker(dresserController.storageReset);
 }

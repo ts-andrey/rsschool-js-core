@@ -300,8 +300,8 @@ const content = `
 
 const toyContent = (imgNum: string, toyCount: string) => `
 <li class="decor-toys__item">
-<img src="./assets/toys/${imgNum}.webp" alt="toy for xmas tree" class="decor-toys__img" draggable="true"/>
-<span class="decor-toys__counter">${toyCount}</span>
+<img data-num="${imgNum}" src="./assets/toys/${imgNum}.webp" alt="toy for xmas tree" class="decor-toys__img" draggable="true"/>
+<span data-num="${imgNum}" class="decor-toys__counter">${toyCount}</span>
 </li>
 `;
 

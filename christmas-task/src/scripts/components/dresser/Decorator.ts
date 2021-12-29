@@ -271,13 +271,8 @@ export class Decorator {
     });
   }
 
-  dresserToySeeker(
-    dresserToyDragStartHandler: (ev: Event, toy: HTMLElement, counter: HTMLElement, target: HTMLElement) => void
-  ) {
-    this.toyList.forEach(el => {
-      const counter: HTMLElement = el.parentNode.querySelector('.decor-toys__counter');
-      el.addEventListener('dragstart', ev => dresserToyDragStartHandler(ev, el, counter, this.targetPlace));
-    });
+  dragNDropSeeker(DragNDropHandler: (toys: NodeListOf<HTMLElement>, targetPlace: HTMLElement) => void) {
+    return DragNDropHandler(this.toyList, this.targetPlace);
   }
 
   dresserClearSeeker(dresserClearHandler: () => void) {

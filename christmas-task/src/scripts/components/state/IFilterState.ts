@@ -1,5 +1,4 @@
 export interface IFilterState {
-  [id: string]: string[] | boolean | string;
   shape: string[];
   color: string[];
   size: string[];

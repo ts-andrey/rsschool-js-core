@@ -1,5 +1,4 @@
 export interface IDecoratorState {
-  [key: string]: boolean | number | string[] | string;
   music: boolean;
   snow: boolean;
   tree: number;

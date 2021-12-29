@@ -34,6 +34,8 @@ export class DecoratorState {
 
   setState(obj: DecoratorState) {
     const newState = obj.state;
-    Object.keys(newState).forEach(key => (this.state[key] = newState[key]));
+    (Object.keys(newState) as (keyof IDecoratorState)[]).forEach(key =>
+      Object.assign(this.state, { [`${key}`]: newState[`${key}`] })
+    );
   }
 }

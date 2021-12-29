@@ -356,35 +356,6 @@ export class DresserController {
     });
   }
 
-  /* 
-  dresserToyListDragStartHandler(eventGlobal: DragEvent, toy: HTMLElement, counter: HTMLElement, target: HTMLElement) {
-    target.addEventListener('dragover', (ev: DragEvent) => ev.preventDefault());
-    target.addEventListener('dragenter', (ev: DragEvent) => ev.preventDefault());
-    target.addEventListener('dragleave', (ev: DragEvent) => ev.preventDefault());
-
-    target.addEventListener('drop', (ev: DragEvent) => {
-      ev.preventDefault();
-      const copy = <HTMLElement>toy.cloneNode(true);
-      target.parentElement.append(copy);
-
-      copy.style.position = 'absolute';
-      copy.style.zIndex = '10';
-      copy.style.left = `${Math.abs(ev.offsetX - eventGlobal.offsetX)}px`;
-      copy.style.top = `${Math.abs(ev.offsetY - eventGlobal.offsetY)}px`;
-
-      const num = Number(counter.textContent);
-      counter.textContent = num === 0 ? String(0) : String(num - 1);
-      return;
-    });
-
-    toy.addEventListener('dragend', (ev: DragEvent) => {
-      ev.preventDefault();
-
-      return;
-    });
-  }
- */
-
   styleSetter(items: IDecorator) {
     /* handling saved progress */
     // sound

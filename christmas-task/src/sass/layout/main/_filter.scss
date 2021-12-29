@@ -385,6 +385,7 @@
   }
   &__reset-filters,
   &__reset-storage {
+    @include hover-translate(-.3rem);
     width: 13rem;
     display: flex;
     align-items: center;
@@ -424,6 +425,7 @@
   }
   &-list__item {
     @include size($size-widht-card, $size-height-card);
+    @include hover-translate(0.5rem);
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -432,9 +434,9 @@
     border-bottom: 1px solid $color-text-main;
     border-right: 1px solid $color-text-main;
     color: $color-text-main;
-    transition: all 0.35s;
     &:hover {
-      cursor: pointer;
+      filter: contrast(140%);
+      outline: 2px solid $color-mark-favourite;
     }
   }
 }
@@ -593,3 +595,4 @@
     }
   }
 }
+

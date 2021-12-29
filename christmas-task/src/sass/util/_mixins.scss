@@ -15,11 +15,11 @@
   padding: $size-padding;
 }
 
-@mixin hover-scale() {
+@mixin hover-scale($size: 1.2) {
   transition: all 0.35s;
   &:hover {
     cursor: pointer;
-    transform: scale(1.2);
+    transform: scale($size);
   }
 }
 @mixin hover-rotate() {
@@ -55,11 +55,11 @@
   }
 }
 
-@mixin hover-translate() {
+@mixin hover-translate($value: -0.2rem) {
   transition: all 0.35s;
   &:hover {
     cursor: pointer;
-    transform: translateY(-0.2rem);
+    transform: translateY($value);
   }
 }
 

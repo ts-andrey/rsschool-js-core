@@ -34,7 +34,7 @@
     grid-gap: 4rem;
   }
   &__clear {
-    @include hover-scale;
+    @include hover-scale(1.05);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -438,8 +438,8 @@
     }
   }
   &__counter {
-    position: absolute;
     @include equalSize(3rem);
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -447,6 +447,7 @@
     right: -0.15rem;
     font-size: 1.7rem;
     border-radius: 50%;
+    color: $color-text-dark;
     background: $color-background-option;
   }
 }
@@ -458,7 +459,8 @@
     border-radius: 1.5rem;
     font-size: 1.8rem;
     font-weight: bolder;
-    background: $color-background-toy_list;
+    color: $color-text-dark;
+    background: $color-background-option;
   }
 }
 
@@ -488,4 +490,304 @@
       border-radius: 1.5rem;
     }
   }
+}
+
+@media screen and (max-width: 1600px) {
+  .dresser-wrapper {
+    &__config,
+    &__decoration {
+      width: 28rem;
+    }
+  }
+  .config {
+    &-tree {
+      &__list {
+        grid-template-columns: repeat(2, 8rem);
+        grid-template-rows: repeat(3, 11rem);
+        height: 30rem;
+        overflow-y: scroll;
+      }
+    }
+    &-background {
+      &__list {
+        grid-template-columns: repeat(4, 4rem);
+      }
+    }
+    &-light {
+      &__custom-list {
+        flex-direction: column;
+      }
+    }
+    &__features,
+    &__trees,
+    &__background,
+    &__light {
+      width: fit-content;
+    }
+  }
+
+  .decor-toys {
+    &__list {
+      grid-template-columns: repeat(2, 7rem);
+      height: 40rem;
+      width: fit-content;
+      overflow-y: scroll;
+    }
+  }
+}
+@media screen and (max-width: 1300px) {
+  .main-box {
+    &__dresser-wrapper {
+      flex-direction: column;
+    }
+  }
+  .dresser-wrapper {
+    &__config,
+    &__decoration {
+      width: 100%;
+      grid-auto-flow: column;
+      align-items: center;
+    }
+    &__config {
+      height: 20rem;
+      grid-auto-flow: row;
+      grid-template-columns: repeat(3, auto);
+      grid-template-rows: repeat(2, auto);
+    }
+    &__decoration {
+      grid-gap: 1rem;
+      grid-auto-flow: row;
+    }
+  }
+  .config {
+    &__list {
+      padding: 0.9rem;
+    }
+    &-tree {
+      &__header {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+      }
+      &__list {
+        grid-template-columns: repeat(6, 5rem);
+        grid-template-rows: auto;
+        height: fit-content;
+        overflow-y: scroll;
+      }
+      &__img {
+        width: 5rem;
+      }
+    }
+    &-background {
+      &__list {
+        grid-template-columns: repeat(4, 4rem);
+      }
+    }
+    &__light {
+      display: grid;
+      grid-template-rows: repeat(4, auto);
+    }
+    &-light {
+      &__header{
+      }
+      &__list{
+      }
+      &__custom-list {
+        flex-direction: row;
+      }
+      &__option-list {
+        height: 12rem;
+        overflow-y: scroll;
+      }
+    }
+    &__features,
+    &__trees,
+    &__background,
+    &__light {
+      width: fit-content;
+    }
+    &__features {
+      grid-row: 1;
+      grid-column: 1;
+    }
+    &__trees {
+      grid-row: 1;
+      grid-column: 2;
+    }
+    &__background {
+      grid-row: 1;
+      grid-column: 3;
+    }
+    &__light {
+      grid-row: 2;
+      grid-column: span 3;
+    }
+  }
+
+  .features__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .xmas-tree {
+    &__img-wrapper {
+      transform: translateX(-50%) scale(0.7) translateY(20%);
+    }
+  }
+
+  .decoration__toys {
+    margin-top: 0;
+  }
+
+  .decor-toys {
+    &__list {
+      grid-template-columns: repeat(auto-fill, 6rem);
+      grid-gap: 0.3rem;
+      height: 7rem;
+      width: 97vw;
+      overflow-x: scroll;
+      padding: 0.2rem 0.2rem 0 0.2rem;
+    }
+    &__item {
+      @include equalSize(5rem);
+
+      padding: 0.5rem;
+    }
+    &__img {
+      @include equalSize(4rem);
+    }
+    &__counter {
+      @include equalSize(2rem);
+    }
+  }
+  .clear__btn {
+    @include hover-scale(0.9);
+  }
+}
+@media screen and (max-width: 750px) {
+ 
+  .dresser-wrapper {
+    &__config,
+    &__decoration {
+ 
+    }
+    &__config {
+
+    }
+    &__decoration {
+
+    }
+  }
+  .config {
+    &__list {
+    }
+    &-tree {
+      &__header {
+      }
+      &__list {
+        grid-template-columns: repeat(3, 4rem);
+        grid-template-rows: auto;
+        height: fit-content;
+        overflow-y: scroll;
+      }
+      &__img {
+        width: 4rem;
+      }
+    }
+    &-background {
+      &__list {
+        grid-template-columns: repeat(4, 3rem);
+      }
+      &__img{
+        @include equalSize(3rem);
+      }
+    }
+    &__light {
+      display: grid;
+      grid-template-rows: repeat(4, auto);
+    }
+    &-light {
+      &__header{
+      }
+      &__list{
+      }
+      &__custom-list {
+        flex-direction: row;
+      }
+      &__option-list {
+        height: 12rem;
+        overflow-y: scroll;
+      }
+    }
+    &__features,
+    &__trees,
+    &__background,
+    &__light {
+      width: fit-content;
+    }
+    &__features {
+      grid-row: 1;
+      grid-column: 1;
+    }
+    &__trees {
+      grid-row: 1;
+      grid-column: 2;
+    }
+    &__background {
+      grid-row: 1;
+      grid-column: 3;
+    }
+    &__light {
+      grid-row: 2;
+      grid-column: span 3;
+    }
+  }
+
+  .features__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .xmas-tree {
+    &__img-wrapper {
+      transform: translateX(-50%) scale(0.7) translateY(20%);
+    }
+  }
+
+  .decoration__toys {
+    margin-top: 0;
+  }
+
+  .decor-toys {
+    &__list {
+      grid-template-columns: repeat(auto-fill, 6rem);
+      grid-gap: 0.3rem;
+      height: 7rem;
+      width: 97vw;
+      overflow-x: scroll;
+      padding: 0.2rem 0.2rem 0 0.2rem;
+    }
+    &__item {
+      @include equalSize(5rem);
+
+      padding: 0.5rem;
+    }
+    &__img {
+      @include equalSize(4rem);
+    }
+    &__counter {
+      @include equalSize(2rem);
+    }
+  }
+  .clear__btn {
+    @include hover-scale(0.9);
+  }
+}
+@media screen and (max-width: 1600px) {
+}
+@media screen and (max-width: 1600px) {
+}
+@media screen and (max-width: 1600px) {
+}
+@media screen and (max-width: 1600px) {
 }

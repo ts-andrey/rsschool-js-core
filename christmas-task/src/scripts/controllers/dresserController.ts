@@ -133,10 +133,11 @@ export class DresserController {
     targetToyList.innerHTML = '';
     const info: IFilterStateStorage = JSON.parse(localStorage.getItem('filterState'));
     const pickedToys = info.filterState.toysPick;
+    let toyRendered = 0;
     if (pickedToys.length > 0) {
       pickedToys.forEach(element => {
         const toy: IData = data[Number(element) - 1];
-        targetToyList.insertAdjacentHTML('beforeend', decoratorView.renderToy(toy.num, toy.count));
+        targetToyList.insertAdjacentHTML('beforeend', decoratorView.renderToy(toy.num, toy.count, toyRendered++));
       });
     }
     let counter = 20 - pickedToys.length;
@@ -144,7 +145,7 @@ export class DresserController {
     while (counter !== 0) {
       if (!pickedToys.includes(String(toyNumber))) {
         const toy = data[toyNumber];
-        targetToyList.insertAdjacentHTML('beforeend', decoratorView.renderToy(toy.num, toy.count));
+        targetToyList.insertAdjacentHTML('beforeend', decoratorView.renderToy(toy.num, toy.count, toyRendered++));
         counter--;
       }
       toyNumber++;
@@ -295,7 +296,7 @@ export class DresserController {
 
     tree.addEventListener('drop', ev => {
       ev.stopPropagation();
-      const toyNum = Number(toyActive.getAttribute('data-num')) - 1;
+      const toyNum = Number(toyActive.getAttribute('data-num'));
       const toy = toys[toyNum];
       const toyCounter: HTMLElement = toy.parentElement.querySelector('.decor-toys__counter');
       if (toyCounter.innerText === '0') {
@@ -317,7 +318,7 @@ export class DresserController {
             ev.stopPropagation();
             const element = document.elementFromPoint(ev.x, ev.y);
             if (element === outerElement) {
-              const toyNum = Number(toyActive.getAttribute('data-num')) - 1;
+              const toyNum = Number(toyActive.getAttribute('data-num'));
               const toy = toys[toyNum];
               const toyCounter: HTMLElement = toy.parentElement.querySelector('.decor-toys__counter');
 

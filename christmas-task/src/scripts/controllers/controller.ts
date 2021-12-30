@@ -20,7 +20,7 @@ import { Decorator } from '../components/dresser/Decorator';
 import { DresserController } from './dresserController';
 
 const LINK_ACTIVE_CLASS = 'nav-list__item_state_active';
-const CARD_CHOSEN_CLASS = 'toy-card__mark_state_favourite';
+const CARD_CHOSEN_CLASS = 'toy-card__mark_state_picked';
 const FILTER_SOLE_ACTIVE_CLASS = 'filters__filter-type_state_active';
 const FILTER_MULTIPLE_CHECKED_CLASS = 'itemIsChecked';
 const FILTER_LIST_HIDE = 'main-box__filters-wrapper_state_hidden';

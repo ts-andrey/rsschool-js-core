@@ -298,8 +298,8 @@ const content = `
 </div>
 `;
 
-const toyContent = (imgNum: string, toyCount: string, toyOrder: number) => `
-<li class="decor-toys__item">
+const toyContent = (imgNum: string, toyCount: string, toyOrder: number, isPicked?: boolean) => `
+<li class="decor-toys__item ${isPicked ? 'decor-toys__item_state_picked ' : ''}">
 <img data-num="${toyOrder}" src="./assets/toys/${imgNum}.webp" alt="toy for xmas tree" class="decor-toys__img" draggable="true"/>
 <span data-num="${toyOrder}" class="decor-toys__counter">${toyCount}</span>
 </li>
@@ -319,7 +319,7 @@ export class DecoratorView {
     return toyRenderHandler();
   }
 
-  renderToy(imgNum: string, toyCount: string, toyOrder: number) {
-    return toyContent(imgNum, toyCount, toyOrder);
+  renderToy(imgNum: string, toyCount: string, toyOrder: number, isPicked?: boolean) {
+    return toyContent(imgNum, toyCount, toyOrder, isPicked);
   }
 }

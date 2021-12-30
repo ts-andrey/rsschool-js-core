@@ -2,14 +2,14 @@ import { IData } from './../components/data/IData';
 
 const content = (data: IData, pickList: string[]) =>
   `
-<li data-num="${data.num}" class="toy-card toys-list__item">
+<li data-num="${data.num}" class="toy-card toys-list__item ${data.favorite ? 'toys-list__item_state_favourite' : ''}">
 <h3 class="toy-card__header">${data.name}</h3>
 <div class="toy-card__content-wrapper">
   <div class="toy-card__content_left">
     <div class="toy-card__img-wrapper">
       <img class="toy-card__img" src="./assets/toys/${data.num}.webp" alt="toy image ${data.num}" />
     </div>
-    <span class="toy-card__mark ${pickList.includes(data.num) ? 'toy-card__mark_state_favourite' : ''}"></span>
+    <span class="toy-card__mark ${data.favorite ? 'toy-card__mark_state_favourite' : ''} ${pickList.includes(data.num) ? 'toy-card__mark_state_picked' : ''}"></span>
   </div>
   <div class="toy-card__content_right">
     <ul class="description-list toy-card__description-list">

@@ -137,7 +137,7 @@ export class DresserController {
     if (pickedToys.length > 0) {
       pickedToys.forEach(element => {
         const toy: IData = data[Number(element) - 1];
-        targetToyList.insertAdjacentHTML('beforeend', decoratorView.renderToy(toy.num, toy.count, toyRendered++));
+        targetToyList.insertAdjacentHTML('beforeend', decoratorView.renderToy(toy.num, toy.count, toyRendered++, true));
       });
     }
     let counter = 20 - pickedToys.length;

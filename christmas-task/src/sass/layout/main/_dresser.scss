@@ -429,6 +429,9 @@
     border-radius: 1rem;
     background: $color-text-main;
     overflow: hidden;
+    &_state_picked{
+      background: $color-mark-favourite;
+    }
   }
   &__img {
     @include equalSize($size_xmas-toy_img);

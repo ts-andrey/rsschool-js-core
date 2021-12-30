@@ -385,7 +385,7 @@
   }
   &__reset-filters,
   &__reset-storage {
-    @include hover-translate(-.3rem);
+    @include hover-translate(-0.3rem);
     width: 13rem;
     display: flex;
     align-items: center;
@@ -438,6 +438,13 @@
       filter: contrast(140%);
       outline: 2px solid $color-mark-favourite;
     }
+
+    &_state_favourite {
+      background: darken($color-xmas-light-yellow, 5%);
+      opacity: 0.9;
+      color: $color-text-dark;
+      font-weight: 500;
+    }
   }
 }
 .toy-card {
@@ -461,6 +468,9 @@
     background-color: $color-mark-normal;
     &_state {
       &_favourite {
+        background: $color-text-dark;
+      }
+      &_picked {
         background-color: $color-mark-favourite;
       }
     }
@@ -595,4 +605,3 @@
     }
   }
 }
-

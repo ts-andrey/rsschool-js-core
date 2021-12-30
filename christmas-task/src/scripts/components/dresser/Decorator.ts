@@ -256,20 +256,6 @@ export class Decorator {
       );
     });
   }
-  lightModeOptionSeeker(
-    lightModeOptionHandler: (
-      eventElement: HTMLElement,
-      valueElement: HTMLElement,
-      list: HTMLElement,
-      bulbs: NodeListOf<HTMLElement>
-    ) => void
-  ) {
-    this.lightListModeItems.forEach(el => {
-      el.addEventListener('click', () =>
-        lightModeOptionHandler(el, this.lightValueMode, this.lightListMode, this.bulbs)
-      );
-    });
-  }
 
   dragNDropSeeker(DragNDropHandler: (toys: NodeListOf<HTMLElement>, targetPlace: HTMLElement) => void) {
     return DragNDropHandler(this.toyList, this.targetPlace);

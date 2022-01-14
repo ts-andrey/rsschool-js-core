@@ -1,0 +1,21 @@
+@import './variables';
+
+@mixin buttonize($color-text: $color-text-button-main, $color-back: $color-background-button-main) {
+  color: $color-text;
+  background: $color-back;
+  padding: 0.25rem 1rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0.35rem 0 darken($color-back, 20%);
+  font-weight: bolder;
+
+  &:hover {
+    cursor: pointer;
+    filter: contrast(120%) brightness(85%);
+    transform: translateY(.05rem);
+  }
+}
+
+@mixin size($h: 2rem, $w: 2rem) {
+  height: $h;
+  width: $w;
+}

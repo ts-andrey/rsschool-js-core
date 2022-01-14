@@ -53,6 +53,11 @@ export class GarageView {
     const btnStart = <HTMLButtonElement>btnSelect.cloneNode(true);
     const btnBack = <HTMLButtonElement>btnSelect.cloneNode(true);
 
+    btnSelect.classList.add('car-item__btn_type_select');
+    btnRemove.classList.add('car-item__btn_type_remove');
+    btnStart.classList.add('car-item__btn_type_start');
+    btnBack.classList.add('car-item__btn_type_back');
+
     const carBox = document.createElement('div');
 
     carItemSetting(btnSelect, btnRemove, btnStart, btnBack, model, carBox);

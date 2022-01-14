@@ -1,0 +1,87 @@
+.main {
+  &__box {
+    margin: 1rem 1.5rem;
+  }
+}
+.main-box {
+  &__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    &:last-of-type {
+      margin-bottom: 5rem;
+    }
+  }
+  &__header {
+    margin-bottom: 1rem;
+  }
+  &__page-num {
+    margin-bottom: 2rem;
+  }
+  &__page-nav-box{
+margin-top: 1rem;
+  }
+  &__page-nav-btn {
+    @include buttonize;
+    margin-right: 0.7rem;
+  }
+}
+
+.manage-item {
+  &__button {
+    @include buttonize;
+    text-transform: capitalize;
+    &_type_control {
+      margin-right: 0.7rem;
+    }
+  }
+  &__input {
+    margin-right: 0.7rem;
+    &_type_text {
+      padding: 0.3rem 0.5rem;
+    }
+    &_type_color {
+      outline: 0;
+      border: 0;
+    }
+  }
+}
+
+.car-item {
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+  &__car-img {
+    height: 4rem;
+    width: fit-content;
+    g {
+      fill: $color-text-main;
+    }
+  }
+  &__win-car-img {
+    height: 2.5rem;
+    width: fit-content;
+    g {
+      fill: $color-text-main;
+    }
+  }
+  &__btn {
+    margin-right: 1rem;
+    text-transform: capitalize;
+    &_type {
+      &_select {
+        @include buttonize($color-text-button-main, $color-background-button-main);
+      }
+      &_remove {
+        @include buttonize($color-text-button-main, $color-button-back);
+      }
+      &_start {
+        @include buttonize($color-text-button-main, $color-button-start);
+      }
+      &_back {
+        @include buttonize($color-text-button-main, $color-button-back);
+      }
+    }
+  }
+}

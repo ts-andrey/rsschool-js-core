@@ -1,101 +1,16 @@
-const setDataBtnsState = (
-  create: HTMLButtonElement,
-  update: HTMLButtonElement,
-  race: HTMLButtonElement,
-  reset: HTMLButtonElement,
-  generate: HTMLButtonElement
-) => {
-  create.classList.add('manage-item__button_type_manage');
-  update.classList.add('manage-item__button_type_manage');
-  race.classList.add('manage-item__button_type_control');
-  reset.classList.add('manage-item__button_type_control');
-  generate.classList.add('manage-item__button_type_generate');
+import { CarData } from '../interfaces/CarData';
 
-  create.innerText = 'create';
-  create.setAttribute('data-type', 'create');
-  update.innerText = 'update';
-  update.setAttribute('data-type', 'update');
-
-  race.innerText = 'race';
-  race.setAttribute('data-type', 'race');
-  reset.innerText = 'reset';
-  reset.setAttribute('data-type', 'reset');
-  generate.innerText = 'generate cars';
-  generate.setAttribute('data-type', 'generate');
-};
-
-export const renderControl = () => {
-  /* ul list */
-  const manageList = document.createElement('ul');
-  manageList.classList.add('main-box__list', 'manage-list');
-
-  /* ul items */
-  const manageItemCreate = document.createElement('li');
-  manageItemCreate.classList.add('main-box__item', 'manage-list__item', 'manage-item');
-  const manageItemUpdate = <HTMLElement>manageItemCreate.cloneNode(true);
-  const manageItemControl = <HTMLElement>manageItemCreate.cloneNode(true);
-
-  /* ul items content */
-  const inputTextCreate = document.createElement('input');
-  inputTextCreate.type = 'text';
-  inputTextCreate.classList.add('manage-item__input');
-  const inputColorCreate = <HTMLInputElement>inputTextCreate.cloneNode(true);
-  inputColorCreate.type = 'color';
-  const btnCreate = document.createElement('button');
-  btnCreate.classList.add('manage-item__button');
-
-  inputTextCreate.classList.add('manage-item__input_type_text');
-  inputColorCreate.classList.add('manage-item__input_type_color');
-
-  const inputTextUpdate = <HTMLInputElement>inputTextCreate.cloneNode(true);
-  const inputColorUpdate = <HTMLInputElement>inputColorCreate.cloneNode(true);
-  const btnUpdate = <HTMLButtonElement>btnCreate.cloneNode(true);
-
-  const btnRace = <HTMLButtonElement>btnCreate.cloneNode(true);
-  const btnReset = <HTMLButtonElement>btnCreate.cloneNode(true);
-  const btnGenerate = <HTMLButtonElement>btnCreate.cloneNode(true);
-
-  setDataBtnsState(btnCreate, btnUpdate, btnRace, btnReset, btnGenerate);
-
-  manageItemCreate.append(inputTextCreate, inputColorCreate, btnCreate);
-  manageItemUpdate.append(inputTextUpdate, inputColorUpdate, btnUpdate);
-  manageItemControl.append(btnRace, btnReset, btnGenerate);
-
-  manageList.append(manageItemCreate, manageItemUpdate, manageItemControl);
-  return manageList;
-};
-
-export const carItemSetting = (
-  btnSelect: HTMLButtonElement,
-  btnRemove: HTMLButtonElement,
-  btnStart: HTMLButtonElement,
-  btnBack: HTMLButtonElement,
-  model: HTMLElement,
-  car: HTMLElement
-) => {
-  btnSelect.setAttribute('data-type', 'select');
-  btnRemove.setAttribute('data-type', 'remove');
-  btnStart.setAttribute('data-type', 'start');
-  btnBack.setAttribute('data-type', 'back');
-
-  btnSelect.innerText = 'select';
-  btnRemove.innerText = 'remove';
-  btnStart.innerText = 'a';
-  btnBack.innerText = 'b';
-  model.innerText = 'Some Car Model';
-
-  // class="car-item__car-img"
-  car.insertAdjacentHTML(
-    'beforeend',
-    `
-    <svg class="car-item__car-img version="1.0" xmlns="http://www.w3.org/2000/svg"
+export const getCarImg = (str?: string, id?: number, color?: string) => `
+<svg data-id="${id}" class="${
+  str === 'win' ? 'car-item__win-car-img' : 'car-item__car-img'
+}" version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="1280.000000pt" height="640.000000pt" viewBox="0 0 1280.000000 640.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.15, written by Peter Selinger 2001-2017
 </metadata>
 <g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
+fill="${color}" stroke="none">
 <path d="M3565 5336 c-106 -30 -101 -26 -108 -111 -4 -42 -9 -80 -12 -85 -6
 -10 -246 -105 -590 -234 -448 -167 -1052 -415 -1173 -483 -78 -43 -193 -91
 -250 -104 -23 -5 -98 -14 -165 -19 -67 -6 -167 -19 -222 -30 -154 -31 -340
@@ -189,8 +104,121 @@ l-15 -73 3006 7 c1653 4 3007 8 3009 9 1 1 -8 37 -20 81 -19 67 -22 105 -22
 61 239 98 16 10 -216 242 -234 235z"/>
 </g>
 </svg>
-    `
-  );
+`;
+
+export const getFinishIgm = () => `
+<svg class="car-item__finish-img" version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="64.000000pt" height="64.000000pt" viewBox="0 0 64.000000 64.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M77 634 c-4 -4 -7 -148 -7 -321 0 -307 0 -313 20 -313 20 0 20 5 18
+317 -3 301 -7 341 -31 317z"/>
+<path d="M330 595 c-36 -8 -98 -14 -137 -14 l-73 -1 0 -55 c0 -54 0 -55 30
+-55 29 0 30 -1 30 -50 l0 -49 -30 6 -30 6 0 -56 0 -56 38 -7 c23 -5 88 1 175
+15 126 21 177 22 223 4 12 -4 14 20 14 155 0 157 0 160 -22 166 -37 10 -149 5
+-218 -9z m140 -40 c0 -43 -1 -45 -29 -45 -16 0 -36 -3 -45 -6 -13 -5 -16 2
+-16 38 0 25 3 48 7 51 3 4 24 7 45 7 l38 0 0 -45z m-190 -30 l0 -45 -40 0 -40
+0 0 45 0 45 40 0 40 0 0 -45z m258 -31 c18 -5 22 -13 22 -50 0 -47 -1 -47 -49
+-38 -29 6 -31 9 -31 50 0 47 7 51 58 38z m-168 -49 c0 -41 -2 -45 -27 -51 -16
+-3 -34 -7 -40 -10 -9 -2 -13 11 -13 46 0 52 -2 50 68 59 8 1 12 -14 12 -44z
+m100 -90 c0 -32 -4 -45 -14 -45 -7 0 -28 -3 -45 -6 l-31 -6 0 45 c0 48 6 53
+63 56 26 1 27 -1 27 -44z m-190 -29 c0 -45 -12 -55 -62 -56 -26 0 -26 86 0 93
+53 14 62 9 62 -37z"/>
+</g>
+</svg>
+`;
+
+const setDataBtnsState = (
+  create: HTMLButtonElement,
+  update: HTMLButtonElement,
+  race: HTMLButtonElement,
+  reset: HTMLButtonElement,
+  generate: HTMLButtonElement
+) => {
+  create.classList.add('manage-item__button_type_manage');
+  update.classList.add('manage-item__button_type_manage');
+  race.classList.add('manage-item__button_type_control');
+  reset.classList.add('manage-item__button_type_control');
+  generate.classList.add('manage-item__button_type_generate');
+
+  create.innerText = 'create';
+  create.setAttribute('data-type', 'create');
+  update.innerText = 'update';
+  update.setAttribute('data-type', 'update');
+
+  race.innerText = 'race';
+  race.setAttribute('data-type', 'race');
+  reset.innerText = 'reset';
+  reset.setAttribute('data-type', 'reset');
+  generate.innerText = 'generate cars';
+  generate.setAttribute('data-type', 'generate');
+};
+
+export const renderControl = () => {
+  /* ul list */
+  const manageList = document.createElement('ul');
+  manageList.classList.add('main-box__list', 'manage-list');
+
+  /* ul items */
+  const manageItemCreate = document.createElement('li');
+  manageItemCreate.classList.add('main-box__item', 'manage-list__item', 'manage-item');
+  const manageItemUpdate = <HTMLElement>manageItemCreate.cloneNode(true);
+  const manageItemControl = <HTMLElement>manageItemCreate.cloneNode(true);
+
+  /* ul items content */
+  const inputTextCreate = document.createElement('input');
+  inputTextCreate.type = 'text';
+  inputTextCreate.classList.add('manage-item__input');
+  const inputColorCreate = <HTMLInputElement>inputTextCreate.cloneNode(true);
+  inputColorCreate.type = 'color';
+  const btnCreate = document.createElement('button');
+  btnCreate.classList.add('manage-item__button');
+
+  inputTextCreate.classList.add('manage-item__input_type_text');
+  inputColorCreate.classList.add('manage-item__input_type_color');
+
+  const inputTextUpdate = <HTMLInputElement>inputTextCreate.cloneNode(true);
+  const inputColorUpdate = <HTMLInputElement>inputColorCreate.cloneNode(true);
+  const btnUpdate = <HTMLButtonElement>btnCreate.cloneNode(true);
+
+  const btnRace = <HTMLButtonElement>btnCreate.cloneNode(true);
+  const btnReset = <HTMLButtonElement>btnCreate.cloneNode(true);
+  const btnGenerate = <HTMLButtonElement>btnCreate.cloneNode(true);
+
+  setDataBtnsState(btnCreate, btnUpdate, btnRace, btnReset, btnGenerate);
+
+  manageItemCreate.append(inputTextCreate, inputColorCreate, btnCreate);
+  manageItemUpdate.append(inputTextUpdate, inputColorUpdate, btnUpdate);
+  manageItemControl.append(btnRace, btnReset, btnGenerate);
+
+  manageList.append(manageItemCreate, manageItemUpdate, manageItemControl);
+  return manageList;
+};
+
+export const carItemSetting = (
+  btnSelect: HTMLButtonElement,
+  btnRemove: HTMLButtonElement,
+  btnStart: HTMLButtonElement,
+  btnBack: HTMLButtonElement,
+  model: HTMLElement,
+  car: HTMLElement,
+  carData: CarData
+) => {
+  btnSelect.setAttribute('data-type', 'select');
+  btnRemove.setAttribute('data-type', 'remove');
+  btnStart.setAttribute('data-type', 'start');
+  btnBack.setAttribute('data-type', 'back');
+
+  btnSelect.innerText = 'select';
+  btnRemove.innerText = 'remove';
+  btnStart.innerText = 'a';
+  btnBack.innerText = 'b';
+  model.innerText = `${carData.name}`;
+
+  // class="car-item__car-img"
+  car.insertAdjacentHTML('beforeend', getCarImg('garage', carData.id, carData.color));
 };
 
 export const settingTable = (table: HTMLTableElement) => {

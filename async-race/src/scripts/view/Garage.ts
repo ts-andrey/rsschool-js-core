@@ -1,4 +1,5 @@
-import { carItemSetting, getPageNavBox, renderControl } from './Util';
+import { CarData } from '../interfaces/CarData';
+import { carItemSetting, getPageNavBox, renderControl, getFinishIgm } from './Util';
 
 export class GarageView {
   target: HTMLElement;
@@ -31,7 +32,7 @@ export class GarageView {
     this.target.replaceWith(container);
   }
 
-  renderCar(carData?: object) {
+  renderCar(carData?: CarData) {
     const target = document.querySelector('.car-list');
 
     const carItem = document.createElement('li');
@@ -59,11 +60,16 @@ export class GarageView {
     btnBack.classList.add('car-item__btn_type_back');
 
     const carBox = document.createElement('div');
+    carBox.classList.add('car-item__car-img-box');
 
-    carItemSetting(btnSelect, btnRemove, btnStart, btnBack, model, carBox);
+    const finishBox = document.createElement('div');
+    finishBox.classList.add('car-item__finish-img-box');
+    finishBox.insertAdjacentHTML('beforeend', getFinishIgm());
 
+    carBox.append(btnStart, btnBack);
+    carItemSetting(btnSelect, btnRemove, btnStart, btnBack, model, carBox, carData);
     infoRow.append(btnSelect, btnRemove, model);
-    controlRow.append(btnStart, btnBack, carBox);
+    controlRow.append(carBox, finishBox);
     itemList.append(infoRow, controlRow);
     carItem.append(itemList);
     target.append(carItem);

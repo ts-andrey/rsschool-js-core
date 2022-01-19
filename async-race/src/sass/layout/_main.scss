@@ -18,8 +18,8 @@
   &__page-num {
     margin-bottom: 2rem;
   }
-  &__page-nav-box{
-margin-top: 1rem;
+  &__page-nav-box {
+    margin-top: 3rem;
   }
   &__page-nav-btn {
     @include buttonize;
@@ -48,25 +48,48 @@ margin-top: 1rem;
 }
 
 .car-item {
+  &__list {
+    border-bottom: 2px dashed #fff;
+    margin-bottom: 1rem;
+  }
   &__item {
     display: flex;
-    align-items: center;
+    &:first-of-type {
+      align-items: center;
+      margin-bottom: 1.2rem;
+    }
+    &:last-of-type{
+      justify-content: space-between;
+    }
+  }
+  &__car-img-box {
+    display: flex;
+    margin-bottom: -0.6rem;
+    height: calc($car-width / 2);
+    width: fit-content;
+    align-self: end;
   }
   &__car-img {
-    height: 4rem;
-    width: fit-content;
-    g {
-      fill: $color-text-main;
-    }
+    height: min-content;
+    width: $car-width;
   }
   &__win-car-img {
     height: 2.5rem;
     width: fit-content;
+  }
+  &__finish-img-box {
+    height: $finish-icon-height;
+    width: $car-width + 6rem;
+  }
+  &__finish-img {
+    height: $finish-icon-height;
+    width: fit-content;
     g {
-      fill: $color-text-main;
+      fill: #fff;
     }
   }
   &__btn {
+    align-self: start;
     margin-right: 1rem;
     text-transform: capitalize;
     &_type {

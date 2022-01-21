@@ -1,19 +1,19 @@
-import { getAllWinnersRequest, getCarRequest } from './../components/Util';
+import { getAllWinnersRequest, getCarRequest } from '../components/Requester';
 import { Navigation } from '../components/Navigation';
 import { NavigationView } from '../view/Navigation';
 import { WinnersView } from './../view/Winners';
 import { GarageView } from '../view/Garage';
 
-import { getAllCarsRequest } from '../components/Util';
+import { getAllCarsRequest } from '../components/Requester';
 import { CarData } from '../interfaces/CarData';
 import { WinCarData } from '../interfaces/WinCarData';
 
+import { garageController } from './garage';
+import { winnersController } from './winners';
+
 /* rendering navigation view to start with */
-const navigationView = new NavigationView();
-navigationView.render();
 
 /* here we already have navigation view, so we can work forward */
-const navigation = new Navigation();
 
 const renderGarage = async () => {
   const garageView = new GarageView();
@@ -22,6 +22,7 @@ const renderGarage = async () => {
   data.forEach(el => {
     garageView.renderCar(el);
   });
+  garageController();
 };
 
 const renderWinners = async () => {
@@ -33,6 +34,7 @@ const renderWinners = async () => {
     const carInfo: CarData = await getCarRequest(el.id);
     winnersView.addWinner(el, carInfo);
   });
+  winnersController();
 };
 
 function navigationHandler(el: HTMLElement) {
@@ -44,6 +46,10 @@ function navigationHandler(el: HTMLElement) {
 }
 
 export const navigationController = async () => {
+  const navigationView = new NavigationView();
+  navigationView.render();
+  const navigation = new Navigation();
+
   await renderGarage();
   navigation.seekerLinks(navigationHandler);
 };

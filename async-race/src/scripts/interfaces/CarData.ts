@@ -3,3 +3,8 @@ export interface CarData {
   color: string;
   name: string;
 }
+
+export interface NewCarData {
+  color: string;
+  name: string;
+}

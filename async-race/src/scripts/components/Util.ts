@@ -1,111 +1,40 @@
-const SERVER_URL = 'http://127.0.0.1:3000';
+import { CarData } from '../interfaces/CarData';
+import { GarageView } from '../view/Garage';
 
-export const getAllCarsRequest = async (page?: number, limit?: number) => {
-  const searchParams = `_page=${page};_limit=${limit}`;
-  const dataResult = await fetch(`${SERVER_URL}/garage`);
-  const data = await dataResult.json();
-  console.log({ dataResult, data });
-  return data;
+export const getCarData = (el: HTMLElement) => {
+  const carBox = el.parentElement.querySelector('.car-item__car-img-box');
+  const carName = (el.querySelector('.car-item__model') as HTMLElement).innerText;
+  const carId = Number(carBox.getAttribute('data-id'));
+  const carColor = carBox.querySelector('g').getAttribute('fill');
+  return { id: carId, name: carName, color: carColor };
 };
 
-export const getCarRequest = async (id: number) => {
-  const searchParams = `id=${id}`;
-  const dataResult = await fetch(`${SERVER_URL}/garage/${id}?${searchParams}`);
-  const data = await dataResult.json();
-  console.log(searchParams);
-
-  return data;
+export const updateCarData = (el: HTMLElement, newCarName: string, newCarColor: string) => {
+  (el.querySelector('.car-item__model') as HTMLElement).innerText = newCarName;
+  el.querySelector('g').setAttribute('fill', newCarColor);
 };
 
-export const createCarRequest = async (json: string) => {
-  const dataResult = await fetch(`${SERVER_URL}/garage`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+export const renderNewCar = async (result: Response) => {
+  const reader = result.body.getReader();
+  const stream = new ReadableStream({
+    start(controller) {
+      return pump();
+      function pump(): Promise<Uint8Array> {
+        return reader.read().then(({ done, value }) => {
+          if (done) {
+            controller.close();
+            return;
+          }
+          controller.enqueue(value);
+          return pump();
+        });
+      }
     },
-    body: json,
   });
-  return dataResult;
-};
-export const deleteCarRequest = async (id: number) => {
-  const dataResult = await fetch(`${SERVER_URL}/garage/${id}`, {
-    method: 'DELETE',
-  });
-  return dataResult;
-};
-
-export const updateCarRequest = async (id: number, json: string) => {
-  const dataResult = await fetch(`${SERVER_URL}/garage/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: json,
-  });
-  return dataResult;
-};
-
-export const startCarEngineRequest = async (id: number, status: string) => {
-  const searchParams = `id=${id};status=${status}`;
-  const dataResult = await fetch(`${SERVER_URL}/garage?${searchParams}`, {
-    method: 'PATCH',
-  });
-  return dataResult;
-};
-
-export const switchCarEngineMoveRequest = async (id: number, status: string) => {
-  const searchParams = `id=${id};status=${status}`;
-  const dataResult = await fetch(`${SERVER_URL}/garage?id=${searchParams}`, {
-    method: 'PATCH',
-  });
-  return dataResult;
-};
-
-export const getAllWinnersRequest = async (page?: number, limit?: number, sort?: string, order?: string) => {
-  const searchParams = `_page=${page};_limit=${limit};_sort=${sort};_order=${order}`;
-  const dataResult = await fetch(`${SERVER_URL}/winners`);
-  const data = await dataResult.json();
-  console.log({ dataResult, data });
-  return data;
-};
-
-export const getWinnerRequest = async (id: number) => {
-  const searchParams = `id=${id}`;
-  const dataResult = await fetch(`${SERVER_URL}/winners/${id}?${searchParams}`);
-  const data = await dataResult.json();
-  return data;
-};
-
-/**
- * should provide [id:number], [winds:number], [time:number] in json format
- */
-export const createWinnerRequest = async (json: string) => {
-  const dataResult = await fetch(`${SERVER_URL}/winners`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: json,
-  });
-  return dataResult;
-};
-
-export const deleteWinnerRequest = async (id: number) => {
-  const searchParams = `id=${id}`;
-  const dataResult = await fetch(`${SERVER_URL}/winners/${id}?${searchParams}`, {
-    method: 'DELETE',
-  });
-  return dataResult;
-};
-
-export const updateWinnerRequest = async (id: number, json: string) => {
-  const searchParams = `id=${id}`;
-  const dataResult = await fetch(`${SERVER_URL}/winners/${id}?${searchParams}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: json,
-  });
-  return dataResult;
+  const carDataResponse = new Response(stream);
+  const carSataBlob = await carDataResponse.blob();
+  const carData: CarData = JSON.parse(await carSataBlob.text());
+  const garageView = new GarageView();
+  garageView.renderCar(carData);
+  console.log(carData);
 };

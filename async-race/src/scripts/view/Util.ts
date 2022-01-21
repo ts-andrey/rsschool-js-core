@@ -3,7 +3,7 @@ import { CarData } from '../interfaces/CarData';
 export const getCarImg = (str?: string, id?: number, color?: string) => `
 <svg data-id="${id}" class="${
   str === 'win' ? 'car-item__win-car-img' : 'car-item__car-img'
-}" version="1.0" xmlns="http://www.w3.org/2000/svg"
+} car-image" version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="1280.000000pt" height="640.000000pt" viewBox="0 0 1280.000000 640.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
@@ -181,11 +181,22 @@ export const renderControl = () => {
 
   const inputTextUpdate = <HTMLInputElement>inputTextCreate.cloneNode(true);
   const inputColorUpdate = <HTMLInputElement>inputColorCreate.cloneNode(true);
+
   const btnUpdate = <HTMLButtonElement>btnCreate.cloneNode(true);
 
   const btnRace = <HTMLButtonElement>btnCreate.cloneNode(true);
   const btnReset = <HTMLButtonElement>btnCreate.cloneNode(true);
   const btnGenerate = <HTMLButtonElement>btnCreate.cloneNode(true);
+
+  inputTextCreate.classList.add('input-name_create');
+  inputTextUpdate.classList.add('input-name_update');
+  inputColorCreate.classList.add('input-color_create');
+  inputColorUpdate.classList.add('input-color_update');
+  btnCreate.classList.add('btn__car_create');
+  btnUpdate.classList.add('btn__car_update');
+  btnRace.classList.add('btn__cars_race');
+  btnReset.classList.add('btn__cars_reset');
+  btnGenerate.classList.add('btn__cars_generate');
 
   setDataBtnsState(btnCreate, btnUpdate, btnRace, btnReset, btnGenerate);
 
@@ -217,7 +228,7 @@ export const carItemSetting = (
   btnBack.innerText = 'b';
   model.innerText = `${carData.name}`;
 
-  // class="car-item__car-img"
+  car.setAttribute('data-id', String(carData.id));
   car.insertAdjacentHTML('beforeend', getCarImg('garage', carData.id, carData.color));
 };
 
@@ -235,10 +246,11 @@ export const settingTable = (table: HTMLTableElement) => {
   const tableHeaderWins = <HTMLTableCellElement>tableHeaderNumber.cloneNode(true);
   const tableHeaderTime = <HTMLTableCellElement>tableHeaderNumber.cloneNode(true);
 
-  tableHeaderNumber.classList.add('win-table__header-number');
-  tableHeaderName.classList.add('win-table__header-name');
-  tableHeaderWins.classList.add('win-table__header-wins');
-  tableHeaderTime.classList.add('win-table__header-time');
+  tableHeaderNumber.classList.add('win-table__table-header', 'win-table__header-number');
+  tableHeaderCar.classList.add('win-table__table-header');
+  tableHeaderName.classList.add('win-table__table-header', 'win-table__header-name');
+  tableHeaderWins.classList.add('win-table__table-header', 'win-table__header-wins');
+  tableHeaderTime.classList.add('win-table__table-header', 'win-table__header-time');
 
   tableHeaderNumber.innerText = 'number';
   tableHeaderCar.innerText = 'car';
@@ -258,6 +270,8 @@ export const getPageNavBox = () => {
   pageNavPrev.classList.add('main-box__page-nav-btn');
   const pageNavNext = <HTMLButtonElement>pageNavPrev.cloneNode(true);
 
+  pageNavPrev.classList.add('page-nav_prev');
+  pageNavNext.classList.add('page-nav_next');
   pageNavPrev.setAttribute('data-type', 'prev');
   pageNavNext.setAttribute('data-type', 'next');
   pageNavPrev.innerText = 'prev';

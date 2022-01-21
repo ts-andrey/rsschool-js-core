@@ -5,4 +5,5 @@ rootView.render();
 
 /* setting navigation controller */
 import { navigationController } from './navigation';
+
 navigationController();

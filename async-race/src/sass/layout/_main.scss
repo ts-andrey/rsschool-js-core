@@ -58,7 +58,7 @@
       align-items: center;
       margin-bottom: 1.2rem;
     }
-    &:last-of-type{
+    &:last-of-type {
       justify-content: space-between;
     }
   }
@@ -106,5 +106,20 @@
         @include buttonize($color-text-button-main, $color-button-back);
       }
     }
+  }
+}
+
+.win-table {
+  border-collapse: collapse;
+  td, th {
+    border: 0.1rem solid $color-button-start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  tr {
+    border: 0.2rem solid $color-button-start;
+    display: grid;
+    grid-template-columns: 7rem 7rem 15rem 5rem 9rem;
   }
 }

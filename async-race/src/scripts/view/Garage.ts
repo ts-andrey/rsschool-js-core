@@ -1,4 +1,5 @@
 import { CarData } from '../interfaces/CarData';
+import { CarRenderElems } from '../interfaces/carRenderElems';
 import { carItemSetting, getPageNavBox, renderControl, getFinishIgm } from './Util';
 
 export class GarageView {
@@ -30,6 +31,12 @@ export class GarageView {
     const pageNavBox = getPageNavBox();
     container.append(pageInfo, pageNum, carList, pageNavBox);
     this.target.replaceWith(container);
+    return [pageInfo, pageNum];
+  }
+
+  clearCarList() {
+    const target = document.querySelector('.car-list');
+    target.innerHTML = '';
   }
 
   renderCar(carData?: CarData) {
@@ -73,5 +80,13 @@ export class GarageView {
     itemList.append(infoRow, controlRow);
     carItem.append(itemList);
     target.append(carItem);
+    const renderedElems: CarRenderElems = {
+      car: carItem,
+      select: btnSelect,
+      remove: btnRemove,
+      start: btnStart,
+      return: btnBack,
+    };
+    return renderedElems;
   }
 }

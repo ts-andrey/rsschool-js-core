@@ -11,6 +11,9 @@ export class NavigationView {
     garageLink.classList.add('header-box__item');
 
     const winnersLink: HTMLElement = <HTMLElement>garageLink.cloneNode(true);
+    garageLink.classList.add('header-box__item_type_garage');
+    winnersLink.classList.add('header-box__item_type_winners');
+
 
     garageLink.innerText = 'to garage';
     winnersLink.innerText = 'to winners';

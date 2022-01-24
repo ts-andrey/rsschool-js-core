@@ -1,24 +1,35 @@
-import { State } from './../components/State';
-import { createCarRequest, updateCarRequest } from '../components/Requester';
+import { createCarRequest, updateCarRequest, getAllCarsRequest } from '../components/Requester';
 import { Garage } from '../components/Garage';
-import { renderNewCar, updateCarData } from '../components/Util';
+import {
+  checkState,
+  disableButton,
+  getStorageState,
+  renderManyCars,
+  renderNewCar,
+  setCarControlHandlers,
+  setStorageState,
+  undisableButton,
+  updateCarData,
+} from '../components/Util';
+import { CarData } from '../interfaces/CarData';
+import { GarageView } from '../view/Garage';
+import { State } from '../components/State';
 
 const state = new State();
+checkState(state);
 
 export const garageController = async () => {
   const garage = new Garage();
 
   garage.seekerCreateCar(createCarHandler);
   garage.seekerUpdateCar(updateCarHanlder);
+
   garage.seekerRaceCars(raceCarsHandler);
   garage.seekerResetCars(resetCarsHandler);
   garage.seekerGenerateCars(generateCarsHandler);
 
-  garage.seekerSelectCar(selectCarHandler);
-  garage.seekerRemoveCar(deleteCarHandler);
-
-  garage.seekerStartCar(startCarHandler);
-  garage.seekerReturnCar(returnCarHandler);
+  garage.seekerPreviosPageNav(previousPageHandler);
+  garage.seekerNextPageNav(nextPageHandler);
 };
 
 async function createCarHandler(name: HTMLInputElement, color: HTMLInputElement) {
@@ -33,20 +44,26 @@ async function createCarHandler(name: HTMLInputElement, color: HTMLInputElement)
 }
 
 async function updateCarHanlder(name: HTMLInputElement, color: HTMLInputElement) {
+  state.setState(getStorageState());
   const id: number = state.selectedCar.id;
   if (id && id != undefined && id !== null) {
     const data = {
       name: name.value,
       color: color.value,
     };
-    console.log(state);
     const result = await updateCarRequest(id, JSON.stringify(data));
     if (result.ok) {
-      updateCarData(state.carElement, data.name, data.color);
+      const el: HTMLElement = document.querySelector(`.${state.selectClass}`);
+      updateCarData(el, data.name, data.color);
+      el.classList.toggle(state.selectClass);
     }
-    state.setSelectedState(null, null, null);
-    state.setCarElement(null);
-    console.log(state);
+    const selectedCarReset: CarData = {
+      id: null,
+      name: null,
+      color: null,
+    };
+    state.selectedCar = selectedCarReset;
+    setStorageState(state);
   }
 }
 async function raceCarsHandler() {
@@ -56,32 +73,55 @@ async function resetCarsHandler() {
   throw new Error('Function not implemented.');
 }
 async function generateCarsHandler() {
-  throw new Error('Function not implemented.');
+  await renderManyCars(5);
 }
-
-async function selectCarHandler(
-  id: number,
-  name: string,
-  color: string,
-  nameInput: HTMLInputElement,
-  colorInput: HTMLInputElement,
-  el: HTMLElement
+async function previousPageHandler(
+  btnPrev: HTMLButtonElement,
+  btnNext: HTMLButtonElement,
+  curPage: HTMLElement,
+  carAmount: HTMLElement
 ) {
-  console.log(state, { id, name, color });
-  state.setSelectedState(id, name, color);
-  state.setCarElement(el);
-  nameInput.value = name;
-  colorInput.value = color;
+  state.setState(getStorageState());
+  if (state.pageCarRange[0] > 1) {
+    state.pageNumber = state.pageNumber - 1;
+    state.pageCarRange = [state.pageCarRange[0] - 7, state.pageCarRange[1] - 7];
+    state.pageCarsAmount = 7;
+    renderNewPage(curPage, carAmount);
+    undisableButton(btnNext);
+    if (!(state.pageCarRange[0] > 1)) {
+      disableButton(btnPrev);
+    }
+  }
 }
 
-async function deleteCarHandler(id: number) {
-  console.log(id);
+async function nextPageHandler(
+  btnPrev: HTMLButtonElement,
+  btnNext: HTMLButtonElement,
+  curPage: HTMLElement,
+  carAmount: HTMLElement
+) {
+  state.setState(getStorageState());
+  if (state.pageCarRange[1] < state.carAmount) {
+    state.pageNumber = state.pageNumber + 1;
+    state.pageCarRange = [state.pageCarRange[0] + 7, state.pageCarRange[1] + 7];
+    renderNewPage(curPage, carAmount);
+    undisableButton(btnPrev);
+    if (!(state.pageCarRange[1] < state.carAmount)) {
+      disableButton(btnNext);
+    }
+  }
 }
 
-async function startCarHandler(id: number) {
-  console.log(id);
-}
-
-async function returnCarHandler(el: HTMLElement) {
-  console.log(el);
+async function renderNewPage(page: HTMLElement, amount: HTMLElement) {
+  const garageView = new GarageView();
+  amount.innerText = `Garage (${state.carAmount})`;
+  page.innerText = `Page #${state.pageNumber}`;
+  const pageCars: CarData[] = await getAllCarsRequest(state.pageNumber, state.carsPerPage);
+  state.pageCarsAmount = pageCars.length;
+  setStorageState(state);
+  garageView.clearCarList();
+  pageCars.map(el => {
+    const carRenderElems = garageView.renderCar(el);
+    setCarControlHandlers(carRenderElems);
+  });
 }

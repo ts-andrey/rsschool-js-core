@@ -1,0 +1,10 @@
+.button-disabled {
+  user-select: none;
+  pointer-events: none;
+  filter: grayscale(100%);
+  &:hover {
+    cursor: not-allowed;
+    filter: grayscale(100%);
+    transform: translateY(0);
+  }
+}

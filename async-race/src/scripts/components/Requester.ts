@@ -1,8 +1,13 @@
 const SERVER_URL = 'http://127.0.0.1:3000';
 
 export const getAllCarsRequest = async (page?: number, limit?: number) => {
-  const searchParams = `_page=${page};_limit=${limit}`;
-  const dataResult = await fetch(`${SERVER_URL}/garage`);
+  const searchParams = `_page=${page}&_limit=${limit}`;
+  let dataResult: Response;
+  if (page !== undefined && limit !== undefined) {
+    dataResult = await fetch(`${SERVER_URL}/garage?${searchParams}`);
+  } else {
+    dataResult = await fetch(`${SERVER_URL}/garage`);
+  }
   const data = await dataResult.json();
   console.log({ dataResult, data });
   return data;
@@ -46,7 +51,7 @@ export const updateCarRequest = async (id: number, json: string) => {
 };
 
 export const startCarEngineRequest = async (id: number, status: string) => {
-  const searchParams = `id=${id};status=${status}`;
+  const searchParams = `id=${id}&status=${status}`;
   const dataResult = await fetch(`${SERVER_URL}/garage?${searchParams}`, {
     method: 'PATCH',
   });
@@ -54,7 +59,7 @@ export const startCarEngineRequest = async (id: number, status: string) => {
 };
 
 export const switchCarEngineMoveRequest = async (id: number, status: string) => {
-  const searchParams = `id=${id};status=${status}`;
+  const searchParams = `id=${id}&status=${status}`;
   const dataResult = await fetch(`${SERVER_URL}/garage?id=${searchParams}`, {
     method: 'PATCH',
   });
@@ -62,7 +67,7 @@ export const switchCarEngineMoveRequest = async (id: number, status: string) => 
 };
 
 export const getAllWinnersRequest = async (page?: number, limit?: number, sort?: string, order?: string) => {
-  const searchParams = `_page=${page};_limit=${limit};_sort=${sort};_order=${order}`;
+  const searchParams = `_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`;
   const dataResult = await fetch(`${SERVER_URL}/winners`);
   const data = await dataResult.json();
   console.log({ dataResult, data });
@@ -109,4 +114,3 @@ export const updateWinnerRequest = async (id: number, json: string) => {
   });
   return dataResult;
 };
-

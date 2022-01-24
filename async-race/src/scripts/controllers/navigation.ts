@@ -10,22 +10,42 @@ import { WinCarData } from '../interfaces/WinCarData';
 
 import { garageController } from './garage';
 import { winnersController } from './winners';
+import { checkState, checkViewBtn, getStorageState, setCarControlHandlers, setStorageState } from '../components/Util';
+import { State } from '../components/State';
+
+const state = new State();
+checkState(state);
 
 /* rendering navigation view to start with */
 
 /* here we already have navigation view, so we can work forward */
 
 const renderGarage = async () => {
+  state.setState(getStorageState());
   const garageView = new GarageView();
-  const data: CarData[] = await getAllCarsRequest();
-  garageView.render(data.length, 1);
+  const allCars: CarData[] = await getAllCarsRequest();
+  const allCarsAmount = allCars.length;
+  const pageToRender = state.pageNumber !== undefined ? state.pageNumber : 1;
+  const carsPerPage = state.carsPerPage !== undefined ? state.carsPerPage : 7;
+  state.carAmount = allCarsAmount;
+  const maxRangeEdge = pageToRender * carsPerPage;
+  const minRangeEdge = pageToRender * carsPerPage - carsPerPage - 1;
+  state.pageCarRange = [minRangeEdge < 0 ? 1 : minRangeEdge, maxRangeEdge];
+  state.pageCarsAmount = allCarsAmount < carsPerPage ? allCarsAmount : carsPerPage;
+
+  const data: CarData[] = await getAllCarsRequest(pageToRender, carsPerPage);
+  garageView.render(state.carAmount, pageToRender);
   data.forEach(el => {
-    garageView.renderCar(el);
+    const carRenderElems = garageView.renderCar(el);
+    setCarControlHandlers(carRenderElems);
   });
   garageController();
+  setStorageState(state);
+  checkViewBtn('garage', state);
 };
 
 const renderWinners = async () => {
+  state.setState(getStorageState());
   const winnersView = new WinnersView();
   const data: WinCarData[] = await getAllWinnersRequest();
   winnersView.render(data.length, 1);
@@ -35,6 +55,7 @@ const renderWinners = async () => {
     winnersView.addWinner(el, carInfo);
   });
   winnersController();
+  checkViewBtn('winners', state);
 };
 
 function navigationHandler(el: HTMLElement) {

@@ -40,8 +40,17 @@ export class Garage {
   seekerCreateCar(createHandler: (name: HTMLInputElement, color: HTMLInputElement) => void) {
     this.btnCarCreate.addEventListener('click', () => createHandler(this.inputTextCreate, this.inputColorCreate));
   }
-  seekerUpdateCar(updateHandler: (name: HTMLInputElement, color: HTMLInputElement) => void) {
-    this.btnCarUpdate.addEventListener('click', () => updateHandler(this.inputTextUpdate, this.inputColorUpdate));
+  seekerUpdateCar(
+    updateHandler: (
+      name: HTMLInputElement,
+      color: HTMLInputElement,
+      inputUpdate: HTMLInputElement,
+      btnUpdate: HTMLButtonElement
+    ) => void
+  ) {
+    this.btnCarUpdate.addEventListener('click', () =>
+      updateHandler(this.inputTextUpdate, this.inputColorUpdate, this.inputTextUpdate, this.btnCarUpdate)
+    );
   }
   seekerRaceCars(raceHandler: () => void) {
     this.btnCarsRase.addEventListener('click', () => raceHandler());
@@ -75,6 +84,10 @@ export class Garage {
     this.btnPageNext.addEventListener('click', () =>
       nextPageHandler(this.btnPagePrev, this.btnPageNext, this.pageNumber, this.carAmount)
     );
+  }
+
+  seekerCreateAllow(createAllowHandler: (textField: HTMLInputElement, btn: HTMLButtonElement) => void) {
+    this.inputTextCreate.addEventListener('input', () => createAllowHandler(this.inputTextCreate, this.btnCarCreate));
   }
 
   getUpdateFields() {

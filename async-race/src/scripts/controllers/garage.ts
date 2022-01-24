@@ -30,6 +30,8 @@ export const garageController = async () => {
 
   garage.seekerPreviosPageNav(previousPageHandler);
   garage.seekerNextPageNav(nextPageHandler);
+
+  garage.seekerCreateAllow(createAllowHandler);
 };
 
 async function createCarHandler(name: HTMLInputElement, color: HTMLInputElement) {
@@ -41,9 +43,15 @@ async function createCarHandler(name: HTMLInputElement, color: HTMLInputElement)
     const result = await createCarRequest(JSON.stringify(data));
     renderNewCar(result);
   }
+  name.value = '';
 }
 
-async function updateCarHanlder(name: HTMLInputElement, color: HTMLInputElement) {
+async function updateCarHanlder(
+  name: HTMLInputElement,
+  color: HTMLInputElement,
+  inputUpdate: HTMLInputElement,
+  btnUpdate: HTMLButtonElement
+) {
   state.setState(getStorageState());
   const id: number = state.selectedCar.id;
   if (id && id != undefined && id !== null) {
@@ -64,6 +72,8 @@ async function updateCarHanlder(name: HTMLInputElement, color: HTMLInputElement)
     };
     state.selectedCar = selectedCarReset;
     setStorageState(state);
+    inputUpdate.value = '';
+    disableButton(btnUpdate);
   }
 }
 async function raceCarsHandler() {
@@ -124,4 +134,12 @@ async function renderNewPage(page: HTMLElement, amount: HTMLElement) {
     const carRenderElems = garageView.renderCar(el);
     setCarControlHandlers(carRenderElems);
   });
+}
+
+function createAllowHandler(inputCreate: HTMLInputElement, btnCreate: HTMLButtonElement) {
+  if (inputCreate.value.length < 4) {
+    disableButton(btnCreate);
+  } else {
+    undisableButton(btnCreate);
+  }
 }

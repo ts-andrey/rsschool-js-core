@@ -51,9 +51,6 @@ export class State {
   get selectClass() {
     return this._selectClass;
   }
-  // set selectClass(el: string) {
-  //   this._selectClass = el;
-  // }
 
   get carAmount() {
     return this._totalCarAmount;

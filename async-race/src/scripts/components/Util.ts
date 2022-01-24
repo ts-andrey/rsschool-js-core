@@ -48,6 +48,7 @@ export function updateCarData(el: HTMLElement, newCarName: string, newCarColor: 
 }
 
 export async function renderNewCar(result: Response) {
+  const garage = new Garage();
   state.setState(getStorageState());
   console.log(state.pageCarsAmount);
   const reader = result.body.getReader();
@@ -75,20 +76,17 @@ export async function renderNewCar(result: Response) {
     await setCarControlHandlers(carRenderElems);
     state.pageCarsAmount = state.pageCarsAmount + 1;
   }
-  if (state.pageCarRange[1] < state.carAmount) {
+  if (state.pageCarRange[1] <= state.carAmount) {
     const btnNext: HTMLButtonElement = document.querySelector('.page-nav_next');
     undisableButton(btnNext);
   }
+  state.carAmount = state.carAmount + 1;
+  garage.carAmount.innerText = `Garage (${state.carAmount})`;
   setStorageState(state);
 }
 
 export async function renderManyCars(amount: number) {
-  const garage = new Garage();
   state.setState(getStorageState());
-  console.log({ manyStateStateBefore: state });
-  state.carAmount = state.carAmount + amount;
-  console.log({ manyStateStateAfter: state });
-  setStorageState(state);
   for (let i = 0; i < amount; i++) {
     const carName = getRandomCar();
     const carColor = getRandomColor();
@@ -99,7 +97,6 @@ export async function renderManyCars(amount: number) {
     const result = await createCarRequest(JSON.stringify(car));
     await renderNewCar(result);
   }
-  garage.carAmount.innerText = `Garage (${state.carAmount})`;
 }
 
 function getRandomCar() {
@@ -234,6 +231,7 @@ export async function setCarControlHandlers(data: CarRenderElems) {
   const btnRemove = data.remove;
   const btnStart = data.start;
   const btnReturn = data.return;
+  disableButton(btnReturn);
   //add event listeners to buttons for current car
   btnSelect.addEventListener('click', () => {
     const carData: CarData = getCarData(data.car);
@@ -245,10 +243,17 @@ export async function setCarControlHandlers(data: CarRenderElems) {
   });
   btnStart.addEventListener('click', () => {
     const carData: CarData = getCarData(data.car);
-    startCarHandler(carData.id);
+    const carImg: HTMLElement = data.car.querySelector('.car-image');
+    const btnStartCar: HTMLButtonElement = data.car.querySelector('.car-item__btn_type_start');
+    const btnReturnCar: HTMLButtonElement = data.car.querySelector('.car-item__btn_type_back');
+    startCarHandler(carData.id, carImg, btnStartCar, btnReturnCar);
   });
   btnReturn.addEventListener('click', () => {
-    returnCarHandler(data.car);
+    const carData: CarData = getCarData(data.car);
+    const carImg: HTMLElement = data.car.querySelector('.car-image');
+    const btnStartCar: HTMLButtonElement = data.car.querySelector('.car-item__btn_type_start');
+    const btnReturnCar: HTMLButtonElement = data.car.querySelector('.car-item__btn_type_back');
+    returnCarHandler(carData.id, carImg, btnStartCar, btnReturnCar);
   });
 }
 
@@ -266,18 +271,32 @@ async function selectCarHandler(
   setStorageState(state);
   nameInput.value = name;
   colorInput.value = color;
+  const btnUpdate: HTMLButtonElement = document.querySelector('.btn__car_update');
+  undisableButton(btnUpdate);
 }
 
 async function deleteCarHandler(id: number) {
   console.log(id);
 }
 
-async function startCarHandler(id: number) {
-  console.log(id);
+async function startCarHandler(
+  id: number,
+  carImg: HTMLElement,
+  btnStartCar: HTMLButtonElement,
+  btnReturnCar: HTMLButtonElement
+) {
+  console.log(id, carImg);
+  animationStart(1000, carImg, btnStartCar, btnReturnCar);
 }
 
-async function returnCarHandler(el: HTMLElement) {
-  console.log(el);
+async function returnCarHandler(
+  id: number,
+  carImg: HTMLElement,
+  btnStartCar: HTMLButtonElement,
+  btnReturnCar: HTMLButtonElement
+) {
+  console.log(id, carImg);
+  animationReturn(1000, carImg, btnStartCar, btnReturnCar);
 }
 
 export function disableButton(btn: HTMLButtonElement) {
@@ -297,9 +316,22 @@ export function checkViewBtn(type: string, state: State) {
   const winnersBtn: HTMLButtonElement = document.querySelector('.header-box__item_type_winners');
   const pageNavPrev: HTMLButtonElement = document.querySelector('.page-nav_prev');
   const pageNavNext: HTMLButtonElement = document.querySelector('.page-nav_next');
+
+  const inputCreate: HTMLInputElement = document.querySelector('.input-name_create');
+  const inputUpdate: HTMLInputElement = document.querySelector('.input-name_update');
+  const btnCreate: HTMLButtonElement = document.querySelector('.btn__car_create');
+  const btnUpdate: HTMLButtonElement = document.querySelector('.btn__car_update');
+
   if (type === 'garage') {
     disableButton(garageBtn);
     undisableButton(winnersBtn);
+
+    if (inputCreate.value.length < 4) {
+      disableButton(btnCreate);
+    }
+    if (inputUpdate.value.length < 4) {
+      disableButton(btnUpdate);
+    }
   } else if (type === 'winners') {
     disableButton(winnersBtn);
     undisableButton(garageBtn);
@@ -310,4 +342,63 @@ export function checkViewBtn(type: string, state: State) {
   if (state.pageCarRange[1] >= state.carAmount) {
     disableButton(pageNavNext);
   }
+}
+
+function animationStart(
+  time: number,
+  element: HTMLElement,
+  btnStartCar: HTMLButtonElement,
+  btnReturnCar: HTMLButtonElement
+) {
+  let indent = 0;
+  let animationId = 0;
+  const second = 1000;
+  const animationSpeed = 5;
+  const wideScreenSize = 1920;
+  const deviation = 0.00105;
+
+  disableButton(btnStartCar);
+
+  function animation(time: number) {
+    indent += animationSpeed * (second / time);
+
+    element.style.marginLeft = `calc(${indent}% - ${deviation * (wideScreenSize - window.innerWidth) * indent}px)`;
+
+    animationId = requestAnimationFrame(animation);
+
+    if (indent >= 88) {
+      cancelAnimationFrame(animationId);
+      undisableButton(btnReturnCar);
+    }
+  }
+  animation(time);
+}
+
+function animationReturn(
+  time: number,
+  element: HTMLElement,
+  btnStartCar: HTMLButtonElement,
+  btnReturnCar: HTMLButtonElement
+) {
+  let indent = 85;
+  let animationId = 0;
+  const second = 1000;
+  const animationSpeed = 80;
+
+  disableButton(btnReturnCar);
+
+  function animation(time: number) {
+    indent -= animationSpeed * (second / time);
+
+    element.style.marginLeft = `calc(${indent}%`;
+
+    animationId = requestAnimationFrame(animation);
+
+    if (indent <= 0.5) {
+      cancelAnimationFrame(animationId);
+      element.style.marginLeft = '0';
+      undisableButton(btnStartCar);
+    }
+  }
+  animation(time);
 }

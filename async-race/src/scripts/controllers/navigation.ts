@@ -31,9 +31,9 @@ const renderGarage = async () => {
   const maxRangeEdge = pageToRender * carsPerPage;
   const minRangeEdge = pageToRender * carsPerPage - carsPerPage - 1;
   state.pageCarRange = [minRangeEdge < 0 ? 1 : minRangeEdge, maxRangeEdge];
-  state.pageCarsAmount = allCarsAmount < carsPerPage ? allCarsAmount : carsPerPage;
-
+  
   const data: CarData[] = await getAllCarsRequest(pageToRender, carsPerPage);
+  state.pageCarsAmount = data.length;
   garageView.render(state.carAmount, pageToRender);
   data.forEach(el => {
     const carRenderElems = garageView.renderCar(el);

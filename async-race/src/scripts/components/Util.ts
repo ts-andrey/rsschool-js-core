@@ -1,6 +1,6 @@
 import { CarData } from '../interfaces/CarData';
 import { GarageView } from '../view/Garage';
-import { createCarRequest, deleteCarRequest, startCarEngineRequest, stopCarEngineRequest } from './Requester';
+import { createCarRequest, deleteCarRequest, switchCarEngineState } from './Requester';
 import { CarRenderElems } from '../interfaces/carRenderElems';
 import { Garage } from '../components/Garage';
 import { State } from './State';
@@ -297,9 +297,8 @@ async function startCarHandler(
   btnStartCar: HTMLButtonElement,
   btnReturnCar: HTMLButtonElement
 ) {
-  console.log(id, carImg);
-  const time: number = await startCarEngine(id);
-  animationStart(time, carImg, btnStartCar, btnReturnCar);
+  const time = <number>await carEngineSwitcher(id, 'started');
+  animationStart(id, time, carImg, btnStartCar, btnReturnCar);
 }
 
 async function returnCarHandler(
@@ -308,8 +307,7 @@ async function returnCarHandler(
   btnStartCar: HTMLButtonElement,
   btnReturnCar: HTMLButtonElement
 ) {
-  console.log(id, carImg);
-  await stopCarEngine(id);
+  await carEngineSwitcher(id, 'stopped');
   animationReturn(1000, carImg, btnStartCar, btnReturnCar);
 }
 
@@ -358,7 +356,8 @@ export function checkViewBtn(type: string, state: State) {
   }
 }
 
-function animationStart(
+async function animationStart(
+  id: number,
   time: number,
   element: HTMLElement,
   btnStartCar: HTMLButtonElement,
@@ -386,6 +385,11 @@ function animationStart(
     }
   }
   animation(time);
+  const result = await switchCarEngineState(id, 'drive');
+  if (result.status === 500) {
+    cancelAnimationFrame(animationId);
+    undisableButton(btnReturnCar);
+  }
 }
 
 function animationReturn(
@@ -422,16 +426,15 @@ export function setPageTotalCarAmount(amount: number) {
   carsAmount.innerText = `Garage (${amount})`;
 }
 
-async function startCarEngine(id: number) {
-  const response = await startCarEngineRequest(id);
+async function carEngineSwitcher(id: number, engineState: string) {
+  const response = await switchCarEngineState(id, engineState);
   const result = <CarEngineData>await processResult(response);
-  console.log({ response, result });
-  return result.distance / result.velocity;
-}
-async function stopCarEngine(id: number) {
-  const response = await stopCarEngineRequest(id);
-  const result = <CarEngineData>await processResult(response);
-  console.log({ response, result });
+  if (engineState === 'started') {
+    return result.distance / result.velocity;
+  }
+  if (engineState === 'stopped') {
+    return result;
+  }
   return result;
 }
 

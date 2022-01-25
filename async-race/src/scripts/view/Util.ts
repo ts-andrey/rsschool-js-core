@@ -1,3 +1,4 @@
+import { disableButton } from '../components/Util';
 import { CarData } from '../interfaces/CarData';
 
 export const getCarImg = (str?: string, id?: number, color?: string) => `
@@ -197,6 +198,8 @@ export const renderControl = () => {
   btnRace.classList.add('btn__cars_race');
   btnReset.classList.add('btn__cars_reset');
   btnGenerate.classList.add('btn__cars_generate');
+
+  disableButton(btnReset);
 
   setDataBtnsState(btnCreate, btnUpdate, btnRace, btnReset, btnGenerate);
 

@@ -7,7 +7,7 @@ export class Garage {
   inputColorUpdate: HTMLInputElement;
   btnCarUpdate: HTMLButtonElement;
 
-  btnCarsRase: HTMLButtonElement;
+  btnCarsRace: HTMLButtonElement;
   btnCarsReset: HTMLButtonElement;
   btnCarsGenerate: HTMLButtonElement;
 
@@ -29,7 +29,7 @@ export class Garage {
     this.carAmount = document.querySelector('.main-box__header');
     this.pageNumber = document.querySelector('.main-box__page-num');
 
-    this.btnCarsRase = document.querySelector('.btn__cars_race');
+    this.btnCarsRace = document.querySelector('.btn__cars_race');
     this.btnCarsReset = document.querySelector('.btn__cars_reset');
     this.btnCarsGenerate = document.querySelector('.btn__cars_generate');
 
@@ -52,11 +52,11 @@ export class Garage {
       updateHandler(this.inputTextUpdate, this.inputColorUpdate, this.inputTextUpdate, this.btnCarUpdate)
     );
   }
-  seekerRaceCars(raceHandler: () => void) {
-    this.btnCarsRase.addEventListener('click', () => raceHandler());
+  seekerRaceCars(raceHandler: (btnRace: HTMLButtonElement, btnReset: HTMLButtonElement) => void) {
+    this.btnCarsRace.addEventListener('click', () => raceHandler(this.btnCarsRace, this.btnCarsReset));
   }
-  seekerResetCars(resetHandler: () => void) {
-    this.btnCarsReset.addEventListener('click', () => resetHandler());
+  seekerResetCars(resetHandler: (btnRace: HTMLButtonElement, btnReset: HTMLButtonElement) => void) {
+    this.btnCarsReset.addEventListener('click', () => resetHandler(this.btnCarsRace, this.btnCarsReset));
   }
   seekerGenerateCars(generateHandler: () => void) {
     this.btnCarsGenerate.addEventListener('click', () => generateHandler());

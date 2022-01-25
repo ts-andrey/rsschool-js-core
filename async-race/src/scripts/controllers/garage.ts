@@ -1,6 +1,8 @@
 import { createCarRequest, updateCarRequest, getAllCarsRequest } from '../components/Requester';
 import { Garage } from '../components/Garage';
 import {
+  carsReturn,
+  carsStartRace,
   checkState,
   disableButton,
   getStorageState,
@@ -76,11 +78,15 @@ async function updateCarHanlder(
     disableButton(btnUpdate);
   }
 }
-async function raceCarsHandler() {
-  throw new Error('Function not implemented.');
+async function raceCarsHandler(btnRace: HTMLButtonElement, btnReset: HTMLButtonElement) {
+  disableButton(btnRace);
+  await carsStartRace();
+  undisableButton(btnReset);
 }
-async function resetCarsHandler() {
-  throw new Error('Function not implemented.');
+async function resetCarsHandler(btnRace: HTMLButtonElement, btnReset: HTMLButtonElement) {
+  disableButton(btnReset);
+  await carsReturn();
+  undisableButton(btnRace);
 }
 async function generateCarsHandler() {
   await renderManyCars(5);

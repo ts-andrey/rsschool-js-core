@@ -299,6 +299,7 @@ async function startCarHandler(
 ) {
   const time = <number>await carEngineSwitcher(id, 'started');
   animationStart(id, time, carImg, btnStartCar, btnReturnCar);
+  return time;
 }
 
 async function returnCarHandler(
@@ -459,3 +460,33 @@ async function processResult(result: Response): Promise<CarEngineData | CarData>
   const carSataBlob = await carDataResponse.blob();
   return JSON.parse(await carSataBlob.text());
 }
+
+export async function carsStartRace() {
+  const allCars: NodeListOf<HTMLElement> = document.querySelectorAll('.car-item');
+  console.log(allCars);
+  /* 
+    id: number,
+    carImg: HTMLElement,
+    btnStartCar: HTMLButtonElement,
+    btnReturnCar: HTMLButtonElement
+  */
+  allCars.forEach(el => {
+    const btnStartCar: HTMLButtonElement = el.querySelector('.car-item__btn_type_start');
+    btnStartCar.click();
+  });
+}
+export async function carsReturn() {
+  const allCars: NodeListOf<HTMLElement> = document.querySelectorAll('.car-item');
+  console.log(allCars);
+  /* 
+    id: number,
+    carImg: HTMLElement,
+    btnStartCar: HTMLButtonElement,
+    btnReturnCar: HTMLButtonElement
+  */
+  allCars.forEach(el => {
+    const btnStartCar: HTMLButtonElement = el.querySelector('.car-item__btn_type_back');
+    btnStartCar.click();
+  });
+}
+// const btnReturnCar: HTMLButtonElement = el.querySelector('.car-item__btn_type_back');

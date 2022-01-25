@@ -51,6 +51,7 @@
   &__list {
     border-bottom: 2px dashed #fff;
     margin-bottom: 1rem;
+    position: relative;
   }
   &__item {
     display: flex;
@@ -113,9 +114,27 @@
   }
 }
 
+.display-winner {
+  &__box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: $color-text-winner-main;
+    background: $color-background-main;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    box-shadow: 0 0 2rem lighten($color-background-main, 70%);
+  }
+  &__winner {
+    color: $color-text-winner-second;
+  }
+}
+
 .win-table {
   border-collapse: collapse;
-  td, th {
+  td,
+  th {
     border: 0.1rem solid $color-button-start;
     display: flex;
     align-items: center;

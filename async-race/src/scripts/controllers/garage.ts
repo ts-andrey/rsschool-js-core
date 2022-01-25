@@ -6,6 +6,7 @@ import {
   checkState,
   disableButton,
   getStorageState,
+  removeWinnerMessage,
   renderManyCars,
   renderNewCar,
   setCarControlHandlers,
@@ -99,6 +100,7 @@ async function previousPageHandler(
   curPage: HTMLElement,
   carAmount: HTMLElement
 ) {
+  removeWinnerMessage();
   state.setState(getStorageState());
   if (state.pageCarRange[0] > 1) {
     state.pageNumber = state.pageNumber - 1;
@@ -118,6 +120,7 @@ async function nextPageHandler(
   curPage: HTMLElement,
   carAmount: HTMLElement
 ) {
+  removeWinnerMessage();
   state.setState(getStorageState());
   if (state.pageCarRange[1] < state.carAmount) {
     state.pageNumber = state.pageNumber + 1;

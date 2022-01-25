@@ -401,7 +401,7 @@ async function animationStart(
       if (state.winner === null || state.winner === undefined) {
         state.winner = racer;
         setStorageState(state);
-        createWinner(state.winner);
+        createWinner(state.winner, carItem);
       }
     }
   }
@@ -410,6 +410,38 @@ async function animationStart(
   if (result.status === 500) {
     cancelAnimationFrame(animationId);
     undisableButton(btnReturnCar);
+  }
+}
+
+function showWinnerMessage(el: HTMLElement, winner: Racer) {
+  const SHOW_WINNER_BOX_CLASS = 'display-winner__box';
+  const SHOW_WINNER_CLASS = 'display-winner__winner';
+
+  const container = document.createElement('li');
+  const winnerElement = document.createElement('span');
+  container.classList.add(SHOW_WINNER_BOX_CLASS);
+  winnerElement.classList.add(SHOW_WINNER_CLASS);
+  container.insertAdjacentText('beforeend', 'The race winner is: ');
+  container.insertAdjacentElement('beforeend', winnerElement);
+  const winnerTimeElement = <HTMLElement>winnerElement.cloneNode(true);
+  winnerElement.innerText = winner.name;
+  winnerTimeElement.innerText = String(winner.time);
+  container.insertAdjacentText('beforeend', `, with time: `);
+  container.insertAdjacentElement('beforeend', winnerTimeElement);
+  console.log(container);
+  el.append(container);
+}
+
+export function removeWinnerMessage() {
+  try {
+    const SHOW_WINNER_BOX_CLASS = 'display-winner__box';
+    if (document.querySelector(`.${SHOW_WINNER_BOX_CLASS}`)) {
+      const message = document.querySelector(`.${SHOW_WINNER_BOX_CLASS}`);
+      const parent = message.parentElement;
+      parent.removeChild(message);
+    }
+  } catch (err) {
+    console.log(err);
   }
 }
 
@@ -428,7 +460,8 @@ async function isWinnerExist(winner: Racer) {
   return isExist;
 }
 
-export async function createWinner(winner: Racer) {
+export async function createWinner(winner: Racer, carItem: HTMLElement) {
+  showWinnerMessage(carItem, state.winner);
   const result = await isWinnerExist(winner);
   if (result) {
     const resp = <Response>await getWinnerRequest(winner.id);
@@ -452,9 +485,9 @@ export async function createWinner(winner: Racer) {
 
 function animationReturn(element: HTMLElement, btnStartCar: HTMLButtonElement, btnReturnCar: HTMLButtonElement) {
   disableButton(btnReturnCar);
-
   element.style.marginLeft = '0';
   undisableButton(btnStartCar);
+  removeWinnerMessage();
 }
 
 export function setPageTotalCarAmount(amount: number) {

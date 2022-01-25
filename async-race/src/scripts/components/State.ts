@@ -1,4 +1,12 @@
+import { Racer } from './../interfaces/Racer';
 import { CarData } from '../interfaces/CarData';
+
+const racer: Racer = {
+  id: null,
+  name: null,
+  color: null,
+  time: null,
+};
 
 export class State {
   private _selectedCar: CarData;
@@ -10,6 +18,7 @@ export class State {
   private _totalCarAmount: number;
   private _pageCarsAmount: number;
   private _carsPerPage: number;
+  private _winner: Racer;
 
   constructor() {
     this._selectedCar = {
@@ -25,6 +34,7 @@ export class State {
     this._totalCarAmount = 0;
     this._pageCarsAmount = 0;
     this._carsPerPage = 7;
+    this._winner = null;
   }
 
   get selectedCar() {
@@ -79,6 +89,13 @@ export class State {
   }
   set carsPerPage(value: number) {
     this._carsPerPage = value;
+  }
+
+  get winner() {
+    return this._winner;
+  }
+  set winner(racer: Racer) {
+    this._winner = racer;
   }
 
   setState(state: State) {

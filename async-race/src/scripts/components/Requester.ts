@@ -59,17 +59,26 @@ export const switchCarEngineState = async (id: number, status: string) => {
 };
 
 export const getAllWinnersRequest = async (page?: number, limit?: number, sort?: string, order?: string) => {
-  const searchParams = `_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`;
-  const dataResult = await fetch(`${SERVER_URL}/winners`);
-  const data: WinCarData[] = await dataResult.json();
-  return data;
+  try {
+    const searchParams = `_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`;
+    const dataResult = await fetch(`${SERVER_URL}/winners`);
+    const data: WinCarData[] = await dataResult.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getWinnerRequest = async (id: number) => {
-  const searchParams = `id=${id}`;
-  const dataResult = await fetch(`${SERVER_URL}/winners/${id}?${searchParams}`);
-  const data: WinCarData = await dataResult.json();
-  return data;
+  try {
+    const searchParams = `id=${id}`;
+    const dataResult = await fetch(`${SERVER_URL}/winners/${id}?${searchParams}`).catch(err => {
+      console.log(err);
+    });
+    return dataResult;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 /**

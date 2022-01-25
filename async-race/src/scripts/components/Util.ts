@@ -1,6 +1,16 @@
+import { WinCarData } from './../interfaces/WinCarData';
+import { Racer } from './../interfaces/Racer';
 import { CarData } from '../interfaces/CarData';
 import { GarageView } from '../view/Garage';
-import { createCarRequest, deleteCarRequest, switchCarEngineState } from './Requester';
+import {
+  createCarRequest,
+  deleteCarRequest,
+  switchCarEngineState,
+  createWinnerRequest,
+  getWinnerRequest,
+  getAllWinnersRequest,
+  updateWinnerRequest,
+} from './Requester';
 import { CarRenderElems } from '../interfaces/carRenderElems';
 import { Garage } from '../components/Garage';
 import { State } from './State';
@@ -309,7 +319,7 @@ async function returnCarHandler(
   btnReturnCar: HTMLButtonElement
 ) {
   await carEngineSwitcher(id, 'stopped');
-  animationReturn(1000, carImg, btnStartCar, btnReturnCar);
+  animationReturn(carImg, btnStartCar, btnReturnCar);
 }
 
 export function disableButton(btn: HTMLButtonElement) {
@@ -364,28 +374,38 @@ async function animationStart(
   btnStartCar: HTMLButtonElement,
   btnReturnCar: HTMLButtonElement
 ) {
+  disableButton(btnStartCar);
   let indent = 0;
   let animationId = 0;
+  const carItem = element.parentElement.parentElement.parentElement;
   const second = 1000;
-  const animationSpeed = 5;
+  const animationSpeed = 1;
   const wideScreenSize = 1920;
   const deviation = 0.00105;
-
-  disableButton(btnStartCar);
-
-  function animation(time: number) {
-    indent += (animationSpeed * second) / time;
+  const racer: Racer = { id: id, name: null, color: null, time: Number((time / 1000).toFixed(3)) };
+  racer.name = (carItem.querySelector('.car-item__model') as HTMLElement).innerText;
+  racer.color = carItem.querySelector('g').getAttribute('fill');
+  function animation() {
+    indent += animationSpeed / (time / second);
 
     element.style.marginLeft = `calc(${indent}% - ${deviation * (wideScreenSize - window.innerWidth) * indent}px)`;
 
     animationId = requestAnimationFrame(animation);
-
     if (indent >= 88) {
       cancelAnimationFrame(animationId);
       undisableButton(btnReturnCar);
+
+      const state = new State();
+      state.setState(getStorageState());
+
+      if (state.winner === null || state.winner === undefined) {
+        state.winner = racer;
+        setStorageState(state);
+        createWinner(state.winner);
+      }
     }
   }
-  animation(time);
+  animation();
   const result = await switchCarEngineState(id, 'drive');
   if (result.status === 500) {
     cancelAnimationFrame(animationId);
@@ -393,33 +413,48 @@ async function animationStart(
   }
 }
 
-function animationReturn(
-  time: number,
-  element: HTMLElement,
-  btnStartCar: HTMLButtonElement,
-  btnReturnCar: HTMLButtonElement
-) {
-  let indent = 85;
-  let animationId = 0;
-  const second = 1000;
-  const animationSpeed = 80;
+async function isWinnerExist(winner: Racer) {
+  const result = await getAllWinnersRequest();
+  let isExist = false;
 
+  if (result.length > 0) {
+    result.forEach(el => {
+      console.log({ el, isExist: el.id === winner.id });
+      if (Number(el.id) === Number(winner.id)) {
+        return (isExist = true);
+      }
+    });
+  }
+  return isExist;
+}
+
+export async function createWinner(winner: Racer) {
+  const result = await isWinnerExist(winner);
+  if (result) {
+    const resp = <Response>await getWinnerRequest(winner.id);
+    const winnerData = <WinCarData>(<unknown>await processResult(resp));
+    console.log(winnerData);
+    const newData = {
+      wins: winnerData.wins + 1,
+      time: winnerData.time > winner.time ? winner.time : winnerData.time,
+    };
+    await updateWinnerRequest(winner.id, JSON.stringify(newData));
+  } else {
+    const winnerData = {
+      id: winner.id,
+      wins: 1,
+      time: winner.time,
+    };
+    const result = await createWinnerRequest(JSON.stringify(winnerData));
+    console.log(result);
+  }
+}
+
+function animationReturn(element: HTMLElement, btnStartCar: HTMLButtonElement, btnReturnCar: HTMLButtonElement) {
   disableButton(btnReturnCar);
 
-  function animation(time: number) {
-    indent -= animationSpeed * (second / time);
-
-    element.style.marginLeft = `calc(${indent}%`;
-
-    animationId = requestAnimationFrame(animation);
-
-    if (indent <= 0.5) {
-      cancelAnimationFrame(animationId);
-      element.style.marginLeft = '0';
-      undisableButton(btnStartCar);
-    }
-  }
-  animation(time);
+  element.style.marginLeft = '0';
+  undisableButton(btnStartCar);
 }
 
 export function setPageTotalCarAmount(amount: number) {
@@ -462,14 +497,12 @@ async function processResult(result: Response): Promise<CarEngineData | CarData>
 }
 
 export async function carsStartRace() {
+  // prepare for adding racers
+  const state = new State();
+  state.setState(getStorageState());
+  state.winner = null;
+  setStorageState(state);
   const allCars: NodeListOf<HTMLElement> = document.querySelectorAll('.car-item');
-  console.log(allCars);
-  /* 
-    id: number,
-    carImg: HTMLElement,
-    btnStartCar: HTMLButtonElement,
-    btnReturnCar: HTMLButtonElement
-  */
   allCars.forEach(el => {
     const btnStartCar: HTMLButtonElement = el.querySelector('.car-item__btn_type_start');
     btnStartCar.click();
@@ -477,16 +510,9 @@ export async function carsStartRace() {
 }
 export async function carsReturn() {
   const allCars: NodeListOf<HTMLElement> = document.querySelectorAll('.car-item');
-  console.log(allCars);
-  /* 
-    id: number,
-    carImg: HTMLElement,
-    btnStartCar: HTMLButtonElement,
-    btnReturnCar: HTMLButtonElement
-  */
+
   allCars.forEach(el => {
     const btnStartCar: HTMLButtonElement = el.querySelector('.car-item__btn_type_back');
     btnStartCar.click();
   });
 }
-// const btnReturnCar: HTMLButtonElement = el.querySelector('.car-item__btn_type_back');

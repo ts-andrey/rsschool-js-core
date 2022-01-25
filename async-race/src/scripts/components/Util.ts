@@ -1,3 +1,4 @@
+import { WinnersState } from './WinnersState';
 import { WinCarData } from './../interfaces/WinCarData';
 import { Racer } from './../interfaces/Racer';
 import { CarData } from '../interfaces/CarData';
@@ -37,11 +38,27 @@ export function checkState(state: State) {
   return state;
 }
 
+export function checkWinState(state: WinnersState) {
+  const newState = getStorageWinState();
+  if (newState) {
+    return state.setState(newState);
+  }
+  setStorageWinState(state);
+  return state;
+}
+
 export function getStorageState(): State {
   return JSON.parse(localStorage.getItem('state'));
 }
 export function setStorageState(state: State) {
   localStorage.setItem('state', JSON.stringify(state));
+}
+
+export function getStorageWinState(): WinnersState {
+  return JSON.parse(localStorage.getItem('win-state'));
+}
+export function setStorageWinState(state: WinnersState) {
+  localStorage.setItem('win-state', JSON.stringify(state));
 }
 
 export function getCarData(el: HTMLElement) {
@@ -94,7 +111,7 @@ export async function renderNewCar(result: Response) {
     undisableButton(btnNext);
   }
   state.carAmount = state.carAmount + 1;
-  garage.carAmount.innerText = `Garage (${state.carAmount})`;
+  garage.carAmount.innerText = String(state.carAmount);
   setStorageState(state);
 }
 
@@ -362,15 +379,24 @@ export function checkViewBtn(type: string, state: State) {
     if (inputUpdate.value.length < 4) {
       disableButton(btnUpdate);
     }
+    if (state.pageCarRange[0] <= 1) {
+      disableButton(pageNavPrev);
+    }
+    if (state.pageCarRange[1] >= state.carAmount) {
+      disableButton(pageNavNext);
+    }
   } else if (type === 'winners') {
+    const winState = new WinnersState();
+    winState.setState(getStorageWinState());
     disableButton(winnersBtn);
     undisableButton(garageBtn);
-  }
-  if (state.pageCarRange[0] <= 1) {
-    disableButton(pageNavPrev);
-  }
-  if (state.pageCarRange[1] >= state.carAmount) {
-    disableButton(pageNavNext);
+
+    if (winState.winnersRange[0] <= 1) {
+      disableButton(pageNavPrev);
+    }
+    if (winState.winnersRange[1] >= winState.winnersAmount) {
+      disableButton(pageNavNext);
+    }
   }
 }
 
@@ -468,6 +494,8 @@ async function isWinnerExist(id: number) {
 }
 
 export async function createWinner(winner: Racer, carItem: HTMLElement) {
+  const state = new State();
+  state.setState(getStorageState());
   showWinnerMessage(carItem, state.winner);
   const result = await isWinnerExist(winner.id);
   if (result) {

@@ -18,11 +18,23 @@ export class GarageView {
     /* page info */
     const pageInfo = document.createElement('h3');
     pageInfo.classList.add('main-box__header');
-    pageInfo.innerText = `Garage (${carsNumber})`;
+    pageInfo.insertAdjacentText('beforeend', 'Garage (');
+
+    const carsAmountEl: HTMLElement = document.createElement('span');
+    carsAmountEl.classList.add('main-box__car-amount');
+    carsAmountEl.innerText = String(carsNumber);
+    pageInfo.insertAdjacentElement('beforeend', carsAmountEl);
+    pageInfo.insertAdjacentText('beforeend', ')');
+
     /* page number */
     const pageNum = document.createElement('p');
     pageNum.classList.add('main-box__page-num');
-    pageNum.innerText = `Page #${pageNumber}`;
+    pageNum.innerText = 'Page #';
+
+    const pageNumEl: HTMLElement = document.createElement('span');
+    pageNumEl.classList.add('main-box__page-number');
+    pageNumEl.innerText = String(pageNumber);
+    pageNum.insertAdjacentElement('beforeend', pageNumEl);
 
     /* list of cars */
     const carList = document.createElement('ul');

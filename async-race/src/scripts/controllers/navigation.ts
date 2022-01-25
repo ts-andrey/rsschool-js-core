@@ -1,3 +1,4 @@
+import { WinnersState } from './../components/WinnersState';
 import { getAllWinnersRequest, getCarRequest } from '../components/Requester';
 import { Navigation } from '../components/Navigation';
 import { NavigationView } from '../view/Navigation';
@@ -10,11 +11,23 @@ import { WinCarData } from '../interfaces/WinCarData';
 
 import { garageController } from './garage';
 import { winnersController } from './winners';
-import { checkState, checkViewBtn, getStorageState, setCarControlHandlers, setStorageState } from '../components/Util';
+import {
+  checkState,
+  checkViewBtn,
+  checkWinState,
+  getStorageState,
+  getStorageWinState,
+  setCarControlHandlers,
+  setStorageState,
+  setStorageWinState,
+} from '../components/Util';
 import { State } from '../components/State';
 
 const state = new State();
 checkState(state);
+
+const winState = new WinnersState();
+checkWinState(winState);
 
 /* rendering navigation view to start with */
 
@@ -24,14 +37,13 @@ const renderGarage = async () => {
   state.setState(getStorageState());
   const garageView = new GarageView();
   const allCars: CarData[] = await getAllCarsRequest();
-  const allCarsAmount = allCars.length;
   const pageToRender = state.pageNumber !== undefined ? state.pageNumber : 1;
   const carsPerPage = state.carsPerPage !== undefined ? state.carsPerPage : 7;
-  state.carAmount = allCarsAmount;
+  state.carAmount = allCars.length;
   const maxRangeEdge = pageToRender * carsPerPage;
   const minRangeEdge = pageToRender * carsPerPage - carsPerPage - 1;
   state.pageCarRange = [minRangeEdge < 0 ? 1 : minRangeEdge, maxRangeEdge];
-  
+
   const data: CarData[] = await getAllCarsRequest(pageToRender, carsPerPage);
   state.pageCarsAmount = data.length;
   garageView.render(state.carAmount, pageToRender);
@@ -45,21 +57,35 @@ const renderGarage = async () => {
 };
 
 const renderWinners = async () => {
-  state.setState(getStorageState());
+  winState.setState(getStorageWinState());
   const winnersView = new WinnersView();
-  const data: WinCarData[] = await getAllWinnersRequest();
-  winnersView.render(data.length, 1);
+  const allWinners = await getAllWinnersRequest();
+  const data: WinCarData[] = await getAllWinnersRequest(
+    winState.pageNumber,
+    winState.winnersPerPage,
+    winState.sortType,
+    winState.sortOrder
+  );
+
+  const pageToRender = winState.pageNumber !== undefined ? winState.pageNumber : 1;
+  const winnersPerPage = winState.winnersPerPage !== undefined ? winState.winnersPerPage : 10;
+  winState.winnersAmount = allWinners.length;
+  const maxRangeEdge = pageToRender * winnersPerPage + 1;
+  const minRangeEdge = maxRangeEdge - winState.winnersPerPage;
+  winState.winnersRange = [minRangeEdge < 0 ? 1 : minRangeEdge, maxRangeEdge];
+
+  winnersView.render(winState.winnersAmount, winState.pageNumber);
 
   data.forEach(async el => {
     const carInfo: CarData = await getCarRequest(el.id);
     winnersView.addWinner(el, carInfo);
   });
   winnersController();
+  setStorageWinState(winState);
   checkViewBtn('winners', state);
 };
 
 function navigationHandler(el: HTMLElement) {
-  console.log(el);
   if (el.getAttribute('data-type') === 'garage') {
     return renderGarage();
   }

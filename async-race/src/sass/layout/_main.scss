@@ -139,11 +139,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: .5rem;
+    padding: 0.5rem;
   }
   tr {
     display: grid;
     grid-template-columns: 7rem 7rem 15rem 5rem 9rem;
+    grid-template-rows: 4.7rem;
   }
+  &__header-number,
+  &__header-time,
+  &__header-wins {
+    background: darken($color-text-winner-second, 35%);
+    border: 0.2rem solid transparent;
 
+    &:hover {
+      cursor: pointer;
+      filter: contrast(140%) brightness(130%);
+      border: 0.2rem solid $color-header-active;
+    }
+  }
+}
+
+.table-header_asc {
+  border-bottom: 0.2rem solid $color-header-active;
+}
+
+.table-header_desc {
+  border-top: 0.2rem solid $color-header-active;
 }

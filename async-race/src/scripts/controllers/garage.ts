@@ -135,8 +135,8 @@ async function nextPageHandler(
 
 async function renderNewPage(page: HTMLElement, amount: HTMLElement) {
   const garageView = new GarageView();
-  amount.innerText = `Garage (${state.carAmount})`;
-  page.innerText = `Page #${state.pageNumber}`;
+  amount.innerText = String(state.carAmount);
+  page.innerText = String(state.pageNumber);
   const pageCars: CarData[] = await getAllCarsRequest(state.pageNumber, state.carsPerPage);
   state.pageCarsAmount = pageCars.length;
   setStorageState(state);

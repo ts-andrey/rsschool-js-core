@@ -16,11 +16,23 @@ export class WinnersView {
     /* page info */
     const pageInfo = document.createElement('h3');
     pageInfo.classList.add('main-box__header');
-    pageInfo.innerText = `Winners (${carsNumber})`;
+    pageInfo.insertAdjacentText('beforeend', 'Winners (');
+
+    const carAmountEl = document.createElement('span');
+    carAmountEl.classList.add('main-box__car-amount');
+    carAmountEl.innerText = String(carsNumber);
+    pageInfo.insertAdjacentElement('beforeend', carAmountEl);
+    pageInfo.insertAdjacentText('beforeend', ')');
+
     /* page number */
     const pageNum = document.createElement('p');
     pageNum.classList.add('main-box__page-num');
-    pageNum.innerText = `Page #${pageNumber}`;
+    pageNum.insertAdjacentText('beforeend', 'Page #');
+
+    const pageNumEl = document.createElement('span');
+    pageNumEl.classList.add('main-box__page-number');
+    pageNumEl.innerText = String(pageNumber);
+    pageNum.insertAdjacentElement('beforeend', pageNumEl);
 
     /* winners table */
     const table = document.createElement('table');
@@ -57,5 +69,10 @@ export class WinnersView {
 
     row.append(tdNumber, tdCar, tdName, tdWins, tdTime);
     target.append(row);
+  }
+
+  clearTable() {
+    const tableContentEl = document.querySelector('.win-table__body');
+    tableContentEl.innerHTML = '';
   }
 }

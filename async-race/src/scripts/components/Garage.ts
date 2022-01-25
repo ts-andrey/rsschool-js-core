@@ -26,8 +26,8 @@ export class Garage {
     this.inputColorUpdate = document.querySelector('.input-color_update');
     this.btnCarUpdate = document.querySelector('.btn__car_update');
 
-    this.carAmount = document.querySelector('.main-box__header');
-    this.pageNumber = document.querySelector('.main-box__page-num');
+    this.carAmount = document.querySelector('.main-box__car-amount');
+    this.pageNumber = document.querySelector('.main-box__page-number');
 
     this.btnCarsRace = document.querySelector('.btn__cars_race');
     this.btnCarsReset = document.querySelector('.btn__cars_reset');

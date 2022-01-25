@@ -61,7 +61,13 @@ export const switchCarEngineState = async (id: number, status: string) => {
 export const getAllWinnersRequest = async (page?: number, limit?: number, sort?: string, order?: string) => {
   try {
     const searchParams = `_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`;
-    const dataResult = await fetch(`${SERVER_URL}/winners`);
+    const sortParams = `_sort=${sort}&_order=${order}`;
+    let dataResult: Response;
+    if (limit === undefined) {
+      dataResult = await fetch(`${SERVER_URL}/winners?${sortParams}`);
+    } else {
+      dataResult = await fetch(`${SERVER_URL}/winners?${searchParams}`);
+    }
     const data: WinCarData[] = await dataResult.json();
     return data;
   } catch (error) {

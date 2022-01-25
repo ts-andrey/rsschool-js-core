@@ -1,6 +1,6 @@
 import { CarData } from '../interfaces/CarData';
 import { GarageView } from '../view/Garage';
-import { createCarRequest } from './Requester';
+import { createCarRequest, deleteCarRequest, startCarEngineRequest, stopCarEngineRequest } from './Requester';
 import { CarRenderElems } from '../interfaces/carRenderElems';
 import { Garage } from '../components/Garage';
 import { State } from './State';
@@ -239,7 +239,7 @@ export async function setCarControlHandlers(data: CarRenderElems) {
   });
   btnRemove.addEventListener('click', () => {
     const carData: CarData = getCarData(data.car);
-    deleteCarHandler(carData.id);
+    deleteCarHandler(carData.id, data.car);
   });
   btnStart.addEventListener('click', () => {
     const carData: CarData = getCarData(data.car);
@@ -275,8 +275,18 @@ async function selectCarHandler(
   undisableButton(btnUpdate);
 }
 
-async function deleteCarHandler(id: number) {
-  console.log(id);
+async function deleteCarHandler(id: number, car: HTMLElement) {
+  const result = await deleteCarRequest(id);
+  console.log(result);
+  if (result.ok) {
+    const state = new State();
+    state.setState(getStorageState());
+    car.parentElement.removeChild(car);
+    state.carAmount = state.carAmount - 1;
+    state.pageCarsAmount = state.pageCarsAmount - 1;
+    setPageTotalCarAmount(state.carAmount);
+    setStorageState(state);
+  }
 }
 
 async function startCarHandler(
@@ -401,4 +411,16 @@ function animationReturn(
     }
   }
   animation(time);
+}
+
+export function setPageTotalCarAmount(amount: number) {
+  const carsAmount: HTMLElement = document.querySelector('.main-box__header');
+  carsAmount.innerText = `Garage (${amount})`;
+}
+
+async function startCarEngine(id: number) {
+  startCarEngineRequest(id);
+}
+async function stopCarEngine(id: number) {
+  stopCarEngineRequest(id);
 }

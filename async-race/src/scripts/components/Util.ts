@@ -10,6 +10,7 @@ import {
   getWinnerRequest,
   getAllWinnersRequest,
   updateWinnerRequest,
+  deleteWinnerRequest,
 } from './Requester';
 import { CarRenderElems } from '../interfaces/carRenderElems';
 import { Garage } from '../components/Garage';
@@ -298,6 +299,12 @@ async function deleteCarHandler(id: number, car: HTMLElement) {
     state.pageCarsAmount = state.pageCarsAmount - 1;
     setPageTotalCarAmount(state.carAmount);
     setStorageState(state);
+
+    const isWinner = await isWinnerExist(id);
+    if (isWinner) {
+      const winResult = await deleteWinnerRequest(id);
+      console.log(winResult);
+    }
   }
 }
 
@@ -445,14 +452,14 @@ export function removeWinnerMessage() {
   }
 }
 
-async function isWinnerExist(winner: Racer) {
+async function isWinnerExist(id: number) {
   const result = await getAllWinnersRequest();
   let isExist = false;
 
   if (result.length > 0) {
     result.forEach(el => {
-      console.log({ el, isExist: el.id === winner.id });
-      if (Number(el.id) === Number(winner.id)) {
+      console.log({ el, isExist: el.id === id });
+      if (Number(el.id) === Number(id)) {
         return (isExist = true);
       }
     });
@@ -462,7 +469,7 @@ async function isWinnerExist(winner: Racer) {
 
 export async function createWinner(winner: Racer, carItem: HTMLElement) {
   showWinnerMessage(carItem, state.winner);
-  const result = await isWinnerExist(winner);
+  const result = await isWinnerExist(winner.id);
   if (result) {
     const resp = <Response>await getWinnerRequest(winner.id);
     const winnerData = <WinCarData>(<unknown>await processResult(resp));

@@ -16,7 +16,7 @@ export class WinnersView {
     /* page info */
     const pageInfo = document.createElement('h3');
     pageInfo.classList.add('main-box__header');
-    pageInfo.innerText = `Garage (${carsNumber})`;
+    pageInfo.innerText = `Winners (${carsNumber})`;
     /* page number */
     const pageNum = document.createElement('p');
     pageNum.classList.add('main-box__page-num');
@@ -49,7 +49,7 @@ export class WinnersView {
     tdWins.classList.add('win-table__data-wins');
     tdTime.classList.add('win-table__data-time');
 
-    tdNumber.innerText = '1';
+    tdNumber.innerText = `${carData.id}`;
     tdCar.insertAdjacentHTML('beforeend', getCarImg('win', carData.id, carData.color));
     tdName.innerText = `${carData.name}`;
     tdWins.innerText = `${winInfo.wins}`;

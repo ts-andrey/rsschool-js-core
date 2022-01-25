@@ -135,14 +135,15 @@
   border-collapse: collapse;
   td,
   th {
-    border: 0.1rem solid $color-button-start;
+    border: 0.15rem solid $color-button-start;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: .5rem;
   }
   tr {
-    border: 0.2rem solid $color-button-start;
     display: grid;
     grid-template-columns: 7rem 7rem 15rem 5rem 9rem;
   }
+
 }

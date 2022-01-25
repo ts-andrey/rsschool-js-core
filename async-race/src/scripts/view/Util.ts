@@ -255,10 +255,10 @@ export const settingTable = (table: HTMLTableElement) => {
   tableHeaderWins.classList.add('win-table__table-header', 'win-table__header-wins');
   tableHeaderTime.classList.add('win-table__table-header', 'win-table__header-time');
 
-  tableHeaderNumber.innerText = 'number';
-  tableHeaderCar.innerText = 'car';
-  tableHeaderName.innerText = 'name';
-  tableHeaderWins.innerText = 'wins';
+  tableHeaderNumber.innerText = 'car number';
+  tableHeaderCar.innerText = 'car image';
+  tableHeaderName.innerText = 'car name';
+  tableHeaderWins.innerText = 'car wins';
   tableHeaderTime.innerText = 'best time (seconds)';
 
   tableHeaderRow.append(tableHeaderNumber, tableHeaderCar, tableHeaderName, tableHeaderWins, tableHeaderTime);

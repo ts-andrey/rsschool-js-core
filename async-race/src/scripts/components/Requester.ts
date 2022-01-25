@@ -53,14 +53,14 @@ export const updateCarRequest = async (id: number, json: string) => {
 
 export const startCarEngineRequest = async (id: number, status = 'started') => {
   const searchParams = `id=${id}&status=${status}`;
-  const dataResult = await fetch(`${SERVER_URL}/garage?${searchParams}`, {
+  const dataResult = await fetch(`${SERVER_URL}/engine?${searchParams}`, {
     method: 'PATCH',
   });
   return dataResult;
 };
 export const stopCarEngineRequest = async (id: number, status = 'stopped') => {
   const searchParams = `id=${id}&status=${status}`;
-  const dataResult = await fetch(`${SERVER_URL}/garage?${searchParams}`, {
+  const dataResult = await fetch(`${SERVER_URL}/engine?${searchParams}`, {
     method: 'PATCH',
   });
   return dataResult;
@@ -68,7 +68,7 @@ export const stopCarEngineRequest = async (id: number, status = 'stopped') => {
 
 export const switchCarEngineMoveRequest = async (id: number, status: string) => {
   const searchParams = `id=${id}&status=${status}`;
-  const dataResult = await fetch(`${SERVER_URL}/garage?id=${searchParams}`, {
+  const dataResult = await fetch(`${SERVER_URL}/engine?id=${searchParams}`, {
     method: 'PATCH',
   });
   return dataResult;

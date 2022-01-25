@@ -4,6 +4,7 @@ import { createCarRequest, deleteCarRequest, startCarEngineRequest, stopCarEngin
 import { CarRenderElems } from '../interfaces/carRenderElems';
 import { Garage } from '../components/Garage';
 import { State } from './State';
+import { CarEngineData } from '../interfaces/CarEngineData';
 
 const CAR_IMG_BOX_SELECTOR = '.car-item__car-img-box';
 const CAR_NAME_ELEMENT_SELECTOR = '.car-item__model';
@@ -51,25 +52,26 @@ export async function renderNewCar(result: Response) {
   const garage = new Garage();
   state.setState(getStorageState());
   console.log(state.pageCarsAmount);
-  const reader = result.body.getReader();
-  const stream = new ReadableStream({
-    start(controller) {
-      return pump();
-      function pump(): Promise<Uint8Array> {
-        return reader.read().then(({ done, value }) => {
-          if (done) {
-            controller.close();
-            return;
-          }
-          controller.enqueue(value);
-          return pump();
-        });
-      }
-    },
-  });
-  const carDataResponse = new Response(stream);
-  const carSataBlob = await carDataResponse.blob();
-  const carData: CarData = JSON.parse(await carSataBlob.text());
+  // const reader = result.body.getReader();
+  // const stream = new ReadableStream({
+  //   start(controller) {
+  //     return pump();
+  //     function pump(): Promise<Uint8Array> {
+  //       return reader.read().then(({ done, value }) => {
+  //         if (done) {
+  //           controller.close();
+  //           return;
+  //         }
+  //         controller.enqueue(value);
+  //         return pump();
+  //       });
+  //     }
+  //   },
+  // });
+  // const carDataResponse = new Response(stream);
+  // const carSataBlob = await carDataResponse.blob();
+  // const carData: CarData = JSON.parse(await carSataBlob.text());
+  const carData = <CarData>await processResult(result);
   if (state.pageCarsAmount < state.carsPerPage) {
     const garageView = new GarageView();
     const carRenderElems = garageView.renderCar(carData);
@@ -296,7 +298,8 @@ async function startCarHandler(
   btnReturnCar: HTMLButtonElement
 ) {
   console.log(id, carImg);
-  animationStart(1000, carImg, btnStartCar, btnReturnCar);
+  const time: number = await startCarEngine(id);
+  animationStart(time, carImg, btnStartCar, btnReturnCar);
 }
 
 async function returnCarHandler(
@@ -306,6 +309,7 @@ async function returnCarHandler(
   btnReturnCar: HTMLButtonElement
 ) {
   console.log(id, carImg);
+  await stopCarEngine(id);
   animationReturn(1000, carImg, btnStartCar, btnReturnCar);
 }
 
@@ -370,7 +374,7 @@ function animationStart(
   disableButton(btnStartCar);
 
   function animation(time: number) {
-    indent += animationSpeed * (second / time);
+    indent += (animationSpeed * second) / time;
 
     element.style.marginLeft = `calc(${indent}% - ${deviation * (wideScreenSize - window.innerWidth) * indent}px)`;
 
@@ -419,8 +423,36 @@ export function setPageTotalCarAmount(amount: number) {
 }
 
 async function startCarEngine(id: number) {
-  startCarEngineRequest(id);
+  const response = await startCarEngineRequest(id);
+  const result = <CarEngineData>await processResult(response);
+  console.log({ response, result });
+  return result.distance / result.velocity;
 }
 async function stopCarEngine(id: number) {
-  stopCarEngineRequest(id);
+  const response = await stopCarEngineRequest(id);
+  const result = <CarEngineData>await processResult(response);
+  console.log({ response, result });
+  return result;
+}
+
+async function processResult(result: Response): Promise<CarEngineData | CarData> {
+  const reader = result.body.getReader();
+  const stream = new ReadableStream({
+    start(controller) {
+      return pump();
+      function pump(): Promise<Uint8Array> {
+        return reader.read().then(({ done, value }) => {
+          if (done) {
+            controller.close();
+            return;
+          }
+          controller.enqueue(value);
+          return pump();
+        });
+      }
+    },
+  });
+  const carDataResponse = new Response(stream);
+  const carSataBlob = await carDataResponse.blob();
+  return JSON.parse(await carSataBlob.text());
 }

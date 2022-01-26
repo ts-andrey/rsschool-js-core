@@ -79,26 +79,7 @@ export function updateCarData(el: HTMLElement, newCarName: string, newCarColor: 
 export async function renderNewCar(result: Response) {
   const garage = new Garage();
   state.setState(getStorageState());
-  console.log(state.pageCarsAmount);
-  // const reader = result.body.getReader();
-  // const stream = new ReadableStream({
-  //   start(controller) {
-  //     return pump();
-  //     function pump(): Promise<Uint8Array> {
-  //       return reader.read().then(({ done, value }) => {
-  //         if (done) {
-  //           controller.close();
-  //           return;
-  //         }
-  //         controller.enqueue(value);
-  //         return pump();
-  //       });
-  //     }
-  //   },
-  // });
-  // const carDataResponse = new Response(stream);
-  // const carSataBlob = await carDataResponse.blob();
-  // const carData: CarData = JSON.parse(await carSataBlob.text());
+
   const carData = <CarData>await processResult(result);
   if (state.pageCarsAmount < state.carsPerPage) {
     const garageView = new GarageView();
@@ -307,7 +288,6 @@ async function selectCarHandler(
 
 async function deleteCarHandler(id: number, car: HTMLElement) {
   const result = await deleteCarRequest(id);
-  console.log(result);
   if (result.ok) {
     const state = new State();
     state.setState(getStorageState());
@@ -320,7 +300,6 @@ async function deleteCarHandler(id: number, car: HTMLElement) {
     const isWinner = await isWinnerExist(id);
     if (isWinner) {
       const winResult = await deleteWinnerRequest(id);
-      console.log(winResult);
     }
   }
 }
@@ -461,7 +440,6 @@ function showWinnerMessage(el: HTMLElement, winner: Racer) {
   winnerTimeElement.innerText = String(winner.time);
   container.insertAdjacentText('beforeend', `, with time: `);
   container.insertAdjacentElement('beforeend', winnerTimeElement);
-  console.log(container);
   el.append(container);
 }
 
@@ -474,7 +452,7 @@ export function removeWinnerMessage() {
       parent.removeChild(message);
     }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 
@@ -484,7 +462,6 @@ async function isWinnerExist(id: number) {
 
   if (result.length > 0) {
     result.forEach(el => {
-      console.log({ el, isExist: el.id === id });
       if (Number(el.id) === Number(id)) {
         return (isExist = true);
       }
@@ -501,7 +478,6 @@ export async function createWinner(winner: Racer, carItem: HTMLElement) {
   if (result) {
     const resp = <Response>await getWinnerRequest(winner.id);
     const winnerData = <WinCarData>(<unknown>await processResult(resp));
-    console.log(winnerData);
     const newData = {
       wins: winnerData.wins + 1,
       time: winnerData.time > winner.time ? winner.time : winnerData.time,
@@ -514,7 +490,6 @@ export async function createWinner(winner: Racer, carItem: HTMLElement) {
       time: winner.time,
     };
     const result = await createWinnerRequest(JSON.stringify(winnerData));
-    console.log(result);
   }
 }
 

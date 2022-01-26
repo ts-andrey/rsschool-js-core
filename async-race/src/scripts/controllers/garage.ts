@@ -84,7 +84,6 @@ async function raceCarsHandler(btnRace: HTMLButtonElement, btnReset: HTMLButtonE
   await carsStartRace();
   undisableButton(btnReset);
   const state = getStorageState();
-  console.log(state);
 }
 async function resetCarsHandler(btnRace: HTMLButtonElement, btnReset: HTMLButtonElement) {
   disableButton(btnReset);

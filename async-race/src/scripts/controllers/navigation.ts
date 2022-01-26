@@ -37,8 +37,8 @@ const renderGarage = async () => {
   state.setState(getStorageState());
   const garageView = new GarageView();
   const allCars: CarData[] = await getAllCarsRequest();
-  const pageToRender = state.pageNumber !== undefined ? state.pageNumber : 1;
-  const carsPerPage = state.carsPerPage !== undefined ? state.carsPerPage : 7;
+  const pageToRender =  state.pageNumber ?? 1;
+  const carsPerPage =  state.carsPerPage ?? 7;
   state.carAmount = allCars.length;
   const maxRangeEdge = pageToRender * carsPerPage;
   const minRangeEdge = pageToRender * carsPerPage - carsPerPage - 1;
@@ -67,8 +67,8 @@ const renderWinners = async () => {
     winState.sortOrder
   );
 
-  const pageToRender = winState.pageNumber !== undefined ? winState.pageNumber : 1;
-  const winnersPerPage = winState.winnersPerPage !== undefined ? winState.winnersPerPage : 10;
+  const pageToRender =  winState.pageNumber ?? 1;
+  const winnersPerPage =  winState.winnersPerPage ?? 10;
   winState.winnersAmount = allWinners.length;
   const maxRangeEdge = pageToRender * winnersPerPage + 1;
   const minRangeEdge = maxRangeEdge - winState.winnersPerPage;

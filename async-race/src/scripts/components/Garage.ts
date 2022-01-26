@@ -98,7 +98,6 @@ export class Garage {
   }
 
   getAllCars() {
-    const allCars = document.querySelectorAll('.car-image');
-    return allCars;
+    return document.querySelectorAll('.car-image');
   }
 }

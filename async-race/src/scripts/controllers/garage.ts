@@ -57,7 +57,7 @@ async function updateCarHanlder(
 ) {
   state.setState(getStorageState());
   const id: number = state.selectedCar.id;
-  if (id && id != undefined && id !== null) {
+  if (id || id === 0) {
     const data = {
       name: name.value,
       color: color.value,

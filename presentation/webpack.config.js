@@ -38,7 +38,7 @@ const cssLoaders = newLoader => {
 module.exports = {
   context: path.resolve(__dirname, './src'),
   entry: {
-    main: './index.ts',
+    main: './index',
   },
   output: {
     filename: fileName('js'),

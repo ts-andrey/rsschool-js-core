@@ -13,7 +13,7 @@ export class WinnersState {
     this._pageNumber = 1;
     this._winnersAmount = 0;
     this._winnersPerPage = 10;
-    this._winnersRange = [1, 10];
+    this._winnersRange = [1, 11];
     this._winnersPageAmount = 0;
   }
 

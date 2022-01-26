@@ -22,13 +22,25 @@ export class Winners {
     this.btnPageNext.addEventListener('click', () => btnPageNextHanvler(this.btnPagePrev, this.btnPageNext));
   }
 
-  seekerTableHeaderId(sortIdHandler: (idHeader: HTMLElement) => void) {
-    this.tableSortById.addEventListener('click', () => sortIdHandler(this.tableSortById));
+  seekerTableHeaderId(
+    sortIdHandler: (idHeader: HTMLElement, winsHeader: HTMLElement, timeHeader: HTMLElement) => void
+  ) {
+    this.tableSortById.addEventListener('click', () =>
+      sortIdHandler(this.tableSortById, this.tableSortByWins, this.tableSortByTime)
+    );
   }
-  seekerTableHeaderWins(sortWinsHandler: (winsHeader: HTMLElement) => void) {
-    this.tableSortByWins.addEventListener('click', () => sortWinsHandler(this.tableSortByWins));
+  seekerTableHeaderWins(
+    sortWinsHandler: (idHeader: HTMLElement, winsHeader: HTMLElement, timeHeader: HTMLElement) => void
+  ) {
+    this.tableSortByWins.addEventListener('click', () =>
+      sortWinsHandler(this.tableSortById, this.tableSortByWins, this.tableSortByTime)
+    );
   }
-  seekerTableHeaderTime(sortTimeHandler: (timeHeader: HTMLElement) => void) {
-    this.tableSortByTime.addEventListener('click', () => sortTimeHandler(this.tableSortByTime));
+  seekerTableHeaderTime(
+    sortTimeHandler: (idHeader: HTMLElement, winsHeader: HTMLElement, timeHeader: HTMLElement) => void
+  ) {
+    this.tableSortByTime.addEventListener('click', () =>
+      sortTimeHandler(this.tableSortById, this.tableSortByWins, this.tableSortByTime)
+    );
   }
 }

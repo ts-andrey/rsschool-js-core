@@ -150,7 +150,6 @@
   &__header-time,
   &__header-wins {
     background: darken($color-text-winner-second, 35%);
-    border: 0.2rem solid transparent;
 
     &:hover {
       cursor: pointer;
@@ -161,9 +160,9 @@
 }
 
 .table-header_asc {
-  border-bottom: 0.2rem solid $color-header-active;
+  border-bottom: 0.4rem solid $color-header-active !important;
 }
 
 .table-header_desc {
-  border-top: 0.2rem solid $color-header-active;
+  border-top: 0.4rem solid $color-header-active !important;
 }

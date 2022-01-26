@@ -404,6 +404,8 @@ async function animationStart(
 
     animationId = requestAnimationFrame(animation);
     if (indent >= 88) {
+    element.style.marginLeft = `calc(88% - ${deviation * (wideScreenSize - window.innerWidth) * 88}px)`;
+
       cancelAnimationFrame(animationId);
       undisableButton(btnReturnCar);
 
@@ -555,7 +557,7 @@ export async function carsReturn() {
   const allCars: NodeListOf<HTMLElement> = document.querySelectorAll('.car-item');
 
   allCars.forEach(el => {
-    const btnStartCar: HTMLButtonElement = el.querySelector('.car-item__btn_type_back');
-    btnStartCar.click();
+    const btnResetCar: HTMLButtonElement = el.querySelector('.car-item__btn_type_back');
+    btnResetCar.click();
   });
 }

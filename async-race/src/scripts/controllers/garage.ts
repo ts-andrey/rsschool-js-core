@@ -98,6 +98,9 @@ async function previousPageHandler(
   curPage: HTMLElement,
   carAmount: HTMLElement
 ) {
+  const btnRace: HTMLButtonElement = document.querySelector('.btn__cars_race');
+  const btnReset: HTMLButtonElement = document.querySelector('.btn__cars_reset');
+  await resetCarsHandler(btnRace, btnReset);
   removeWinnerMessage();
   state.setState(getStorageState());
   if (state.pageCarRange[0] > 1) {
@@ -118,6 +121,9 @@ async function nextPageHandler(
   curPage: HTMLElement,
   carAmount: HTMLElement
 ) {
+  const btnRace: HTMLButtonElement = document.querySelector('.btn__cars_race');
+  const btnReset: HTMLButtonElement = document.querySelector('.btn__cars_reset');
+  await resetCarsHandler(btnRace, btnReset);
   removeWinnerMessage();
   state.setState(getStorageState());
   if (state.pageCarRange[1] < state.carAmount) {

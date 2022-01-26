@@ -8,3 +8,11 @@
     transform: translateY(0);
   }
 }
+
+.table-header_asc {
+  border-bottom: 0.4rem solid $color-header-active !important;
+}
+
+.table-header_desc {
+  border-top: 0.4rem solid $color-header-active !important;
+}

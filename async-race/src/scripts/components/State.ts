@@ -1,13 +1,6 @@
 import { Racer } from './../interfaces/Racer';
 import { CarData } from '../interfaces/CarData';
 
-const racer: Racer = {
-  id: null,
-  name: null,
-  color: null,
-  time: null,
-};
-
 export class State {
   private _selectedCar: CarData;
   private _pageName: string;

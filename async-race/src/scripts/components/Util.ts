@@ -299,7 +299,7 @@ async function deleteCarHandler(id: number, car: HTMLElement) {
 
     const isWinner = await isWinnerExist(id);
     if (isWinner) {
-      const winResult = await deleteWinnerRequest(id);
+      await deleteWinnerRequest(id);
     }
   }
 }
@@ -489,7 +489,7 @@ export async function createWinner(winner: Racer, carItem: HTMLElement) {
       wins: 1,
       time: winner.time,
     };
-    const result = await createWinnerRequest(JSON.stringify(winnerData));
+    await createWinnerRequest(JSON.stringify(winnerData));
   }
 }
 

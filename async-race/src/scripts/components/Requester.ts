@@ -1,5 +1,6 @@
 import { WinCarData } from '../interfaces/WinCarData';
 import { CarData } from './../interfaces/CarData';
+
 const SERVER_URL = 'http://127.0.0.1:3000';
 
 export const getAllCarsRequest = async (page?: number, limit?: number) => {
@@ -77,9 +78,6 @@ export const getWinnerRequest = async (id: number) => {
   return dataResult;
 };
 
-/**
- * should provide [id:number], [wins:number], [time:number] in json format
- */
 export const createWinnerRequest = async (json: string) => {
   const dataResult = await fetch(`${SERVER_URL}/winners`, {
     method: 'POST',

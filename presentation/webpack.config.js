@@ -30,6 +30,7 @@ const cssLoaders = newLoader => {
       loader: MiniCssExtractPlugin.loader,
     },
     'css-loader',
+    'postcss-loader',
   ];
   if (newLoader) loaders.push(newLoader);
   return loaders;
@@ -72,7 +73,10 @@ module.exports = {
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,
-        type: 'asset',
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/font/[hash][ext][query]',
+        },
       },
       {
         test: /\.css$/i,
